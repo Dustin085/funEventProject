@@ -137,17 +137,33 @@ $(window).scroll(function (ev) {
 })
 
 /* 活動金額計算 */
+// 一開始先跑一次金額以防萬一
+calcTotalPrice();
 // 改變表單時計算金額
 $("#plan").change(function () {
     console.log("change");
+    let switchedEleArr = [$(".ticket-amount-box"), $(".price-box"), $(".fun-point-box")];
+    if (($("#plan").find("option:selected").index() != 0)) {
+        switchedEleArr.forEach(function (ele) {
+            ele.css("display", "flex");
+        });
+    }
     calcTotalPrice();
 });
+// 減號按鈕
 $(".minus-btn").click(function () {
     console.log("minus click");
+    // 如果票數-1之後仍大於0則-1
+    if (Number($(".ticket-amount-box .amount").text()) - 1 > 0) {
+        $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) - 1);
+    }
     calcTotalPrice();
 });
-$(".plus-btn").click(function(){
+// 加號按鈕
+$(".plus-btn").click(function () {
     console.log("plus click");
+    // 票數加1
+    $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) + 1);
     calcTotalPrice();
 });
 // 依照選單選項計算金額並直接修改.total-price的數字
@@ -168,5 +184,4 @@ function calcTotalPrice() {
     // 修改票價
     $(".event-plan-board .total-price").text(totalPrice);
 }
-calcTotalPrice();
 

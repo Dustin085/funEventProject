@@ -1133,6 +1133,8 @@ footer .end-box small {
 }
 
 #event-plan-form .ticket-amount-box .label-big{
+    display: flex;
+    flex-direction: column;
     margin-bottom: 20px;
 }
 
