@@ -137,22 +137,16 @@ $(window).scroll(function (ev) {
 })
 
 /* 活動金額計算 */
-// 一開始先跑一次金額以防萬一
+// 一開始先跑一次金額和切換金額欄位顯示以防萬一
 calcTotalPrice();
-// 改變表單時計算金額
+switchPriceDisplay();
+// 改變表單時計算金額和切換顯示
 $("#plan").change(function () {
-    console.log("change");
-    let switchedEleArr = [$(".ticket-amount-box"), $(".price-box"), $(".fun-point-box")];
-    if (($("#plan").find("option:selected").index() != 0)) {
-        switchedEleArr.forEach(function (ele) {
-            ele.css("display", "flex");
-        });
-    }
+    switchPriceDisplay();
     calcTotalPrice();
 });
 // 減號按鈕
 $(".minus-btn").click(function () {
-    console.log("minus click");
     // 如果票數-1之後仍大於0則-1
     if (Number($(".ticket-amount-box .amount").text()) - 1 > 0) {
         $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) - 1);
@@ -161,11 +155,26 @@ $(".minus-btn").click(function () {
 });
 // 加號按鈕
 $(".plus-btn").click(function () {
-    console.log("plus click");
     // 票數加1
     $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) + 1);
     calcTotalPrice();
 });
+// 方案介紹區塊的按鈕
+let planChooseBtnArr = document.querySelectorAll("#event-page-plan-intro .plan-choose-btn");
+planChooseBtnArr.forEach((btn, index) => {
+    btn.addEventListener("click", function () {
+        // 方案下拉選單
+        let planSelect = document.getElementById("plan");
+        // 方案下拉選單的選項陣列
+        let planOpts = planSelect.getElementsByTagName("option");
+        // 按鈕的index + 1剛好是該被選擇的選項
+        planOpts[index + 1].selected = true;
+        // 不會觸發選單的change所以要刷新金額跟切換顯示
+        calcTotalPrice();
+        switchPriceDisplay();
+    });
+})
+
 // 依照選單選項計算金額並直接修改.total-price的數字
 function calcTotalPrice() {
     let totalPrice = 0;
@@ -183,5 +192,23 @@ function calcTotalPrice() {
     }
     // 修改票價
     $(".event-plan-board .total-price").text(totalPrice);
+    calcFunPoint();
+    function calcFunPoint() {
+        $(".event-plan-board .fun-point").text($(".event-plan-board .total-price").text() / 100);
+    }
+}
+
+// 切換顯示總金額
+function switchPriceDisplay() {
+    let switchedEleArr = [$(".ticket-amount-box"), $(".event-plan-board .price-box"), $(".fun-point-box")];
+    if (($("#plan").find("option:selected").index() != 0)) {
+        switchedEleArr.forEach(function (ele) {
+            ele.css("display", "flex");
+        });
+    } else {
+        switchedEleArr.forEach(function (ele) {
+            ele.css("display", "none");
+        });
+    }
 }
 
