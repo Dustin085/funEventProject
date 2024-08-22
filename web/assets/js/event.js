@@ -137,3 +137,36 @@ $(window).scroll(function (ev) {
 })
 
 /* 活動金額計算 */
+// 改變表單時計算金額
+$("#plan").change(function () {
+    console.log("change");
+    calcTotalPrice();
+});
+$(".minus-btn").click(function () {
+    console.log("minus click");
+    calcTotalPrice();
+});
+$(".plus-btn").click(function(){
+    console.log("plus click");
+    calcTotalPrice();
+});
+// 依照選單選項計算金額並直接修改.total-price的數字
+function calcTotalPrice() {
+    let totalPrice = 0;
+    // 取得各票種的票價(照上下順序取得)
+    let priceArr = $.map($("#event-page-plan-intro .plan-list .price"), function (ele, index) {
+        return ele.textContent;
+    });
+    // 取得票種選擇器
+    let planSelect = $("#plan");
+    let planSelectIndex = planSelect.find("option:selected").index();
+    // 取得票數
+    let amount = $(".ticket-amount-box .amount").text();
+    if (planSelectIndex != 0) {
+        totalPrice = priceArr[planSelectIndex - 1] * amount;
+    }
+    // 修改票價
+    $(".event-plan-board .total-price").text(totalPrice);
+}
+calcTotalPrice();
+
