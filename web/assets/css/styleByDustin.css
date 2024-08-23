@@ -66,8 +66,9 @@ ol {
 img {
     display: block;
     width: 100%;
+    height: 100%;
     max-width: 100%;
-    height: auto;
+    /* height: auto; */
 }
 
 /* 重置連接 */
@@ -291,6 +292,28 @@ button {
 
 .funevent-event-card .sign-up-btn {
     height: 41px;
+}
+
+/* 輪播小卡 */
+.carousel-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 22px;
+    width: 380px;
+}
+
+.carousel-card .fig {
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.carousel-card .title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gray-5);
+    line-height: 26px;
 }
 
 /* 圓角99按鈕 */
@@ -838,6 +861,50 @@ footer .end-box small {
 #home-page-event-card-list-box .event-box .funevent-main-title {
     padding: 0 56px;
 }
+
+/* 活動快訊 */
+#home-page-event-news {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 76px;
+    margin-top: 40px;
+    margin-bottom: 107px;
+}
+
+#home-page-event-news .funevent-main-title {
+    padding: 0 56px;
+    margin-bottom: 30px;
+}
+
+.home-page-event-news-wrap {
+
+    width: 100%;
+    max-width: 1300px;
+}
+
+#home-page-event-news .carousel {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+}
+
+#home-page-event-news .carousel-card-list {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+#home-page-event-news .arrow {
+    width: 40px;
+    height: 40px;
+    background: url(../images/caro-prev-btn--par1.svg) center/cover no-repeat;
+}
+
+#home-page-event-news .arrow--next {
+    transform: rotate(180deg);
+}
+
 
 /* 活動頁從這開始 */
 /* 活動頁共用區 */

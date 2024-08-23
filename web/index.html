@@ -19,6 +19,7 @@
     <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventTopicCard.jsx"></script>
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/CarouselCardItem.jsx"></script>
 </head>
 
 <body>
@@ -233,6 +234,20 @@
 
                         </div>
 
+                        <section id="home-page-event-news">
+                            <div className="home-page-event-news-wrap">
+                                <h2 className="funevent-main-title">活動快訊</h2>
+                                <div className="carousel">
+                                    <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
+                                    <ul className="carousel-card-list">
+                                        <li><CarouselCardItem /></li>
+                                        <li><CarouselCardItem /></li>
+                                        <li><CarouselCardItem /></li>
+                                    </ul>
+                                    <button type="button" className="arrow arrow--next" id="news-caro-next-btn"></button>
+                                </div>
+                            </div>
+                        </section>
                         <Footer />
                     </main>
                 </div>
