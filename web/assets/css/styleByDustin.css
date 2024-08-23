@@ -220,6 +220,10 @@ button {
     -webkit-box-orient: vertical;
 }
 
+.funevent-event-card .event-title a {
+    color: var(--gray-5);
+}
+
 .funevent-event-card .location {
     display: flex;
     align-items: center;
@@ -567,15 +571,15 @@ footer .end-box small {
 
 /* 首頁從這開始 */
 /* 首頁背景 */
-.event-bg-color-block {
+/* .home-page-bg-color-block {
     position: absolute;
-    /* overflow: hidden; */
+    overflow: hidden;
     width: 100%;
     height: 100%;
-    z-index: -1;
-}
+    z-index: -3;
+} */
 
-.event-bg-color-block__block1 {
+.home-page-bg-color-block__block1 {
     width: 83vw;
     height: 83vw;
     position: absolute;
@@ -583,9 +587,10 @@ footer .end-box small {
     top: -35.8vw;
     background-color: var(--primary-2);
     border-radius: 9999px;
+    z-index: -1;
 }
 
-.event-bg-color-block__block2 {
+.home-page-bg-color-block__block2 {
     background-image: url(../images/event-bg-color-block2.svg);
     background-size: cover;
     width: 54.2vw;
@@ -593,6 +598,7 @@ footer .end-box small {
     position: absolute;
     right: -11.6vw;
     top: 12.8vw;
+    z-index: -3;
 }
 
 /* 首頁第一面 */
@@ -600,16 +606,111 @@ footer .end-box small {
     height: 100vh;
     display: flex;
     align-items: center;
-    padding-right: 36px;
 }
 
 #home-page-first-view .logo-area {
     width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 25px;
+}
+
+#home-page-first-view .logo-area .logo-tc {
+    width: 414px;
+    height: 112px;
+}
+
+#home-page-first-view .logo-area .slogan {
+    font-size: 35px;
+    font-weight: 500;
+    color: var(--light);
+}
+
+#home-page-first-view .logo-area .home-page-search-bar {
+    position: relative;
+    width: 490px;
+    height: 62px;
+    background: url(../images/search-icon-gray.svg) right/cover no-repeat;
+    background-size: 28px 28px;
+    background-position: calc(100% - 14px), 0;
+    background-color: var(--light);
+    border: solid 2px var(--secondary-2);
+    border-radius: 99px;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--gray-5);
+    padding: 14px 24px;
+
+
+}
+
+#home-page-first-view .logo-area .home-page-search-bar::placeholder {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#home-page-first-view .logo-area .home-page-search-bar:focus {
+    outline: none;
 }
 
 #home-page-first-view .carousel-area {
+    position: relative;
+    z-index: -2;
     width: 50%;
+    height: 100%;
+    margin-right: 36px;
 }
+
+#home-page-first-view .carousel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-15%);
+    width: 115%;
+    /* height: 75%; */
+}
+
+#home-page-first-view .carousel .slide-box {
+    mask: url(../images/mask-for-home-page-carousel.svg) center/contain no-repeat;
+}
+
+#home-page-first-view .carousel .ctrl-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 29px;
+    margin-top: 10px;
+}
+
+#home-page-first-view .carousel .ctrl-box .ctrl-btn-box {
+    display: flex;
+    column-gap: 14px;
+}
+
+#home-page-first-view .carousel .ctrl-box .ctrl-btn {
+    width: 17px;
+    height: 17px;
+    background-color: var(--gray-4);
+    border-radius: 999px;
+}
+
+#home-page-first-view .carousel .ctrl-box .ctrl-btn.active {
+    background-color: var(--primary-1);
+}
+
+#home-page-first-view .carousel .ctrl-box .arrow {
+    width: 50px;
+    height: 50px;
+    background: center/cover no-repeat;
+    background-image: url(../images/caro-prev-btn.svg);
+}
+
+#home-page-first-view .carousel .ctrl-box .arrow--next {
+    transform: rotate(180deg);
+}
+
 
 /* 分類小卡列表 */
 #home-page-event-category {

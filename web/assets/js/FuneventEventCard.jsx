@@ -7,7 +7,7 @@ function FuneventEventCard(props) {
 
     return <>
         <div className="funevent-event-card">
-            <a href="#" className="event-pic"
+            <a href="./event/event.html" className="event-pic"
                 style={{ backgroundImage: `url(${tnImgUrl})` }}>
                 <div className="inner-card">
                     <div className="start-box">
@@ -21,7 +21,7 @@ function FuneventEventCard(props) {
             </a>
             <div className="main-content">
                 <p className="category">戶外運動</p>
-                <h2 className="event-title">【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！</h2>
+                <h2 className="event-title"><a href="./event/event.html">【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！</a></h2>
                 <div className="location">
                     <div className="map-pin-icon"></div>
                     <p className="location-text">新北 · 板橋區</p>
