@@ -498,15 +498,53 @@ footer .end-box small {
     background-color: #ffffff;
     width: 60%;
     max-width: 850px;
+    padding: 50px;
+
 }
+
 /*-------------------------------------------------*/
+.all-iten{
+		
+    line-height: 30px;
+}
 /*選單*/
+.title {
+    font-size: 24px;
+}
+
+.selection-and-filter {
+    display: flex;
+    justify-content: space-between;
+}
+
 .selection-bar-all {
     display: flex;
     align-items: center;
+
 }
+
 .selection-bar {
     padding-right: 25px;
+}
+
+.filter {
+    background-image: url(../images/icon-new/篩選-向下.svg);
+    background-repeat: no-repeat;
+    background-position: center center ;
+    width: 24px;
+    height: 24px;
+    margin-left: 8px;
+
+}
+
+.choose {
+    display: flex;
+    align-items:center;
+}
+
+.choose li {
+    list-style: none;
+    font-size: 14px;
 }
 
 /*活動資訊*/
@@ -525,8 +563,9 @@ footer .end-box small {
 
 /*地址+按鈕*/
 .pin {
-    background-color: #FF9D46;
-    background-image: url();
+    background-image: url(../images/icon-new/地址圖釘.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
     width: 24px;
     height: 24px;
 }
@@ -553,8 +592,37 @@ footer .end-box small {
     border: none;
     text-align: center;
 }
+
 /*活動資訊+地址+按鈕*/
-.event-info-address-button{
-    margin: 30px;
+.event-info-address-button {
+    align-self: center;
     line-height: 22px;
+    background-image: url(../images/icon-new/活動票卷照片框-右.svg);
+    padding: 10px;
+    margin-left: 22px;
+
 }
+
+/*票卷左邊活動圖片*/
+.event-pic {
+    width: 214px;
+    background-image: url(../images/event-pic/gabriel-gurrola-tdo2GLH18Ls-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    &.mask {
+        -webkit-mask-image: url(../images/icon-new/活動票卷照片框-左.svg);
+        -webkit-mask-position: center center;
+        -webkit-mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+    }
+}
+
+.event {
+    display: flex;
+    /* justify-content:space-between; */
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/*box-shadow:( 0px 0px 2px rgba(0, 0, 0, 0.3))*/
