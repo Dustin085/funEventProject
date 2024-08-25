@@ -1316,7 +1316,6 @@ footer .end-box small {
 #event-plan-form .radio-box #time-1:checked~.time-1-label,
 #event-plan-form .radio-box #time-2:checked~.time-2-label {
     background-color: var(--secondary-1);
-    border: solid 2px var(--gray-2);
     color: var(--deep);
 }
 
