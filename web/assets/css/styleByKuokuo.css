@@ -503,10 +503,11 @@ footer .end-box small {
 }
 
 /*-------------------------------------------------*/
-.all-iten{
-		
+.all-iten {
+
     line-height: 30px;
 }
+
 /*選單*/
 .title {
     font-size: 24px;
@@ -530,7 +531,7 @@ footer .end-box small {
 .filter {
     background-image: url(../images/icon-new/篩選-向下.svg);
     background-repeat: no-repeat;
-    background-position: center center ;
+    background-position: center center;
     width: 24px;
     height: 24px;
     margin-left: 8px;
@@ -539,7 +540,7 @@ footer .end-box small {
 
 .choose {
     display: flex;
-    align-items:center;
+    align-items: center;
 }
 
 .choose li {
@@ -555,6 +556,7 @@ footer .end-box small {
 
 .event-information h3 {
     font-size: 20px;
+    font-weight: bold;
 }
 
 .event-information small {
@@ -582,6 +584,7 @@ footer .end-box small {
 
 /*按鈕*/
 .button-order {
+    display: flex;
     color: #fff;
     width: 100px;
     height: 40px;
@@ -591,21 +594,57 @@ footer .end-box small {
     font-weight: 400;
     border: none;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.button-order img {
+
+    width: 24px;
+    height: 24px;
+    color: #fff;
 }
 
 /*活動資訊+地址+按鈕*/
 .event-info-address-button {
     align-self: center;
     line-height: 22px;
-    background-image: url(../images/icon-new/活動票卷照片框-右.svg);
-    padding: 10px;
-    margin-left: 22px;
+    /* mask: url(../images/icon-new/活動票卷照片框-右.svg); */
+    /* padding: 20px; */
+    /* margin-left: 22px; */
+    /* width: 536px; */
+    width: 71.5%;
+    height: 170px;
 
+}
+
+.two-button {
+    display: flex;
+}
+
+.tickets {
+    display: flex;
+    border-radius: 0px, 10px, 10px, 0px;
+    background-color: #FFBF61;
+    width: 68px;
+    height: 45px;
+    align-items: center;
+    justify-content: center
+}
+
+.event-info-tickets {
+        justify-content:flex-end; 
+}
+
+.tickets p {
+    color: #fff;
+    font-size: 14px;
 }
 
 /*票卷左邊活動圖片*/
 .event-pic {
-    width: 214px;
+    /* width: 214px;
     background-image: url(../images/event-pic/gabriel-gurrola-tdo2GLH18Ls-unsplash.jpg);
     background-repeat: no-repeat;
     background-position: center center;
@@ -616,13 +655,18 @@ footer .end-box small {
         -webkit-mask-position: center center;
         -webkit-mask-size: contain;
         -webkit-mask-repeat: no-repeat;
-    }
+    } */
+    width: 28.5%;
+    height: 170px;
+    background-image: url(../images/event-pic/abigail-keenan-_h_weGa3eGo-unsplash.jpg);
+    background-position: center;
+    background-size:cover;
 }
 
 .event {
     display: flex;
     /* justify-content:space-between; */
-    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.1);
+    mask:url(../images/icon-new/票卷卡片.svg);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
 }
-
 /*box-shadow:( 0px 0px 2px rgba(0, 0, 0, 0.3))*/
