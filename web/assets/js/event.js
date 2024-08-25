@@ -1,5 +1,5 @@
 // TODO
-// 價錢計算
+// 價錢計算 => OK
 // 內部導航按鈕變色
 // fix: 元素會跟不上捲動
 
@@ -69,6 +69,14 @@ function cyclingNum(fromNum, diff, topNum, botNum = 0) {
     return result;
 }
 
+/* 蒐藏按鈕 */
+document.getElementById("event-fav-btn").onclick = function () {
+    $("#event-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+};
+document.getElementById("founder-fav-btn").onclick = function () {
+    $("#founder-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+};
+
 /* 內部導覽列 */
 let innerNavOriginTop = $(".event-inner-nav").position().top;
 // console.log(innerNavOriginTop);
@@ -76,8 +84,6 @@ let innerNavOriginTop = $(".event-inner-nav").position().top;
 $(window).scroll(function (ev) {
     let eventInnerNav = $(".event-inner-nav");
     let navBtns = $(".event-inner-nav .event-inner-nav__btn")
-
-
     // 移動超過內部導覽列一開始的位置後
     if ($(this).scrollTop() > innerNavOriginTop) {
         // 移動
@@ -93,13 +99,27 @@ $(window).scroll(function (ev) {
             btn.style.borderRadius = "20px 20px 0 0";
         });
     }
-    // console.log("window:" + $(this).scrollTop());
-    // console.log("inner-nav:" + eventInnerNav.position().top);
-    // console.log("diff:" + ($(this).scrollTop() - eventInnerNav.position().top));
-    // 介於特定位置時按鈕變色
-
-
 });
+// 介於特定位置時按鈕變色
+let navBtns = document.querySelectorAll(".event-inner-nav__btn");
+// 區間分界線
+let zoneLines = [];
+// 把區間分界線push進陣列中
+for (let i = 0; i < navBtns.length; i++) {
+    zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top);
+}
+// 把body的結尾當成最後一條線
+zoneLines.push($("body").offset().top + $("body").outerHeight());
+for (let i = 0; i < navBtns.length; i++) {
+    $(window).scroll(function () {
+        // let startLine = $(`#${navBtns[i].dataset.scrollto}`).offset().top;
+        // let endLine = $(`#${navBtns[i + 1].dataset.scrollto}`).offset().top;
+        if ($(this).scrollTop() >= zoneLines[i] && $(this).scrollTop() < zoneLines[i + 1]){
+            console.log(i);
+            
+        }
+    });
+}
 // 按下按鈕自動滾動
 $(".event-inner-nav__btn").each((index, btn) => {
     let data = btn.dataset;

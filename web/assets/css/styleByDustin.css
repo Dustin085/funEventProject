@@ -475,7 +475,30 @@ body {
     color: var(--light);
 }
 
-/* footer */
+/* 漂浮按鈕 */
+.float-btn-box {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 9px;
+}
+
+.go-top-btn {
+    width: 68px;
+    height: 68px;
+    background: url(../images/go-top-btn-icon.svg) center/cover no-repeat;
+}
+
+.chatroom-btn {
+    width: 91px;
+    height: 90px;
+    background: url(../images/chatroom-icon.svg) center/cover no-repeat;
+}
+
 /* footer */
 footer {
     position: relative;
@@ -517,7 +540,7 @@ footer .navigation .app-box p {
     font-weight: 500;
     line-height: 1.5;
     color: white;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 footer .navigation .download {
@@ -563,9 +586,9 @@ footer .navigation .menu li {
 footer .split-line-row {
     background-color: white;
     height: 0.5px;
-    width: 100%;
+    width: 80%;
     margin-top: 17px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
 footer .end-box {
@@ -586,6 +609,10 @@ footer .end-box .icon {
 }
 
 footer .end-box small {
+    /* 浮起來置中 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 14px;
     font-weight: 400;
@@ -924,6 +951,7 @@ footer .end-box small {
 /* 蒐藏轉發按鈕 */
 .add-fav-icon {
     background-image: url(../images/add-fav-icon.svg);
+    transition: .35s;
 }
 
 .add-fav-icon.add-fav-icon--faved {
