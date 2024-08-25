@@ -28,57 +28,6 @@
     <script type="text/babel">
         // 分類卡片資料
         let eventCategoryCardInfo = [];
-        // eventCategoryCardInfo = [
-        //     {
-        //         id: 1,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 2,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 3,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 4,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 5,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 6,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 7,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 8,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        // ];
-
         /*使用ajax取得本地端的類別卡片json*/
         $.ajax({
             url: "./assets/json/eventCategoryCardInfo.json",
@@ -89,18 +38,59 @@
             success: function (res) {
                 // 取得json後放入eventCategoryCardInfo
                 eventCategoryCardInfo = res;
-                // console.log(eventCategoryCardInfo);
             },
             error: function (err) { console.log(err) },
         });
-        // console.log(eventCategoryCardInfo);
 
+        // 活動資料
+        // 熱門推薦
+        let eventInfoHot = [];
+        $.ajax({
+            url: "./assets/json/eventInfoHot.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoHot = res;
+            },
+            error: function (err) { console.log(err) },
+        });
+        // 本週精選
+        let eventInfoThisWeek = [];
+        $.ajax({
+            url: "./assets/json/eventInfoThisWeek.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoThisWeek = res;
+            },
+            error: function (err) { console.log(err) },
+        });
+        // 最新上架
+        let eventInfoNew = [];
+        $.ajax({
+            url: "./assets/json/eventInfoNew.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoNew = res;
+            },
+            error: function (err) { console.log(err) },
+        });
 
         // 分類卡片元件
         function CategoryCard(props) {
             return <>
                 <li>
-                    <a href={props.aLink} className="category-card">
+                    <a href={props.link} className="category-card">
                         <div className="category-card-icon" style={{ backgroundImage: `url(${props.bgImgUrl})` }}></div>
                         <h4 className="title">{props.title}</h4>
                     </a>
@@ -160,16 +150,16 @@
                                 {/*迴圈產生分類卡片*/}
                                 {
                                     eventCategoryCardInfo.map((item) => {
-                                        const { id, title, bgImgUrl, aLink } = item;
-                                        return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} aLink={aLink} />;
+                                        const { id, title, bgImgUrl, link } = item;
+                                        return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} link={link} />;
                                     })
                                 }
 
                                 {/*
                                 {
                                     [
-                                        <CategoryCard  title="分類項目" bgImgUrl="./assets/images/event-category-icon.svg" aLink="#"/>,
-                                        <CategoryCard  title="分分項目" bgImgUrl="./assets/images/event-category-icon.svg" aLink="#"/>
+                                        <CategoryCard  title="分類項目" bgImgUrl="./assets/images/event-category-icon.svg" link="#"/>,
+                                        <CategoryCard  title="分分項目" bgImgUrl="./assets/images/event-category-icon.svg" link="#"/>
                                     ]
                                 }
                                 */}
@@ -203,30 +193,63 @@
                                     <div className="event-box event-box-hot">
                                         <h2 className="funevent-main-title">熱門推薦</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoHot.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                     {/*本週精選*/}
                                     <div className="event-box event-box-hits-this-week">
                                         <h2 className="funevent-main-title">本週精選</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoThisWeek.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                     {/*最新上架*/}
                                     <div className="event-box event-box-new">
                                         <h2 className="funevent-main-title">最新上架</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoNew.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                 </section>
