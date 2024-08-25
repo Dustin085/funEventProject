@@ -113,10 +113,14 @@
                 <div className="funevent-wrap">
                     {/*導航列*/}
                     <Topbar />
-
                     {/*色塊背景*/}
                     <div className="home-page-bg-color-block__block1"></div>
                     <div className="home-page-bg-color-block__block2"></div>
+                    {/*漂浮按鈕*/}
+                    <div className="float-btn-box">
+                        <button type="button" className="go-top-btn"></button>
+                        <button type="button" className="chatroom-btn"></button>
+                    </div>
                     <main>
                         {/*第一頁面*/}
                         <section id="home-page-first-view">
@@ -154,15 +158,6 @@
                                         return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} link={link} />;
                                     })
                                 }
-
-                                {/*
-                                {
-                                    [
-                                        <CategoryCard  title="分類項目" bgImgUrl="./assets/images/event-category-icon.svg" link="#"/>,
-                                        <CategoryCard  title="分分項目" bgImgUrl="./assets/images/event-category-icon.svg" link="#"/>
-                                    ]
-                                }
-                                */}
                             </ul>
                         </section>
                         {/*活動推薦總成*/}
@@ -196,7 +191,7 @@
                                             {
                                                 eventInfoHot.map((event) => {
                                                     const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li> <FuneventEventCard
+                                                    return <li key={id}> <FuneventEventCard
                                                         key={id}
                                                         eventImgUrl={eventImgUrl}
                                                         eventState={eventState}
@@ -217,7 +212,7 @@
                                             {
                                                 eventInfoThisWeek.map((event) => {
                                                     const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li> <FuneventEventCard
+                                                    return <li key={id}> <FuneventEventCard
                                                         key={id}
                                                         eventImgUrl={eventImgUrl}
                                                         eventState={eventState}
@@ -238,7 +233,7 @@
                                             {
                                                 eventInfoNew.map((event) => {
                                                     const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li> <FuneventEventCard
+                                                    return <li key={id}> <FuneventEventCard
                                                         key={id}
                                                         eventImgUrl={eventImgUrl}
                                                         eventState={eventState}
@@ -263,9 +258,9 @@
                                 <div className="carousel">
                                     <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
                                     <ul className="carousel-card-list">
-                                        <li><CarouselCardItem /></li>
-                                        <li><CarouselCardItem /></li>
-                                        <li><CarouselCardItem /></li>
+                                        <li><CarouselCardItem key={1} /></li>
+                                        <li><CarouselCardItem key={2} /></li>
+                                        <li><CarouselCardItem key={3} /></li>
                                     </ul>
                                     <button type="button" className="arrow arrow--next" id="news-caro-next-btn"></button>
                                 </div>
