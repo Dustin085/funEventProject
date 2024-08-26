@@ -561,23 +561,102 @@ footer .end-box small {
     border-radius: 16px;
     margin-right: 17px;
 }
-.member-center-message-manage .message img{
+.member-center-message-manage .bigbox{
+    margin: 0 50px;
+}
+.member-center-message-manage .privatebox{
+    display: flex;  
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.member-center-message-manage .privatebox img{
     width: 81px;
     height: 81px;
 }
-.member-center-message-manage .decoration img{
+.member-center-message-manage .privatebox2 img{
+    width: 42px;
+    height: 42px;
+}
+.member-center-message-manage .privatebox2{
+    align-items: center;
+    margin-bottom: 1.8px;
+    display: flex;
+    flex-direction: column;
+    color: #8A8A8A
+}
+.member-center-message-manage .privatebox3{
+    margin-left: 17px;
+    margin-right: 70px;
+}
+.member-center-message-manage .privatebox3 h4{
+    font-size: 20px;
+    font-weight: 600;
+    align-items: center;
+    color: #595757
+}
+.member-center-message-manage .privatebox3 h5{
+    font-size: 16px;
+    font-weight: 400;
+    align-items: center;
+    color: #8A8A8A;
+}
+.member-center-message-manage .privatebox4{
+    display: flex;
+    align-items: center;
+}
+.member-center-message-manage .status img{
     width: 16px;
     height: 9px;
+    align-items: center;
 }
-.member-center-message-manage .message img{
+.member-center-message-manage .status .subtitle{
+    font-size: 14px;
+    font-weight: 500;
+    align-items: center;
+    color: #757575;
+}
+.member-center-message-manage .status{
+    display: flex;
+    margin-left: 679px;
+    margin-bottom: 16px;
+
+}
+.member-center-message-manage .chatbox{
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    align-items: center;
+    margin: 50px;
+    margin-bottom: 16px;
+}
+.member-center-message-manage .chatbox img{
     width: 269px;
     height: 42px;
 }
-.member-center-message-manage .message .title{
+.member-center-message-manage .chatbox .title{
     font-size: 24px;
     font-weight: 700;
+    color: #3E3A39;
 }
 .member-center-message-manage .subtitle{
     font-size: 20px;
     font-weight: 400;
+}
+.member-center-message-manage .split-line-row{
+    border-bottom: dashed 0.5px #19B9AA;
+    margin: 0 50px;
+    margin-bottom: 18px;
+    margin-top: 18px;
+    width: auto;
+}
+.member-center-message-manage .bottom img{
+    width: 750px;
+    height: 42px;
+    align-items: center;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-bottom: 237px;
+
+
 }
