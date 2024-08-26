@@ -1,5 +1,5 @@
 // TODO
-// 價錢計算
+// 價錢計算 => OK
 // 內部導航按鈕變色
 // fix: 元素會跟不上捲動
 
@@ -69,6 +69,14 @@ function cyclingNum(fromNum, diff, topNum, botNum = 0) {
     return result;
 }
 
+/* 蒐藏按鈕 */
+document.getElementById("event-fav-btn").onclick = function () {
+    $("#event-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+};
+document.getElementById("founder-fav-btn").onclick = function () {
+    $("#founder-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+};
+
 /* 內部導覽列 */
 let innerNavOriginTop = $(".event-inner-nav").position().top;
 // console.log(innerNavOriginTop);
@@ -76,8 +84,6 @@ let innerNavOriginTop = $(".event-inner-nav").position().top;
 $(window).scroll(function (ev) {
     let eventInnerNav = $(".event-inner-nav");
     let navBtns = $(".event-inner-nav .event-inner-nav__btn")
-
-
     // 移動超過內部導覽列一開始的位置後
     if ($(this).scrollTop() > innerNavOriginTop) {
         // 移動
@@ -93,13 +99,30 @@ $(window).scroll(function (ev) {
             btn.style.borderRadius = "20px 20px 0 0";
         });
     }
-    // console.log("window:" + $(this).scrollTop());
-    // console.log("inner-nav:" + eventInnerNav.position().top);
-    // console.log("diff:" + ($(this).scrollTop() - eventInnerNav.position().top));
-    // 介於特定位置時按鈕變色
-
-
 });
+// 介於特定位置時按鈕變色
+let navBtns = document.querySelectorAll(".event-inner-nav__btn");
+// 區間分界線
+let zoneLines = [];
+// 把區間分界線push進陣列中
+for (let i = 0; i < navBtns.length; i++) {
+    // 最後要減去內部導航列的高度，多減1px可以防止小數點帶來的錯誤
+    zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top - $(".event-inner-nav").outerHeight() - 1);
+}
+
+// 把body的結尾當成最後一條線
+zoneLines.push($("body").offset().top + $("body").outerHeight());
+for (let i = 0; i < navBtns.length; i++) {
+    $(window).scroll(function () {
+        // let startLine = $(`#${navBtns[i].dataset.scrollto}`).offset().top;
+        // let endLine = $(`#${navBtns[i + 1].dataset.scrollto}`).offset().top;
+        if ($(this).scrollTop() >= zoneLines[i] && $(this).scrollTop() < zoneLines[i + 1]) {
+            navBtns[i].classList.add("active");
+        } else {
+            navBtns[i].classList.remove("active");
+        }
+    });
+}
 // 按下按鈕自動滾動
 $(".event-inner-nav__btn").each((index, btn) => {
     let data = btn.dataset;
@@ -124,7 +147,7 @@ let planBoardEndBot = $(".event-introduction-container").offset().top + $(".even
 let planBoardGap = 15;
 $(window).scroll(function (ev) {
     // 移動超過方案面板一開始的位置後
-    if ($(this).scrollTop() + planBoardGap > planBoardOriginTop && $(this).scrollTop() < planBoardEndBot - $(".event-plan-board").outerHeight() + planBoardGap) {
+    if ($(this).scrollTop() + planBoardGap > planBoardOriginTop && $(this).scrollTop() < planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardGap) {
         // 移動
         // $(".event-plan-board").css("position", "sticky");
         $(".event-plan-board").css('top', $(this).scrollTop() - planBoardOriginTop + planBoardGap);
@@ -137,3 +160,78 @@ $(window).scroll(function (ev) {
 })
 
 /* 活動金額計算 */
+// 一開始先跑一次金額和切換金額欄位顯示以防萬一
+calcTotalPrice();
+switchPriceDisplay();
+// 改變表單時計算金額和切換顯示
+$("#plan").change(function () {
+    switchPriceDisplay();
+    calcTotalPrice();
+});
+// 減號按鈕
+$(".minus-btn").click(function () {
+    // 如果票數-1之後仍大於0則-1
+    if (Number($(".ticket-amount-box .amount").text()) - 1 > 0) {
+        $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) - 1);
+    }
+    calcTotalPrice();
+});
+// 加號按鈕
+$(".plus-btn").click(function () {
+    // 票數加1
+    $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) + 1);
+    calcTotalPrice();
+});
+// 方案介紹區塊的按鈕
+let planChooseBtnArr = document.querySelectorAll("#event-page-plan-intro .plan-choose-btn");
+planChooseBtnArr.forEach((btn, index) => {
+    btn.addEventListener("click", function () {
+        // 方案下拉選單
+        let planSelect = document.getElementById("plan");
+        // 方案下拉選單的選項陣列
+        let planOpts = planSelect.getElementsByTagName("option");
+        // 按鈕的index + 1剛好是該被選擇的選項
+        planOpts[index + 1].selected = true;
+        // 不會觸發選單的change所以要刷新金額跟切換顯示
+        calcTotalPrice();
+        switchPriceDisplay();
+    });
+})
+
+// 依照選單選項計算金額並直接修改.total-price的數字
+function calcTotalPrice() {
+    let totalPrice = 0;
+    // 取得各票種的票價(照上下順序取得)
+    let priceArr = $.map($("#event-page-plan-intro .plan-list .price"), function (ele, index) {
+        return ele.textContent;
+    });
+    // 取得票種選擇器
+    let planSelect = $("#plan");
+    let planSelectIndex = planSelect.find("option:selected").index();
+    // 取得票數
+    let amount = $(".ticket-amount-box .amount").text();
+    if (planSelectIndex != 0) {
+        totalPrice = priceArr[planSelectIndex - 1] * amount;
+    }
+    // 修改票價
+    $(".event-plan-board .total-price").text(totalPrice);
+    calcFunPoint();
+    function calcFunPoint() {
+        $(".event-plan-board .fun-point").text($(".event-plan-board .total-price").text() / 100);
+    }
+}
+
+// 切換顯示總金額
+function switchPriceDisplay() {
+    let switchedEleArr = [$(".ticket-amount-box"), $(".event-plan-board .price-box"), $(".fun-point-box")];
+    if (($("#plan").find("option:selected").index() != 0)) {
+        switchedEleArr.forEach(function (ele) {
+            ele.css("display", "flex");
+        });
+    } else {
+        switchedEleArr.forEach(function (ele) {
+            ele.css("display", "none");
+        });
+    }
+}
+

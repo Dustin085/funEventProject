@@ -19,6 +19,7 @@
     <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventTopicCard.jsx"></script>
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/CarouselCardItem.jsx"></script>
 </head>
 
 <body>
@@ -27,57 +28,6 @@
     <script type="text/babel">
         // 分類卡片資料
         let eventCategoryCardInfo = [];
-        // eventCategoryCardInfo = [
-        //     {
-        //         id: 1,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 2,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 3,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 4,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 5,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 6,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 7,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        //     {
-        //         id: 8,
-        //         title: "分類項目",
-        //         bgImgUrl: "./assets/images/event-category-icon.svg",
-        //         aLink: "#"
-        //     },
-        // ];
-
         /*使用ajax取得本地端的類別卡片json*/
         $.ajax({
             url: "./assets/json/eventCategoryCardInfo.json",
@@ -88,18 +38,59 @@
             success: function (res) {
                 // 取得json後放入eventCategoryCardInfo
                 eventCategoryCardInfo = res;
-                // console.log(eventCategoryCardInfo);
             },
             error: function (err) { console.log(err) },
         });
-        // console.log(eventCategoryCardInfo);
 
+        // 活動資料
+        // 熱門推薦
+        let eventInfoHot = [];
+        $.ajax({
+            url: "./assets/json/eventInfoHot.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoHot = res;
+            },
+            error: function (err) { console.log(err) },
+        });
+        // 本週精選
+        let eventInfoThisWeek = [];
+        $.ajax({
+            url: "./assets/json/eventInfoThisWeek.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoThisWeek = res;
+            },
+            error: function (err) { console.log(err) },
+        });
+        // 最新上架
+        let eventInfoNew = [];
+        $.ajax({
+            url: "./assets/json/eventInfoNew.json",
+            method: "GET",
+            dataType: "json",
+            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
+            async: false,
+            success: function (res) {
+                // 取得json後放入eventCategoryCardInfo
+                eventInfoNew = res;
+            },
+            error: function (err) { console.log(err) },
+        });
 
         // 分類卡片元件
         function CategoryCard(props) {
             return <>
                 <li>
-                    <a href={props.aLink} className="category-card">
+                    <a href={props.link} className="category-card">
                         <div className="category-card-icon" style={{ backgroundImage: `url(${props.bgImgUrl})` }}></div>
                         <h4 className="title">{props.title}</h4>
                     </a>
@@ -122,36 +113,37 @@
                 <div className="funevent-wrap">
                     {/*導航列*/}
                     <Topbar />
-
                     {/*色塊背景*/}
-                    <div className="event-bg-color-block">
-                        <div className="event-bg-color-block__block1"></div>
-                        <div className="event-bg-color-block__block2"></div>
+                    <div className="home-page-bg-color-block__block1"></div>
+                    <div className="home-page-bg-color-block__block2"></div>
+                    {/*漂浮按鈕*/}
+                    <div className="float-btn-box">
+                        <button type="button" className="go-top-btn"></button>
+                        <button type="button" className="chatroom-btn"></button>
                     </div>
-
                     <main>
                         {/*第一頁面*/}
                         <section id="home-page-first-view">
                             <div className="logo-area">
-                                <div class="logo-tc"><figure><img src="./assets/images/logo-tc.svg" alt="活動趣中文logo" /></figure></div>
-                                <h2 class="slogan">探索，一切可能</h2>
-                                <input type="text" class="home-page-search-bar" placeholder="推薦活動名字" />
+                                <div className="logo-tc"><figure><img src="./assets/images/logo-tc.svg" alt="活動趣中文logo" /></figure></div>
+                                <h2 className="slogan">探索，一切可能</h2>
+                                <input type="text" className="home-page-search-bar" placeholder="推薦活動名字" />
                             </div>
-                            <div class="carousel-area">
-                                <div class="carousel">
-                                    <div class="slide-box">
+                            <div className="carousel-area">
+                                <div className="carousel">
+                                    <div className="slide-box">
                                         <figure><img src="./assets/images/home-page-caro-slide1.jpg" alt="" /></figure>
                                     </div>
-                                    <div class="ctrl-box">
-                                        <button type="button" class="arrow arrow--prev" id="caro-prev-btn"></button>
-                                        <div class="ctrl-btn-box">
-                                            <button type="button" class="ctrl-btn active"></button>
-                                            <button type="button" class="ctrl-btn"></button>
-                                            <button type="button" class="ctrl-btn"></button>
-                                            <button type="button" class="ctrl-btn"></button>
-                                            <button type="button" class="ctrl-btn"></button>
+                                    <div className="ctrl-box">
+                                        <button type="button" className="arrow arrow--prev" id="caro-prev-btn"></button>
+                                        <div className="ctrl-btn-box">
+                                            <button type="button" className="ctrl-btn active"></button>
+                                            <button type="button" className="ctrl-btn"></button>
+                                            <button type="button" className="ctrl-btn"></button>
+                                            <button type="button" className="ctrl-btn"></button>
+                                            <button type="button" className="ctrl-btn"></button>
                                         </div>
-                                        <button type="button" class="arrow arrow--next" id="caro-next-btn"></button>
+                                        <button type="button" className="arrow arrow--next" id="caro-next-btn"></button>
                                     </div>
                                 </div>
                             </div>
@@ -162,19 +154,10 @@
                                 {/*迴圈產生分類卡片*/}
                                 {
                                     eventCategoryCardInfo.map((item) => {
-                                        const { id, title, bgImgUrl, aLink } = item;
-                                        return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} aLink={aLink} />;
+                                        const { id, title, bgImgUrl, link } = item;
+                                        return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} link={link} />;
                                     })
                                 }
-
-                                {/*
-                                {
-                                    [
-                                        <CategoryCard  title="分類項目" bgImgUrl="./assets/images/event-category-icon.svg" aLink="#"/>,
-                                        <CategoryCard  title="分分項目" bgImgUrl="./assets/images/event-category-icon.svg" aLink="#"/>
-                                    ]
-                                }
-                                */}
                             </ul>
                         </section>
                         {/*活動推薦總成*/}
@@ -205,30 +188,63 @@
                                     <div className="event-box event-box-hot">
                                         <h2 className="funevent-main-title">熱門推薦</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoHot.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li key={id}> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                     {/*本週精選*/}
                                     <div className="event-box event-box-hits-this-week">
                                         <h2 className="funevent-main-title">本週精選</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoThisWeek.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li key={id}> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                     {/*最新上架*/}
                                     <div className="event-box event-box-new">
                                         <h2 className="funevent-main-title">最新上架</h2>
                                         <ul className="event-card-list">
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
-                                            <li><FuneventEventCard tnImgUrl="./assets/images/demo-event-pic/demo-event-pic-01.jpg" /></li>
+                                            {
+                                                eventInfoNew.map((event) => {
+                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                    return <li key={id}> <FuneventEventCard
+                                                        key={id}
+                                                        eventImgUrl={eventImgUrl}
+                                                        eventState={eventState}
+                                                        date={date}
+                                                        category={category}
+                                                        title={title}
+                                                        location={location}
+                                                        tags={tags}
+                                                        ratingScore={ratingScore} /> </li>
+                                                })
+                                            }
                                         </ul>
                                     </div>
                                 </section>
@@ -236,6 +252,20 @@
 
                         </div>
 
+                        <section id="home-page-event-news">
+                            <div className="home-page-event-news-wrap">
+                                <h2 className="funevent-main-title">活動快訊</h2>
+                                <div className="carousel">
+                                    <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
+                                    <ul className="carousel-card-list">
+                                        <li><CarouselCardItem key={1} /></li>
+                                        <li><CarouselCardItem key={2} /></li>
+                                        <li><CarouselCardItem key={3} /></li>
+                                    </ul>
+                                    <button type="button" className="arrow arrow--next" id="news-caro-next-btn"></button>
+                                </div>
+                            </div>
+                        </section>
                         <Footer />
                     </main>
                 </div>

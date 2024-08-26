@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+        }
+        .image-container {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+        }
+        .content {
+            flex: 1;
+            padding-left: 15px;
+        }
+        .content h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .content p {
+            margin: 5px 0;
+            color: #555;
+            font-size: 14px;
+        }
+        .location {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .location svg {
+            margin-right: 5px;
+            fill: #FF8C00;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .buttons a {
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+            display: inline-block;
+        }
+        .buttons .details {
+            background-color: #00BFFF;
+        }
+        .buttons .ticket {
+            background-color: #32CD32;
+        }
+        .badge {
+            background-color: #FFA500;
+            color: white;
+            border-radius: 12px;
+            padding: 4px 8px;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="image-container">
+        <img src="path_to_your_image.png" alt="Event Image">
+    </div>
+    <div class="content">
+        <h4>流行音樂與民謠吉他 - 第一堂吉他課的首選</h4>
+        <p>親子一同彈: 上午場x1</p>
+        <p>2024.10.06(日)</p>
+        <div class="location">
+            <svg width="16" height="16" xmlns="../images/icon-new/活動票卷照片框-右.svg" fill-rule="evenodd" clip-rule="evenodd">
+                <path d="M8 16s7-4.686 7-10c0-3.86-3.14-7-7-7s-7 3.14-7 7c0 5.314 7 10 7 10zm-2-9c0-1.105.895-2 2-2s2 .895 2 2-.895 2-2 2-2-.895-2-2z"/>
+            </svg>
+            臺北市中山區撫遠街321號
+        </div>
+        <div class="buttons">
+            <a href="#" class="details">訂單詳情</a>
+            <a href="#" class="ticket">電子票</a>
+        </div>
+    </div>
+    <div class="badge">共2張</div>
+</div>
+
+</body>
+</html>
