@@ -106,17 +106,20 @@ let navBtns = document.querySelectorAll(".event-inner-nav__btn");
 let zoneLines = [];
 // 把區間分界線push進陣列中
 for (let i = 0; i < navBtns.length; i++) {
-    zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top);
+    // 最後要減去內部導航列的高度，多減1px可以防止小數點帶來的錯誤
+    zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top - $(".event-inner-nav").outerHeight() - 1);
 }
+
 // 把body的結尾當成最後一條線
 zoneLines.push($("body").offset().top + $("body").outerHeight());
 for (let i = 0; i < navBtns.length; i++) {
     $(window).scroll(function () {
         // let startLine = $(`#${navBtns[i].dataset.scrollto}`).offset().top;
         // let endLine = $(`#${navBtns[i + 1].dataset.scrollto}`).offset().top;
-        if ($(this).scrollTop() >= zoneLines[i] && $(this).scrollTop() < zoneLines[i + 1]){
-            console.log(i);
-            
+        if ($(this).scrollTop() >= zoneLines[i] && $(this).scrollTop() < zoneLines[i + 1]) {
+            navBtns[i].classList.add("active");
+        } else {
+            navBtns[i].classList.remove("active");
         }
     });
 }
