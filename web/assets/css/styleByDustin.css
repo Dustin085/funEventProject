@@ -638,7 +638,7 @@ footer .end-box small {
     left: -25vw;
     top: -35.8vw;
     background-color: var(--primary-2);
-    border-radius: 9999px;
+    border-radius: 50%;
     z-index: -1;
 }
 
@@ -725,41 +725,47 @@ footer .end-box small {
 }
 
 #home-page-first-view .carousel .slide-box {
+    aspect-ratio: 3 / 2;
+    position: relative;
     mask: url(../images/mask-for-home-page-carousel.svg) center/contain no-repeat;
 }
 
-#home-page-first-view .carousel .ctrl-box {
+#home-page-first-view .carousel .slide-box .slide {
+    position: absolute;
+}
+
+#home-page-first-view .ctrl-box {
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 29px;
-    margin-top: 10px;
+    position: absolute;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn-box {
+#home-page-first-view .ctrl-box .ctrl-btn-box {
     display: flex;
     column-gap: 14px;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn {
+#home-page-first-view .ctrl-box .ctrl-btn {
     width: 17px;
     height: 17px;
     background-color: var(--gray-4);
     border-radius: 999px;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn.active {
+#home-page-first-view .ctrl-box .ctrl-btn.active {
     background-color: var(--primary-1);
 }
 
-#home-page-first-view .carousel .ctrl-box .arrow {
+#home-page-first-view .ctrl-box .arrow {
     width: 50px;
     height: 50px;
     background: center/cover no-repeat;
     background-image: url(../images/caro-prev-btn.svg);
 }
 
-#home-page-first-view .carousel .ctrl-box .arrow--next {
+#home-page-first-view .ctrl-box .arrow--next {
     transform: rotate(180deg);
 }
 

@@ -20,6 +20,7 @@
     <script type="text/babel" src="./assets/js/FuneventTopicCard.jsx"></script>
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
     <script type="text/babel" src="./assets/js/CarouselCardItem.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
 </head>
 
 <body>
@@ -108,6 +109,84 @@
 
 
         function App() {
+            const { useState, useEffect, useRef } = React;
+            // 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題
+            const carouselEle = useRef();
+            const caroCtrlBoxEle = useRef();
+            const [isCaroLoaded, setIsCaroLoaded] = useState(false);
+            // 校對控制器的位置
+            const correctCaroCtrlBoxPos = function () {
+                let carouselRect = carouselEle.current.getBoundingClientRect();
+                caroCtrlBoxEle.current.style.left = (carouselRect.x + (carouselRect.width / 2)) + "px";
+                caroCtrlBoxEle.current.style.top = (carouselRect.y + carouselRect.height) + "px";
+                caroCtrlBoxEle.current.style.transform = "translateX(-50%)";
+            }
+            // 每次視窗大小改變時校對
+            window.onresize = () => {
+                correctCaroCtrlBoxPos();
+            }
+            // 等到輪播圖片渲染完成後第一次校對
+            useEffect(() => {
+                correctCaroCtrlBoxPos();
+            }, [isCaroLoaded])
+
+            // Slide組件
+            function Slide({ imgUrl }) {
+                return <figure className="slide"><img src={imgUrl} alt="" /></figure>;
+            }
+            // Slide切換
+            const [activeSlide, setActiveSlide] = useState(0);
+            // 抓slideBox
+            const slideBox = useRef();
+            const ctrlBtnBox = useRef();
+            // 當activeSlide改變時，切換slide的active
+            useEffect(() => {
+                let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
+                let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
+                switchActive(slideArr, activeSlide);
+                switchActive(ctrlBtnArr, activeSlide);
+            }, [activeSlide]);
+
+            let slideUrls = [
+                "./assets/images/home-page-caro-slide1.jpg",
+                "./assets/images/home-page-caro-slide2.jpg",
+                "./assets/images/home-page-caro-slide3.jpg",
+                "./assets/images/home-page-caro-slide4.jpg",
+                "./assets/images/home-page-caro-slide5.jpg",
+            ]
+
+            // 切換active元素
+            function switchActive(arrToSwitch, targetIndex) {
+                arrToSwitch.forEach((arrEle) => {
+                    arrEle.classList.remove('active');
+                });
+                arrToSwitch[targetIndex].classList.add('active');
+                // console.log("switched");
+            }
+            // 循環botNum-topNum
+            // 1. 要移動的步數diff % 區間長度 = 真正要移動的步數
+            // 2. 從fromNum開始移動，移動到超出區間範圍就要回到另一端
+            // 3. 做序數修正
+            // 參數名稱 => fromNum: 開始數字，diff: 要移動的步數，topNum, botNum: 循環區間最大(小)值
+            function cyclingNum(fromNum, diff, topNum, botNum = 0) {
+                // 循環數字的區間長度，大減小後+1才會是正確的長度
+                let numLength = topNum - botNum + 1;
+                let result = 0;
+                // 當result超過範圍的時候應該要立刻回到另一端並算做一次計數，然而在我們的計算過程中這個計數被忽略了，所以要校正
+                // 例如，假設現在區間範圍是-1~4，當從4再往上加1的時候應該要直接變成-1，但我們的計算會將他算成4+1=5，所以要-1做校正
+                const ordinalCorrect = 1;
+                // 往前或後移動的步數
+                let move = diff % numLength;
+                result = fromNum + move;
+                // 超出移動範圍就循環
+                if (result > topNum) {
+                    result = botNum + (result - topNum) - ordinalCorrect;
+                } else if (result < botNum) {
+                    result = topNum - (botNum - result) + ordinalCorrect;
+                }
+                return result;
+            }
+
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
                 <div className="funevent-wrap">
@@ -117,10 +196,7 @@
                     <div className="home-page-bg-color-block__block1"></div>
                     <div className="home-page-bg-color-block__block2"></div>
                     {/*漂浮按鈕*/}
-                    <div className="float-btn-box">
-                        <button type="button" className="go-top-btn"></button>
-                        <button type="button" className="chatroom-btn"></button>
-                    </div>
+                    <FloatBtnBox />
                     <main>
                         {/*第一頁面*/}
                         <section id="home-page-first-view">
@@ -130,22 +206,27 @@
                                 <input type="text" className="home-page-search-bar" placeholder="推薦活動名字" />
                             </div>
                             <div className="carousel-area">
-                                <div className="carousel">
-                                    <div className="slide-box">
-                                        <figure><img src="./assets/images/home-page-caro-slide1.jpg" alt="" /></figure>
-                                    </div>
-                                    <div className="ctrl-box">
-                                        <button type="button" className="arrow arrow--prev" id="caro-prev-btn"></button>
-                                        <div className="ctrl-btn-box">
-                                            <button type="button" className="ctrl-btn active"></button>
-                                            <button type="button" className="ctrl-btn"></button>
-                                            <button type="button" className="ctrl-btn"></button>
-                                            <button type="button" className="ctrl-btn"></button>
-                                            <button type="button" className="ctrl-btn"></button>
-                                        </div>
-                                        <button type="button" className="arrow arrow--next" id="caro-next-btn"></button>
+                                <div className="carousel" ref={carouselEle} onLoad={() => { setIsCaroLoaded(true) }}>
+                                    <div className="slide-box" ref={slideBox}>
+                                        {
+                                            slideUrls.map((slideUrl, index) => {
+                                                return <Slide key={index} imgUrl={slideUrl} />;
+                                            })
+                                        }
+                                        {/*<figure className="slide"><img src="./assets/images/home-page-caro-slide1.jpg" alt="" /></figure>*/}
                                     </div>
                                 </div>
+                            </div>
+                            <div className="ctrl-box" ref={caroCtrlBoxEle}>
+                                <button type="button" className="arrow arrow--prev" id="caro-prev-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, -1, 4)) }} ></button>
+                                <div className="ctrl-btn-box" ref={ctrlBtnBox}>
+                                    <button type="button" className="ctrl-btn active"></button>
+                                    <button type="button" className="ctrl-btn"></button>
+                                    <button type="button" className="ctrl-btn"></button>
+                                    <button type="button" className="ctrl-btn"></button>
+                                    <button type="button" className="ctrl-btn"></button>
+                                </div>
+                                <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, 1, 4)) }}></button>
                             </div>
                         </section>
                         {/*分類小卡列表*/}
