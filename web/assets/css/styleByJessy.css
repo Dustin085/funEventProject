@@ -77,6 +77,157 @@ label {
 
 
 /* 共用區 */
+/* 活動卡片 */
+.funevent-event-card {
+    display: flex;
+    flex-direction: column;
+    row-gap: 11px;
+    padding: 17px 14px;
+    width: 240PX;
+    height: 350PX;
+    background-color: var(--light);
+    border-radius: 10px;
+}
+
+.funevent-event-card .event-pic {
+    width: 210px;
+    height: 160px;
+    /* overflow: hidden; */
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+    background: center/cover no-repeat;
+}
+
+.funevent-event-card .inner-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.funevent-event-card .inner-card .start-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 11px 0 11px;
+}
+
+.funevent-event-card .inner-card .fav-btn {
+    width: 19px;
+    height: 19px;
+    background: url(../images/add-fav-icon.svg) center/cover no-repeat;
+}
+
+.funevent-event-card .main-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+}
+
+.funevent-event-card .category {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--secondary-2);
+}
+
+.funevent-event-card .event-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 30px;
+    color: var(--gray-5);
+    /* 多行省略 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.funevent-event-card .event-title a {
+    color: var(--gray-5);
+}
+
+.funevent-event-card .location {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+}
+
+.funevent-event-card .map-pin-icon {
+    width: 13px;
+    height: 13px;
+    background: url(../images/map-pin-icon--gray.svg) center/cover no-repeat;
+}
+
+.funevent-event-card .location-text {
+    font-size: 14px;
+    color: var(--gray-8);
+}
+
+.funevent-event-card .tag-rating-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.funevent-event-card .tag-list {
+    display: flex;
+    column-gap: 6px;
+}
+
+.funevent-event-card .tag {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.funevent-event-card .tag.tag--hot {
+    background-color: var(--tag-2);
+}
+
+.funevent-event-card .tag.tag--new {
+    background-color: var(--primary-2);
+}
+
+.funevent-event-card .date {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gray-1);
+    background-color: var(--light);
+    border-radius: 10px 0 0 0;
+    padding: 5px 15px 0 15px;
+    align-self: flex-end;
+}
+
+.funevent-event-card .rating-score {
+    font-size: 14px;
+    color: var(--deep);
+    display: flex;
+    align-items: center;
+}
+
+.funevent-event-card .rating-score::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    background: url(../images/rating-icon--filled.svg) center/cover no-repeat;
+}
+
+.funevent-event-card .sign-up-btn {
+    height: 41px;
+}
+.funevent-event-card {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+/* tag */
+.tag {
+    padding: 5px 10px;
+    background-color: var(--secondary-2);
+    color: var(--light);
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 400;
+}
 /* 左上logo */
 .logo a {
     display: flex;
@@ -561,6 +712,7 @@ footer .end-box small {
     border-radius: 16px;
     margin-right: 17px;
 }
+/* 會員中心-訊息管理頁面 */
 .member-center-message-manage .bigbox{
     margin: 0 50px;
 }
@@ -620,7 +772,6 @@ footer .end-box small {
     display: flex;
     margin-left: 679px;
     margin-bottom: 16px;
-
 }
 .member-center-message-manage .chatbox{
     display: flex;
@@ -657,6 +808,62 @@ footer .end-box small {
     margin-right: 50px;
     margin-left: 50px;
     margin-bottom: 237px;
-
-
+}
+/* 會員中心-我的蒐藏頁面 */
+.member-center-myfavorite{
+    padding: 50px;
+}
+.member-center-myfavorite .activity{
+    color: #F9A259;
+    padding-right: 30px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.member-center-myfavorite .host{
+    color: #595757
+    font-size: 18px;
+    font-weight: 500;
+}
+.member-center-myfavorite .favorite .title{
+    font-size: 26px;
+    font-weight: 700;
+    padding-bottom: 15px;
+}
+.member-center-myfavorite .favorite2{
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+}
+.member-center-myfavorite .detail{
+    display: flex;
+    padding-bottom: 10px;
+}
+.member-center-myfavorite .detail img{
+    width: 48.9px;
+    height: 10px;
+}
+.member-center-myfavorite .status{
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+}
+.member-center-myfavorite .status .subtitle{
+    align-items: center;
+    color: #3E3A39;
+    font-size: 14px;
+    font-weight: 500;
+}
+.member-center-myfavorite .status img{
+    width: 16px;
+    height: 9px;
+    align-items: center;
+    color: #3E3A39;
+}
+.member-center-myfavorite .host{
+    display: flex;
+}
+.member-center-myfavorite .outsidecard{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
 }
