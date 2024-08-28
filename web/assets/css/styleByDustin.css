@@ -732,6 +732,11 @@ footer .end-box small {
 
 #home-page-first-view .carousel .slide-box .slide {
     position: absolute;
+    opacity: 0;
+}
+
+#home-page-first-view .carousel .slide-box .slide.active {
+    opacity: 1;
 }
 
 #home-page-first-view .ctrl-box {

@@ -128,6 +128,7 @@
             // 等到輪播圖片渲染完成後第一次校對
             useEffect(() => {
                 correctCaroCtrlBoxPos();
+                changeSlide();
             }, [isCaroLoaded])
 
             // Slide組件
@@ -141,10 +142,7 @@
             const ctrlBtnBox = useRef();
             // 當activeSlide改變時，切換slide的active
             useEffect(() => {
-                let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
-                let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
-                switchActive(slideArr, activeSlide);
-                switchActive(ctrlBtnArr, activeSlide);
+                changeSlide();
             }, [activeSlide]);
 
             let slideUrls = [
@@ -155,6 +153,12 @@
                 "./assets/images/home-page-caro-slide5.jpg",
             ]
 
+            function changeSlide() {
+                let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
+                let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
+                switchActive(slideArr, activeSlide);
+                switchActive(ctrlBtnArr, activeSlide);
+            }
             // 切換active元素
             function switchActive(arrToSwitch, targetIndex) {
                 arrToSwitch.forEach((arrEle) => {
@@ -163,7 +167,7 @@
                 arrToSwitch[targetIndex].classList.add('active');
                 // console.log("switched");
             }
-            // 循環botNum-topNum
+            // 循環botNum-topNum，用來循環輪播次頁前頁按鈕
             // 1. 要移動的步數diff % 區間長度 = 真正要移動的步數
             // 2. 從fromNum開始移動，移動到超出區間範圍就要回到另一端
             // 3. 做序數修正
