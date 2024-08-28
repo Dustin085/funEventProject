@@ -128,22 +128,42 @@
             // 等到輪播圖片渲染完成後第一次校對
             useEffect(() => {
                 correctCaroCtrlBoxPos();
-                changeSlide();
             }, [isCaroLoaded])
 
             // Slide組件
-            // function Slide({ imgUrl }) {
-            //     return <figure className="slide"><img src={imgUrl} alt="" /></figure>;
-            // }
-            // Slide切換
-            const [activeSlide, setActiveSlide] = useState(0);
-            // 抓slideBox
-            const slideBox = useRef();
-            const ctrlBtnBox = useRef();
-            // 當activeSlide改變時，切換slide的active
+            function Slide({ imgUrl }) {
+                return <figure className="slide"><img src={imgUrl} alt="" /></figure>;
+            }
+
+
+            // 頁首輪播
+            let slideIndex = 0;
             useEffect(() => {
-                changeSlide();
-            }, [activeSlide]);
+                // 輪播點點按鈕
+                let slideArr = Array.from(document.getElementsByClassName("slide"));
+                let ctrlBtnArr = Array.from(document.getElementsByClassName("ctrl-btn"));
+                ctrlBtnArr.forEach((ctrlBtn, index) => {
+                    ctrlBtn.addEventListener("click", function () {
+                        // console.log(slideArr);
+                        slideIndex = index;
+                        switchActive(slideArr, slideIndex);
+                        switchActive(ctrlBtnArr, slideIndex);
+                    });
+                });
+                // 輪播前後按鈕
+                let prevBtn = document.getElementById("caro-prev-btn");
+                let nextBtn = document.getElementById("caro-next-btn");
+                prevBtn.addEventListener("click", function () {
+                    slideIndex = cyclingNum(slideIndex, -1, 4);
+                    switchActive(slideArr, slideIndex);
+                    switchActive(ctrlBtnArr, slideIndex);
+                });
+                nextBtn.addEventListener("click", function () {
+                    slideIndex = cyclingNum(slideIndex, 1, 4);
+                    switchActive(slideArr, slideIndex);
+                    switchActive(ctrlBtnArr, slideIndex);
+                });
+            }, []);
 
             let slideUrls = [
                 "./assets/images/home-page-caro-slide1.jpg",
@@ -153,12 +173,7 @@
                 "./assets/images/home-page-caro-slide5.jpg",
             ]
 
-            function changeSlide() {
-                let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
-                let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
-                switchActive(slideArr, activeSlide);
-                switchActive(ctrlBtnArr, activeSlide);
-            }
+
             // 切換active元素
             function switchActive(arrToSwitch, targetIndex) {
                 arrToSwitch.forEach((arrEle) => {
@@ -211,31 +226,38 @@
                             </div>
                             <div className="carousel-area">
                                 <div className="carousel" ref={carouselEle} onLoad={() => { setIsCaroLoaded(true) }}>
-                                    <div className="slide-box" ref={slideBox}>
+                                    <div className="slide-box">
                                         {/*
                                             slideUrls.map((slideUrl, index) => {
                                                 return <Slide key={index} imgUrl={slideUrl} />;
                                             })
                                         */}
-                                        <figure className="slide"><img src={slideUrls[0]} alt="" /></figure>
+                                        {/*
+                                        <Slide imgUrl={slideUrls[0]} />
+                                        <Slide imgUrl={slideUrls[1]} />
+                                        <Slide imgUrl={slideUrls[2]} />
+                                        <Slide imgUrl={slideUrls[3]} />
+                                        <Slide imgUrl={slideUrls[4]} />
+                                        */}
+                                        
+                                        <figure className="slide active"><img src={slideUrls[0]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[1]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[2]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[3]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[4]} alt="" /></figure>
-                                        {/*<figure className="slide"><img src="./assets/images/home-page-caro-slide1.jpg" alt="" /></figure>*/}
                                     </div>
                                 </div>
                             </div>
                             <div className="ctrl-box" ref={caroCtrlBoxEle}>
-                                <button type="button" className="arrow arrow--prev" id="caro-prev-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, -1, 4)) }} ></button>
-                                <div className="ctrl-btn-box" ref={ctrlBtnBox}>
+                                <button type="button" className="arrow arrow--prev" id="caro-prev-btn" ></button>
+                                <div className="ctrl-btn-box">
                                     <button type="button" className="ctrl-btn active"></button>
                                     <button type="button" className="ctrl-btn"></button>
                                     <button type="button" className="ctrl-btn"></button>
                                     <button type="button" className="ctrl-btn"></button>
                                     <button type="button" className="ctrl-btn"></button>
                                 </div>
-                                <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, 1, 4)) }}></button>
+                                <button type="button" className="arrow arrow--next" id="caro-next-btn" ></button>
                             </div>
                         </section>
                         {/*分類小卡列表*/}

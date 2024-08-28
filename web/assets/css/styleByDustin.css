@@ -9,6 +9,11 @@
     /* 輔助色 */
     --secondary-1: #FFC08C;
     --secondary-2: #FFBF61;
+    /* hover */
+    --primary-1-hover: #F87700;
+    --primary-2-hover: #009084;
+    --secondary-2-hover: #F18F00;
+    --hover-transition: .35s;
     /* 背景 */
     --bg-line: #D7E1EC;
     --bg-pri: #F7F9F9;
@@ -326,7 +331,40 @@ button {
     color: var(--light);
     font-size: 20px;
     font-weight: 500;
+    /* transition: background-color var(--hover-transition);
+    position: relative; */
 }
+
+.funevent-btn-round:hover {
+    background-color: var(--primary-2-hover);
+    transition: background-color var(--hover-transition);
+}
+
+.funevent-btn-round:active {
+    background-color: var(--primary-2) !important;
+}
+
+/* .funevent-btn-round::after {
+    content: "";
+    display: block;
+    border-radius: 99px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    box-shadow: 0 0 0 6px var(--primary-2-hover);
+    transition: .3s;
+}
+
+.funevent-btn-round:active::after {
+    box-shadow: none;
+    opacity: 0.4;
+    transition: 0s;
+} */
+
+
 
 .funevent-btn-round__icon {
     width: 24px;
@@ -350,7 +388,17 @@ button {
     color: var(--light);
     border-radius: 10px;
     white-space: nowrap;
+    transition: background-color var(--hover-transition);
     /* line-height: 2; */
+}
+
+.funevent-btn:hover {
+    background-color: var(--primary-2-hover);
+    transition: background-color var(--hover-transition);
+}
+
+.funevent-btn:active {
+    background-color: var(--primary-2) !important;
 }
 
 /* tag */
@@ -461,6 +509,15 @@ body {
     margin-right: 8.5px;
     font-size: 24px;
     font-weight: 500;
+    transition: var(--hover-transition);
+}
+
+.topbar-menu__btn:hover {
+    background-color: var(--primary-1-hover);
+}
+
+.topbar-menu__btn:active {
+    background-color: var(--primary-1) !important;
 }
 
 .topbar-menu__item:last-child {
@@ -638,7 +695,7 @@ footer .end-box small {
     left: -25vw;
     top: -35.8vw;
     background-color: var(--primary-2);
-    border-radius: 9999px;
+    border-radius: 50%;
     z-index: -1;
 }
 
@@ -725,41 +782,53 @@ footer .end-box small {
 }
 
 #home-page-first-view .carousel .slide-box {
+    aspect-ratio: 3 / 2;
+    position: relative;
     mask: url(../images/mask-for-home-page-carousel.svg) center/contain no-repeat;
 }
 
-#home-page-first-view .carousel .ctrl-box {
+#home-page-first-view .carousel .slide-box .slide {
+    position: absolute;
+    opacity: 0;
+    transition: .35s;
+}
+
+#home-page-first-view .carousel .slide-box .slide.active {
+    opacity: 1;
+}
+
+#home-page-first-view .ctrl-box {
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 29px;
-    margin-top: 10px;
+    position: absolute;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn-box {
+#home-page-first-view .ctrl-box .ctrl-btn-box {
     display: flex;
     column-gap: 14px;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn {
+#home-page-first-view .ctrl-box .ctrl-btn {
     width: 17px;
     height: 17px;
     background-color: var(--gray-4);
     border-radius: 999px;
 }
 
-#home-page-first-view .carousel .ctrl-box .ctrl-btn.active {
+#home-page-first-view .ctrl-box .ctrl-btn.active {
     background-color: var(--primary-1);
 }
 
-#home-page-first-view .carousel .ctrl-box .arrow {
+#home-page-first-view .ctrl-box .arrow {
     width: 50px;
     height: 50px;
     background: center/cover no-repeat;
     background-image: url(../images/caro-prev-btn.svg);
 }
 
-#home-page-first-view .carousel .ctrl-box .arrow--next {
+#home-page-first-view .ctrl-box .arrow--next {
     transform: rotate(180deg);
 }
 
@@ -1304,6 +1373,11 @@ footer .end-box small {
     background: url(../images/arrow-down-gray.svg) right/cover no-repeat;
     background-size: 16px 16px;
     background-position: calc(100% - 15px), 0;
+    transition: var(--hover-transition);
+}
+
+#event-plan-form select:hover {
+    border-color: var(--secondary-2-hover);
 }
 
 #event-plan-form .radio-box {
@@ -1327,6 +1401,11 @@ footer .end-box small {
     padding: 13px 35px;
     border: solid 2px var(--secondary-1);
     border-radius: 10px;
+    transition: background-color var(--hover-transition);
+}
+
+#event-plan-form .radio-box label:hover {
+    background-color: var(--secondary-1);
 }
 
 #event-plan-form .ticket-amount-box {
@@ -1454,6 +1533,10 @@ footer .end-box small {
     transition: .35s;
 }
 
+.event-inner-nav__btn:hover {
+    background-color: var(--gray-2);
+}
+
 .event-inner-nav__btn.active {
     background-color: var(--primary-1);
 }
@@ -1479,7 +1562,19 @@ footer .end-box small {
     width: 50%;
     background-color: var(--secondary-2);
     align-self: center;
+    transition: background-color var(--hover-transition);
 }
+
+#event-main-introduction .funevent-btn:hover {
+    background-color: var(--secondary-2-hover);
+    transition: background-color var(--hover-transition);
+}
+
+#event-main-introduction .funevent-btn:active {
+    background-color: var(--secondary-2) !important;
+}
+
+
 
 /* 活動頁-選擇方案 */
 #event-page-plan-intro .plan-list {
@@ -1669,6 +1764,11 @@ footer .end-box small {
     background-size: 16px 16px;
     /* 留空間給自製箭頭 */
     padding-right: 26px;
+    transition: var(--hover-transition);
+}
+
+#event-page-comment .filter:hover {
+    color: var(--gray-1);
 }
 
 #event-page-comment .user-avatar {
@@ -1772,6 +1872,16 @@ footer .end-box small {
     background-color: var(--secondary-2);
     margin-top: 12px;
     align-self: center;
+    transition: background-color var(--hover-transition);
+}
+
+#event-page-comment .funevent-btn:hover {
+    background-color: var(--secondary-2-hover);
+    transition: background-color var(--hover-transition);
+}
+
+#event-page-comment .funevent-btn:active {
+    background-color: var(--secondary-2) !important;
 }
 
 /* 活動頁-你可能也喜歡區塊 */
