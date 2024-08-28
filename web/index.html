@@ -229,11 +229,11 @@
                             <div className="ctrl-box" ref={caroCtrlBoxEle}>
                                 <button type="button" className="arrow arrow--prev" id="caro-prev-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, -1, 4)) }} ></button>
                                 <div className="ctrl-btn-box" ref={ctrlBtnBox}>
-                                    <button type="button" className="ctrl-btn active"></button>
-                                    <button type="button" className="ctrl-btn"></button>
-                                    <button type="button" className="ctrl-btn"></button>
-                                    <button type="button" className="ctrl-btn"></button>
-                                    <button type="button" className="ctrl-btn"></button>
+                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(0)}}></button>
+                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(1)}}></button>
+                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(2)}}></button>
+                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(3)}}></button>
+                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(4)}}></button>
                                 </div>
                                 <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, 1, 4)) }}></button>
                             </div>
