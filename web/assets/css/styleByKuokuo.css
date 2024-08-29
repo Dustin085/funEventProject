@@ -297,7 +297,8 @@ footer .end-box small {
 /* 陰影1 */
 #member-center .member-center-sidebar,
 #member-center .member-center-myticket,
-#member-center .member-center-Funpoint {
+#member-center .member-center-Funpoint,
+#member-center .member-center-mycoupon{
     box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -321,10 +322,11 @@ footer .end-box small {
 }
 /*hr分隔線*/
 hr{
-    border-style:dotted;
-    color: #19B9AA;
-
+    border-top:1px dashed #19B9AA;
+    /* color: #19B9AA; */
+    
 }
+
 
 /* 會員中心頁面區 */
 #member-center {
@@ -527,11 +529,28 @@ hr{
     max-width: 850px;
 }
 .member-center-Funpoint-between{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
 }
+.member-center-mycoupon {
+    align-self: stretch;
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 60%;
+    max-width: 850px;
+    padding: 50px;
+}
+
 /*-------------------------------------------------*/
 .all-iten {
+display: flex;
+flex-direction:column;
+row-gap: 20px;
 
-    line-height: 30px;
+
+    /* line-height: 30px; */
 }
 
 /*選單*/
@@ -754,4 +773,55 @@ hr{
 .info-points{
     display: flex;
     justify-content:space-between;
+}
+.coupon-all{
+    display: flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.coupon{
+    width:240px;
+    height:150px;
+    border-radius: 10px;
+    mask: url(../images/icon-new/折扣卷框.svg);
+    /* display: flex;
+    align-items:flex-start; */
+}
+.coupon-up{
+    display: flex;
+    height: 77.3%;
+    background-color:#FFCA7C;
+    align-items:center;
+    padding: 10px 10px 10px 15px;
+    align-items:flex-start;
+    justify-content:flex-end
+}
+.coupon-down{
+    display: flex;
+    height: 22.7%;
+    background-color:#EFEFEF;
+    align-items:center;
+    padding: 0 20px;
+}
+.coupon-info{
+    width: 190px;
+}
+.coupon-info p{
+font-size: 36px;
+color: #FFF;
+font-weight: bold;
+vertical-align: top;
+
+}
+.coupon-info small{
+    line-height: 0;
+}
+.coupon-info-icon{
+    display: flex;
+    background-image: url(../images/icon-new/資訊.svg);
+    width: 24px;
+    height: 24px;
+    align-items:center;
+    justify-content:center;
+    background-repeat: no-repeat
 }
