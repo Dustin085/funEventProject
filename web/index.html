@@ -14,6 +14,10 @@
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
     <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
@@ -109,8 +113,19 @@
 
 
         function App() {
+            console.log("App rendered");
             const { useState, useEffect, useRef } = React;
-            // 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題
+
+            /* 抓json */
+            // 特色主題json
+            const [eventTopicCardInfo, setEventTopicCardInfo] = useState({});
+            useEffect(() => {
+                axios.get("./assets/json/eventTopicCardInfo.json")
+                    .then((response) => setEventTopicCardInfo(response.data))
+                    .catch((error) => console.log(error));
+            }, [])
+
+            /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
             const carouselEle = useRef();
             const caroCtrlBoxEle = useRef();
             const [isCaroLoaded, setIsCaroLoaded] = useState(false);
@@ -131,11 +146,11 @@
                 changeSlide();
             }, [isCaroLoaded])
 
+            /* Slide切換功能 */
             // Slide組件
             // function Slide({ imgUrl }) {
             //     return <figure className="slide"><img src={imgUrl} alt="" /></figure>;
             // }
-            // Slide切換
             const [activeSlide, setActiveSlide] = useState(0);
             // 抓slideBox
             const slideBox = useRef();
@@ -229,11 +244,11 @@
                             <div className="ctrl-box" ref={caroCtrlBoxEle}>
                                 <button type="button" className="arrow arrow--prev" id="caro-prev-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, -1, 4)) }} ></button>
                                 <div className="ctrl-btn-box" ref={ctrlBtnBox}>
-                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(0)}}></button>
-                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(1)}}></button>
-                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(2)}}></button>
-                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(3)}}></button>
-                                    <button type="button" className="ctrl-btn" onClick={()=>{setActiveSlide(4)}}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(0) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(1) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(2) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(3) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(4) }}></button>
                                 </div>
                                 <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, 1, 4)) }}></button>
                             </div>
@@ -259,16 +274,28 @@
                                     {/*特色主題小卡列表*/}
                                     <div className="topic-list-box">
                                         <div className="topic-list">
+                                            {
+                                                Array.from(eventTopicCardInfo).map((item, index) => {
+                                                    if (index < 4) {
+                                                        const { id, title, imgUrl } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} />
+                                                    }
+                                                })
+                                            }
+                                            {/*<FuneventTopicCard />
                                             <FuneventTopicCard />
                                             <FuneventTopicCard />
-                                            <FuneventTopicCard />
-                                            <FuneventTopicCard />
+                                            <FuneventTopicCard />*/}
                                         </div>
                                         <div className="topic-list">
-                                            <FuneventTopicCard />
-                                            <FuneventTopicCard />
-                                            <FuneventTopicCard />
-                                            <FuneventTopicCard />
+                                            {
+                                                Array.from(eventTopicCardInfo).map((item, index) => {
+                                                    if (index >= 4) {
+                                                        const { id, title, imgUrl } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} />
+                                                    }
+                                                })
+                                            }
                                         </div>
                                     </div>
                                 </section>
