@@ -319,8 +319,12 @@ footer .end-box small {
     width: 100%;
     background-color: var(--gray-3);
 }
+/*hr分隔線*/
+hr{
+    border-style:dotted;
+    color: #19B9AA;
 
-
+}
 
 /* 會員中心頁面區 */
 #member-center {
@@ -509,9 +513,8 @@ footer .end-box small {
     border-radius: 10px;
     background-color: #ffffff;
     max-width: 850px;
-    padding: 20px 50px 20px 50px;
+    padding: 25px 50px 25px 50px;
     margin-bottom: 20px;
-    /* row-gap: 1000px; */
 }
 
 .member-center-Funpoint-all {
@@ -523,7 +526,8 @@ footer .end-box small {
     width: 60%;
     max-width: 850px;
 }
-
+.member-center-Funpoint-between{
+}
 /*-------------------------------------------------*/
 .all-iten {
 
@@ -713,16 +717,41 @@ footer .end-box small {
 
 .point-illustrate {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
+    column-gap: 5px;
+    margin-top: 10px;
 }
 
 .point-illustrate p {
+    vertical-align: sub;
     color: #19B9AA;
     font-size: 40px;
-    font-weight: 400;
+    font-weight: bold;
+
 }
 
 .point-illustrate small {
     color: #595757;
     font-size: 14px;
+
+}
+.point-illustrate-icon {
+    width: 20px;
+    margin-right: 5px;
+}
+.add-points{
+    display: flex;
+}
+.add-points p{
+    display: flex;
+    color: #19B9AA;
+    font-weight: bold;
+    font-size: 24px;
+    vertical-align: sub;
+    align-items:center;
+    margin-right: 5px;
+}
+.info-points{
+    display: flex;
+    justify-content:space-between;
 }
