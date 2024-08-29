@@ -130,7 +130,7 @@ $(".event-inner-nav__btn").each((index, btn) => {
     btn.addEventListener("click", function () {
         $("html, body").animate({
             scrollTop: targetPos.top - $(".event-inner-nav").height()
-        }, 100, "linear");
+        }, 350, "linear");
     });
 });
 

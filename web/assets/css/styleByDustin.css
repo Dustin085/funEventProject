@@ -21,6 +21,7 @@
     /* 灰階 */
     --light: #FFFFFF;
     --deep: #000000;
+    --deep-2: #6B5240;
     --gray-1: #595757;
     --gray-2: #898989;
     --gray-3: #D9D9D9;
@@ -169,6 +170,16 @@ button {
     height: 425px;
     background-color: var(--light);
     border-radius: 10px;
+    transition: var(--hover-transition);
+}
+
+.funevent-event-card:hover {
+    transform: scale(105%) translateY(-2%);
+    ;
+}
+
+.funevent-event-card:hover .event-pic {
+    transform: scale(102%);
 }
 
 .funevent-event-card .event-pic {
@@ -178,6 +189,7 @@ button {
     border-radius: 10px;
     box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
     background: center/cover no-repeat;
+    transition: var(--hover-transition);
 }
 
 .funevent-event-card .inner-card {
@@ -228,6 +240,11 @@ button {
 
 .funevent-event-card .event-title a {
     color: var(--gray-5);
+    transition: var(--hover-transition);
+}
+
+.funevent-event-card .event-title a:hover {
+    color: var(--gray-1);
 }
 
 .funevent-event-card .location {
@@ -260,6 +277,13 @@ button {
 .funevent-event-card .tag {
     font-size: 12px;
     line-height: 1;
+}
+
+.funevent-event-card .tag-rating-box .tag .link {
+    color: var(--light);
+}
+.funevent-event-card .tag-rating-box .tag:hover {
+    background-color: var(--secondary-2-hover);
 }
 
 .funevent-event-card .tag.tag--hot {
@@ -314,11 +338,24 @@ button {
     overflow: hidden;
 }
 
+.carousel-card .fig img {
+    transition: var(--hover-transition);
+}
+
+.carousel-card .fig:hover img {
+    transform: scale(105%);
+}
+
 .carousel-card .title {
     font-size: 20px;
     font-weight: 700;
     color: var(--gray-5);
     line-height: 26px;
+    transition: var(--hover-transition);
+}
+
+.carousel-card .title:hover {
+    color: var(--gray-1);
 }
 
 /* 圓角99按鈕 */
@@ -409,6 +446,7 @@ button {
     border-radius: 20px;
     font-size: 16px;
     font-weight: 400;
+    transition: var(--hover-transition);
 }
 
 /* 評分圖案 */
@@ -550,6 +588,11 @@ body {
     width: 68px;
     height: 68px;
     background: url(../images/go-top-btn-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+.go-top-btn:hover {
+    background-image: url(../images/go-top-btn-icon-hover.svg);
 }
 
 .chatroom-btn {
@@ -751,8 +794,12 @@ footer .end-box small {
     font-weight: 400;
     color: var(--gray-5);
     padding: 14px 24px;
+    transition: var(--hover-transition);
+}
 
-
+#home-page-first-view .logo-area .home-page-search-bar:hover {
+    border-color: var(--secondary-2-hover);
+    transform: scale(105%);
 }
 
 #home-page-first-view .logo-area .home-page-search-bar::placeholder {
@@ -815,6 +862,11 @@ footer .end-box small {
     height: 17px;
     background-color: var(--gray-4);
     border-radius: 999px;
+    transition: var(--hover-transition);
+}
+
+#home-page-first-view .ctrl-box .ctrl-btn:hover {
+    background-color: var(--gray-5);
 }
 
 #home-page-first-view .ctrl-box .ctrl-btn.active {
@@ -826,6 +878,11 @@ footer .end-box small {
     height: 50px;
     background: center/cover no-repeat;
     background-image: url(../images/caro-prev-btn.svg);
+    transition: var(--hover-transition);
+}
+
+#home-page-first-view .ctrl-box .arrow:hover {
+    background-image: url(../images/caro-prev-btn-hover.svg);
 }
 
 #home-page-first-view .ctrl-box .arrow--next {
@@ -851,6 +908,16 @@ footer .end-box small {
     flex-direction: column;
     align-items: center;
     row-gap: 6.5px;
+    transition: var(--hover-transition);
+}
+
+.category-card:hover {
+    transform: scale(105%) translateY(-5%);
+}
+
+.category-card:hover .category-card-icon {
+    transform: translateX(1.5%) translateY(-3.5%) rotate(2deg);
+    /* transform: rotate(90000deg); */
 }
 
 .category-card .category-card-icon {
@@ -858,12 +925,13 @@ footer .end-box small {
     height: 82px;
     /* background-image: url(../images/event-category-icon.svg); */
     background: center/cover no-repeat;
+    transition: var(--hover-transition);
 }
 
 .category-card .title {
     font-size: 20px;
     font-weight: 500;
-    color: var(--primary-1);
+    color: var(--deep-2);
 }
 
 /* 活動推薦總成 */
@@ -889,10 +957,6 @@ footer .end-box small {
     row-gap: 40px;
 }
 
-#home-page-topic-list .funevent-main-title {
-    padding: 0 56px;
-}
-
 #home-page-topic-list .topic-list-box {
     display: flex;
     flex-direction: column;
@@ -901,11 +965,12 @@ footer .end-box small {
 
 #home-page-topic-list .topic-list {
     display: flex;
+    justify-content: space-between;
     column-gap: 23px;
 }
 
 #home-page-topic-list .funevent-topic-card {
-    width: 303px;
+    width: 290px;
     height: 200px;
 }
 
@@ -916,6 +981,19 @@ footer .end-box small {
     background: center/cover no-repeat;
     border-radius: 20px;
     box-shadow: 1px 1px 10px 0 rgba(0, 0, 0, 0.3);
+    transition: var(--hover-transition);
+    background-position: center;
+    background-size: cover;
+    bottom: 0;
+}
+
+#home-page-topic-list .funevent-topic-card .card-body:hover {
+    transform: scale(105%) translateY(-5%);
+    z-index: 1;
+}
+
+#home-page-topic-list .funevent-topic-card .card-body:hover .title {
+    background-color: var(--primary-2-hover);
 }
 
 #home-page-topic-list .funevent-topic-card .title {
@@ -932,6 +1010,7 @@ footer .end-box small {
     border-radius: 62px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
     white-space: nowrap;
+    transition: var(--hover-transition);
 }
 
 /* 活動列表推薦 */
@@ -956,10 +1035,6 @@ footer .end-box small {
     row-gap: 25px;
 }
 
-#home-page-event-card-list-box .event-box .funevent-main-title {
-    padding: 0 56px;
-}
-
 /* 活動快訊 */
 #home-page-event-news {
     display: flex;
@@ -971,7 +1046,6 @@ footer .end-box small {
 }
 
 #home-page-event-news .funevent-main-title {
-    padding: 0 56px;
     margin-bottom: 30px;
 }
 
@@ -994,9 +1068,15 @@ footer .end-box small {
 }
 
 #home-page-event-news .arrow {
+    margin-bottom: 55px;
     width: 40px;
     height: 40px;
     background: url(../images/caro-prev-btn--par1.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+#home-page-event-news .arrow:hover {
+    background-image: url(../images/caro-prev-btn--par1-hover.svg);
 }
 
 #home-page-event-news .arrow--next {
