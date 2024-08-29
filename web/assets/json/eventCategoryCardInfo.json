@@ -14,37 +14,37 @@
     {
         "id": 3,
         "title": "藝術人文",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/art-culture-category-icon.svg",
         "link": "#"
     },
     {
         "id": 4,
         "title": "活力運動",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/sport-category-icon.svg",
         "link": "#"
     },
     {
         "id": 5,
         "title": "生活體驗",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/life-experience-category-icon.svg",
         "link": "#"
     },
     {
         "id": 6,
         "title": "數位科技",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/digital-science-category-icon.svg",
         "link": "#"
     },
     {
         "id": 7,
         "title": "創意手作",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/creative-diy-category-icon.svg",
         "link": "#"
     },
     {
         "id": 8,
         "title": "音樂律動",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/music-groove-category-icon.svg",
         "link": "#"
     }
 ]
