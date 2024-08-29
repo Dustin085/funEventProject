@@ -117,11 +117,16 @@
             const { useState, useEffect, useRef } = React;
 
             /* 抓json */
-            // 特色主題json
             const [eventTopicCardInfo, setEventTopicCardInfo] = useState({});
+            const [eventInfoForBotCaro, setEventInfoForBotCaro] = useState({});
             useEffect(() => {
+                // 特色主題json
                 axios.get("./assets/json/eventTopicCardInfo.json")
                     .then((response) => setEventTopicCardInfo(response.data))
+                    .catch((error) => console.log(error));
+                // 最底輪播json
+                axios.get("./assets/json/eventInfoForBotCaro.json")
+                    .then((response) => setEventInfoForBotCaro(response.data))
                     .catch((error) => console.log(error));
             }, [])
 
@@ -376,9 +381,21 @@
                                 <div className="carousel">
                                     <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
                                     <ul className="carousel-card-list">
+                                        {
+                                            Array.from(eventInfoForBotCaro).map((item, index) => {
+                                                const { title, imgUrl } = item;
+                                                return <li key={index}><CarouselCardItem
+                                                    key={index}
+                                                    title={title}
+                                                    imgUrl={imgUrl}
+                                                /></li>
+                                            })
+                                        }
+                                        {/*
                                         <li><CarouselCardItem key={1} /></li>
                                         <li><CarouselCardItem key={2} /></li>
                                         <li><CarouselCardItem key={3} /></li>
+                                        */}
                                     </ul>
                                     <button type="button" className="arrow arrow--next" id="news-caro-next-btn"></button>
                                 </div>

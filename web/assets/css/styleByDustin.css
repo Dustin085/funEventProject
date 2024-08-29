@@ -279,6 +279,13 @@ button {
     line-height: 1;
 }
 
+.funevent-event-card .tag-rating-box .tag .link {
+    color: var(--light);
+}
+.funevent-event-card .tag-rating-box .tag:hover {
+    background-color: var(--secondary-2-hover);
+}
+
 .funevent-event-card .tag.tag--hot {
     background-color: var(--tag-2);
 }
@@ -346,6 +353,7 @@ button {
     line-height: 26px;
     transition: var(--hover-transition);
 }
+
 .carousel-card .title:hover {
     color: var(--gray-1);
 }
@@ -438,6 +446,7 @@ button {
     border-radius: 20px;
     font-size: 16px;
     font-weight: 400;
+    transition: var(--hover-transition);
 }
 
 /* 評分圖案 */
