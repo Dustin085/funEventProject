@@ -874,7 +874,7 @@ footer .end-box small {
     white-space: nowrap;
     align-items: center;
     margin-right: 50px;
-    padding-left: 720px;
+    padding-left: 650px;
     padding-bottom: 10px;
 }
 .member-center-mycomment .status .subtitle{
@@ -882,6 +882,7 @@ footer .end-box small {
     color: #3E3A39;
     font-size: 14px;
     font-weight: 500;
+    width: auto;
 }
 .member-center-mycomment .status img{
     width: 16px;
@@ -899,6 +900,7 @@ footer .end-box small {
     padding-bottom: 20px;
     padding-left: 50px;
 }
+
 .member-center-mycomment .part .p{
     align-items: center;
     flex-direction: column;
@@ -926,9 +928,8 @@ footer .end-box small {
     height: 50px;
 
 }
-.member-center-mycomment .funevent-btn {
+.member-center-mycomment .funevent-btn1 {
     display: flex;
-    border-color: var(--primary-2);
     background-color: var(--light) ;
     padding: 6px 19px;
     font-size: 16px;
@@ -938,11 +939,39 @@ footer .end-box small {
     white-space: nowrap;
     /* line-height: 2; */
 }
-.member-center-mycomment .content{
+.member-center-mycomment .funevent-btn2 {
     display: flex;
-    align-items: center;
+    border-color: var(--primary-2);
+    background-color: var(--primary-2) ;
+    padding: 6px 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color:var(--light);
+    border-radius: 10px;
+    white-space: nowrap;
+    /* line-height: 2; */
 }
+.member-center-mycomment .bigpart{
+    margin-left: 50px;
+}
+
 .member-center-mycomment .bigpart img{
     width: 300px;
     height: 50px;
+}
+.member-center-mycomment .commentbtn {
+    margin-left: 100px;
+}
+.member-center-mycomment .commentbtn2 {
+    margin-left: 100px;
+}
+.member-center-mycomment .commentbtn img{
+    width: 15px;
+    height: 16px;
+}
+.member-center-mycomment .contentbox {
+    padding-left: 500px;
+}
+.member-center-mycomment .picturebox {
+    padding-bottom: 50px;
 }
