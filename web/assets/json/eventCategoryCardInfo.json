@@ -2,13 +2,13 @@
     {
         "id": 1,
         "title": "自然科學",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/nature-science-category-icon.svg",
         "link": "#"
     },
     {
         "id": 2,
         "title": "多元語言",
-        "bgImgUrl": "./assets/images/event-category-icon.svg",
+        "bgImgUrl": "./assets/images/language-category-icon.svg",
         "link": "#"
     },
     {

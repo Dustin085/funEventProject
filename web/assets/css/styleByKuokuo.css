@@ -296,7 +296,8 @@ footer .end-box small {
 
 /* 陰影1 */
 #member-center .member-center-sidebar,
-#member-center .member-center-myticket {
+#member-center .member-center-myticket,
+#member-center .member-center-Funpoint {
     box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -318,8 +319,12 @@ footer .end-box small {
     width: 100%;
     background-color: var(--gray-3);
 }
+/*hr分隔線*/
+hr{
+    border-style:dotted;
+    color: #19B9AA;
 
-
+}
 
 /* 會員中心頁面區 */
 #member-center {
@@ -499,9 +504,30 @@ footer .end-box small {
     width: 60%;
     max-width: 850px;
     padding: 50px;
-
 }
 
+.member-center-Funpoint {
+    /* align-self: stretch; */
+    /* display: flex; */
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 850px;
+    padding: 25px 50px 25px 50px;
+    margin-bottom: 20px;
+}
+
+.member-center-Funpoint-all {
+    /* display: flex;
+    flex-direction:column; */
+    flex-grow: 1;
+    border-radius: 10px;
+    /* background-color: #ffffff; */
+    width: 60%;
+    max-width: 850px;
+}
+.member-center-Funpoint-between{
+}
 /*-------------------------------------------------*/
 .all-iten {
 
@@ -511,6 +537,7 @@ footer .end-box small {
 /*選單*/
 .title {
     font-size: 24px;
+    font-weight: 700;
 }
 
 .selection-and-filter {
@@ -612,13 +639,10 @@ footer .end-box small {
     line-height: 22px;
     /* mask: url(../images/icon-new/活動票卷照片框-右.svg); */
     /* padding: 20px; */
-   padding-left: 22px;
+    /* margin-left: 22px; */
     /* width: 536px; */
     width: 71.5%;
     height: 170px;
-    display: flex;
-
-
 
 }
 
@@ -628,24 +652,21 @@ footer .end-box small {
 
 .tickets {
     display: flex;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 0px, 10px, 10px, 0px;
     background-color: #FFBF61;
     width: 68px;
     height: 45px;
     align-items: center;
-    justify-content: center;
-
+    justify-content: center
 }
 
 .event-info-tickets {
-    display: flex;
     justify-content: flex-end;
 }
 
 .tickets p {
     color: #fff;
     font-size: 14px;
-
 }
 
 /*票卷左邊活動圖片*/
@@ -677,13 +698,60 @@ footer .end-box small {
 }
 
 /*box-shadow:( 0px 0px 2px rgba(0, 0, 0, 0.3))*/
-.already-bottom{
+.already-bottom {
     display: flex;
     background-color: #EFEFEF;
     border-radius: 10px;
     font-size: 14px;
     color: #727171;
     height: 5vh;
-    justify-content:center;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustrate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.point-illustrate {
+    display: flex;
+    align-items: baseline;
+    column-gap: 5px;
+    margin-top: 10px;
+}
+
+.point-illustrate p {
+    vertical-align: sub;
+    color: #19B9AA;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+
+.point-illustrate small {
+    color: #595757;
+    font-size: 14px;
+
+}
+.point-illustrate-icon {
+    width: 20px;
+    margin-right: 5px;
+}
+.add-points{
+    display: flex;
+}
+.add-points p{
+    display: flex;
+    color: #19B9AA;
+    font-weight: bold;
+    font-size: 24px;
+    vertical-align: sub;
     align-items:center;
+    margin-right: 5px;
+}
+.info-points{
+    display: flex;
+    justify-content:space-between;
 }
