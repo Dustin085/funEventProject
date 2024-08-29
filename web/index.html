@@ -132,8 +132,9 @@
             // 校對控制器的位置
             const correctCaroCtrlBoxPos = function () {
                 let carouselRect = carouselEle.current.getBoundingClientRect();
+                let bodyRect = document.body.getBoundingClientRect();
                 caroCtrlBoxEle.current.style.left = (carouselRect.x + (carouselRect.width / 2)) + "px";
-                caroCtrlBoxEle.current.style.top = (carouselRect.y + carouselRect.height) + "px";
+                caroCtrlBoxEle.current.style.top = (carouselRect.top + carouselRect.height - bodyRect.top) + "px";
                 caroCtrlBoxEle.current.style.transform = "translateX(-50%)";
             }
             // 每次視窗大小改變時校對

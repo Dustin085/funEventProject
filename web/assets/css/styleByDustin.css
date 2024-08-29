@@ -173,10 +173,12 @@ button {
     transition: var(--hover-transition);
 }
 
-.funevent-event-card:hover{
-    transform: scale(105%) translateY(-2%);;
+.funevent-event-card:hover {
+    transform: scale(105%) translateY(-2%);
+    ;
 }
-.funevent-event-card:hover .event-pic{
+
+.funevent-event-card:hover .event-pic {
     transform: scale(102%);
 }
 
@@ -240,6 +242,7 @@ button {
     color: var(--gray-5);
     transition: var(--hover-transition);
 }
+
 .funevent-event-card .event-title a:hover {
     color: var(--gray-1);
 }
@@ -328,11 +331,23 @@ button {
     overflow: hidden;
 }
 
+.carousel-card .fig img {
+    transition: var(--hover-transition);
+}
+
+.carousel-card .fig:hover img {
+    transform: scale(105%);
+}
+
 .carousel-card .title {
     font-size: 20px;
     font-weight: 700;
     color: var(--gray-5);
     line-height: 26px;
+    transition: var(--hover-transition);
+}
+.carousel-card .title:hover {
+    color: var(--gray-1);
 }
 
 /* 圓角99按鈕 */
@@ -564,6 +579,11 @@ body {
     width: 68px;
     height: 68px;
     background: url(../images/go-top-btn-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+.go-top-btn:hover {
+    background-image: url(../images/go-top-btn-icon-hover.svg);
 }
 
 .chatroom-btn {
@@ -833,6 +853,11 @@ footer .end-box small {
     height: 17px;
     background-color: var(--gray-4);
     border-radius: 999px;
+    transition: var(--hover-transition);
+}
+
+#home-page-first-view .ctrl-box .ctrl-btn:hover {
+    background-color: var(--gray-5);
 }
 
 #home-page-first-view .ctrl-box .ctrl-btn.active {
@@ -844,6 +869,11 @@ footer .end-box small {
     height: 50px;
     background: center/cover no-repeat;
     background-image: url(../images/caro-prev-btn.svg);
+    transition: var(--hover-transition);
+}
+
+#home-page-first-view .ctrl-box .arrow:hover {
+    background-image: url(../images/caro-prev-btn-hover.svg);
 }
 
 #home-page-first-view .ctrl-box .arrow--next {
@@ -869,6 +899,16 @@ footer .end-box small {
     flex-direction: column;
     align-items: center;
     row-gap: 6.5px;
+    transition: var(--hover-transition);
+}
+
+.category-card:hover {
+    transform: scale(105%) translateY(-5%);
+}
+
+.category-card:hover .category-card-icon {
+    transform: translateX(1.5%) translateY(-3.5%) rotate(2deg);
+    /* transform: rotate(90000deg); */
 }
 
 .category-card .category-card-icon {
@@ -876,6 +916,7 @@ footer .end-box small {
     height: 82px;
     /* background-image: url(../images/event-category-icon.svg); */
     background: center/cover no-repeat;
+    transition: var(--hover-transition);
 }
 
 .category-card .title {
@@ -1018,9 +1059,15 @@ footer .end-box small {
 }
 
 #home-page-event-news .arrow {
+    margin-bottom: 55px;
     width: 40px;
     height: 40px;
     background: url(../images/caro-prev-btn--par1.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+#home-page-event-news .arrow:hover {
+    background-image: url(../images/caro-prev-btn--par1-hover.svg);
 }
 
 #home-page-event-news .arrow--next {

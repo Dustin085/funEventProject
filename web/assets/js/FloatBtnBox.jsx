@@ -1,6 +1,9 @@
 function FloatBtnBox() {
     const goTopBtnClickHandler = () => {
-        window.scrollTo(0, 0);
+        $("html,body").animate({
+            scrollTop: 0
+        }, 1000);
+        // window.scrollTo(0, 0);
     }
     // 聊天室子組件
     function Chatroom() {
