@@ -282,6 +282,7 @@ button {
 .funevent-event-card .tag-rating-box .tag .link {
     color: var(--light);
 }
+
 .funevent-event-card .tag-rating-box .tag:hover {
     background-color: var(--secondary-2-hover);
 }
@@ -480,6 +481,11 @@ button {
 #event-page-plan-intro .plan-item,
 #event-page-founder,
 .funevent-event-card {
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* 陰影 */
+.funevent-shadow {
     box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -1975,4 +1981,90 @@ footer .end-box small {
 #event-page-recommend .funevent-event-list {
     display: flex;
     justify-content: space-between;
+}
+
+
+/* 搜尋頁 */
+.search-page-main {
+    padding: 0 70px;
+}
+
+.search-page-wrap {
+    max-width: 1300px;
+    margin: 140px 0 120px 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.breadcrumb.deep {
+    color: var(--gray-5);
+}
+
+.breadcrumb.deep a {
+    color: var(--gray-5);
+}
+
+.search-info {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--gray-5);
+    margin-bottom: 40px;
+}
+
+.search-info .title .keyword {
+    color: var(--primary-2);
+}
+
+.search-content-container {
+    display: flex;
+    column-gap: 30px;
+}
+
+.search-content-container .sidebar-box {
+    width: 304px;
+    flex-shrink: 0;
+}
+
+.search-content-container .search-result-box {
+    flex-grow: 1;
+}
+
+.search-result-box .result-info-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 20px;
+    background-color: var(--light);
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.search-result-box .result-info-box .search-result-info {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gray-5);
+}
+
+.search-result-box .result-info-box .search-filter {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gray-5);
+    border: none;
+    appearance: none;
+    background: url(../images/arrow-down-gray.svg) right / cover no-repeat;
+    background-size: 16px 16px;
+    padding-right: 48px;
+    transition: var(--hover-transition);
+}
+
+.search-result-box .result-info-box .search-filter:hover {
+    color: var(--gray-1);
+}
+
+.search-result-box .search-result-event-card-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 24px;
 }
