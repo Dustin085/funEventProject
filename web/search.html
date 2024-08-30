@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動趣 FunEvent</title>
+    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- funevent的react元件 -->
+    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        function App() {
+            const { useState, useEffect } = React;
+
+            const [searchResultJson, setSearchResultJson] = useState([]);
+            useEffect(() => {
+                const getSearchData = async () => {
+                    const result = await axios.get("./assets/json/eventInfoForSearchPage.json");
+                    setSearchResultJson(result.data);
+                    console.log(result.data);
+                }
+                getSearchData();
+            }, []);
+            return <>
+                {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
+                <div className="funevent-wrap">
+                    <Topbar />
+                    <FloatBtnBox />
+                    <main className="search-page-main">
+                        <div className="search-page-wrap">
+                            <div className="breadcrumb deep" >
+                                <a href="../index.html">首頁</a>
+                                <span className="divider"> / </span>
+                                <a href="#">關鍵字</a>
+                            </div>
+                            <div className="search-info">
+                                <p className="title">
+                                    <span>搜尋結果：</span>
+                                    <span className="keyword">機場接送</span>
+                                </p>
+                            </div>
+
+                            <div class="search-content-container">
+                                <div class="sidebar-box">
+
+                                </div>
+                                <div class="search-result-box">
+                                    <div class="result-info-box funevent-shadow">
+                                        <p className="search-result-info">找到113項結果</p>
+                                        <select className="search-filter" name="search-filter" id="search-filter">
+                                            <option value="new-to-old">從新到舊</option>
+                                            <option value="hottest">最熱門</option>
+                                        </select>
+                                    </div>
+                                    <div class="search-result-event-card-box">
+                                        {
+                                            searchResultJson.map((event) => {
+                                                const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+                                                return <FuneventEventCard
+                                                    key={id}
+                                                    eventImgUrl={eventImgUrl}
+                                                    eventState={eventState}
+                                                    date={date}
+                                                    category={category}
+                                                    title={title}
+                                                    location={location}
+                                                    tags={tags}
+                                                    ratingScore={ratingScore} />
+                                            })
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <Footer />
+                </div>
+            </>
+        }
+
+
+
+
+        ReactDOM
+            .createRoot(document.getElementById("root"))
+            .render(<App />);
+    </script>
+</body>
+
+</html>
