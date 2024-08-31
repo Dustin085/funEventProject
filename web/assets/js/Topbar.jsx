@@ -1,18 +1,41 @@
-function Topbar() {
+function Topbar({ isAltColor, noLocationSelector }) {
+    const { useState, useEffect } = React;
+    const [logoEnUrl, setLogoEnUrl] = useState("./assets/images/logo-en.svg");
+    const [logoTcUrl, setLogoTcUrl] = useState("./assets/images/logo-tc.svg");
+
+    useEffect(() => {
+        if (isAltColor) {
+            setLogoEnUrl("./assets/images/logo-en-alt-color.svg");
+            setLogoTcUrl("./assets/images/logo-tc-alt-color.svg");
+        }
+    }, [])
+
+    function LocationSelector() {
+        let result = (
+            <div className="topbar__location">
+                <figure className="topbar__map-pin-icon"><img src="./assets/images/map-pin-icon.svg" alt="地圖圖釘icon" />
+                </figure>
+                <p>雙北</p>
+            </div>
+        );
+        if (noLocationSelector) {
+            result = <></>;
+        }
+        return (
+            result
+        )
+    }
+
     return <>
         <header id="topbar">
             <div className="topbar__start-box">
                 <h1 className="logo">
                     <a href="./index.html">
-                        <figure className="logo-en"><img src="./assets/images/logo-en.svg" alt="" /></figure>
-                        <figure className="logo-tc"><img src="./assets/images/logo-tc.svg" alt="" /></figure>
+                        <figure className="logo-en"><img src={logoEnUrl} alt="" /></figure>
+                        <figure className="logo-tc"><img src={logoTcUrl} alt="" /></figure>
                     </a>
                 </h1>
-                <div className="topbar__location">
-                    <figure className="topbar__map-pin-icon"><img src="./assets/images/map-pin-icon.svg" alt="地圖圖釘icon" />
-                    </figure>
-                    <p>雙北</p>
-                </div>
+                <LocationSelector />
             </div>
             <div className="topbar__end-box">
                 <nav className="navigation">
