@@ -41,13 +41,13 @@ function MemberCenterSidebar() {
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/account-manage.svg)" }}
                         ></div>
-                        <a href="#">帳號管理</a>
+                        <a href="./member-center-account-manage.html">帳號管理</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-comment.svg)" }}
                         ></div>
-                        <a href="#">我的評論</a>
+                        <a href="./member-center-my-comment.html">我的評論</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
@@ -59,7 +59,7 @@ function MemberCenterSidebar() {
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/messenge-manage.svg)" }}
                         ></div>
-                        <a href="#">訊息管理</a>
+                        <a href="./member-center-messenge-manage.html">訊息管理</a>
                     </div>
                 </div>
                 <div className="split-line-row"></div>
@@ -69,7 +69,7 @@ function MemberCenterSidebar() {
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/account-switch.svg)" }}
                         ></div>
-                        <a href="#">帳號切換</a>
+                        <a href="./member-center-hosting-center.html">帳號切換</a>
                     </div>
                 </div>
 
