@@ -107,69 +107,72 @@
                                 <div className="account-manage__tab-content-box">
                                     <div className="account-manage__tab-content member-info active">
                                         <div className="member-info-content active" id="member-info-content">
-                                            <p>姓名</p>
-                                            <p id="membername">王曉明</p>
+                                            <p className="title">姓名</p>
+                                            <p className="info" id="membername">王曉明</p>
                                             <div className="split-line-row"></div>
-                                            <p>生日</p>
-                                            <p id="birthday">1999-9-19</p>
+                                            <p className="title">生日</p>
+                                            <p className="info" id="birthday">1999-9-19</p>
                                             <div className="split-line-row"></div>
-                                            <p>性別</p>
-                                            <p id="gender">生理男</p>
+                                            <p className="title">性別</p>
+                                            <p className="info" id="gender">生理男</p>
                                             <div className="split-line-row"></div>
-                                            <p>手機號碼</p>
-                                            <p id="phone-number">0999999999</p>
+                                            <p className="title">手機號碼</p>
+                                            <p className="info" id="phone-number">0999999999</p>
                                             <div className="split-line-row"></div>
-                                            <p>電子信箱</p>
-                                            <p id="email">testtest@gmail.com</p>
+                                            <p className="title">電子信箱</p>
+                                            <p className="info" id="email">testtest@gmail.com</p>
                                             <div className="split-line-row"></div>
-                                            <p>居住地址</p>
-                                            <p id="address">台北市中正區濟南路一段321號</p>
+                                            <p className="title">居住地址</p>
+                                            <p className="info" id="address">台北市中正區濟南路一段321號</p>
                                             <div className="split-line-row"></div>
-                                            <button type="button" id="member-info-edit-btn">編輯</button>
+                                            <button type="button" className="funevent-btn" id="member-info-edit-btn">編輯</button>
                                         </div>
                                         <div className="member-info-edit" id="member-info-edit">
                                             <form className="member-info-form" action="" method="post" name="form__member-edit"
                                                 id="form__member--edit" title="會員資料修改表單">
-                                                <div className="member-info__name-box">
+                                                <div className="member-info-box">
                                                     <div>
-                                                        <label htmlFor="membername">姓氏*</label>
+                                                        <label htmlFor="membername">姓氏<span>*</span></label>
                                                         <input type="text" name="memberlastname" id="input-memberlastname" title="姓名欄位"
                                                             placeholder="請輸入姓名" required />
                                                     </div>
                                                     <div>
-                                                        <label htmlFor="membername">名字*</label>
+                                                        <label htmlFor="membername">名字<span>*</span></label>
                                                         <input type="text" name="memberfirstname" id="input-memberfirstname"
                                                             title="姓名欄位" placeholder="請輸入姓名" required />
                                                     </div>
                                                 </div>
                                                 <div className="split-line-row"></div>
-                                                <label htmlFor="birthday">生日*</label>
-                                                <input type="date" name="birthday" id="input-birthday" title="生日欄位" placeholder="請選擇生日"
-                                                    required />
+                                                <div class="member-info-box">
+                                                    <div>
+                                                        <label htmlFor="birthday">生日<span>*</span></label>
+                                                        <input type="date" name="birthday" id="input-birthday" title="生日欄位" placeholder="請選擇生日" required />
+                                                    </div>
+                                                    <div>
+                                                        <label htmlFor="gender">性別<span>*</span></label>
+                                                        <select name="gender" id="input-gender" title="性別選項">
+                                                            <option value="">請選擇</option>
+                                                            <option value="生理男">生理男</option>
+                                                            <option value="生理女">生理女</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div className="split-line-row"></div>
-                                                <label htmlFor="gender">性別</label>
-                                                <select name="gender" id="input-gender" title="性別選項">
-                                                    <option value="">請選擇</option>
-                                                    <option value="生理男">生理男</option>
-                                                    <option value="生理女">生理女</option>
-                                                </select>
-                                                <div className="split-line-row"></div>
-                                                <label htmlFor="mobile">手機號碼*</label>
+                                                <label htmlFor="mobile">手機號碼<span>*</span></label>
                                                 <input type="tel" name="mobile" id="input-mobile" title="手機號碼欄為" placeholder="共10碼"
                                                     maxLength="10" required />
                                                 <div className="split-line-row"></div>
-                                                <label htmlFor="email">電子信箱*</label>
+                                                <label htmlFor="email">電子信箱<span>*</span></label>
                                                 <input type="email" name="email" id="input-email" title="email欄位"
                                                     placeholder="請輸入電子郵件信箱" required />
                                                 <div className="split-line-row"></div>
-                                                <label htmlFor="address">居住地址</label>
+                                                <label htmlFor="address">居住地址<span>*</span></label>
                                                 <input type="text" name="address" id="input-address" title="居住地址欄位"
                                                     placeholder="請輸入居住地址" required />
                                                 <div className="split-line-row"></div>
                                                 <div className="member-info-btn-box">
-                                                    <button type="button" id="member-info-cancel-btn">取消</button>
-                                                    <input type="submit" name="member-info-edit-btn" id="member-info-save-btn"
-                                                        title="會員資料修改送出" value="儲存" />
+                                                    <button type="button" className="funevent-btn" id="member-info-cancel-btn">取消</button>
+                                                    <button type="submit" className="funevent-btn" name="member-info-edit-btn" id="member-info-save-btn">儲存</button>
                                                 </div>
 
                                             </form>
@@ -178,47 +181,47 @@
                                     <div className="account-manage__tab-content binded-account">
                                         <div className="binded-account__wrap">
                                             <div className="binded-account-card binded-account-card--binded">
-                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./images/icon-google.svg)" }}></div>
+                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./assets/images/google-icon-small.svg)" }}></div>
                                                 <div className="binded-account-card__company-box">
                                                     <p className="binded-account-card__company">Google</p>
                                                     <p className="binded-account-card__outside-account">testtest@gmail.com</p>
                                                 </div>
-                                                <button className="binded-account-card-btn">解除</button>
+                                                <button className="funevent-btn-round">解除</button>
                                             </div>
                                             <div className="binded-account-card binded-account-card--binded">
-                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./images/icon-line.svg)" }}></div>
+                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./assets/images/line-icon-small.svg)" }}></div>
                                                 <div className="binded-account-card__company-box">
                                                     <p className="binded-account-card__company">Line</p>
                                                     <p className="binded-account-card__outside-account">testtest@gmail.com</p>
                                                 </div>
-                                                <button className="binded-account-card-btn">解除</button>
+                                                <button className="funevent-btn-round">解除</button>
                                             </div>
                                             <div className="binded-account-card binded-account-card--unbinded">
-                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./images/icon-facebook.svg)" }}></div>
+                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./assets/images/fb-icon-small.svg)" }}></div>
                                                 <div className="binded-account-card__company-box">
                                                     <p className="binded-account-card__company">Facebook</p>
                                                     <p className="binded-account-card__outside-account"></p>
                                                 </div>
-                                                <button className="binded-account-card-btn">綁定</button>
+                                                <button className="funevent-btn-round">綁定</button>
                                             </div>
                                             <div className="binded-account-card binded-account-card--unbinded">
-                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./images/icon-apple.svg)" }}></div>
+                                                <div className="binded-account-card__icon" style={{ backgroundImage: "url(./assets/images/apple-icon-small.svg)" }}></div>
                                                 <div className="binded-account-card__company-box">
                                                     <p className="binded-account-card__company">Apple</p>
                                                     <p className="binded-account-card__outside-account"></p>
                                                 </div>
-                                                <button className="binded-account-card-btn">綁定</button>
+                                                <button className="funevent-btn-round">綁定</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="account-manage__tab-content credit-card-info">
                                         <div className="credit-card-info-wrap">
                                             <div className="credit-card-info-card credit-card-info-card--binded">
-                                                <div className="credit-card-info-card__icon" style={{ backgroundImage: "url(./images/icon-visa.svg)" }}></div>
+                                                <div className="credit-card-info-card__icon" style={{ backgroundImage: "url(./assets/images/visa-icon-small.svg)" }}></div>
                                                 <p className="credit-card-info-card__number">**** **** **** 1234</p>
-                                                <button className="credit-card-info-card-delete-btn">刪除</button>
+                                                <button className="funevent-btn-round">刪除</button>
                                             </div>
-                                            <button className="credit-card-info-new-btn">新增卡片</button>
+                                            <button className="funevent-btn" id="credit-card-info-new-btn">新增卡片</button>
                                         </div>
                                     </div>
                                 </div>

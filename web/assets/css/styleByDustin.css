@@ -110,6 +110,22 @@ button {
     cursor: pointer;
 }
 
+input {
+    /* 用來校正placeholder */
+    position: relative;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    /* 垂直置中 */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 /* 共用區 */
 /* 左上logo */
 .logo a {
@@ -621,6 +637,11 @@ body {
     width: 91px;
     height: 90px;
     background: url(../images/chatroom-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+.chatroom-btn:hover {
+    background-image: url(../images/chatroom-icon-hover.svg);
 }
 
 /* footer */
@@ -2388,7 +2409,7 @@ footer .end-box small {
 
 /* 會員中心-帳號管理 */
 .member-center-content.account-manage-content {
-    padding: 50px 26px;
+    padding: 50px;
 }
 
 .account-manage-content .account-manage__title-box {
@@ -2401,6 +2422,7 @@ footer .end-box small {
     color: var(--gray-7);
     margin-bottom: 10px;
 }
+
 .account-manage-content .account-manage__subtitle {
     font-size: 16px;
     font-weight: 400;
@@ -2421,7 +2443,13 @@ footer .end-box small {
     font-weight: 500;
     padding-bottom: 2px;
     color: var(--gray-1);
+    border-bottom: solid 4px transparent;
+    transition: var(--hover-transition);
 }
+.account-manage__tab-btn:hover {
+    color: var(--gray-7);
+}
+
 .account-manage__tab-btn.active {
     color: var(--primary-1);
     border-bottom: solid 4px var(--primary-1);
@@ -2453,11 +2481,31 @@ footer .end-box small {
 }
 
 .member-info-content .split-line-row {
-    margin: 22px 0 22px 0;
+    margin: 16px 0;
+    /* height: 0;
+    border-bottom: dotted 0.5px var(--primary-2); */
+    /* 利用重複的bg-image來達到虛線的效果 */
+    background-color: transparent;
+    background-image: linear-gradient(to right, var(--primary-2) 45%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
 }
 
 .member-info-content p {
     margin-top: 10px;
+}
+
+.member-info-content .title {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--primary-2);
+}
+
+.member-info-content .info {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--deep);
 }
 
 #member-info-edit-btn,
@@ -2466,13 +2514,18 @@ footer .end-box small {
     align-self: flex-end;
     width: 92px;
     height: 48px;
-    padding: 0;
-    border: solid 1px #d9d9d9;
-    border-radius: 10px;
-    font-size: 16px;
-    /* line-height: 1em; */
-    background-color: #c6c6c6;
-    color: #ffffff;
+}
+
+#member-info-cancel-btn {
+    background-color: var(--gray-4);
+}
+
+#member-info-cancel-btn:hover {
+    background-color: var(--gray-5);
+}
+
+#member-info-cancel-btn:active {
+    background-color: var(--gray-4) !important;
 }
 
 /* 會員基本資料修改表單 */
@@ -2491,43 +2544,68 @@ footer .end-box small {
     padding: 5px;
 }
 
+.member-info-form label {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--primary-2);
+}
+
+.member-info-form label span {
+    color: var(--secondary-2);
+}
+
 .member-info-form input,
 .member-info-form select {
     width: 300px;
     height: 48px;
     margin-top: 10px;
-    padding: 10px 0 10px 14px;
-    border: solid 1px #d9d9d9;
+    padding: 0 14px;
+    border: solid 1px var(--gray-2);
+    color: var(--gray-2);
     border-radius: 10px;
     font-size: 16px;
     line-height: 1em;
 }
 
-.account-manage__title-box,
+.member-info-form select {
+    appearance: none;
+    background: url(../images/arrow-down-gray.svg) right/cover no-repeat;
+    background-size: 16px 16px;
+    background-position: calc(100% - 14px), 0;
+}
+
+/* .account-manage__title-box,
 .account-manage__tab-box,
 .member-info-form input,
 .member-info-form select,
 .member-info-form label,
 .member-info-content p {
     margin-left: 22px;
-}
+} */
 
 .account-manage-content form .split-line-row {
-    margin: 22px 0 22px 0;
+    margin: 11px 0;
+    /* 利用重複的bg-image來達到虛線的效果 */
+    background-color: transparent;
+    background-image: linear-gradient(to right, var(--primary-2) 45%, rgba(255, 255, 255, 0) 0%);
+    background-position: bottom;
+    background-size: 10px 1px;
+    background-repeat: repeat-x;
 }
 
-.member-info__name-box {
+.member-info-box {
     display: flex;
     flex-wrap: wrap;
 }
 
-.member-info__name-box :first-child {
+.member-info-box :first-child {
     margin-right: 22px;
 }
 
 .member-info-btn-box {
     display: flex;
     align-self: flex-end;
+    column-gap: 8px;
 }
 
 /* 會員綁定帳號binded-account 與 信用卡資料credit-card-info */
@@ -2538,7 +2616,7 @@ footer .end-box small {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 5px 25px;
+    /* padding: 5px 25px; */
 }
 
 .binded-account-card {
@@ -2567,12 +2645,17 @@ footer .end-box small {
 
 .binded-account-card__icon,
 .credit-card-info-card__icon {
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     margin-right: 14px;
+}
+
+.credit-card-info-card__icon {
+    width: 48px;
+    height: 48px;
 }
 
 .binded-account-card__company-box,
@@ -2580,25 +2663,54 @@ footer .end-box small {
     flex-grow: 1;
 }
 
-.binded-account-card-btn,
-.credit-card-info-card-delete-btn {
-    width: 63px;
-    height: 34px;
-    border-radius: 20px;
-    border: solid 1px #757575;
+.binded-account-card .funevent-btn-round {
+    font-size: 14px;
+    font-weight: 400;
 }
 
-.binded-account-card--binded .binded-account-card-btn,
+.binded-account-card--unbinded .funevent-btn-round {
+    background-color: transparent;
+    border: solid 1px var(--gray-1);
+    color: var(--gray-1);
+}
+
+.binded-account-card--unbinded .funevent-btn-round:hover {
+    background-color: var(--gray-1);
+    border-color: transparent;
+    color: var(--light);
+}
+
+.binded-account-card--unbinded .funevent-btn-round:active {
+    background-color: transparent !important;
+    border: solid 1px var(--gray-1);
+    color: var(--gray-1);
+}
+
+.credit-card-info-card .funevent-btn-round {
+    font-size: 14px;
+    background-color: var(--gray-2);
+    color: var(--light);
+    border: solid 1px transparent;
+}
+
+.credit-card-info-card .funevent-btn-round:hover {
+    background-color: transparent;
+    color: var(--gray-2);
+    border: solid 1px var(--gray-2);
+}
+
+.credit-card-info-card .funevent-btn-round:active {
+    background-color: var(--gray-2) !important;
+    color: var(--light);
+    border: solid 1px transparent;
+}
+
 .credit-card-info-card--binded .credit-card-info-card-btn {
     color: #ffffff;
     background-color: #757575;
 }
 
-.credit-card-info-new-btn {
+#credit-card-info-new-btn {
     width: 106px;
     height: 48px;
-    background-color: #c6c6c6;
-    color: #ffffff;
-    border-radius: 10px;
-    font-size: 16px;
 }
