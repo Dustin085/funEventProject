@@ -298,7 +298,7 @@ footer .end-box small {
 #member-center .member-center-sidebar,
 #member-center .member-center-myticket,
 #member-center .member-center-Funpoint,
-#member-center .member-center-mycoupon{
+#member-center .member-center-mycoupon {
     box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -320,11 +320,12 @@ footer .end-box small {
     width: 100%;
     background-color: var(--gray-3);
 }
+
 /*hr分隔線*/
-hr{
-    border-top:1px dashed #19B9AA;
+hr {
+    border-top: 1px dashed #19B9AA;
     /* color: #19B9AA; */
-    
+
 }
 
 
@@ -528,11 +529,13 @@ hr{
     width: 60%;
     max-width: 850px;
 }
-.member-center-Funpoint-between{
+
+.member-center-Funpoint-between {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
 }
+
 .member-center-mycoupon {
     align-self: stretch;
     flex-grow: 1;
@@ -545,9 +548,9 @@ hr{
 
 /*-------------------------------------------------*/
 .all-iten {
-display: flex;
-flex-direction:column;
-row-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
 
 
     /* line-height: 30px; */
@@ -757,74 +760,204 @@ row-gap: 20px;
     font-size: 14px;
 
 }
+
 .point-illustrate-icon {
     width: 20px;
     margin-right: 5px;
 }
-.add-points{
+
+.add-points {
     display: flex;
 }
-.add-points p{
+
+.add-points p {
     display: flex;
     color: #19B9AA;
     font-weight: bold;
     font-size: 24px;
     vertical-align: sub;
-    align-items:center;
+    align-items: center;
     margin-right: 5px;
 }
-.info-points{
+
+.info-points {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
-.coupon-all{
+
+.coupon-all {
     display: flex;
-    flex-direction:row;
-    justify-content:space-between;
+    flex-direction: row;
+    justify-content: space-between;
 }
-.coupon{
-    width:240px;
-    height:150px;
+
+.coupon {
+    width: 240px;
+    height: 150px;
     border-radius: 10px;
     mask: url(../images/icon-new/折扣卷框.svg);
     /* display: flex;
     align-items:flex-start; */
 }
-.coupon-up{
+
+.coupon-up {
     display: flex;
     height: 77.3%;
-    background-color:#FFCA7C;
-    align-items:center;
+    background-color: #FFCA7C;
+    align-items: center;
     padding: 10px 10px 10px 15px;
-    align-items:flex-start;
-    justify-content:flex-end
+    align-items: flex-start;
+    justify-content: flex-end
 }
-.coupon-down{
+
+.coupon-down {
     display: flex;
     height: 22.7%;
-    background-color:#EFEFEF;
-    align-items:center;
+    background-color: #EFEFEF;
+    align-items: center;
     padding: 0 20px;
 }
-.coupon-info{
+
+.coupon-info {
     width: 190px;
 }
-.coupon-info p{
-font-size: 36px;
-color: #FFF;
-font-weight: bold;
-vertical-align: top;
+
+.coupon-info p {
+    font-size: 36px;
+    color: #FFF;
+    font-weight: bold;
+    vertical-align: top;
 
 }
-.coupon-info small{
+
+.coupon-info small {
     line-height: 0;
 }
-.coupon-info-icon{
+
+.coupon-info-icon {
     display: flex;
     background-image: url(../images/icon-new/資訊.svg);
     width: 24px;
     height: 24px;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     background-repeat: no-repeat
+}
+
+.left-order-details {
+    flex-grow: 1;
+    border-radius: 10px;
+    width: 60%;
+    max-width: 850px;
+}
+
+.right-order-details {
+    flex-grow: 1;
+    border-radius: 10px;
+    /* background-color: #ffffff; */
+    width: 60%;
+    max-width: 850px;
+}
+
+.order-details {
+    display: flex;
+    background-color: #F7F9F9;
+    height: 100px;
+    width: 1440px;
+
+    align-items: flex-start;
+    justify-content: center;
+    /* padding: 130px 150px 40px 150px; */
+
+}
+
+.all-order-details {
+    display: flex;
+
+}
+
+.right-order-details {
+    display: flex;
+    width: 550px;
+    margin-bottom: 20px;
+}
+
+.left-order-details {
+    display: flex;
+    flex-direction:column;
+    width: 740px;
+    margin-bottom: 20px;
+    margin-right:34px;
+}
+.orderdetails{
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 850px;
+    padding: 25px 50px 25px 50px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction:column;
+    row-gap: 10px;
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
+}
+.orderdetails div {
+    display: flex;
+    align-items: center; /* 使checkbox和文字在垂直方向上居中對齊 */
+}
+.personal-info{
+    display: flex;
+    order:2;
+}
+.use-coupon{
+    width: 200px;
+    background-color: #19B9AA;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 400;
+}
+input{
+font-size: 12px;
+}
+.things-to-note{
+font-size: 12px;
+border-radius: 10px;
+background-color: #FFCA7C;
+color: #3E3A39;
+padding: 10px;
+}
+.tickets-info{
+    display: flex;
+    justify-content:space-between;
+}
+.tickets-info p{
+font-size: 16px;
+color: #A8A8A8;
+}
+.right-tickets-info h4{
+    font-size: 20px;
+    }
+.right-orderdetails{
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 850px;
+    padding: 25px 50px 25px 50px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction:column;
+    row-gap: 10px;
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
+}
+.right-pic img{
+    border-radius: 10px;
+    width: 136px;
+}
+.right-pic{
+
+display: flex;
+column-gap: 10px;
 }
