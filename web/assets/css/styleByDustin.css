@@ -2204,3 +2204,401 @@ footer .end-box small {
 .search-result-box .page-indicator:hover {
     transform: translateY(-1px);
 }
+
+/* 會員中心從這開始 */
+/* 會員中心共用區 */
+/* 會員中心頁面區 */
+#member-center {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 130px 150px 40px 150px;
+}
+
+/* 會員中心背景區 */
+.member-center-bg-color-block {
+    position: absolute;
+    /* overflow: hidden; */
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.member-center-bg-color-block__block1 {
+    /* 左上最大那顆 */
+    position: absolute;
+    width: 83vw;
+    height: 83vw;
+    top: -66vw;
+    left: -17.6vw;
+    border-radius: 9999px;
+    background-color: var(--primary-2);
+}
+
+.member-center-bg-color-block__block2 {
+    /* 左中那顆 */
+    position: absolute;
+    background: url(../images/member-center-bg-color-block2.svg) center/cover no-repeat;
+    width: 12.5vw;
+    height: 21.8vw;
+    transform: translateX(4.72vw) translateY(36.8vw) rotate(42.11deg);
+}
+
+.member-center-bg-color-block__block3 {
+    /* 右中下那顆 */
+    position: absolute;
+    background: url(../images/member-center-bg-color-block3.svg) center/cover no-repeat;
+    width: 12.5vw;
+    height: 21.8vw;
+    transform: translateX(67.2vw) translateY(789px) rotate(116.26deg);
+}
+
+.member-center-bg-color-block__block4 {
+    /* 右邊小小那顆 */
+    position: absolute;
+    background: url(../images/member-center-bg-color-block4.svg) center/contain no-repeat;
+    width: 9.23vw;
+    height: 9.23vw;
+    transform: translateX(92.37vw) translateY(40.2vw);
+}
+
+/* 會員中心側邊列區 */
+.member-center-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 260px;
+    margin-right: 30px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* member-center-sidebar__intro */
+.member-center-sidebar__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 30px 65px 20px 65px;
+    background-color: var(--secondary-2);
+}
+
+.member-center-sidebar__intro .member-avatar-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.member-center-sidebar__intro .member-center-sidebar__avatar {
+    height: 100px;
+    width: 100px;
+}
+
+.member-center-sidebar__intro .edit-member-avatar-btn {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.member-center-sidebar__intro .member-center-sidebar__name {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--gray-7);
+}
+
+.member-center-sidebar__intro .member-center-sidebar__edit-link {
+    font-size: 14px;
+    color: var(--gray-7);
+}
+
+.member-center-sidebar .member-center-sidebar__menu {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: var(--light);
+    font-size: 16px;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .split-line-row {
+    margin: 10px 0;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* margin-bottom: 13px; */
+    /* border-bottom: solid 1px var(--gray-3); */
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box:nth-child(3) {
+    border: none;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box h4 {
+    padding: 5px 0;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box {
+    padding: 10px 0;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-7);
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box {
+    display: flex;
+    align-items: center;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box a {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gray-7);
+}
+
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box .icon--small {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/member-center-sidebar-item-default-icon.svg);
+    margin-right: 12px;
+}
+
+.member-center-sidebar .member-center-sidebar__menu .btn-logout--large {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+}
+
+/* 會員中心主要內容共用區 */
+.member-center-content {
+    align-self: stretch;
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    width: 60%;
+    max-width: 850px;
+}
+
+/* 會員中心-帳號管理 */
+.member-center-content.account-manage-content {
+    padding: 50px 26px;
+}
+
+.account-manage-content .account-manage__title-box {
+    margin-bottom: 40px;
+}
+
+.account-manage-content .account-manage__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-7);
+    margin-bottom: 10px;
+}
+.account-manage-content .account-manage__subtitle {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--gray-7);
+}
+
+.account-manage-content .account-manage__tab-box {
+    display: flex;
+    padding-bottom: 8px;
+}
+
+.account-manage-content .tab {
+    margin-right: 28px;
+}
+
+.account-manage__tab-btn {
+    font-size: 16px;
+    font-weight: 500;
+    padding-bottom: 2px;
+    color: var(--gray-1);
+}
+.account-manage__tab-btn.active {
+    color: var(--primary-1);
+    border-bottom: solid 4px var(--primary-1);
+}
+
+/* 帳號管理頁籤內容 */
+.account-manage__tab-content-box {
+    margin-top: 25px;
+}
+
+.account-manage__tab-content {
+    display: none;
+}
+
+.account-manage__tab-content.active {
+    display: block;
+}
+
+/* 會員基本資料 */
+.member-info-content {
+    display: none;
+}
+
+.member-info-content.active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+}
+
+.member-info-content .split-line-row {
+    margin: 22px 0 22px 0;
+}
+
+.member-info-content p {
+    margin-top: 10px;
+}
+
+#member-info-edit-btn,
+#member-info-save-btn,
+#member-info-cancel-btn {
+    align-self: flex-end;
+    width: 92px;
+    height: 48px;
+    padding: 0;
+    border: solid 1px #d9d9d9;
+    border-radius: 10px;
+    font-size: 16px;
+    /* line-height: 1em; */
+    background-color: #c6c6c6;
+    color: #ffffff;
+}
+
+/* 會員基本資料修改表單 */
+.member-info-edit {
+    display: none;
+}
+
+.member-info-edit.active {
+    display: block;
+}
+
+.member-info-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+}
+
+.member-info-form input,
+.member-info-form select {
+    width: 300px;
+    height: 48px;
+    margin-top: 10px;
+    padding: 10px 0 10px 14px;
+    border: solid 1px #d9d9d9;
+    border-radius: 10px;
+    font-size: 16px;
+    line-height: 1em;
+}
+
+.account-manage__title-box,
+.account-manage__tab-box,
+.member-info-form input,
+.member-info-form select,
+.member-info-form label,
+.member-info-content p {
+    margin-left: 22px;
+}
+
+.account-manage-content form .split-line-row {
+    margin: 22px 0 22px 0;
+}
+
+.member-info__name-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.member-info__name-box :first-child {
+    margin-right: 22px;
+}
+
+.member-info-btn-box {
+    display: flex;
+    align-self: flex-end;
+}
+
+/* 會員綁定帳號binded-account 與 信用卡資料credit-card-info */
+
+.binded-account__wrap,
+.credit-card-info-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 5px 25px;
+}
+
+.binded-account-card {
+    display: flex;
+    align-items: center;
+    width: calc(50% - 17px);
+    border: solid 1px #d9d9d9;
+    border-radius: 10px;
+    padding: 13px 11px;
+    margin-bottom: 20px;
+}
+
+.credit-card-info-card {
+    display: flex;
+    align-items: center;
+    width: calc(50% - 17px);
+    border: solid 1px #d9d9d9;
+    border-radius: 10px;
+    padding: 13px 11px;
+}
+
+.binded-account-card:nth-child(odd),
+.credit-card-info-card:nth-child(odd) {
+    margin-right: 17px;
+}
+
+.binded-account-card__icon,
+.credit-card-info-card__icon {
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 14px;
+}
+
+.binded-account-card__company-box,
+.credit-card-info-card__number {
+    flex-grow: 1;
+}
+
+.binded-account-card-btn,
+.credit-card-info-card-delete-btn {
+    width: 63px;
+    height: 34px;
+    border-radius: 20px;
+    border: solid 1px #757575;
+}
+
+.binded-account-card--binded .binded-account-card-btn,
+.credit-card-info-card--binded .credit-card-info-card-btn {
+    color: #ffffff;
+    background-color: #757575;
+}
+
+.credit-card-info-new-btn {
+    width: 106px;
+    height: 48px;
+    background-color: #c6c6c6;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 16px;
+}
