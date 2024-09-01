@@ -137,6 +137,7 @@
 
 
             // 頁首輪播
+            console.log("App Render");
             let slideIndex = 0;
             useEffect(() => {
                 // 輪播點點按鈕
@@ -162,6 +163,7 @@
                     slideIndex = cyclingNum(slideIndex, 1, 4);
                     switchActive(slideArr, slideIndex);
                     switchActive(ctrlBtnArr, slideIndex);
+                    // console.log(`slideIndex:${slideIndex}`);
                 });
             }, []);
 
@@ -172,6 +174,8 @@
                 "./assets/images/home-page-caro-slide4.jpg",
                 "./assets/images/home-page-caro-slide5.jpg",
             ]
+
+            const [testState, setTestState] = useState(0);
 
 
             // 切換active元素
@@ -239,7 +243,7 @@
                                         <Slide imgUrl={slideUrls[3]} />
                                         <Slide imgUrl={slideUrls[4]} />
                                         */}
-                                        
+
                                         <figure className="slide active"><img src={slideUrls[0]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[1]} alt="" /></figure>
                                         <figure className="slide"><img src={slideUrls[2]} alt="" /></figure>
@@ -257,7 +261,10 @@
                                     <button type="button" className="ctrl-btn"></button>
                                     <button type="button" className="ctrl-btn"></button>
                                 </div>
-                                <button type="button" className="arrow arrow--next" id="caro-next-btn" ></button>
+                                <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => {
+                                    setTestState(testState + 1);
+                                    // console.log(`testState:${testState}`);
+                                }}>{testState}</button>
                             </div>
                         </section>
                         {/*分類小卡列表*/}
