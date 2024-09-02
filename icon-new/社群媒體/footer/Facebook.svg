@@ -1,1 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 47.95"><defs><style>.cls-1{fill:#fff;}</style></defs><title>Facebook</title><g id="圖層_2" data-name="圖層 2"><g id="ICON"><path class="cls-1" d="M48,24A24,24,0,0,1,25.56,48V30.2h6.75l.92-5.05H25.56V21.36c0-4.55,2.06-6.58,6.68-6.58.48,0,1.07,0,1.62,0V10.29a28,28,0,0,0-4.09-.38c-3.75,0-6.4.84-8.1,2.58s-2.54,4.46-2.54,8.3v4.36h-5V30.2h5V47.51A24,24,0,1,1,48,24Z"/></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 48 48">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="_圖層_1" data-name="圖層_1">
+      <g id="_圖層_2" data-name="圖層_2">
+        <g id="ICON">
+          <path class="cls-1" d="M48,24c0,12.7-9.8,23.2-22.4,24v-17.8h6.7l.9-5h-7.7v-3.8c0-4.5,2.1-6.6,6.7-6.6h1.6v-4.5c-1.4-.2-2.7-.4-4.1-.4-3.8,0-6.4.8-8.1,2.6s-2.5,4.5-2.5,8.3v4.4h-5v5h5v17.3C6.2,44.8-2.2,32.1.5,19.2,3.2,6.2,15.9-2.2,28.9.5c11.1,2.3,19.1,12.1,19.1,23.5Z"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

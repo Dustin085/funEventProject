@@ -545,6 +545,7 @@ hr {
     max-width: 850px;
     padding: 50px;
 }
+
 #order-details-down {
     min-height: 100vh;
     display: flex;
@@ -552,15 +553,18 @@ hr {
     justify-content: center;
     padding: 20px 150px 40px 150px;
 }
-.order-details-up{
+
+.order-details-up {
     min-height: 15vh;
     display: flex;
     align-items: center;
     justify-content: center;
     /* padding: 130px 150px 40px 150px; */
     background-color: #fff;
-    margin:130px 0px 10px 0px;;
+    margin: 130px 0px 10px 0px;
+    ;
 }
+
 /*-------------------------------------------------*/
 .all-iten {
     display: flex;
@@ -1049,11 +1053,153 @@ input {
 .price p {
     font-size: 24px;
 }
-.pay-point{
-    width:16px;
+
+.pay-point {
+    width: 16px;
     height: 16px;
     background-image: url(../images/icon-new/Fun點數\(綠色\).svg);
-    margin-left:10px ;
-    margin-right:4px ;
+    margin-left: 10px;
+    margin-right: 4px;
+}
+
+/*--------------Login-----------*/
+.google {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Google.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.line {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/LINE.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.apple {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Apple.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.facebook {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/FB.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-2);
+    padding: 6px 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light);
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 300px;
+    /* line-height: 2; */
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
 }
+
+.social-media {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 10px 0px;
+}
+
+.decorative-box {
+    border-top: 1.5px solid #898989;
+    /* 在上方添加2px黑色實線 */
+    /* 為內容添加一些內邊距 */
+}
+
+.social-media-info {
+    font-size: 12px;
+
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    /* 讓內容垂直居中對齊 */
+    text-align: center;
+    /* 文字居中 */
+    
+
+}
+.quick-login-all{
+width: 360px;
+    margin-top: 20px;
+    margin-bottom:20px ;
+}
+.quick-login hr {
+    flex-grow: 1;
+    /* 讓線條自動填充剩餘空間 */
+    border: none;
+    /* 移除默認邊框 */
+    border-top: 1.5px solid var(--gray-3);;
+    /* 添加上邊框作為分割線 */
+    margin: 0 10px;
+    /* 讓線條和文字之間保持距離 */
+}
+
+.quick-login span {
+    white-space: nowrap;
+        /* 防止文字換行 */
+}
+
+.email-and-phone {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.email-and-phone p{
+    margin:0px  15px 0px 15px;
+}
+.login-page{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 50px;
+    margin: 50px;
+}
+.login{
+    display: flex;
+    flex-direction:column;
+        justify-content: center;
+    row-gap: 10px;
+}
+.login-text {
+    display: flex;
+    justify-content: center;
+}
+.login-text-all {
+margin-bottom: 20px;
+}
+.email-input{
+    display: flex;
+    justify-content: center;
+}
+.email-input {
+    padding: 10px;
+    width: 300px;
+    height: 48px;
+    outline:none;
+    border: solid .1px black;
+    font-size:16px;
+    border-radius: 10px;
+}
+/*-------------------------------------*/
