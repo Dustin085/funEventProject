@@ -1,29 +1,29 @@
 [
     {
         "id": 1,
-        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-01.jpg",
+        "eventImgUrl": "./assets/images/event-pic/chess.jpg",
         "eventState": "hot",
-        "date": "2024.08.11(六) 10:00",
-        "category": "戶外活動",
-        "title": "【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！",
-        "location": "新北 · 板橋區",
+        "date": "2024.09.11(六) 10:00",
+        "category": "生活體驗",
+        "title": "【夏日營隊】小小棋神就是你！",
+        "location": "新北 · 永和區",
         "tags": [
-            "#競賽",
-            "#團體合作"
+            "#訓練專注",
+            "#訓練沉穩性格"
         ],
-        "ratingScore": "4.5(151)"
+        "ratingScore": "4.5(101)"
     },
     {
         "id": 2,
-        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-02.jpg",
+        "eventImgUrl": "./assets/images/event-pic/painting.jpg",
         "eventState": "hot",
-        "date": "2024.08.11(六) 10:00",
-        "category": "戶外體驗",
-        "title": "【田野大調查】走進鄉間大發現，我們吃的米從何而來?",
-        "location": "宜蘭 · 員山",
+        "date": "2024.10.11(六) 10:00",
+        "category": "藝術人文",
+        "title": "【小小畢卡索】走進色彩的繽紛世界",
+        "location": "台北 · 南港區",
         "tags": [
-            "#自然",
-            "#親近土地"
+            "#美學",
+            "#藝術培養"
         ],
         "ratingScore": "4.1(231)"
     },
