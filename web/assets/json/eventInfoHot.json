@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "eventImgUrl": "./assets/images/demo-event-pic/chess.jpg",
+        "eventImgUrl": "./assets/images/event-pic/chess.jpg",
         "eventState": "hot",
         "date": "2024.09.11(六) 10:00",
         "category": "生活體驗",
@@ -15,7 +15,7 @@
     },
     {
         "id": 2,
-        "eventImgUrl": "./assets/images/demo-event-pic/painting.jpg",
+        "eventImgUrl": "./assets/images/event-pic/painting.jpg",
         "eventState": "hot",
         "date": "2024.10.11(六) 10:00",
         "category": "藝術人文",
