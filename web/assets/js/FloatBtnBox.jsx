@@ -1,4 +1,5 @@
 function FloatBtnBox() {
+    // 可參考動畫：https://jqueryui.com/hide/，裡面的fold
     const { useState } = React;
 
     const goTopBtnClickHandler = () => {
@@ -32,7 +33,14 @@ function FloatBtnBox() {
                             <div className="text"><p>您好，我是FunEvent小幫手。<br />您今天好嗎？<br />很明顯我是用來湊字數的。<br />對於湊字數我還是略有涉略的。</p></div>
                         </div>
                     </div>
+                    <ChatRoomMsg
+                        avatarImgUrl="./assets/images/member-default-avatar.png"
+                        name="FunEvent 小幫手"
+                        text="您好，我是FunEvent小幫手。<br />您今天好嗎？<br />很明顯我是用來湊字數的。<br />對於湊字數我還是略有涉略的。"
+                        isFromUser={false}
+                    />
                 </div>
+
                 <div className="chatroom__footer">
                     <button type="button" className="chatroom__plusicon"></button>
                     <ChatroomInput inputText={inputText} inputOnChangeHandler={inputOnChangeHandler} />
@@ -40,6 +48,34 @@ function FloatBtnBox() {
                 </div>
             </div>
         </>
+    }
+
+    // 聊天訊息子組件
+    function ChatRoomMsg({ avatarImgUrl, name, text, isFromUser = true }) {
+        // 回傳html string，樣式都已經在css內做好了。頭像圖片直接寫在html屬性裡
+        let fromWho = '';
+        if (isFromUser) {
+            fromWho = "fromUser";
+        } else {
+            fromWho = "fromOther";
+        }
+        return (
+            <div className={"chatroom__msg" + " " + fromWho} >
+                <div className="avatar" style={{ backgroundImage: `url(${avatarImgUrl})` }}></div>
+                <div className="content--container">
+                    <div className="name"><p>{name}</p></div>
+                    <div className="text"><p>{
+                        // 用<br />分段文字，也可以使用\n
+                        text.split("<br />").map((splitText, index, arr) => {
+                            return <>
+                                {splitText}
+                                {index == (arr.length - 1) ? "" : <br />}
+                            </>
+                        })
+                    }</p></div>
+                </div>
+            </div >
+        )
     }
 
     // 聊天室輸入框，推測：必須與主要組件分隔開來才能獨自重新渲染
