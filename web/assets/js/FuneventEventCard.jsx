@@ -33,7 +33,7 @@ function FuneventEventCard(props) {
                     {/* 迴圈製造tag */}
                     {
                         tags.map((tagText, index) => {
-                            return <li key={index} className="tag">{tagText}</li>;
+                            return <li key={index} className="tag"><a href="#" className="link">{tagText}</a></li>;
                         })
                     }
                 </ul>

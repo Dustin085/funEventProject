@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-01.jpg",
+        "eventState": "hot",
+        "date": "2024.08.11(六) 10:00",
+        "category": "戶外活動",
+        "title": "【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！",
+        "location": "新北 · 板橋區",
+        "tags": [
+            "#競賽",
+            "#團體合作"
+        ],
+        "ratingScore": "4.5(151)"
+    },
+    {
+        "id": 2,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-02.jpg",
+        "eventState": "hot",
+        "date": "2024.08.11(六) 10:00",
+        "category": "戶外體驗",
+        "title": "【田野大調查】走進鄉間大發現，我們吃的米從何而來?",
+        "location": "宜蘭 · 員山",
+        "tags": [
+            "#自然",
+            "#親近土地"
+        ],
+        "ratingScore": "4.1(231)"
+    },
+    {
+        "id": 3,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-03.jpg",
+        "eventState": "hot",
+        "date": "2024.08.11(六) 10:00",
+        "category": "手作體驗",
+        "title": "甜蜜創作之旅：親子糖畫藝術體驗與手作工作坊",
+        "location": "新北 · 三峽區",
+        "tags": [
+            "#點心",
+            "#體驗"
+        ],
+        "ratingScore": "4.3(51)"
+    },
+    {
+        "id": 4,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-04.jpg",
+        "eventState": "new",
+        "date": "2024.08.11(六) 10:00",
+        "category": "戶外體驗",
+        "title": "夏日祭典：體驗日本最道地的煙火大會，古早童玩大集合~~",
+        "location": "臺北 · 信義區",
+        "tags": [
+            "#童玩",
+            "#日本"
+        ],
+        "ratingScore": "4.9(351)"
+    }
+]
