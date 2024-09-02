@@ -545,7 +545,22 @@ hr {
     max-width: 850px;
     padding: 50px;
 }
-
+#order-details-down {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 150px 40px 150px;
+}
+.order-details-up{
+    min-height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 130px 150px 40px 150px; */
+    background-color: #fff;
+    margin:130px 0px 10px 0px;;
+}
 /*-------------------------------------------------*/
 .all-iten {
     display: flex;
@@ -852,10 +867,11 @@ hr {
 }
 
 .right-order-details {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     border-radius: 10px;
     /* background-color: #ffffff; */
     width: 60%;
+    height: auto;
     max-width: 850px;
 }
 
@@ -877,19 +893,20 @@ hr {
 }
 
 .right-order-details {
-    display: flex;
+    /* display: flex; */
     width: 550px;
     margin-bottom: 20px;
 }
 
 .left-order-details {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     width: 740px;
     margin-bottom: 20px;
-    margin-right:34px;
+    margin-right: 34px;
 }
-.orderdetails{
+
+.orderdetails {
     flex-grow: 1;
     border-radius: 10px;
     background-color: #ffffff;
@@ -897,19 +914,41 @@ hr {
     padding: 25px 50px 25px 50px;
     margin-bottom: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     row-gap: 10px;
     box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
 }
+
+.orderdetails1 {
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 850px;
+    padding: 25px 50px 25px 50px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
+}
+
 .orderdetails div {
     display: flex;
-    align-items: center; /* 使checkbox和文字在垂直方向上居中對齊 */
+    align-items: center;
+    /* 使checkbox和文字在垂直方向上居中對齊 */
 }
-.personal-info{
+
+.member-checkbox {
     display: flex;
-    order:2;
+    align-items: center;
 }
-.use-coupon{
+
+.personal-info {
+    display: flex;
+    order: 2;
+}
+
+.use-coupon {
     width: 200px;
     background-color: #19B9AA;
     color: #fff;
@@ -918,29 +957,43 @@ hr {
     border-radius: 10px;
     white-space: nowrap;
     font-weight: 400;
+    cursor: pointer;
 }
-input{
-font-size: 12px;
+
+input {
+    font-size: 12px;
 }
-.things-to-note{
-font-size: 12px;
-border-radius: 10px;
-background-color: #FFCA7C;
-color: #3E3A39;
-padding: 10px;
+
+.things-to-note {
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #FFCA7C;
+    color: #3E3A39;
+    padding: 10px;
 }
-.tickets-info{
+
+.tickets-info {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
-.tickets-info p{
-font-size: 16px;
-color: #A8A8A8;
+
+.tickets-info p {
+    font-size: 16px;
+    color: #A8A8A8;
 }
-.right-tickets-info h4{
+
+.right-tickets-info {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+
+.right-tickets-info h4 {
     font-size: 20px;
-    }
-.right-orderdetails{
+    font-weight: bold;
+}
+
+.right-orderdetails {
     flex-grow: 1;
     border-radius: 10px;
     background-color: #ffffff;
@@ -948,16 +1001,59 @@ color: #A8A8A8;
     padding: 25px 50px 25px 50px;
     margin-bottom: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     row-gap: 10px;
     box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
 }
-.right-pic img{
+
+.right-pic img {
+    display: flex;
     border-radius: 10px;
     width: 136px;
+    height: 84px;
 }
-.right-pic{
 
-display: flex;
-column-gap: 10px;
+.right-pic {
+
+    display: flex;
+    column-gap: 10px;
+}
+
+.pay-btn {
+    background-color: #19B9AA;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+}
+
+.price-box {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    justify-content: space-between;
+}
+
+.pay-orderdetails {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+
+.price p {
+    font-size: 24px;
+}
+.pay-point{
+    width:16px;
+    height: 16px;
+    background-image: url(../images/icon-new/Fun點數\(綠色\).svg);
+    margin-left:10px ;
+    margin-right:4px ;
+
 }
