@@ -679,10 +679,10 @@ hr {
 .event-info-address-button {
     align-self: center;
     line-height: 22px;
-    background-color: #D9D9D9;
+    background-color: #f5f5f5;
     /* mask: url(../images/icon-new/活動票卷照片框-右.svg); */
-    /* padding-left: 20px;
-    padding-top: 20px; */
+    padding-left: 20px;
+    /* padding-top: 20px; */
     /* margin-left: 20px; */
     /* width: 536px; */
     width: 71.5%;
@@ -698,14 +698,15 @@ hr {
 
 .tickets {
     display: flex;
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 0px 0px 10px 10px;
     background-color: #FFBF61;
     width: 68px;
     height: 45px;
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 0;
+    right: 16px;
+    top: 0;
 }
 
 .event-info-tickets {
@@ -1006,9 +1007,14 @@ hr {
 
 .personal-info {
     display: flex;
-    order: 2;
-}
+    flex-grow:1;
+    flex-direction:columnl
 
+}
+.input-name{
+    display: flex;
+    flex-direction:column;
+}
 .use-coupon {
     width: 200px;
     background-color: #19B9AA;
@@ -1020,7 +1026,9 @@ hr {
     font-weight: 400;
     cursor: pointer;
 }
-
+.use-coupon:hover {
+    background-color: #009084;
+}
 input {
     font-size: 12px;
 }
@@ -1091,9 +1099,10 @@ input {
     cursor: pointer;
     display: flex;
     justify-content: center;
-
 }
-
+.pay-btn:hover {
+    background-color: #009084;
+}
 .price-box {
     display: flex;
     align-items: center;
