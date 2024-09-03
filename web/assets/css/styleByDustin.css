@@ -273,7 +273,7 @@ input::placeholder {
 .funevent-event-card .map-pin-icon {
     width: 13px;
     height: 13px;
-    background: url(../images/map-pin-icon--gray.svg) center/cover no-repeat;
+    background: url(../images/map-pin-icon--primary.svg) center/cover no-repeat;
 }
 
 .funevent-event-card .location-text {
@@ -701,7 +701,7 @@ body {
     margin-bottom: 8px;
 }
 
-.chatroom__msg.firstmsg{
+.chatroom__msg.firstmsg {
     /* 第一個元素給margin-top:auto可以把訊息往下推 */
     margin-top: auto;
 }
@@ -715,17 +715,17 @@ body {
     background-size: cover;
 }
 
-.chatroom__msg.fromUser{
+.chatroom__msg.fromUser {
     align-self: flex-end;
     flex-direction: row-reverse;
 }
 
-.chatroom__msg.fromUser .content--container{
+.chatroom__msg.fromUser .content--container {
     display: flex;
     align-items: flex-end;
 }
 
-.chatroom__msg .content--container{
+.chatroom__msg .content--container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1306,7 +1306,7 @@ footer .end-box small {
 }
 
 .share-icon {
-    background-image: url(../images/share-icon.svg);
+    background-image: url(../images/event-page-icon/share-icon.svg);
 }
 
 
@@ -1481,6 +1481,7 @@ footer .end-box small {
 .event-intro-card__rating-box {
     display: flex;
     align-items: center;
+    column-gap: 5px;
     margin-bottom: 20px;
 }
 
@@ -1513,6 +1514,7 @@ footer .end-box small {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+    line-height: 25px;
     font-weight: 500;
 }
 
@@ -1560,25 +1562,25 @@ footer .end-box small {
 }
 
 .event-intro-card__content .item-date .icon {
-    background-image: url(../images/date-icon.svg);
+    background-image: url(../images/event-page-icon/date-icon.svg);
 }
 
 .event-intro-card__content .item-address .icon {
-    background-image: url(../images/address-icon.svg);
+    background-image: url(../images/event-page-icon/address-icon.svg);
 }
 
 .event-intro-card__content .item-founder .icon {
-    background-image: url(../images/chest-icon.svg);
+    background-image: url(../images/event-page-icon/founder-icon.svg);
 }
 
 .event-intro-card__content .item-link .icon {
-    background-image: url(../images/chest-icon.svg);
+    background-image: url(../images/event-page-icon/about-link-icon.svg);
 }
 
 .event-intro-card__content .open-link-icon {
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/open-link-icon.svg);
+    width: 12px;
+    height: 12px;
+    background-image: url(../images/event-page-icon/open-link-icon.svg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1596,7 +1598,7 @@ footer .end-box small {
 .event-intro-card .tag-box .tag-icon {
     width: 24px;
     height: 24px;
-    background: url(../images/tag-icon.svg) center/cover;
+    background: url(../images/event-page-icon/tag-icon.svg) center/cover;
     margin-right: 6px;
 }
 
@@ -1730,6 +1732,10 @@ footer .end-box small {
     width: 24px;
     height: 24px;
     background: url(../images/minus-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+#event-plan-form .ticket-type .minus-btn.disabled {
+    background-image: url(../images/minus-icon--disabled.svg);
 }
 
 #event-plan-form .ticket-type .plus-btn {
@@ -1758,10 +1764,13 @@ footer .end-box small {
     display: flex;
     align-items: flex-end;
 }
+#event-plan-form .fun-point-inner-box {
+    align-items: center;
+}
 
 #event-plan-form .fun-point-icon {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background: url(../images/fun-point-icon.svg) center/cover no-repeat;
     margin-left: 9px;
 }
@@ -1967,6 +1976,10 @@ footer .end-box small {
     align-items: center;
     column-gap: 11px;
     /* min-width: 257px; */
+}
+
+#event-page-founder .btn-box .contact-founder-icon {
+    background-image: url(../images/event-page-icon/contact-founder-icon.svg);
 }
 
 /* 活動頁-活動評論 */
@@ -2447,6 +2460,7 @@ footer .end-box small {
     margin-right: 30px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 /* member-center-sidebar__intro */
@@ -2559,6 +2573,7 @@ footer .end-box small {
     background-color: #ffffff;
     width: 60%;
     max-width: 850px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 /* 會員中心-帳號管理 */
@@ -2600,6 +2615,7 @@ footer .end-box small {
     border-bottom: solid 4px transparent;
     transition: var(--hover-transition);
 }
+
 .account-manage__tab-btn:hover {
     color: var(--gray-7);
 }
@@ -2829,9 +2845,9 @@ footer .end-box small {
 }
 
 .binded-account-card--unbinded .funevent-btn-round:hover {
-    background-color: var(--gray-1);
-    border-color: transparent;
-    color: var(--light);
+    background-color: var(--gray-3);
+    /* border-color: transparent;
+    color: var(--light); */
 }
 
 .binded-account-card--unbinded .funevent-btn-round:active {
@@ -2848,9 +2864,9 @@ footer .end-box small {
 }
 
 .credit-card-info-card .funevent-btn-round:hover {
-    background-color: transparent;
-    color: var(--gray-2);
-    border: solid 1px var(--gray-2);
+    background-color: var(--gray-1);
+    /* color: var(--gray-2);
+    border: solid 1px var(--gray-2); */
 }
 
 .credit-card-info-card .funevent-btn-round:active {

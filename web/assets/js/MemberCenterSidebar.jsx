@@ -10,7 +10,7 @@ function MemberCenterSidebar() {
                         data="../assets/images/edit-avatar-icon.svg" type="image/svg+xml"></object></button>
                 </div>
                 <h3 className="member-center-sidebar__name">會員名字</h3>
-                <a href="#" className="member-center-sidebar__edit-link">管理個人資料</a>
+                <a href="./member-center-account-manage.html" className="member-center-sidebar__edit-link">管理個人資料</a>
             </div>
             <div className="member-center-sidebar__menu">
                 <div className="member-center-sidebar__list-box">

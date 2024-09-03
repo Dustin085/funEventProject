@@ -219,6 +219,12 @@ function calcTotalPrice() {
     function calcFunPoint() {
         $(".event-plan-board .fun-point").text($(".event-plan-board .total-price").text() / 100);
     }
+    // 判斷減號按鈕要不要disabled
+    if (Number($(".ticket-amount-box .amount").text() <= 1)) {
+        $(".minus-btn").addClass("disabled");
+    } else {
+        $(".minus-btn").removeClass("disabled");
+    }
 }
 
 // 切換顯示總金額
