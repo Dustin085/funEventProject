@@ -10,23 +10,31 @@ function FloatBtnBox() {
         // window.scrollTo(0, 0);
     }
     // 按聊天室按鈕開關聊天室
-    // const chatroomRef = useRef();
     const chatroomSwitchHandler = () => {
         setIsChatroomActive(!isChatroomActive);
-        // if (chatroomRef.current.style.display == "flex") {
-        //     chatroomRef.current.style.display = "none";
-        // } else {
-        //     chatroomRef.current.style.display = "flex";
-        // }
     }
 
     const [isChatroomActive, setIsChatroomActive] = useState(false);
 
     // 聊天室開關按鈕子組件
     function ChatroomSwitchBtn({ isActive = false, chatroomSwitchHandler }) {
-        let bgImgUrl = isActive ? "./assets/images/chatroom-icon-active.svg" : "./assets/images/chatroom-icon.svg";
+        const bgImgUrl = isActive ? "./assets/images/chatroom-icon-active.svg" : "./assets/images/chatroom-icon.svg";
+        const onMouseOverHandler = (ev) => {
+            if (!isActive) {
+                let hoverImgUrl = "./assets/images/chatroom-icon-hover.svg";
+                ev.target.style.backgroundImage = `url(${hoverImgUrl})`;
+            }
+        };
+        const onMouseOutHandler = (ev) => {
+            ev.target.style.backgroundImage = `url(${bgImgUrl})`
+        };
         return (
-            <button type="button" className="chatroom-btn" onClick={chatroomSwitchHandler} style={{ backgroundImage: `url(${bgImgUrl})` }}></button>
+            <button type="button" className="chatroom-btn"
+                onClick={chatroomSwitchHandler}
+                onMouseOver={onMouseOverHandler}
+                onMouseOut={onMouseOutHandler}
+                style={{ backgroundImage: `url(${bgImgUrl})` }
+                }></button>
         )
     }
 
@@ -66,14 +74,17 @@ function FloatBtnBox() {
 
         // 傳送訊息onClick
         const sendMsgBtnClickHandler = () => {
-            let newMsg = {
-                avatarImgUrl: "./assets/images/member-default-avatar.png",
-                name: "王曉明",
-                text: inputText,
-                isFromUser: true
-            };
-            setMsgList([...msgList, newMsg]);
-            setInputText("");
+            if (inputText != "") {
+                let newMsg = {
+                    avatarImgUrl: "./assets/images/member-default-avatar.png",
+                    name: "王曉明",
+                    text: inputText,
+                    isFromUser: true
+                };
+                setMsgList([...msgList, newMsg]);
+                setInputText("");
+            }
+
         };
         // 輸入框內按下enter
         const inputPressEnterHandler = (ev) => {
