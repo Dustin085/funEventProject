@@ -1,18 +1,39 @@
 function FloatBtnBox() {
     // 可參考動畫：https://jqueryui.com/hide/，裡面的fold
-    const { useState, useEffect, useRef } = React;
+    const { useState, useEffect, useRef, forwardRef } = React;
 
+    // 利用jq的動畫做捲回效果
     const goTopBtnClickHandler = () => {
         $("html,body").animate({
             scrollTop: 0
         }, 1000);
         // window.scrollTo(0, 0);
     }
+    // 按聊天室按鈕開關聊天室
+    // const chatroomRef = useRef();
+    const chatroomSwitchHandler = () => {
+        setIsChatroomActive(!isChatroomActive);
+        // if (chatroomRef.current.style.display == "flex") {
+        //     chatroomRef.current.style.display = "none";
+        // } else {
+        //     chatroomRef.current.style.display = "flex";
+        // }
+    }
 
+    const [isChatroomActive, setIsChatroomActive] = useState(false);
 
+    // 聊天室開關按鈕子組件
+    function ChatroomSwitchBtn({ isActive = false, chatroomSwitchHandler }) {
+        let bgImgUrl = isActive ? "./assets/images/chatroom-icon-active.svg" : "./assets/images/chatroom-icon.svg";
+        return (
+            <button type="button" className="chatroom-btn" onClick={chatroomSwitchHandler} style={{ backgroundImage: `url(${bgImgUrl})` }}></button>
+        )
+    }
 
     // 聊天室子組件
-    function Chatroom() {
+    function Chatroom({ isActive = false }) {
+        // 處理本體顯示與否
+        let displayStyleText = isActive ? "flex" : "none";
         // 處理input文字
         const [inputText, setInputText] = useState("");
         const inputOnChangeHandler = (ev) => {
@@ -67,14 +88,12 @@ function FloatBtnBox() {
             scrollBack(crBodyRef.current);
             // 卷軸自動回到最下方
             function scrollBack(scrollEle) {
-                console.log(scrollEle.scrollHeight);
-                console.log(scrollEle.clientHeight);
                 scrollEle.scrollTo(0, scrollEle.scrollHeight - scrollEle.clientHeight);
             }
         }, [msgList])
 
         return <>
-            <div className="chatroom">
+            <div className="chatroom" style={{ display: displayStyleText }}>
                 <div className="chatroom__topbar">
                     <div className="chatroom__icon"></div>
                     <div className="chatroom__title">
@@ -121,6 +140,8 @@ function FloatBtnBox() {
             </div>
         </>
     }
+    // const Chatroom = forwardRef();
+
 
     // 聊天訊息子組件
     function ChatRoomMsg({ avatarImgUrl, name, text, isFromUser = true, isFirstMsg = false }) {
@@ -150,7 +171,7 @@ function FloatBtnBox() {
         )
     }
 
-    // 聊天室輸入框，推測：必須與主要組件分隔開來才能獨自重新渲染
+    // 聊天室輸入框子組件，推測：必須與主要組件分隔開來才能獨自重新渲染
     function ChatroomInput({ inputText, inputOnChangeHandler, onKeyPressHandler }) {
         return <>
             <textarea rows="1" id="chatroom__input" className="chatroom__input"
@@ -165,8 +186,9 @@ function FloatBtnBox() {
     return <>
         <div className="float-btn-box">
             <button type="button" className="go-top-btn" onClick={goTopBtnClickHandler}></button>
-            <button type="button" className="chatroom-btn"></button>
-            <Chatroom />
+            <ChatroomSwitchBtn chatroomSwitchHandler={chatroomSwitchHandler} isActive={isChatroomActive} />
+            {/* <button type="button" className="chatroom-btn" onClick={chatroomSwitchHandler}></button> */}
+            <Chatroom isActive={isChatroomActive} />
         </div>
     </>
 }
