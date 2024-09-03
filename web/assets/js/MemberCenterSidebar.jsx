@@ -49,6 +49,15 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
         }
     ];
     console.log("subPage: " + subPage);
+    // 以下寫法感覺不太優雅，但暫時先這樣
+    let myTicketState = subPage == "my-ticket" ? "my-ticket--active" : "my-ticket";
+    let funPointState = subPage == "fun-point" ? "fun-point--active" : "fun-point";
+    let funCouponState = subPage == "fun-coupon" ? "fun-coupon--active" : "fun-coupon";
+    let accountManageState = subPage == "account-manage" ? "account-manage--active" : "account-manage";
+    let myCommentState = subPage == "my-comment" ? "my-comment--active" : "my-comment";
+    let myFavState = subPage == "my-fav" ? "my-fav--active" : "my-fav";
+    let messengeManageState = subPage == "messenge-manage" ? "messenge-manage--active" : "messenge-manage";
+    let founderCenterState = subPage == "founder-center" ? "founder-center--active" : "founder-center";
     return <>
         <nav className="member-center-sidebar">
             <div className="member-center-sidebar__intro">
@@ -67,21 +76,21 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
                     <h4>我的活動</h4>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-ticket.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${myTicketState}.svg)` }}
                         ></div>
-                        <a href="./member-center-my-ticket.html">我的票卷</a>
+                        <a className={myTicketState.includes("active")?"active":""} href="./member-center-my-ticket.html">我的票卷</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/fun-point.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${funPointState}.svg)` }}
                         ></div>
-                        <a href="./member-center-fun-point.html">Fun點數</a>
+                        <a className={funPointState.includes("active")?"active":""} href="./member-center-fun-point.html">Fun點數</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/fun-coupon.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${funCouponState}.svg)` }}
                         ></div>
-                        <a href="./member-center-fun-coupon.html">Fun折價卷</a>
+                        <a className={funCouponState.includes("active")?"active":""} href="./member-center-fun-coupon.html">Fun折價卷</a>
                     </div>
                 </div>
                 <div className="split-line-row"></div>
@@ -89,27 +98,27 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
                     <h4>帳號設定</h4>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/account-manage.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${accountManageState}.svg)` }}
                         ></div>
-                        <a href="./member-center-account-manage.html">帳號管理</a>
+                        <a className={accountManageState.includes("active")?"active":""} href="./member-center-account-manage.html">帳號管理</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-comment.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${myCommentState}.svg)` }}
                         ></div>
-                        <a href="./member-center-my-comment.html">我的評論</a>
+                        <a className={myCommentState.includes("active")?"active":""} href="./member-center-my-comment.html">我的評論</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-fav.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${myFavState}.svg)` }}
                         ></div>
-                        <a href="./member-center-my-fav.html">我的蒐藏</a>
+                        <a className={myFavState.includes("active")?"active":""} href="./member-center-my-fav.html">我的蒐藏</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/messenge-manage.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${messengeManageState}.svg)` }}
                         ></div>
-                        <a href="./member-center-messenge-manage.html">訊息管理</a>
+                        <a className={messengeManageState.includes("active")?"active":""} href="./member-center-messenge-manage.html">訊息管理</a>
                     </div>
                 </div>
                 <div className="split-line-row"></div>
@@ -117,9 +126,9 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
                     <h4>主辦中心</h4>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/founder-center.svg)" }}
+                            style={{ backgroundImage: `url(./assets/images/member-center-sidebar-icon/${founderCenterState}.svg)` }}
                         ></div>
-                        <a href="./member-center-founder-center.html">帳號切換</a>
+                        <a className={founderCenterState.includes("active")?"active":""} href="./member-center-founder-center.html">帳號切換</a>
                     </div>
                 </div>
 

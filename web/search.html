@@ -103,9 +103,9 @@
                             <div className="search-content-container">
                                 {/* 側邊列 */}
                                 <div className="sidebar-box">
-                                    <SearchFilterBoard title="活動分類" filterNames={categoryDataArr} />
+                                    <SearchFilterBoard title="活動分類" filterNames={categoryDataArr} boardId = "eventCategory" />
                                     {/* 這之間有個金額篩選器，之後做 */}
-                                    <SearchFilterBoard title="地區" filterNames={twLocationList} />
+                                    <SearchFilterBoard title="地區" filterNames={twLocationList} boardId = "location" />
                                 </div>
                                 {/* 搜尋結果區 */}
                                 <div className="search-result-box">
@@ -135,11 +135,11 @@
                                             })
                                         }
                                     </div>
-                                    <div class="page-indicator-box">
+                                    <div className="page-indicator-box">
                                         <button className="page-btn prev-page-btn" type="button"></button>
-                                        <button type="button" class="page-indicator active">1</button>
-                                        <button type="button" class="page-indicator">2</button>
-                                        <button type="button" class="page-indicator">3</button>
+                                        <button type="button" className="page-indicator active">1</button>
+                                        <button type="button" className="page-indicator">2</button>
+                                        <button type="button" className="page-indicator">3</button>
                                         <button className="page-btn next-page-btn" type="button"></button>
                                     </div>
                                 </div>

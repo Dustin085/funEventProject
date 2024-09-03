@@ -1734,14 +1734,35 @@ footer .end-box small {
     background: url(../images/minus-icon.svg) center/cover no-repeat;
     transition: var(--hover-transition);
 }
+
+#event-plan-form .ticket-type .minus-btn:hover {
+    background-image: url(../images/minus-icon--hover.svg);
+}
+
+#event-plan-form .ticket-type .minus-btn:active {
+    transform: translateY(1px);
+}
+
 #event-plan-form .ticket-type .minus-btn.disabled {
     background-image: url(../images/minus-icon--disabled.svg);
+}
+
+#event-plan-form .ticket-type .minus-btn.disabled:active {
+    transform: translateY(0);
 }
 
 #event-plan-form .ticket-type .plus-btn {
     width: 24px;
     height: 24px;
     background: url(../images/plus-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+#event-plan-form .ticket-type .plus-btn:hover {
+    background-image: url(../images/plus-icon--hover.svg);
+}
+#event-plan-form .ticket-type .plus-btn:active {
+    transform: translateY(1px);
 }
 
 #event-plan-form .price-box,
@@ -1764,6 +1785,7 @@ footer .end-box small {
     display: flex;
     align-items: flex-end;
 }
+
 #event-plan-form .fun-point-inner-box {
     align-items: center;
 }
@@ -2384,12 +2406,15 @@ footer .end-box small {
 }
 
 .search-result-box .page-indicator.active {
-    background-color: var(--primary-1);
-    border-color: var(--primary-1);
+    background-color: var(--primary-2);
+    border-color: var(--primary-2);
     color: var(--light);
 }
 
 .search-result-box .page-indicator:hover {
+    /* background-color: var(--primary-2);
+    border-color: transparent;
+    color: var(--light); */
     transform: translateY(-1px);
 }
 
@@ -2552,6 +2577,10 @@ footer .end-box small {
     color: var(--gray-7);
 }
 
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box a.active {
+    color: var(--primary-1);
+}
+
 .member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box .icon--small {
     width: 24px;
     height: 24px;
@@ -2627,7 +2656,7 @@ footer .end-box small {
 
 /* 帳號管理頁籤內容 */
 .account-manage__tab-content-box {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .account-manage__tab-content {
@@ -2647,7 +2676,7 @@ footer .end-box small {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 5px;
+    padding: 0 5px;
 }
 
 .member-info-content .split-line-row {
@@ -2664,6 +2693,10 @@ footer .end-box small {
 
 .member-info-content p {
     margin-top: 10px;
+}
+
+.member-info-content p:first-child {
+    margin-top: 0;
 }
 
 .member-info-content .title {

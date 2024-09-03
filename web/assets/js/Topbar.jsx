@@ -4,11 +4,19 @@ function Topbar({ isAltColor, noLocationSelector }) {
     const [logoTcUrl, setLogoTcUrl] = useState("./assets/images/logo-tc.svg");
 
     useEffect(() => {
+        // logo改換成另外色
         if (isAltColor) {
             setLogoEnUrl("./assets/images/logo-en-alt-color.svg");
             setLogoTcUrl("./assets/images/logo-tc-alt-color.svg");
         }
     }, [])
+
+    const loginBtnClickHandler = () => {
+        location.href = "./member-center-account-manage.html";
+    };
+    const searchBtnClickHandler = () => {
+        location.href = "./search.html";
+    };
 
     function LocationSelector() {
         let result = (
@@ -41,13 +49,13 @@ function Topbar({ isAltColor, noLocationSelector }) {
                 <nav className="navigation">
                     <ul className="topbar-menu">
                         <li className="topbar-menu__item">
-                            <button type="button" className="topbar-menu__btn" id="topbar-search-btn">
+                            <button type="button" className="topbar-menu__btn" id="topbar-search-btn" onClick={searchBtnClickHandler}>
                                 <div className="topbar-menu__icon"><img src="./assets/images/search-icon.svg" alt="" /></div>
                                 <p>找活動</p>
                             </button>
                         </li>
                         <li className="topbar-menu__item">
-                            <button type="button" className="topbar-menu__btn" id="login-btn">
+                            <button type="button" className="topbar-menu__btn" id="login-btn" onClick={loginBtnClickHandler}>
                                 <div className="topbar-menu__icon"><img src="./assets/images/login-icon.svg" alt="" /></div>
                                 <p>註冊/登入</p>
                             </button>
