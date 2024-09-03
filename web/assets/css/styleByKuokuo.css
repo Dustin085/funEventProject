@@ -103,6 +103,7 @@ label {
 
 /* 置頂導航列 topbar */
 #topbar {
+    position: absolute;
     display: flex;
     justify-content: space-between;
     /* position: fixed; */
@@ -110,7 +111,7 @@ label {
 }
 
 .topbar__start-box {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
 }
@@ -135,7 +136,7 @@ label {
 }
 
 .topbar__end-box {
-    position: fixed;
+    /* position: fixed; */
     right: 0;
 }
 
@@ -143,7 +144,7 @@ label {
     display: flex;
 }
 
-.topbar-menu__item {
+.topbar-menu__btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,6 +152,17 @@ label {
     background-color: var(--primary-1);
     border-radius: 0 0 30px 30px;
     margin-right: 8.5px;
+    font-size: 24px;
+    font-weight: 500;
+    transition: var(--hover-transition);
+}
+
+.topbar-menu__btn:hover {
+    background-color: var(--primary-1-hover);
+}
+
+.topbar-menu__btn:active {
+    background-color: var(--primary-1) !important;
 }
 
 .topbar-menu__item:last-child {
@@ -219,7 +231,7 @@ footer .navigation .app-box p {
     font-weight: 500;
     line-height: 1.5;
     color: white;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 footer .navigation .download {
@@ -265,9 +277,9 @@ footer .navigation .menu li {
 footer .split-line-row {
     background-color: white;
     height: 0.5px;
-    width: 100%;
+    width: 80%;
     margin-top: 17px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
 footer .end-box {
@@ -288,6 +300,10 @@ footer .end-box .icon {
 }
 
 footer .end-box small {
+    /* 浮起來置中 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 14px;
     font-weight: 400;
@@ -737,7 +753,7 @@ hr {
     } */
     width: 28.5%;
     height: 170px;
-    background-image: url(../images/event-pic/abigail-keenan-_h_weGa3eGo-unsplash.jpg);
+    background-image: url(../images/);
     background-position: center;
     background-size: cover;
     
