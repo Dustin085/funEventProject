@@ -1,4 +1,54 @@
-function MemberCenterSidebar() {
+function MemberCenterSidebar({ subPage = "account-manage" }) {
+    const menuListBox = [
+        {
+            title: "我的活動",
+            items: [
+                {
+                    id: "my-ticket",
+                    tcTitle: "我的票卷"
+                },
+                {
+                    id: "fun-point",
+                    tcTitle: "Fun點數"
+                },
+                {
+                    id: "fun-coupon",
+                    tcTitle: "Fun折價卷"
+                }
+            ]
+        },
+        {
+            title: "帳號設定",
+            items: [
+                {
+                    id: "account-manage",
+                    tcTitle: "帳號管理"
+                },
+                {
+                    id: "my-comment",
+                    tcTitle: "我的評論"
+                },
+                {
+                    id: "my-fav",
+                    tcTitle: "我的蒐藏"
+                },
+                {
+                    id: "messenge-manage",
+                    tcTitle: "訊息管理"
+                }
+            ]
+        },
+        {
+            title: "主辦中心",
+            items: [
+                {
+                    id: "founder-center",
+                    tcTitle: "帳號切換"
+                }
+            ]
+        }
+    ];
+    console.log("subPage: " + subPage);
     return <>
         <nav className="member-center-sidebar">
             <div className="member-center-sidebar__intro">
@@ -19,19 +69,19 @@ function MemberCenterSidebar() {
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-ticket.svg)" }}
                         ></div>
-                        <a href="#">我的票卷</a>
+                        <a href="./member-center-my-ticket.html">我的票卷</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/fun-point.svg)" }}
                         ></div>
-                        <a href="#">Fun點數</a>
+                        <a href="./member-center-fun-point.html">Fun點數</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/fun-coupon.svg)" }}
                         ></div>
-                        <a href="#">Fun折價卷</a>
+                        <a href="./member-center-fun-coupon.html">Fun折價卷</a>
                     </div>
                 </div>
                 <div className="split-line-row"></div>
@@ -53,7 +103,7 @@ function MemberCenterSidebar() {
                         <div className="icon--small"
                             style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/my-fav.svg)" }}
                         ></div>
-                        <a href="#">我的蒐藏</a>
+                        <a href="./member-center-my-fav.html">我的蒐藏</a>
                     </div>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
@@ -67,9 +117,9 @@ function MemberCenterSidebar() {
                     <h4>主辦中心</h4>
                     <div className="member-center-sidebar__link-box">
                         <div className="icon--small"
-                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/account-switch.svg)" }}
+                            style={{ backgroundImage: "url(./assets/images/member-center-sidebar-icon/founder-center.svg)" }}
                         ></div>
-                        <a href="./member-center-hosting-center.html">帳號切換</a>
+                        <a href="./member-center-founder-center.html">帳號切換</a>
                     </div>
                 </div>
 

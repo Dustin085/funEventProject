@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>會員中心-我的評論</title>
+    <title>會員中心</title>
     <link rel="stylesheet" href="./assets/css/styleByDustin.css">
-    <link rel="stylesheet" href="./assets/css/styleByJessy.css">
+    <link rel="stylesheet" href="./assets/css/styleByKuokuo.css">
     <!-- React CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -35,7 +35,7 @@
         function App() {
             const { useState, useEffect, useRef } = React;
             // 重要，裝有會員中心子頁的id
-            const subPageIdRef = useRef("my-comment");
+            const subPageIdRef = useRef("my-ticket");
             // 子頁id轉標題
             const [subPageIdToTcTitle, setSubPageIdToTcTitle] = useState([]);
             useEffect(() => {
@@ -70,54 +70,59 @@
                             <MemberCenterSidebar subPage={subPageIdRef.current} />
 
                             {/* 分頁內容寫在這邊 */}
-                            <div className="member-center-content member-center-mycomment">
-                                <div className="firstbox">
-                                    <h4 className="title">我的評論</h4>
-                                </div>
-                                <div className="status">
-                                    <h4 className="subtitle">重新到舊</h4>
-                                    <img src="./assets/images/downarrow.svg" alt="" />
-                                </div>
-                                <div className="split-line-row"></div>
-                                <div className="part">
-                                    <div className="bigpart">
-                                        <p>2024.01.15(三) 18:00</p>
-                                        <h4 className="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
-                                        <img src="./assets/images/star.svg" alt="" />
-                                        <h5>講師是我高中時期最愛樂團甜美號的吉他手小黑，不來實在說不</h5>
-                                        <h6>過去了呀！我選擇的方案是親子一同彈，在彈唱的過程中，...</h6>
-                                    </div>
-                                    <div className="contentbox">
-                                        <div className="picturebox">
-                                            <img src="./assets/images/commentpicture.svg" alt="" />
-                                        </div>
-                                        <div className="commentbtn">
-                                            <button className="funevent-btn1"><img src="./assets/images/pencil.svg" />修改評論</button>
+                            <div className="member-center-content member-center-myticket">
+                                <div className="all-iten">
+                                    <h3 className="title">我的票卷</h3>
+                                    <div className="selection-and-filter">
+                                        <ul className="selection-bar-all">
+                                            <li><a href="#" className="selection-bar">即將到來</a></li>
+                                            <li><a a href="#" className="selection-bar">歷史紀錄</a></li>
+                                            <li><a a href="#" className="selection-bar">取消中/已取消</a></li>
+                                        </ul>
+                                        <div className="choose">
+                                            <li a href="#">重新到舊</li>
+                                            <button className="filter"></button>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="split-line-row"></div>
-                                <div className="part">
-                                    <div className="bigpart">
-                                        <p>2024.01.15(三) 18:00</p>
-                                        <h4 className="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
-                                        <img src="./assets/images/greystar.svg" alt="" />
-                                        <h5>請給這次體驗打個分數吧！</h5>
-                                    </div>
-                                    <div className="contentbox2">
-                                        <div className="commentbtn2">
-                                            <button className="funevent-btn2"><img src="./assets/images/whitepencil.svg" />給予評論</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="split-line-row"></div>
 
+                                    <div className="event">
+                                        <div className="event-pic"></div>
+                                        <div className="event-info-address-button">
+
+                                            <div>
+
+                                            </div><div className="tickets">
+                                                <p>共兩張</p>
+                                            </div>
+
+                                            <div className="event-info-and-button">
+                                                <div className="event-information">
+                                                    <small>2024.10.06(日)</small>
+                                                    <h3>流行音樂與民謠吉他-第一堂吉他課的首選</h3>
+                                                    <p>親子一同彈:上午場x1</p>
+                                                </div>
+                                                <div className="address-and-button">
+                                                    <div className="address-pin">
+                                                        <div className="pin"></div>
+                                                        <small>臺北市中山區搖滾路一段321號</small>
+                                                    </div>
+                                                    <div className="two-button">
+                                                        <button className="button-order">訂單詳情</button>
+                                                        <button className="button-order">
+                                                            <img src="./assets/images/icon-new/電子票.svg" alt="電子票" />
+                                                            電子票
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
                         </section>
                     </main>
                     <Footer />
-                </div >
+                </div>
             </>
         }
 

@@ -32,7 +32,26 @@
 
 
         function App() {
-            const { useState, useEffect } = React;
+            const { useState, useEffect, useRef } = React;
+            // 重要，裝有會員中心子頁的id
+            const subPageIdRef = useRef("account-manage");
+            // 子頁id轉標題
+            const [subPageIdToTcTitle, setSubPageIdToTcTitle] = useState([]);
+            useEffect(() => {
+                // 抓id轉標題的json
+                axios.get("./assets/json/memberCenterSubPageIdToTitle.json")
+                    .then((response) => setSubPageIdToTcTitle(response.data))
+                    .catch((error) => console.log(error));
+            }, []);
+            // 接收到id轉標題後再改變標題
+            useEffect(() => {
+                subPageIdToTcTitle.forEach((item) => {
+                    if (item.id == subPageIdRef.current) {
+                        document.title = `會員中心-${item.tcTitle}`;
+                    }
+                });
+            }, [subPageIdToTcTitle]);
+
 
             // 加入頁籤效果
             useEffect(() => {
@@ -91,7 +110,7 @@
                     <main>
                         <section id="member-center">
                             {/* 會員中心-側邊列 */}
-                            <MemberCenterSidebar />
+                            <MemberCenterSidebar subPage={subPageIdRef.current} />
 
                             {/* 分頁內容寫在這邊 */}
                             <div className="member-center-content account-manage-content">
@@ -143,7 +162,7 @@
                                                     </div>
                                                 </div>
                                                 <div className="split-line-row"></div>
-                                                <div class="member-info-box">
+                                                <div className="member-info-box">
                                                     <div>
                                                         <label htmlFor="birthday">生日<span>*</span></label>
                                                         <input type="date" name="birthday" id="input-birthday" title="生日欄位" placeholder="請選擇生日" required />
