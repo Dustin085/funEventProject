@@ -27,7 +27,7 @@ function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHan
                     })
                 }
             </div>
-            {console.log("side-board render")}
+            {/* {console.log("side-board render")} */}
             <button className="funevent-btn funevent-btn--light" type="button" onClick={searchHandler}>{searchBtnTitle}</button>
         </div>
     </>

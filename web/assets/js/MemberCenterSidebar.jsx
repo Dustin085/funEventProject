@@ -48,7 +48,7 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
             ]
         }
     ];
-    console.log("subPage: " + subPage);
+    // console.log("subPage: " + subPage);
     // 以下寫法感覺不太優雅，但暫時先這樣
     let myTicketState = subPage == "my-ticket" ? "my-ticket--active" : "my-ticket";
     let funPointState = subPage == "fun-point" ? "fun-point--active" : "fun-point";
