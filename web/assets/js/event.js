@@ -241,3 +241,9 @@ function switchPriceDisplay() {
     }
 }
 
+// 報名按鈕
+$("#sign-up-btn").click(() => {
+    // 目前先直接跳轉
+    location.href = "../Check/check.html";
+});
+
