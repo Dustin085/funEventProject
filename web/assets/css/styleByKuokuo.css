@@ -903,29 +903,31 @@ hr {
 .step1 {
     width: 66px;
     height: 66px;
-    background-image: url;
-    background-color: #000000;
+    background-image: url(../../../icon-new/Purchase-process/1-choose-plan\(o\).svg);
 }
 
 .step2 {
     width: 66px;
     height: 66px;
-    background-image: url;
-    background-color: #000000;
+    background-image: url(../../../icon-new/Purchase-process/2-write-information\(o\).svg);
+
 }
 
 .step3 {
     width: 66px;
     height: 66px;
-    background-image: url;
-    background-color: #000000;
+    background-image: url(../../../icon-new/Purchase-process//3-complete-payment\(w\).svg);
 }
 
+.step3-1 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process/3-complete-payment\(o\).svg);
+}
 .step4 {
     width: 66px;
     height: 66px;
-    background-image: url;
-    background-color: #000000;
+    background-image: url(../../../icon-new/Purchase-process/4-get-tickets\(w\).svg);
 }
 
 .step-hr {
@@ -1024,12 +1026,86 @@ hr {
 .personal-info {
     display: flex;
     flex-grow:1;
-    flex-direction:columnl
-
+    justify-content:space-between;
+}
+.personal-info2 {
+    display: flex;
+    flex-grow:1;
+    /* justify-content:space-between; */
+    column-gap:2px;
+}
+.personal-btn {
+    display: flex;
+    flex-grow:1;
+    align-items:center;
+}
+.credit-card1{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/Visa.svg);
+}
+.credit-card2{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/Mastercard.svg);
+}
+.credit-card3{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/JCB.svg);
+}
+.credit-card4{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/China-UnionPay-Card.svg);
 }
 .input-name{
     display: flex;
     flex-direction:column;
+    row-gap: 3px;
+}
+.input-card{
+    display: flex;
+    /* flex-direction:column; */
+    row-gap: 3px;
+    align-items:center;
+    column-gap: 2px;
+}
+.input4{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 312px;
+    height: 48px;
+    border: solid 1px #19B9AA;
+    font-size: 16px;
+    border-radius: 10px;
+    /* border: none; */
+    /* outline: none;  */
+}
+.input3{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 100px;
+    height: 48px;
+    border: solid 1px #19B9AA;
+    font-size: 16px;
+    border-radius: 10px;
+    /* border: none; */
+    /* outline: none;  */
+}
+.fake-agree{
+    color: var(--primary-1);
+    cursor: pointer;
 }
 .use-coupon {
     width: 200px;
@@ -1052,7 +1128,7 @@ input {
 .things-to-note {
     font-size: 12px;
     border-radius: 10px;
-    background-color: #FFCA7C;
+    background-color: #EFEFEF;
     color: #3E3A39;
     padding: 10px;
 }
@@ -1125,13 +1201,22 @@ input {
     column-gap: 12px;
     justify-content: space-between;
 }
-
+.point-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .pay-orderdetails {
     display: flex;
     row-gap: 10px;
     flex-direction: column;
 }
-
+.pay-point-y {
+    width: 16px;
+    height: 16px;
+    background-image: url(../images/icon-new/Fun點數\(黃色\).svg);
+    margin-left: 5px;
+}
 .price p {
     font-size: 24px;
     font-weight: bold;
@@ -1145,7 +1230,7 @@ input {
 .pay-point {
     width: 16px;
     height: 16px;
-    background-image: url(../images/icon-new/Fun點數\(綠色\).svg);
+    background-image: url(../images/icon-new/Fun點數\(黃色\).svg);
     margin-left: 10px;
     margin-right: 4px;
 }
