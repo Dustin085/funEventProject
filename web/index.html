@@ -104,12 +104,15 @@
         }
 
         // 主要大標題
-        function FuneventMainTitle({ title = "熱門推薦" }) {
+        function FuneventMainTitle({ title = "熱門推薦", moreBtnActive = false }) {
+            const MoreBtn = () => {
+                return moreBtnActive ? <button className="more-btn" type="button" onClick={moreBtnClickHandler}>觀看更多</button> : <></>;
+            }
             const moreBtnClickHandler = () => {
                 location.href = "./search.html";
             };
             return <>
-                <h2 className="funevent-main-title">{title}<button className="more-btn" type="button" onClick={moreBtnClickHandler}>觀看更多</button></h2>
+                <h2 className="funevent-main-title">{title}<MoreBtn /></h2>
             </>
         }
 
