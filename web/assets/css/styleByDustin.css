@@ -555,6 +555,7 @@ body {
 .topbar__location {
     display: flex;
     margin-left: 48px;
+    margin-top: 25px;
 }
 
 .topbar__map-pin-icon {
