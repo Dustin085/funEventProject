@@ -105,8 +105,11 @@
 
         // 主要大標題
         function FuneventMainTitle({ title = "熱門推薦" }) {
+            const moreBtnClickHandler = () => {
+                location.href = "./search.html";
+            };
             return <>
-                <h2 className="funevent-main-title">{title}</h2>
+                <h2 className="funevent-main-title">{title}<button className="more-btn" type="button" onClick={moreBtnClickHandler}>觀看更多</button></h2>
             </>
         }
 
@@ -315,7 +318,7 @@
                                 <section id="home-page-event-card-list-box">
                                     {/*熱門推薦*/}
                                     <div className="event-box event-box-hot">
-                                        <h2 className="funevent-main-title">熱門推薦</h2>
+                                        <FuneventMainTitle title="熱門推薦" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoHot.map((event) => {
@@ -336,7 +339,7 @@
                                     </div>
                                     {/*本週精選*/}
                                     <div className="event-box event-box-hits-this-week">
-                                        <h2 className="funevent-main-title">本週精選</h2>
+                                        <FuneventMainTitle title="本週精選" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoThisWeek.map((event) => {
@@ -357,7 +360,7 @@
                                     </div>
                                     {/*最新上架*/}
                                     <div className="event-box event-box-new">
-                                        <h2 className="funevent-main-title">最新上架</h2>
+                                        <FuneventMainTitle title="本週精選" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoNew.map((event) => {
@@ -383,7 +386,7 @@
 
                         <section id="home-page-event-news">
                             <div className="home-page-event-news-wrap">
-                                <h2 className="funevent-main-title">活動快訊</h2>
+                                <FuneventMainTitle title="活動快訊" />
                                 <div className="carousel">
                                     <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
                                     <ul className="carousel-card-list">

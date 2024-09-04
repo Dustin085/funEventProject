@@ -154,6 +154,7 @@ input::placeholder {
 
 /* 主要大標題，使用h2標籤 */
 .funevent-main-title {
+    position: relative;
     display: flex;
     font-size: 32px;
     font-weight: 700;
@@ -175,6 +176,29 @@ input::placeholder {
     flex-grow: 1;
     background: url(../images/funevent-main-title-dotted-line.svg) center repeat-x;
     margin-left: 15px;
+}
+
+.funevent-main-title .more-btn {
+    position: absolute;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0 10px;
+    backdrop-filter: blur(10px);
+    border-radius: 30%;
+    right: 12.32%;
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    color: var(--primary-1);
+    font-size: 20px;
+}
+
+.funevent-main-title .more-btn::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(../images/triangle-right.svg) center/cover no-repeat;
 }
 
 /* 活動卡片 */
