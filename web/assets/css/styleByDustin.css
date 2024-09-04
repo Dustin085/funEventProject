@@ -273,7 +273,7 @@ input::placeholder {
 .funevent-event-card .map-pin-icon {
     width: 13px;
     height: 13px;
-    background: url(../images/map-pin-icon--gray.svg) center/cover no-repeat;
+    background: url(../images/map-pin-icon--primary.svg) center/cover no-repeat;
 }
 
 .funevent-event-card .location-text {
@@ -645,15 +645,228 @@ body {
     background-image: url(../images/chatroom-icon-hover.svg);
 }
 
+/* 登入面板 */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.login-board {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 28px;
+    width: 400px;
+    border-radius: 10px;
+    height: 500px;
+    margin: 10px;
+}
+
+.google {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Google.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.line {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/LINE.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.apple {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Apple.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.facebook {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/FB.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-2);
+    padding: 6px 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light);
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 300px;
+    line-height: 2;
+}
+
+.login-btn:hover {
+    background-color: #009084;
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-media {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 10px 0px;
+}
+
+.decorative-box {
+    border-top: 1.5px solid #898989;
+    /* 在上方添加2px黑色實線 */
+    /* 為內容添加一些內邊距 */
+}
+
+.social-media-info {
+    font-size: 12px;
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    /* 讓內容垂直居中對齊 */
+    text-align: center;
+    /* 文字居中 */
+}
+
+.quick-login-all {
+    width: 360px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.quick-login hr {
+    flex-grow: 1;
+    /* 讓線條自動填充剩餘空間 */
+    border: none;
+    /* 移除默認邊框 */
+    border-top: 1.5px solid var(--gray-3);
+    ;
+    /* 添加上邊框作為分割線 */
+    margin: 0 10px;
+    /* 讓線條和文字之間保持距離 */
+}
+
+.quick-login span {
+    white-space: nowrap;
+    /* 防止文字換行 */
+}
+
+.email-and-phone {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.email-and-phone p {
+    margin: 0px 15px 0px 15px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.login-text {
+    display: flex;
+    justify-content: center;
+}
+
+.login small {
+    cursor: pointer;
+}
+
+.login-text-all {
+    margin-bottom: 20px;
+}
+
+.login-text-all h3 {
+    font-size: 24px;
+}
+
+.email-input {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    /* width: 300px; */
+    height: 48px;
+    outline: none;
+    border: solid .1px black;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.email-icon-input {
+    display: flex;
+    border: solid .5px black;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.split-line-row-hr {
+    display: flex;
+    min-height: 1px;
+    width: 100%;
+    border: none;
+    border-top: 1.5px solid var(--gray-3);
+    margin: 10px 0px;
+}
+
+.e-mail {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icon-new/信箱.svg);
+    justify-content: center;
+    align-self: center;
+    margin: 10px;
+}
+
+.phone {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icon-new/電話.svg);
+    justify-content: center;
+    align-self: center;
+    margin: 10px;
+}
+
 /* 聊天室 */
 .chatroom {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 20px;
     overflow: hidden;
     height: 600px;
     width: 400px;
+    position: fixed;
+    right: 150px;
+    bottom: 55px;
 }
 
 /* chatroom topbar */
@@ -698,7 +911,7 @@ body {
     margin-bottom: 8px;
 }
 
-.chatroom__msg.firstmsg{
+.chatroom__msg.firstmsg {
     /* 第一個元素給margin-top:auto可以把訊息往下推 */
     margin-top: auto;
 }
@@ -707,21 +920,22 @@ body {
     height: 36px;
     width: 36px;
     border-radius: 99px;
-    margin-right: 5px;
+    margin: 0 5px;
+    /* margin-right: 5px; */
     background-size: cover;
 }
 
-.chatroom__msg.fromUser{
+.chatroom__msg.fromUser {
     align-self: flex-end;
     flex-direction: row-reverse;
 }
 
-.chatroom__msg.fromUser .content--container{
+.chatroom__msg.fromUser .content--container {
     display: flex;
     align-items: flex-end;
 }
 
-.chatroom__msg .content--container{
+.chatroom__msg .content--container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1302,7 +1516,7 @@ footer .end-box small {
 }
 
 .share-icon {
-    background-image: url(../images/share-icon.svg);
+    background-image: url(../images/event-page-icon/share-icon.svg);
 }
 
 
@@ -1477,6 +1691,7 @@ footer .end-box small {
 .event-intro-card__rating-box {
     display: flex;
     align-items: center;
+    column-gap: 5px;
     margin-bottom: 20px;
 }
 
@@ -1509,6 +1724,7 @@ footer .end-box small {
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+    line-height: 25px;
     font-weight: 500;
 }
 
@@ -1556,25 +1772,25 @@ footer .end-box small {
 }
 
 .event-intro-card__content .item-date .icon {
-    background-image: url(../images/date-icon.svg);
+    background-image: url(../images/event-page-icon/date-icon.svg);
 }
 
 .event-intro-card__content .item-address .icon {
-    background-image: url(../images/address-icon.svg);
+    background-image: url(../images/event-page-icon/address-icon.svg);
 }
 
 .event-intro-card__content .item-founder .icon {
-    background-image: url(../images/chest-icon.svg);
+    background-image: url(../images/event-page-icon/founder-icon.svg);
 }
 
 .event-intro-card__content .item-link .icon {
-    background-image: url(../images/chest-icon.svg);
+    background-image: url(../images/event-page-icon/about-link-icon.svg);
 }
 
 .event-intro-card__content .open-link-icon {
-    width: 16px;
-    height: 16px;
-    background-image: url(../images/open-link-icon.svg);
+    width: 12px;
+    height: 12px;
+    background-image: url(../images/event-page-icon/open-link-icon.svg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1592,7 +1808,7 @@ footer .end-box small {
 .event-intro-card .tag-box .tag-icon {
     width: 24px;
     height: 24px;
-    background: url(../images/tag-icon.svg) center/cover;
+    background: url(../images/event-page-icon/tag-icon.svg) center/cover;
     margin-right: 6px;
 }
 
@@ -1726,12 +1942,38 @@ footer .end-box small {
     width: 24px;
     height: 24px;
     background: url(../images/minus-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+#event-plan-form .ticket-type .minus-btn:hover {
+    background-image: url(../images/minus-icon--hover.svg);
+}
+
+#event-plan-form .ticket-type .minus-btn:active {
+    transform: translateY(1px);
+}
+
+#event-plan-form .ticket-type .minus-btn.disabled {
+    background-image: url(../images/minus-icon--disabled.svg);
+}
+
+#event-plan-form .ticket-type .minus-btn.disabled:active {
+    transform: translateY(0);
 }
 
 #event-plan-form .ticket-type .plus-btn {
     width: 24px;
     height: 24px;
     background: url(../images/plus-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+#event-plan-form .ticket-type .plus-btn:hover {
+    background-image: url(../images/plus-icon--hover.svg);
+}
+
+#event-plan-form .ticket-type .plus-btn:active {
+    transform: translateY(1px);
 }
 
 #event-plan-form .price-box,
@@ -1755,9 +1997,13 @@ footer .end-box small {
     align-items: flex-end;
 }
 
+#event-plan-form .fun-point-inner-box {
+    align-items: center;
+}
+
 #event-plan-form .fun-point-icon {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background: url(../images/fun-point-icon.svg) center/cover no-repeat;
     margin-left: 9px;
 }
@@ -1963,6 +2209,10 @@ footer .end-box small {
     align-items: center;
     column-gap: 11px;
     /* min-width: 257px; */
+}
+
+#event-page-founder .btn-box .contact-founder-icon {
+    background-image: url(../images/event-page-icon/contact-founder-icon.svg);
 }
 
 /* 活動頁-活動評論 */
@@ -2311,6 +2561,7 @@ footer .end-box small {
 }
 
 .search-result-box .result-info-box .search-filter {
+    text-align: center;
     font-size: 20px;
     font-weight: 500;
     color: var(--gray-5);
@@ -2318,7 +2569,7 @@ footer .end-box small {
     appearance: none;
     background: url(../images/arrow-down-gray.svg) right / cover no-repeat;
     background-size: 16px 16px;
-    padding-right: 48px;
+    padding-right: 32px;
     transition: var(--hover-transition);
 }
 
@@ -2329,7 +2580,7 @@ footer .end-box small {
 .search-result-box .search-result-event-card-box {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 24px;
 }
 
@@ -2366,12 +2617,15 @@ footer .end-box small {
 }
 
 .search-result-box .page-indicator.active {
-    background-color: var(--primary-1);
-    border-color: var(--primary-1);
+    background-color: var(--primary-2);
+    border-color: var(--primary-2);
     color: var(--light);
 }
 
 .search-result-box .page-indicator:hover {
+    /* background-color: var(--primary-2);
+    border-color: transparent;
+    color: var(--light); */
     transform: translateY(-1px);
 }
 
@@ -2442,6 +2696,7 @@ footer .end-box small {
     margin-right: 30px;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 /* member-center-sidebar__intro */
@@ -2533,6 +2788,10 @@ footer .end-box small {
     color: var(--gray-7);
 }
 
+.member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box a.active {
+    color: var(--primary-1);
+}
+
 .member-center-sidebar .member-center-sidebar__menu .member-center-sidebar__list-box .member-center-sidebar__link-box .icon--small {
     width: 24px;
     height: 24px;
@@ -2554,6 +2813,7 @@ footer .end-box small {
     background-color: #ffffff;
     width: 60%;
     max-width: 850px;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
 }
 
 /* 會員中心-帳號管理 */
@@ -2595,6 +2855,7 @@ footer .end-box small {
     border-bottom: solid 4px transparent;
     transition: var(--hover-transition);
 }
+
 .account-manage__tab-btn:hover {
     color: var(--gray-7);
 }
@@ -2606,7 +2867,7 @@ footer .end-box small {
 
 /* 帳號管理頁籤內容 */
 .account-manage__tab-content-box {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .account-manage__tab-content {
@@ -2626,7 +2887,7 @@ footer .end-box small {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 5px;
+    padding: 0 5px;
 }
 
 .member-info-content .split-line-row {
@@ -2643,6 +2904,10 @@ footer .end-box small {
 
 .member-info-content p {
     margin-top: 10px;
+}
+
+.member-info-content p:first-child {
+    margin-top: 0;
 }
 
 .member-info-content .title {
@@ -2824,9 +3089,9 @@ footer .end-box small {
 }
 
 .binded-account-card--unbinded .funevent-btn-round:hover {
-    background-color: var(--gray-1);
-    border-color: transparent;
-    color: var(--light);
+    background-color: var(--gray-3);
+    /* border-color: transparent;
+    color: var(--light); */
 }
 
 .binded-account-card--unbinded .funevent-btn-round:active {
@@ -2843,9 +3108,9 @@ footer .end-box small {
 }
 
 .credit-card-info-card .funevent-btn-round:hover {
-    background-color: transparent;
-    color: var(--gray-2);
-    border: solid 1px var(--gray-2);
+    background-color: var(--gray-1);
+    /* color: var(--gray-2);
+    border: solid 1px var(--gray-2); */
 }
 
 .credit-card-info-card .funevent-btn-round:active {

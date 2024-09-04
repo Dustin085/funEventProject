@@ -33,7 +33,25 @@
 
 
         function App() {
-            const { useState, useEffect } = React;
+            const { useState, useEffect, useRef } = React;
+            // 重要，裝有會員中心子頁的id
+            const subPageIdRef = useRef("my-comment");
+            // 子頁id轉標題
+            const [subPageIdToTcTitle, setSubPageIdToTcTitle] = useState([]);
+            useEffect(() => {
+                // 抓id轉標題的json
+                axios.get("./assets/json/memberCenterSubPageIdToTitle.json")
+                    .then((response) => setSubPageIdToTcTitle(response.data))
+                    .catch((error) => console.log(error));
+            }, []);
+            // 接收到id轉標題後再改變標題
+            useEffect(() => {
+                subPageIdToTcTitle.forEach((item) => {
+                    if (item.id == subPageIdRef.current) {
+                        document.title = `會員中心-${item.tcTitle}`;
+                    }
+                });
+            }, [subPageIdToTcTitle]);
 
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
@@ -49,50 +67,50 @@
                     <main>
                         <section id="member-center">
                             {/* 會員中心-側邊列 */}
-                            <MemberCenterSidebar />
+                            <MemberCenterSidebar subPage={subPageIdRef.current} />
 
                             {/* 分頁內容寫在這邊 */}
                             <div className="member-center-content member-center-mycomment">
-                                <div class="firstbox">
-                                    <h4 class="title">我的評論</h4>
+                                <div className="firstbox">
+                                    <h4 className="title">我的評論</h4>
                                 </div>
-                                <div class="status">
-                                    <h4 class="subtitle">重新到舊</h4>
+                                <div className="status">
+                                    <h4 className="subtitle">重新到舊</h4>
                                     <img src="./assets/images/downarrow.svg" alt="" />
                                 </div>
-                                <div class="split-line-row"></div>
-                                <div class="part">
-                                    <div class="bigpart">
+                                <div className="split-line-row"></div>
+                                <div className="part">
+                                    <div className="bigpart">
                                         <p>2024.01.15(三) 18:00</p>
-                                        <h4 class="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
+                                        <h4 className="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
                                         <img src="./assets/images/star.svg" alt="" />
                                         <h5>講師是我高中時期最愛樂團甜美號的吉他手小黑，不來實在說不</h5>
                                         <h6>過去了呀！我選擇的方案是親子一同彈，在彈唱的過程中，...</h6>
                                     </div>
-                                    <div class="contentbox">
-                                        <div class="picturebox">
+                                    <div className="contentbox">
+                                        <div className="picturebox">
                                             <img src="./assets/images/commentpicture.svg" alt="" />
                                         </div>
-                                        <div class="commentbtn">
-                                            <button class="funevent-btn1"><img src="./assets/images/pencil.svg" />修改評論</button>
+                                        <div className="commentbtn">
+                                            <button className="funevent-btn1"><img src="./assets/images/pencil.svg" />修改評論</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="split-line-row"></div>
-                                <div class="part">
-                                    <div class="bigpart">
+                                <div className="split-line-row"></div>
+                                <div className="part">
+                                    <div className="bigpart">
                                         <p>2024.01.15(三) 18:00</p>
-                                        <h4 class="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
+                                        <h4 className="subtitle">流行音樂與民謠吉他-第一堂吉他課的首選</h4>
                                         <img src="./assets/images/greystar.svg" alt="" />
                                         <h5>請給這次體驗打個分數吧！</h5>
                                     </div>
-                                    <div class="contentbox2">
-                                        <div class="commentbtn2">
-                                            <button class="funevent-btn2"><img src="./assets/images/whitepencil.svg" />給予評論</button>
+                                    <div className="contentbox2">
+                                        <div className="commentbtn2">
+                                            <button className="funevent-btn2"><img src="./assets/images/whitepencil.svg" />給予評論</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="split-line-row"></div>
+                                <div className="split-line-row"></div>
 
                             </div>
 

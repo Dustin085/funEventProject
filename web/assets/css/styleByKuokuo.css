@@ -103,6 +103,7 @@ label {
 
 /* 置頂導航列 topbar */
 #topbar {
+    position: absolute;
     display: flex;
     justify-content: space-between;
     /* position: fixed; */
@@ -110,7 +111,7 @@ label {
 }
 
 .topbar__start-box {
-    position: absolute;
+    /* position: absolute; */
     display: flex;
     align-items: center;
 }
@@ -135,7 +136,7 @@ label {
 }
 
 .topbar__end-box {
-    position: fixed;
+    /* position: fixed; */
     right: 0;
 }
 
@@ -143,7 +144,7 @@ label {
     display: flex;
 }
 
-.topbar-menu__item {
+.topbar-menu__btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -151,6 +152,17 @@ label {
     background-color: var(--primary-1);
     border-radius: 0 0 30px 30px;
     margin-right: 8.5px;
+    font-size: 24px;
+    font-weight: 500;
+    transition: var(--hover-transition);
+}
+
+.topbar-menu__btn:hover {
+    background-color: var(--primary-1-hover);
+}
+
+.topbar-menu__btn:active {
+    background-color: var(--primary-1) !important;
 }
 
 .topbar-menu__item:last-child {
@@ -219,7 +231,7 @@ footer .navigation .app-box p {
     font-weight: 500;
     line-height: 1.5;
     color: white;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 footer .navigation .download {
@@ -265,9 +277,9 @@ footer .navigation .menu li {
 footer .split-line-row {
     background-color: white;
     height: 0.5px;
-    width: 100%;
+    width: 80%;
     margin-top: 17px;
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 
 footer .end-box {
@@ -288,6 +300,10 @@ footer .end-box .icon {
 }
 
 footer .end-box small {
+    /* 浮起來置中 */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     font-size: 14px;
     font-weight: 400;
@@ -323,7 +339,7 @@ footer .end-box small {
 
 /*hr分隔線*/
 hr {
-    border-top: 1px dashed #19B9AA;
+    border-top: 1px solid #19B9AA;
     /* color: #19B9AA; */
 
 }
@@ -546,6 +562,25 @@ hr {
     padding: 50px;
 }
 
+#order-details-down {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 150px 40px 150px;
+}
+
+.order-details-up {
+    min-height: 15vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 130px 150px 40px 150px; */
+    background-color: #fff;
+    margin: 130px 0px 10px 0px;
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.3);
+}
+
 /*-------------------------------------------------*/
 .all-iten {
     display: flex;
@@ -584,6 +619,7 @@ hr {
     width: 24px;
     height: 24px;
     margin-left: 8px;
+
 
 }
 
@@ -659,13 +695,17 @@ hr {
 .event-info-address-button {
     align-self: center;
     line-height: 22px;
+    background-color: #f5f5f5;
     /* mask: url(../images/icon-new/活動票卷照片框-右.svg); */
-    /* padding: 20px; */
-    /* margin-left: 22px; */
+    padding-left: 20px;
+    /* padding-top: 20px; */
+    /* margin-left: 20px; */
     /* width: 536px; */
     width: 71.5%;
     height: 170px;
-
+    display: flex;
+    align-items: center;
+    /* border: 2px solid var(--gray-3); */
 }
 
 .two-button {
@@ -680,13 +720,16 @@ hr {
     height: 45px;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: absolute;
+    right: 16px;
+    top: 0;
 }
 
 .event-info-tickets {
     display: flex;
     justify-content: flex-end;
-    position: relative;
+    /* position: relative; */
+    position: absolute;
 }
 
 .tickets p {
@@ -710,9 +753,10 @@ hr {
     } */
     width: 28.5%;
     height: 170px;
-    background-image: url(../images/event-pic/abigail-keenan-_h_weGa3eGo-unsplash.jpg);
+    background-image: url(../images/);
     background-position: center;
     background-size: cover;
+    
 }
 
 .event {
@@ -721,6 +765,8 @@ hr {
     mask: url(../images/icon-new/票卷卡片.svg);
     /* box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); */
     filter: drop-shadow(0px 0px 5px 5px rgba(0, 0, 0, 0.1));
+    position: relative;
+    
 }
 
 .already-bottom {
@@ -796,6 +842,8 @@ hr {
     height: 150px;
     border-radius: 10px;
     mask: url(../images/icon-new/折扣卷框.svg);
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.8));
+
     /* display: flex;
     align-items:flex-start; */
 }
@@ -844,6 +892,53 @@ hr {
     background-repeat: no-repeat
 }
 
+/* ---------------------------------------- */
+.step {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.step1 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process/1-choose-plan\(o\).svg);
+}
+
+.step2 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process/2-write-information\(o\).svg);
+
+}
+
+.step3 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process//3-complete-payment\(w\).svg);
+}
+
+.step3-1 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process/3-complete-payment\(o\).svg);
+}
+.step4 {
+    width: 66px;
+    height: 66px;
+    background-image: url(../../../icon-new/Purchase-process/4-get-tickets\(w\).svg);
+}
+
+.step-hr {
+    display: flex;
+    min-height: 1px;
+    width: 5%;
+    border: none;
+    border-top: 1.5px solid var(--gray-3);
+    margin: 0px 10px;
+}
+
 .left-order-details {
     flex-grow: 1;
     border-radius: 10px;
@@ -852,10 +947,11 @@ hr {
 }
 
 .right-order-details {
-    flex-grow: 1;
+    /* flex-grow: 1; */
     border-radius: 10px;
     /* background-color: #ffffff; */
     width: 60%;
+    height: auto;
     max-width: 850px;
 }
 
@@ -877,19 +973,20 @@ hr {
 }
 
 .right-order-details {
-    display: flex;
+    /* display: flex; */
     width: 550px;
     margin-bottom: 20px;
 }
 
 .left-order-details {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     width: 740px;
     margin-bottom: 20px;
-    margin-right:34px;
+    margin-right: 34px;
 }
-.orderdetails{
+
+.orderdetails {
     flex-grow: 1;
     border-radius: 10px;
     background-color: #ffffff;
@@ -897,19 +994,120 @@ hr {
     padding: 25px 50px 25px 50px;
     margin-bottom: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     row-gap: 10px;
-    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.3);
 }
+
+.orderdetails1 {
+    flex-grow: 1;
+    border-radius: 10px;
+    background-color: #ffffff;
+    max-width: 850px;
+    padding: 25px 50px 25px 50px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.3);
+}
+
 .orderdetails div {
     display: flex;
-    align-items: center; /* 使checkbox和文字在垂直方向上居中對齊 */
+    align-items: center;
+    /* 使checkbox和文字在垂直方向上居中對齊 */
 }
-.personal-info{
+
+.member-checkbox {
     display: flex;
-    order:2;
+    align-items: center;
 }
-.use-coupon{
+
+.personal-info {
+    display: flex;
+    flex-grow:1;
+    justify-content:space-between;
+}
+.personal-info2 {
+    display: flex;
+    flex-grow:1;
+    /* justify-content:space-between; */
+    column-gap:2px;
+}
+.personal-btn {
+    display: flex;
+    flex-grow:1;
+    align-items:center;
+}
+.credit-card1{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/Visa.svg);
+}
+.credit-card2{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/Mastercard.svg);
+}
+.credit-card3{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/JCB.svg);
+}
+.credit-card4{
+    width: 44px;
+    height:40px;
+    background-repeat: no-repeat;
+    align-items:center;
+    background-image: url(../../../icon-new/社群媒體/credit-card/China-UnionPay-Card.svg);
+}
+.input-name{
+    display: flex;
+    flex-direction:column;
+    row-gap: 3px;
+}
+.input-card{
+    display: flex;
+    /* flex-direction:column; */
+    row-gap: 3px;
+    align-items:center;
+    column-gap: 2px;
+}
+.input4{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 312px;
+    height: 48px;
+    border: solid 1px #19B9AA;
+    font-size: 16px;
+    border-radius: 10px;
+    /* border: none; */
+    /* outline: none;  */
+}
+.input3{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    width: 100px;
+    height: 48px;
+    border: solid 1px #19B9AA;
+    font-size: 16px;
+    border-radius: 10px;
+    /* border: none; */
+    /* outline: none;  */
+}
+.fake-agree{
+    color: var(--primary-1);
+    cursor: pointer;
+}
+.use-coupon {
     width: 200px;
     background-color: #19B9AA;
     color: #fff;
@@ -918,29 +1116,45 @@ hr {
     border-radius: 10px;
     white-space: nowrap;
     font-weight: 400;
+    cursor: pointer;
 }
-input{
-font-size: 12px;
+.use-coupon:hover {
+    background-color: #009084;
 }
-.things-to-note{
-font-size: 12px;
-border-radius: 10px;
-background-color: #FFCA7C;
-color: #3E3A39;
-padding: 10px;
+input {
+    font-size: 12px;
 }
-.tickets-info{
+
+.things-to-note {
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #EFEFEF;
+    color: #3E3A39;
+    padding: 10px;
+}
+
+.tickets-info {
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
-.tickets-info p{
-font-size: 16px;
-color: #A8A8A8;
+
+.tickets-info p {
+    font-size: 16px;
+    color: #A8A8A8;
 }
-.right-tickets-info h4{
+
+.right-tickets-info {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+
+.right-tickets-info h4 {
     font-size: 20px;
-    }
-.right-orderdetails{
+    font-weight: bold;
+}
+
+.right-orderdetails {
     flex-grow: 1;
     border-radius: 10px;
     background-color: #ffffff;
@@ -948,16 +1162,272 @@ color: #A8A8A8;
     padding: 25px 50px 25px 50px;
     margin-bottom: 20px;
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     row-gap: 10px;
-    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 4.1px 1px rgba(0, 0, 0, 0.3);
 }
-.right-pic img{
+
+.right-pic img {
+    display: flex;
     border-radius: 10px;
     width: 136px;
+    height: 84px;
 }
-.right-pic{
 
-display: flex;
-column-gap: 10px;
+.right-pic {
+
+    display: flex;
+    column-gap: 10px;
 }
+
+.pay-btn {
+    background-color: #19B9AA;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 400;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+.pay-btn:hover {
+    background-color: #009084;
+}
+.price-box {
+    display: flex;
+    align-items: center;
+    column-gap: 12px;
+    justify-content: space-between;
+}
+.point-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pay-orderdetails {
+    display: flex;
+    row-gap: 10px;
+    flex-direction: column;
+}
+.pay-point-y {
+    width: 16px;
+    height: 16px;
+    background-image: url(../images/icon-new/Fun點數\(黃色\).svg);
+    margin-left: 5px;
+}
+.price p {
+    font-size: 24px;
+    font-weight: bold;
+    /* color: #19B9AA; */
+}
+
+.price {
+    display: flex;
+}
+
+.pay-point {
+    width: 16px;
+    height: 16px;
+    background-image: url(../images/icon-new/Fun點數\(黃色\).svg);
+    margin-left: 10px;
+    margin-right: 4px;
+}
+
+/*--------------Login-----------*/
+.google {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Google.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.line {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/LINE.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.apple {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/Apple.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.facebook {
+    background-image: url(../../../icon-new/社群媒體/綁定帳號/FB.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.login-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-2);
+    padding: 6px 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light);
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 300px;
+    line-height: 2;
+}
+
+.login-btn:hover {
+    background-color: #009084;
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-media {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 10px 0px 10px 0px;
+}
+
+.decorative-box {
+    border-top: 1.5px solid #898989;
+    /* 在上方添加2px黑色實線 */
+    /* 為內容添加一些內邊距 */
+}
+
+.social-media-info {
+    font-size: 12px;
+}
+
+.quick-login {
+    display: flex;
+    align-items: center;
+    /* 讓內容垂直居中對齊 */
+    text-align: center;
+    /* 文字居中 */
+}
+
+.quick-login-all {
+    width: 360px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.quick-login hr {
+    flex-grow: 1;
+    /* 讓線條自動填充剩餘空間 */
+    border: none;
+    /* 移除默認邊框 */
+    border-top: 1.5px solid var(--gray-3);
+    ;
+    /* 添加上邊框作為分割線 */
+    margin: 0 10px;
+    /* 讓線條和文字之間保持距離 */
+}
+
+.quick-login span {
+    white-space: nowrap;
+    /* 防止文字換行 */
+}
+
+.email-and-phone {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.email-and-phone p {
+    margin: 0px 15px 0px 15px;
+}
+
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 28px;
+    width: 400px;
+    border-radius: 10px;
+    height: 500px;
+    margin: 10px;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.login-text {
+    display: flex;
+    justify-content: center;
+}
+
+.login small {
+    cursor: pointer;
+}
+
+.login-text-all {
+    margin-bottom: 20px;
+}
+
+.login-text-all h3 {
+    font-size: 24px;
+}
+
+.email-input {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    /* width: 300px; */
+    height: 48px;
+    outline: none;
+    border: solid .1px black;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+}
+
+.email-icon-input {
+    display: flex;
+    border: solid .5px black;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.split-line-row-hr {
+    display: flex;
+    min-height: 1px;
+    width: 100%;
+    border: none;
+    border-top: 1.5px solid var(--gray-3);
+    margin: 10px 0px;
+}
+
+.e-mail {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icon-new/信箱.svg);
+    justify-content: center;
+    align-self: center;
+    margin: 10px;
+}
+
+.phone {
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icon-new/電話.svg);
+    justify-content: center;
+    align-self: center;
+    margin: 10px;
+}
+
+/*-------------------------------------*/

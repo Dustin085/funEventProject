@@ -33,7 +33,25 @@
 
 
         function App() {
-            const { useState, useEffect } = React;
+            const { useState, useEffect, useRef } = React;
+            // 重要，裝有會員中心子頁的id
+            const subPageIdRef = useRef("founder-center");
+            // 子頁id轉標題
+            const [subPageIdToTcTitle, setSubPageIdToTcTitle] = useState([]);
+            useEffect(() => {
+                // 抓id轉標題的json
+                axios.get("./assets/json/memberCenterSubPageIdToTitle.json")
+                    .then((response) => setSubPageIdToTcTitle(response.data))
+                    .catch((error) => console.log(error));
+            }, []);
+            // 接收到id轉標題後再改變標題
+            useEffect(() => {
+                subPageIdToTcTitle.forEach((item) => {
+                    if (item.id == subPageIdRef.current) {
+                        document.title = `會員中心-${item.tcTitle}`;
+                    }
+                });
+            }, [subPageIdToTcTitle]);
 
 
             return <>
@@ -50,31 +68,31 @@
                     <main>
                         <section id="member-center">
                             {/* 會員中心-側邊列 */}
-                            <MemberCenterSidebar />
+                            <MemberCenterSidebar subPage={subPageIdRef.current} />
 
                             {/* 分頁內容寫在這邊 */}
                             <div className="member-center-content hosting-center-content">
-                                <div class="hosting">
-                                    <h4 class="title">主辦中心</h4>
-                                    <div class="split-line-row"></div>
-                                    <div class="first-box">
-                                        <div class="start-box">
+                                <div className="hosting">
+                                    <h4 className="title">主辦中心</h4>
+                                    <div className="split-line-row"></div>
+                                    <div className="first-box">
+                                        <div className="start-box">
                                             <div>
-                                                <img class="circle" src="./assets/images/circle.svg" alt="" />
+                                                <img className="circle" src="./assets/images/circle.svg" alt="" />
                                             </div>
 
-                                            <div class="part">
-                                                <h4 class="subtitle">主辦中心名字</h4>
+                                            <div className="part">
+                                                <h4 className="subtitle">主辦中心名字</h4>
                                                 <p>153153135135@gmail.com</p>
                                             </div>
 
                                         </div>
                                         <div>
-                                            <button class="funevent-btn">登入</button>
+                                            <button className="funevent-btn">登入</button>
                                         </div>
                                     </div>
-                                    <div class="split-line-row"></div>
-                                    <button class="add-account">
+                                    <div className="split-line-row"></div>
+                                    <button className="add-account">
                                         <img src="./assets/images/addfriend.svg" alt="" />
                                         <p>新增其他帳號</p>
                                     </button>

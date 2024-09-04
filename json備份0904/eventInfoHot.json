@@ -1,0 +1,58 @@
+[
+    {
+        "id": 1,
+        "eventImgUrl": "./assets/images/event-pic/chess.jpg",
+        "eventState": "hot",
+        "date": "2024.09.11(六) 10:00",
+        "category": "生活體驗",
+        "title": "【夏日營隊】小小棋神就是你！",
+        "location": "新北 · 永和區",
+        "tags": [
+            "#訓練專注",
+            "#訓練沉穩性格"
+        ],
+        "ratingScore": "4.5(101)"
+    },
+    {
+        "id": 2,
+        "eventImgUrl": "./assets/images/event-pic/painting.jpg",
+        "eventState": "hot",
+        "date": "2024.10.11(六) 10:00",
+        "category": "藝術人文",
+        "title": "【小小畢卡索】走進色彩的繽紛世界",
+        "location": "台北 · 南港區",
+        "tags": [
+            "#美學",
+            "#藝術培養"
+        ],
+        "ratingScore": "4.1(231)"
+    },
+    {
+        "id": 3,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-03.jpg",
+        "eventState": "hot",
+        "date": "2024.08.11(六) 10:00",
+        "category": "手作體驗",
+        "title": "甜蜜創作之旅：親子糖畫藝術體驗與手作工作坊",
+        "location": "新北 · 三峽區",
+        "tags": [
+            "#點心",
+            "#體驗"
+        ],
+        "ratingScore": "4.3(51)"
+    },
+    {
+        "id": 4,
+        "eventImgUrl": "./assets/images/demo-event-pic/demo-event-pic-04.jpg",
+        "eventState": "new",
+        "date": "2024.08.11(六) 10:00",
+        "category": "戶外體驗",
+        "title": "夏日祭典：體驗日本最道地的煙火大會，古早童玩大集合~~",
+        "location": "臺北 · 信義區",
+        "tags": [
+            "#童玩",
+            "#日本"
+        ],
+        "ratingScore": "4.9(351)"
+    }
+]

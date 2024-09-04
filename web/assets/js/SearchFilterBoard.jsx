@@ -1,4 +1,4 @@
-function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHandler, searchBtnTitle = "搜尋" }) {
+function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHandler, boardId = "eventCategory", searchBtnTitle = "搜尋" }) {
     if (!searchHandler) {
         // 以const fnName = ()=>{}的函式不會被hoisting
         const searchHandlerDefault = () => {
@@ -20,14 +20,14 @@ function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHan
                     filterNames.map((filterName, index) => {
                         return (
                             <div className="filter-item" key={index}>
-                                <input type="checkbox" id={index} value={filterName} />
-                                <label htmlFor={index}>{filterName}</label>
+                                <input type="checkbox" id={`${boardId}-${index}`} value={filterName} />
+                                <label htmlFor={`${boardId}-${index}`}>{filterName}</label>
                             </div>
                         )
                     })
                 }
             </div>
-            {console.log("side-board render")}
+            {/* {console.log("side-board render")} */}
             <button className="funevent-btn funevent-btn--light" type="button" onClick={searchHandler}>{searchBtnTitle}</button>
         </div>
     </>
