@@ -89,11 +89,11 @@
                             <div class="personal-info">
                                 <div class="input-name">
                                     <h4>姓氏*</h4>
-                                    <input class="input4" type="text" placeholder="請輸入姓氏"required >
+                                    <input class="input4" type="text" placeholder="請輸入姓氏" required>
                                 </div>
                                 <div class="input-name">
                                     <h4>名字*</h4>
-                                    <input  class="input4" type="text" placeholder="請輸入名字" required>
+                                    <input class="input4" type="text" placeholder="請輸入名字" required>
                                 </div>
                             </div>
                             <div class="personal-info">
@@ -103,10 +103,11 @@
                                 </div>
                                 <div class="input-name">
                                     <h4>電子信箱*</h4>
-                                    <input class="input4" type="text"placeholder="請輸入信箱" required>
+                                    <input class="input4" type="text" placeholder="請輸入信箱" required>
                                 </div>
                             </div>
-                            <div class="personal-btn"><input type="checkbox">&nbsp;同會員資料(此網站的表單僅供練習展示，不具備收集或儲存資料的功能)</div>
+                            <div class="personal-btn"><input type="checkbox">&nbsp;同會員資料(此網站的表單僅供練習展示，不具備收集或儲存資料的功能)
+                            </div>
 
                         </div>
                         <div class="orderdetails">
@@ -264,6 +265,12 @@
             <div class="bg-color-block"></div>
         </footer>
     </div>
+    <script>
+        // 先直接跳轉到第二頁
+        document.querySelector(".pay-btn").addEventListener("click", () => {
+            location.href = "./check2.html";
+        });
+    </script>
 </body>
 
 </html>
