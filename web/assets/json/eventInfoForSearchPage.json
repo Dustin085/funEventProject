@@ -15,17 +15,17 @@
     },
     {
         "id": 2,
-        "eventImgUrl": "./assets/images/event-pic/plant.jpg",
+        "eventImgUrl": "./assets/images/event01/event1-pic01.jpg",
         "eventState": "hot",
-        "date": "2024.06.17(六) 10:00",
-        "category": "戶外體驗",
-        "title": "【認識植物】走進鄉間大發現，揭開植物的神秘面紗",
-        "location": "宜蘭 · 羅東",
+        "date": "2024.10.06(三)",
+        "category": "音樂律動",
+        "title": "流行音樂與民謠吉他-第一堂吉他課的首選",
+        "location": "臺北 · 中山",
         "tags": [
-            "#大自然",
-            "#親近土地"
+            "#吉他",
+            "#流行音樂"
         ],
-        "ratingScore": "4.7(256)"
+        "ratingScore": "4.5(151)"
     },
     {
         "id": 3,

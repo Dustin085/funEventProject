@@ -13,7 +13,7 @@ function Topbar({ isAltColor, noLocationSelector }) {
 
     // 登入按鈕事件處理
     const loginBtnClickHandler = () => {
-        location.href = "./member-center-account-manage.html";
+        location.href = "./member-center-my-ticket.html";
         // setIsLoginBoardActive(true);
     };
     // 搜尋按鈕事件處理

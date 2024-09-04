@@ -192,11 +192,23 @@ input::placeholder {
 
 .funevent-event-card:hover {
     transform: scale(105%) translateY(-2%);
-    ;
+}
+
+.funevent-event-card .event-pic {
+    transition: var(--hover-transition);
 }
 
 .funevent-event-card:hover .event-pic {
     transform: scale(102%);
+}
+
+.funevent-event-card .date {
+    transition: var(--hover-transition);
+    transform: translateX(2px) translateY(2px);
+}
+
+.funevent-event-card:hover .date {
+    transform: translateX(2px) translateY(2px);
 }
 
 .funevent-event-card .event-pic {
@@ -481,6 +493,14 @@ input::placeholder {
     font-size: 16px;
     font-weight: 400;
     transition: var(--hover-transition);
+}
+
+.tag:hover {
+    background-color: var(--secondary-2-hover);
+}
+
+.tag:active {
+    background-color: var(--secondary-2) !important;
 }
 
 /* 評分圖案 */

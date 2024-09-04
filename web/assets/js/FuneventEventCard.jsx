@@ -1,11 +1,17 @@
 // funevent活動卡片元件
 // TODO => 使用props來控制活動資訊
 function FuneventEventCard(props) {
-    {/*所需的props有：eventImgUrl, eventState, date*/ }
+    {/*所需的props有：eventImgUrl, eventState, date, category, title, location, ratingScore*/ }
     let eventImgUrl = props.eventImgUrl;
+    // 包裝tags，以執行迴圈
     let tags = [];
     tags = props.tags;
 
+    // 報名handler，暫時先只是跳轉到活動頁，之後寫判斷就可以真正進入套好的活動頁
+    const onSignUpHandler = (ev) => {
+        ev.preventDefault();
+        location.href = "./event/event.html";
+    }
     return <>
         <div className="funevent-event-card">
             <a href="./event/event.html" className="event-pic"
@@ -33,16 +39,16 @@ function FuneventEventCard(props) {
                     {/* 迴圈製造tag */}
                     {
                         tags.map((tagText, index) => {
-                            return <li key={index} className="tag"><a href="#" className="link">{tagText}</a></li>;
+                            return <li key={index}><a href="#" className="tag link">{tagText}</a></li>;
                         })
                     }
                 </ul>
                 <p className="rating-score">{props.ratingScore}</p>
             </div>
-            <button className="funevent-btn sign-up-btn" type="button">我要報名</button>
+            <button className="funevent-btn sign-up-btn" type="button" onClick={onSignUpHandler}>我要報名</button>
         </div>
     </>
-    
+
     // 活動狀態tag，有最新和熱門兩種
     function StateTag() {
         // props.eventState可以是new 或是 hot
