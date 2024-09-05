@@ -154,6 +154,7 @@ input::placeholder {
 
 /* 主要大標題，使用h2標籤 */
 .funevent-main-title {
+    position: relative;
     display: flex;
     font-size: 32px;
     font-weight: 700;
@@ -177,6 +178,29 @@ input::placeholder {
     margin-left: 15px;
 }
 
+.funevent-main-title .more-btn {
+    position: absolute;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0 10px;
+    backdrop-filter: blur(10px);
+    border-radius: 30%;
+    right: 12.32%;
+    display: flex;
+    column-gap: 4px;
+    align-items: center;
+    color: var(--primary-1);
+    font-size: 20px;
+}
+
+.funevent-main-title .more-btn::after {
+    content: "";
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(../images/triangle-right.svg) center/cover no-repeat;
+}
+
 /* 活動卡片 */
 .funevent-event-card {
     display: flex;
@@ -192,11 +216,23 @@ input::placeholder {
 
 .funevent-event-card:hover {
     transform: scale(105%) translateY(-2%);
-    ;
+}
+
+.funevent-event-card .event-pic {
+    transition: var(--hover-transition);
 }
 
 .funevent-event-card:hover .event-pic {
     transform: scale(102%);
+}
+
+.funevent-event-card .date {
+    transition: var(--hover-transition);
+    transform: translateX(2px) translateY(2px);
+}
+
+.funevent-event-card:hover .date {
+    transform: translateX(2px) translateY(2px);
 }
 
 .funevent-event-card .event-pic {
@@ -483,6 +519,14 @@ input::placeholder {
     transition: var(--hover-transition);
 }
 
+.tag:hover {
+    background-color: var(--secondary-2-hover);
+}
+
+.tag:active {
+    background-color: var(--secondary-2) !important;
+}
+
 /* 評分圖案 */
 .rating-icon {
     background-image: url(../images/rating-icon.svg);
@@ -555,6 +599,7 @@ body {
 .topbar__location {
     display: flex;
     margin-left: 48px;
+    margin-top: 25px;
 }
 
 .topbar__map-pin-icon {
@@ -1157,6 +1202,71 @@ footer .end-box small {
     right: -11.6vw;
     top: 12.8vw;
     z-index: -3;
+}
+
+.home-page-bg-color-block-small__block1 {
+    background: url(../images/home-page-bg-color-block-small1.svg) center/cover no-repeat;
+    width: 13.75vw;
+    height: 11.52vw;
+    position: absolute;
+    left: -5.27vw;
+    top: 10.76vw;
+}
+
+.home-page-bg-color-block-small__block2 {
+    background: url(../images/home-page-bg-color-block-small2.svg) center/cover no-repeat;
+    width: 12.47vw;
+    height: 12.47vw;
+    position: absolute;
+    left: 40.9vw;
+    top: 6.93vw;
+}
+
+.home-page-bg-color-block-small__block3 {
+    background: url(../images/home-page-bg-color-block-small3.svg) center/cover no-repeat;
+    width: 42.15vw;
+    height: 42.15vw;
+    position: absolute;
+    left: -22.98vw;
+    top: 38.33vw;
+    /* top: 552px; */
+    z-index: -1;
+}
+
+.home-page-bg-color-block-small__block4 {
+    background: url(../images/home-page-bg-color-block-small4.svg) center/cover no-repeat;
+    width: 40.4vw;
+    height: 40.4vw;
+    position: absolute;
+    right: -25.06vw;
+    /* right: 221px; */
+    /* top: 132.84vw; */
+    top: 1913px;
+    z-index: -1;
+}
+
+.home-page-bg-color-block-small__block5 {
+    background-color: rgba(255, 227, 187, 0.5);
+    border-radius: 50%;
+    width: 19.51vw;
+    height: 19.51vw;
+    position: absolute;
+    left: -15.69vw;
+    /* top: 177.5vw; */
+    top: 2556px;
+    z-index: -1;
+}
+
+.home-page-bg-color-block-small__block6 {
+    background: url(../images/home-page-bg-color-block-small6.svg) center/cover no-repeat;
+    width: 37.22vw;
+    height: 31.25vw;
+    position: absolute;
+    right: -29.58vw;
+    /* right: 426px; */
+    /* top: 210.48vw; */
+    top: 3031px;
+    z-index: -1;
 }
 
 /* 首頁第一面 */

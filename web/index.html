@@ -104,9 +104,15 @@
         }
 
         // 主要大標題
-        function FuneventMainTitle({ title = "熱門推薦" }) {
+        function FuneventMainTitle({ title = "熱門推薦", moreBtnActive = false }) {
+            const MoreBtn = () => {
+                return moreBtnActive ? <button className="more-btn" type="button" onClick={moreBtnClickHandler}>觀看更多</button> : <></>;
+            }
+            const moreBtnClickHandler = () => {
+                location.href = "./search.html";
+            };
             return <>
-                <h2 className="funevent-main-title">{title}</h2>
+                <h2 className="funevent-main-title">{title}<MoreBtn /></h2>
             </>
         }
 
@@ -220,6 +226,12 @@
                     {/*色塊背景*/}
                     <div className="home-page-bg-color-block__block1"></div>
                     <div className="home-page-bg-color-block__block2"></div>
+                    <div className="home-page-bg-color-block-small__block1"></div>
+                    <div className="home-page-bg-color-block-small__block2"></div>
+                    <div className="home-page-bg-color-block-small__block3"></div>
+                    <div className="home-page-bg-color-block-small__block4"></div>
+                    <div className="home-page-bg-color-block-small__block5"></div>
+                    <div className="home-page-bg-color-block-small__block6"></div>
                     {/*漂浮按鈕*/}
                     <FloatBtnBox />
                     <main>
@@ -309,7 +321,7 @@
                                 <section id="home-page-event-card-list-box">
                                     {/*熱門推薦*/}
                                     <div className="event-box event-box-hot">
-                                        <h2 className="funevent-main-title">熱門推薦</h2>
+                                        <FuneventMainTitle title="熱門推薦" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoHot.map((event) => {
@@ -330,7 +342,7 @@
                                     </div>
                                     {/*本週精選*/}
                                     <div className="event-box event-box-hits-this-week">
-                                        <h2 className="funevent-main-title">本週精選</h2>
+                                        <FuneventMainTitle title="本週精選" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoThisWeek.map((event) => {
@@ -351,7 +363,7 @@
                                     </div>
                                     {/*最新上架*/}
                                     <div className="event-box event-box-new">
-                                        <h2 className="funevent-main-title">最新上架</h2>
+                                        <FuneventMainTitle title="本週精選" />
                                         <ul className="event-card-list">
                                             {
                                                 eventInfoNew.map((event) => {
@@ -377,7 +389,7 @@
 
                         <section id="home-page-event-news">
                             <div className="home-page-event-news-wrap">
-                                <h2 className="funevent-main-title">活動快訊</h2>
+                                <FuneventMainTitle title="活動快訊" />
                                 <div className="carousel">
                                     <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
                                     <ul className="carousel-card-list">
