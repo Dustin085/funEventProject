@@ -16,9 +16,11 @@
     --secondary-2-hover: #F18F00;
     --hover-transition: .35s;
     /* 背景 */
-    --bg-line: #D7E1EC;
+    --bg-line: #e2e9f2;
+    /* #D7E1EC */
     --bg-pri: #F7F9F9;
-    --bg-size: 44px;
+    --bg-size: 40px;
+    /* 44px */
     /* 灰階 */
     --light: #FFFFFF;
     --deep: #000000;
@@ -1755,7 +1757,7 @@ footer .end-box small {
 .event-intro-carousel__ctrl-box .ctrl-btn {
     width: 17px;
     height: 17px;
-    background-color: var(--gray-2);
+    background-color: var(--gray-3);
     border-radius: 99px;
     margin-right: 14px;
 }
@@ -2187,7 +2189,7 @@ footer .end-box small {
 }
 
 #event-main-introduction .funevent-btn {
-    width: 50%;
+    width: 70%;
     background-color: var(--secondary-2);
     align-self: center;
     transition: background-color var(--hover-transition);
@@ -2500,7 +2502,7 @@ footer .end-box small {
 }
 
 #event-page-comment .funevent-btn {
-    width: 50%;
+    width: 70%;
     background-color: var(--secondary-2);
     margin-top: 12px;
     align-self: center;
