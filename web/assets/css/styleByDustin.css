@@ -2349,14 +2349,14 @@ footer .end-box small {
 }
 
 #event-page-comment .rating-point {
-    font-size: 96px;
-    font-weight: 900;
+    font-size: 60px;
+    font-weight: 600;
     color: var(--primary-1);
 }
 
 #event-page-comment .total-rating-point {
     font-size: 36px;
-    font-weight: 900;
+    font-weight: 600;
     color: var(--gray-2);
 }
 
@@ -2372,8 +2372,8 @@ footer .end-box small {
 }
 
 #event-page-comment .rating-box .rating-icon-box .rating-icon {
-    width: 53px;
-    height: 53px;
+    width: 48px;
+    height: 48px;
 }
 
 #event-page-comment .total-comment-box {

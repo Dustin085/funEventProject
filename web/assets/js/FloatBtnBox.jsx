@@ -65,7 +65,7 @@ function FloatBtnBox() {
                 {
                     avatarImgUrl: "./assets/images/member-default-avatar.png",
                     name: "王曉明",
-                    text: "測試訊息中的測試訊息，測試訊息中的測試訊息，測試訊息中的測試訊息，測試訊息中的測試訊息。",
+                    text: "我個人專題快做不完了，<br />怎麼辦QAQ?",
                     isFromUser: true
                 }
             ]

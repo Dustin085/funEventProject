@@ -83,8 +83,8 @@ label {
     flex-direction: column;
     row-gap: 11px;
     padding: 17px 14px;
-    width: 240PX;
-    height: 350PX;
+    width: 240px;
+    height: 380px;
     background-color: var(--light);
     border-radius: 10px;
 }
