@@ -31,65 +31,7 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // 分類卡片資料
-        let eventCategoryCardInfo = [];
-        /*使用ajax取得本地端的類別卡片json*/
-        $.ajax({
-            url: "./assets/json/eventCategoryCardInfo.json",
-            method: "GET",
-            dataType: "json",
-            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
-            async: false,
-            success: function (res) {
-                // 取得json後放入eventCategoryCardInfo
-                eventCategoryCardInfo = res;
-            },
-            error: function (err) { console.log(err) },
-        });
 
-        // 活動資料
-        // 熱門推薦
-        let eventInfoHot = [];
-        $.ajax({
-            url: "./assets/json/eventInfoHot.json",
-            method: "GET",
-            dataType: "json",
-            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
-            async: false,
-            success: function (res) {
-                // 取得json後放入eventCategoryCardInfo
-                eventInfoHot = res;
-            },
-            error: function (err) { console.log(err) },
-        });
-        // 本週精選
-        let eventInfoThisWeek = [];
-        $.ajax({
-            url: "./assets/json/eventInfoThisWeek.json",
-            method: "GET",
-            dataType: "json",
-            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
-            async: false,
-            success: function (res) {
-                // 取得json後放入eventCategoryCardInfo
-                eventInfoThisWeek = res;
-            },
-            error: function (err) { console.log(err) },
-        });
-        // 最新上架
-        let eventInfoNew = [];
-        $.ajax({
-            url: "./assets/json/eventInfoNew.json",
-            method: "GET",
-            dataType: "json",
-            // async: false => 同步，可能造成程式阻塞，但是非同步又可能讓後面的程式碼抓不到資料
-            async: false,
-            success: function (res) {
-                // 取得json後放入eventCategoryCardInfo
-                eventInfoNew = res;
-            },
-            error: function (err) { console.log(err) },
-        });
 
         // 分類卡片元件
         function CategoryCard(props) {
@@ -117,23 +59,47 @@
         }
 
 
-
         function App() {
             console.log("App rendered");
             const { useState, useEffect, useRef } = React;
 
             /* 抓json */
-            const [eventTopicCardInfo, setEventTopicCardInfo] = useState({});
-            const [eventInfoForBotCaro, setEventInfoForBotCaro] = useState({});
+            const [eventTopicCardInfo, setEventTopicCardInfo] = useState([]);
+            const [eventInfoForBotCaro, setEventInfoForBotCaro] = useState([]);
+            const [eventCategoryCardInfo, setEventCategoryCardInfo] = useState([]);
+            const [eventInfoHot, setEventInfoHot] = useState([]);
+            const [eventInfoThisWeek, setEventInfoThisWeek] = useState([]);
+            const [eventInfoNew, setEventInfoNew] = useState([]);
             useEffect(() => {
                 // 特色主題json
                 axios.get("./assets/json/eventTopicCardInfo.json")
                     .then((response) => setEventTopicCardInfo(response.data))
                     .catch((error) => console.log(error));
+
+                // 分類卡片資料
+                axios.get("./assets/json/eventCategoryCardInfo.json")
+                    .then((response) => setEventCategoryCardInfo(response.data))
+                    .catch((error) => console.log(error));
+
+                // 活動資料
+                // 熱門推薦
+                axios.get("./assets/json/eventInfoHot.json")
+                    .then((response) => setEventInfoHot(response.data))
+                    .catch((error) => console.log(error));
+                // 本週精選
+                axios.get("./assets/json/eventInfoThisWeek.json")
+                    .then((response) => setEventInfoThisWeek(response.data))
+                    .catch((error) => console.log(error));
+                // 最新上架
+                axios.get("./assets/json/eventInfoNew.json")
+                    .then((response) => setEventInfoNew(response.data))
+                    .catch((error) => console.log(error));
+
                 // 最底輪播json
                 axios.get("./assets/json/eventInfoForBotCaro.json")
                     .then((response) => setEventInfoForBotCaro(response.data))
                     .catch((error) => console.log(error));
+
             }, [])
 
             /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
