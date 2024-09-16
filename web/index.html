@@ -106,8 +106,8 @@
             }, []);
 
             /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
-            const carouselEle = useRef();
-            const caroCtrlBoxEle = useRef();
+            const carouselEle = useRef(null);
+            const caroCtrlBoxEle = useRef(null);
             const [isCaroLoaded, setIsCaroLoaded] = useState(false);
             // 校對控制器的位置
             const correctCaroCtrlBoxPos = function () {
@@ -120,7 +120,7 @@
                 caroCtrlBoxEle.current.style.transform = "translateX(-50%)";
             };
             /* 校對hoverArea的位置和寬高 */
-            const carouselHoverAreaEle = useRef();
+            const carouselHoverAreaEle = useRef(null);
             const correctCaroHoverArea = function () {
                 let carouselRect = carouselEle.current.getBoundingClientRect();
                 let bodyRect = document.body.getBoundingClientRect();
@@ -149,12 +149,21 @@
                 let hoverArea = document.querySelector(".carousel-hover-area");
                 hoverArea.addEventListener("mouseover", () => {
                     document.querySelector(".slide-overlay").style.opacity = 0.3;
+                    stopCaroAutoPlay();
                 });
                 hoverArea.addEventListener("mouseout", () => {
                     document.querySelector(".slide-overlay").style.opacity = 0;
+                    let slideArr = Array.from(carouselEle.current.querySelector(".slide-box").querySelectorAll(".slide"));
+                    let localActiveSlide = 0;
+                    slideArr.forEach((slide, index) => {
+                        if ([...slide.classList].includes("active")) {
+                            localActiveSlide = index;
+                        }
+                    });
+                    startCaroAutoPlay(localActiveSlide);
                 });
-                
-                hoverArea.addEventListener("click",()=>{
+
+                hoverArea.addEventListener("click", () => {
                     toEventPageHandler();
                 });
             }, [isCaroLoaded]);
@@ -166,11 +175,16 @@
             // }
             const [activeSlide, setActiveSlide] = useState(0);
             // 抓slideBox
-            const slideBox = useRef();
-            const ctrlBtnBox = useRef();
+            const slideBox = useRef(null);
+            const ctrlBtnBox = useRef(null);
+
+            const caroAutoPlayTimeoutId = useRef(null);
+
             // 當activeSlide改變時，切換slide的active
             useEffect(() => {
                 changeSlide();
+                // 自動輪播
+                startCaroAutoPlay(activeSlide);
             }, [activeSlide]);
 
             let slideUrls = [
@@ -179,15 +193,30 @@
                 "./assets/images/home-page-caro-slide3.jpg",
                 "./assets/images/home-page-caro-slide4.jpg",
                 "./assets/images/home-page-caro-slide5.jpg",
-            ]
+            ];
 
+            // 透過增減active來改變顯示的slide
             function changeSlide() {
                 let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
                 let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
                 switchActive(slideArr, activeSlide);
                 switchActive(ctrlBtnArr, activeSlide);
             }
+
+            // 開始自動播放
+            function startCaroAutoPlay(activeSlide) {
+                clearTimeout(caroAutoPlayTimeoutId.current);
+                let autoPlayDuration = 3000;
+                caroAutoPlayTimeoutId.current = setTimeout(() => {
+                    setActiveSlide(cyclingNum(activeSlide, 1, 4));
+                }, autoPlayDuration);
+            }
             
+            // 停止自動播放
+            function stopCaroAutoPlay() {
+                clearTimeout(caroAutoPlayTimeoutId.current);
+            }
+
 
             // 搜尋處理程式，放置到要搜尋的地方就可以直接用了，會使用userSearchText做搜尋
             const onSearchHandler = () => {
@@ -258,7 +287,7 @@
                             <svg width="936" height="607" viewBox="0 0 936 607" fill="none" xmlns="http://www.w3.org/2000/svg" className="carousel-hover-area-box" ref={carouselHoverAreaEle} >
                                 {/* 把hover觸發做在這一層，才不會整個長方形都是hover區域 */}
                                 <g className="carousel-hover-area">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M361.302 59.8489C474.408 38.7982 586.599 -28.6303 691.032 13.6759C819.197 65.5956 931.402 172.209 935.008 292.258C938.651 413.561 833.555 526.122 708.203 585.348C602.989 635.058 478.751 586.265 361.302 563.318C280.149 547.463 206.987 521.983 144.706 475.255C77.2137 424.619 -1.23394 368.511 0.0147165 292.258C1.25617 216.445 79.2162 160.186 150.617 114.255C211.356 75.1827 286.748 73.7244 361.302 59.8489Z" fill="black" />
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M361.302 59.8489C474.408 38.7982 586.599 -28.6303 691.032 13.6759C819.197 65.5956 931.402 172.209 935.008 292.258C938.651 413.561 833.555 526.122 708.203 585.348C602.989 635.058 478.751 586.265 361.302 563.318C280.149 547.463 206.987 521.983 144.706 475.255C77.2137 424.619 -1.23394 368.511 0.0147165 292.258C1.25617 216.445 79.2162 160.186 150.617 114.255C211.356 75.1827 286.748 73.7244 361.302 59.8489Z" fill="black" />
                                 </g>
                             </svg>
                             {/*<object data="./assets/images/mask-for-home-page-carousel.svg" type="image/svg+xml" className="carousel-hover-area" ref={carouselHoverAreaEle}></object>*/}
