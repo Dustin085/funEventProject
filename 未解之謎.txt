@@ -1,0 +1,3 @@
+若沒有setTimeout的話會差大約10px，未知原因
+首頁的carousel-hover-area若沒有在約100毫秒後再校對位置的話會抓到錯誤的carouselEle寬度
+在100毫秒後就會正常，未解之謎

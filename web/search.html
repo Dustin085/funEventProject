@@ -37,6 +37,9 @@
         function App() {
             const { useState, useEffect } = React;
 
+
+
+
             // 搜尋關鍵字
             const [searchKeyWord, setSearchKeyWord] = useState("關鍵字");
             // 後端傳回的搜尋結果
@@ -45,6 +48,11 @@
             const [categoryDataArr, setCategoryDataArr] = useState([]);
             const [twLocationList, setTwLocationList] = useState([]);
 
+            useEffect(() => {
+
+                // console.log(searchQuery);
+            }, []);
+
             // 搜尋關鍵字改變時同步改變分頁標題
             useEffect(() => {
                 document.title = `搜尋：${searchKeyWord} 活動趣 FunEvent`;
@@ -52,13 +60,23 @@
             // 第一次渲染完後要做的事情
             useEffect(() => {
                 // 假設使用者搜尋了民謠吉他
-                setSearchKeyWord("民謠吉他");
+                // 抓網址參數，抓搜尋文字(search_query)
+                let webPageUrl = new URL(location.href);
+                let searchQuery = webPageUrl.searchParams.get("search_query");
+                if (searchQuery) {
+                    setSearchKeyWord(searchQuery);
+                } else {
+                    setSearchKeyWord("未輸入關鍵字");
+                    console.log("Warning: 沒有接收到搜尋關鍵字");
+                }
+
                 // 抓搜尋結果json
                 const getSearchData = async () => {
                     const result = await axios.get("./assets/json/eventInfoForSearchPage.json");
                     setSearchResultJson(result.data);
                     // console.log(result.data);
                 }
+
                 // 抓側面板活動分類json
                 const getCategoryData = async () => {
                     const result = await axios.get("./assets/json/eventCategoryCardInfo.json");

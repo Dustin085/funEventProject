@@ -1362,6 +1362,34 @@ footer .end-box small {
     opacity: 1;
 }
 
+
+#home-page-first-view .carousel-hover-area-box {
+    position: absolute;
+    /* mask: url(../images/mask-for-home-page-carousel.svg) center/contain no-repeat; */
+}
+
+#home-page-first-view .carousel-hover-area {
+    cursor: pointer;
+    opacity: 0;
+    /* transition: var(--hover-transition); */
+}
+
+/* #home-page-first-view .carousel-hover-area:hover {
+    opacity: 0.3;
+} */
+
+#home-page-first-view .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mask: url(../images/mask-for-home-page-carousel.svg) center/contain no-repeat;
+    background-color: var(--deep);
+    opacity: 0;
+    transition: var(--hover-transition);
+}
+
 #home-page-first-view .ctrl-box {
     display: flex;
     justify-content: center;
