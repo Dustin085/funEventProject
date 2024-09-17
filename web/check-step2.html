@@ -44,6 +44,9 @@
                 let creditCardVerifyInputArr =  Array.from(document.querySelectorAll(".credit-card-verify-input"));
                 toAutoSwitchNumInputGroup(creditCardVerifyInputArr);
                 
+                document.querySelector(".pay-btn").addEventListener("click", () => {
+                    location.href = "./member-center-my-ticket.html";
+                });
             }, []);
 
 

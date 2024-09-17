@@ -707,7 +707,10 @@ body {
 }
 
 .login-board {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     z-index: 100;
     display: flex;
     flex-direction: column;
@@ -719,6 +722,16 @@ body {
     border-radius: 10px;
     height: 500px;
     margin: 10px;
+}
+
+.login-board .close-btn{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background: url(../images/close-icon.svg) center/cover no-repeat;
+    top: 20px;
+    right: 18px;
+
 }
 
 .google {
