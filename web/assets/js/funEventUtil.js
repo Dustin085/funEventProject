@@ -1,4 +1,4 @@
-// funEvent需要用到的通用含式會放在這裡
+// funEvent需要用到的通用函式會放在這裡
 
 // 跳轉到活動頁的處理程式，參數為活動id，在event.html透過活動id來代入不同的活動
 function toEventPageHandler(eventId = "1") {
@@ -36,4 +36,29 @@ function cyclingNum(fromNum, diff, topNum, botNum = 0) {
         result = topNum - (botNum - result) + ordinalCorrect;
     }
     return result;
+}
+
+// 自動換輸入框與阻擋輸入非數字，TODO-現在擋不掉注音輸入的中文，(klook的可以擋)
+function toAutoSwitchNumInputGroup(inputArr) {
+    inputArr.forEach((item, index, arr) => {
+        // 僅能輸入數字，如果不是數字，直接取消keypress
+        item.addEventListener("keypress", (ev) => {
+            if (!isNumber(ev.key)) {
+                ev.preventDefault();
+            }
+        });
+        item.addEventListener("input", (ev) => {
+            // input event是不能cancel的，所以在keypress時做取消
+            if (ev.target.value.length >= item.maxLength) {
+                // 如果輸入框滿了自動跳到下一個，還要判斷是不是最後一個輸入框
+                index != item.maxLength - 1 ? arr[index + 1].focus() : null;
+            } else if (ev.target.value.length === 0) {
+                // 如果輸入框清空則自動跳回上一個，一樣要判斷是不是第一個輸入框
+                index != 0 ? arr[index - 1].focus() : null;
+            }
+        });
+    });
+    function isNumber(testValue) {
+        return testValue / testValue == 1 || Number(testValue) == 0;
+    }
 }

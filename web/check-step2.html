@@ -24,6 +24,8 @@
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
     <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
     <script type="text/babel" src="./assets/js/MemberCenterSidebar.jsx"></script>
+    <!-- funEvent函式庫 -->
+    <script src="./assets/js/funEventUtil.js"></script>
 </head>
 
 <body>
@@ -36,36 +38,13 @@
             const { useState, useEffect, useRef } = React;
             useEffect(() => {
                 let creditCardNumInputArr = Array.from(document.querySelectorAll(".credit-card-num-input"));
+                // 此函式被放在函式庫裡
                 toAutoSwitchNumInputGroup(creditCardNumInputArr);
 
                 let creditCardVerifyInputArr =  Array.from(document.querySelectorAll(".credit-card-verify-input"));
                 toAutoSwitchNumInputGroup(creditCardVerifyInputArr);
                 
             }, []);
-
-            function toAutoSwitchNumInputGroup(inputArr) {
-                inputArr.forEach((item, index, arr) => {
-                    // 僅能輸入數字，如果不是數字，直接取消keypress
-                    item.addEventListener("keypress", (ev) => {
-                        if (!isNumber(ev.key)) {
-                            ev.preventDefault();
-                        }
-                    });
-                    item.addEventListener("input", (ev) => {
-                        // input event是不能cancel的，所以在keypress時做取消
-                        if (ev.target.value.length >= item.maxLength) {
-                            // 如果輸入框滿了自動跳到下一個，還要判斷是不是最後一個輸入框
-                            index != item.maxLength - 1 ? arr[index + 1].focus() : null;
-                        } else if (ev.target.value.length === 0) {
-                            // 如果輸入框清空則自動跳回上一個，一樣要判斷是不是第一個輸入框
-                            index != 0 ? arr[index - 1].focus() : null;
-                        }
-                    });
-                });
-                function isNumber(testValue) {
-                    return testValue / testValue == 1 || Number(testValue) == 0;
-                }
-            }
 
 
 
