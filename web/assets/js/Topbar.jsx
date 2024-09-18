@@ -3,12 +3,16 @@ function Topbar({ isAltColor, noLocationSelector }) {
     const [logoEnUrl, setLogoEnUrl] = useState("./assets/images/logo-en.svg");
     const [logoTcUrl, setLogoTcUrl] = useState("./assets/images/logo-tc.svg");
     const [isLoginBoardActive, setIsLoginBoardActive] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
     useEffect(() => {
         // logo改換成另外色
         if (isAltColor) {
             setLogoEnUrl("./assets/images/logo-en-alt-color.svg");
             setLogoTcUrl("./assets/images/logo-tc-alt-color.svg");
         }
+
+        // 判斷是否登入
+        setIsLogin(localStorage.getItem("isLogin"));
     }, []);
 
     // 登入按鈕事件處理
@@ -22,7 +26,7 @@ function Topbar({ isAltColor, noLocationSelector }) {
     };
     // 關閉overlay處理
     const closeOverlayHandler = (ev) => {
-        console.log(ev);
+        // console.log(ev);
         setIsLoginBoardActive(false);
     }
 
@@ -63,10 +67,13 @@ function Topbar({ isAltColor, noLocationSelector }) {
                             </button>
                         </li>
                         <li className="topbar-menu__item">
-                            <button type="button" className="topbar-menu__btn" id="login-btn" onClick={loginBtnClickHandler}>
+                            {
+                                isLogin ? null : <LoginBtn loginBtnClickHandler={loginBtnClickHandler} />
+                            }
+                            {/* <button type="button" className="topbar-menu__btn" id="login-btn" onClick={loginBtnClickHandler}>
                                 <div className="topbar-menu__icon"><img src="./assets/images/login-icon.svg" alt="" /></div>
                                 <p>註冊/登入</p>
-                            </button>
+                            </button> */}
                         </li>
                         <li className="topbar-menu__item">
                             <button type="button" className="topbar-menu__btn" id="create-new-event-btn">
@@ -79,6 +86,15 @@ function Topbar({ isAltColor, noLocationSelector }) {
             </div>
             <LoginOverlay isActive={isLoginBoardActive} closeOverlayHandler={closeOverlayHandler} />
         </header>
+    </>
+}
+
+function LoginBtn({ loginBtnClickHandler }) {
+    return <>
+        <button type="button" className="topbar-menu__btn" id="login-btn" onClick={loginBtnClickHandler} >
+            <div className="topbar-menu__icon"><img src="./assets/images/login-icon.svg" alt="" /></div>
+            <p>註冊/登入</p>
+        </button>
     </>
 }
 
