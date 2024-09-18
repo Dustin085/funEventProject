@@ -35,9 +35,30 @@
             const { useState, useEffect, useRef } = React;
 
             const [eventInfoYouMayLike, setEventInfoYouMayLike] = useState([]);
+            // 活動各項資料
+            const [eventData, setEventData] = useState({
+                title: "",
+                rating: {
+                    score: 4.5,
+                    amount: 115
+                }
+            });
+
 
             // 抓json
             useEffect(() => {
+
+                // 活動資料
+                // let tempEventData = {
+                //     title: "流行音樂與民謠吉他-第一堂吉他課的首選",
+                //     rating: {
+                //         score: 4.5,
+                //         amount: 115
+                //     }
+                // };
+                // setEventData(tempEventData);
+                // const { title, rating } = eventData;
+
                 // 你可能會喜歡(暫時使用熱門推薦)
                 axios.get("./assets/json/eventInfoHot.json")
                     .then((response) => setEventInfoYouMayLike(response.data))
@@ -51,6 +72,8 @@
                 document.title = eventName + "-活動趣 FunEvent";
 
             }, []);
+
+            // 
 
             // 舊js
             useEffect(() => {
@@ -347,11 +370,11 @@
                                     {/* 活動介紹卡 */}
                                     <section class="event-intro-card">
                                         <header>
-                                            <h1 class="event-intro-card__title">流行音樂與民謠吉他-第一堂吉他課的首選</h1>
+                                            <h1 class="event-intro-card__title">{eventData.title}</h1>
                                         </header>
                                         <div class="event-intro-card__rating-box">
                                             <div class="rating-icon rating-icon--filled"></div>
-                                            <p class="rating-text">4.5(151)</p>
+                                            <p class="rating-text">{eventData.rating.score}({eventData.rating.amount})</p>
                                         </div>
                                         <div class="event-intro-card__content">
                                             <div class="item-title-box item-date">
