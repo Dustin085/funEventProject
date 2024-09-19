@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動名稱 - 活動趣 FunEvent</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/styleByDustin.css">
+</head>
+
+<body>
+    <!-- 為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效 -->
+    <div class="funevent-wrap">
+        <!-- 導航列 -->
+        <header id="topbar">
+            <div class="topbar__start-box">
+                <h1 class="logo">
+                    <a href="../index.html">
+                        <figure class="logo-en"><img src="../assets/images/logo-en.svg" alt=""></figure>
+                        <figure class="logo-tc"><img src="../assets/images/logo-tc.svg" alt=""></figure>
+                    </a>
+                </h1>
+                <div class="topbar__location">
+                    <figure class="topbar__map-pin-icon"><img src="../assets/images/map-pin-icon.svg" alt="地圖圖釘icon">
+                    </figure>
+                    <p>雙北</p>
+                </div>
+            </div>
+            <div class="topbar__end-box">
+                <nav class="navigation">
+                    <ul class="topbar-menu">
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="topbar-search-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/search-icon.svg" alt="" />
+                                </div>
+                                <p>找活動</p>
+                            </button>
+                        </li>
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="login-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/login-icon.svg" alt="" />
+                                </div>
+                                <p>註冊/登入</p>
+                            </button>
+                        </li>
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="create-new-event-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/ticket-icon.svg" alt="" />
+                                </div>
+                                <p>辦活動</p>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 色塊背景 -->
+        <div class="event-bg-color-block">
+            <div class="event-bg-color-block__block1"></div>
+            <div class="event-bg-color-block__block2"></div>
+        </div>
+
+        <main>
+            <div id="event-introduction">
+                <div class="event-introduction-wrapper">
+                    <!-- 麵包屑 -->
+                    <div class="breadcrumb">
+                        <a href="../index.html">首頁</a>
+                        <span class="divider"> / </span>
+                        <a href="#">台北</a>
+                        <span class="divider"> / </span>
+                        <a href="#">室內活動</a>
+                    </div>
+                    <!-- 所有活動內容容器(grid) -->
+                    <div class="event-introduction-container">
+                        <!-- 活動圖片輪播 -->
+                        <div class="event-intro-carousel">
+                            <div class="slide-box">
+                                <figure class="slide active"><img src="../assets/images/event02/computer.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event02/computer.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event02/computer.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event02/computer.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event02/computer.jpg" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- 活動介紹卡 -->
+                        <section class="event-intro-card">
+                            <header>
+                                <h1 class="event-intro-card__title">體驗新尖兵-互動式網頁製作單日體驗班</h1>
+                            </header>
+                            <div class="event-intro-card__rating-box">
+                                <div class="rating-icon rating-icon--filled"></div>
+                                <p class="rating-text">4.2(185)</p>
+                            </div>
+                            <div class="event-intro-card__content">
+                                <div class="item-title-box item-date">
+                                    <div class="icon"></div>
+                                    <div class="title"><span>日</span><span>期：</span></div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">2024.11.09(六)</p>
+                                    <a href="#" class="add-calendar">加入行事曆</a>
+                                </div>
+                                <div class="item-title-box item-address">
+                                    <div class="icon"></div>
+                                    <div class="title">活動地址：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">台北市中正區濟南路一段321號</p>
+                                    <p class="sub-text">承曦樓六樓607教室</p>
+                                    <div class="open-map-box">
+                                        <a href="#" class="open-link-icon"></a>
+                                        <a href="#" class="open-map">地圖</a>
+                                    </div>
+                                </div>
+                                <div class="item-title-box item-founder">
+                                    <div class="icon"></div>
+                                    <div class="title">主辦單位：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">有趣活動工作室</p>
+                                </div>
+                                <div class="item-title-box item-link">
+                                    <div class="icon"></div>
+                                    <div class="title">相關連結：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <a href="#" class="text">有趣活動IG</a>
+                                    <a href="#" class="open-link-icon"></a>
+                                </div>
+                            </div>
+                            <div class="split-line-row"></div>
+                            <div class="tag-box">
+                                <div class="tag-icon"></div>
+                                <ul class="tag-list">
+                                    <li>
+                                        <a href="#" class="tag">#國小</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#國中</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#高中</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#ui/ux</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#程式設計</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- 輪播控制組與蒐藏轉發按鈕 -->
+                        <section class="event-intro-carousel-subtitle">
+                            <div class="event-intro-carousel__ctrl-box">
+                                <button type="button" class="arrow arrow--prev" id="caro-prev-btn"></button>
+                                <div class="ctrl-btn-box">
+                                    <button type="button" class="ctrl-btn active"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                </div>
+                                <button type="button" class="arrow arrow--next" id="caro-next-btn"></button>
+                            </div>
+                            <div class="btn-box">
+                                <button type="button" class="funevent-btn-round" id="event-fav-btn">
+                                    <div class="funevent-btn-round__icon add-fav-icon add-fav-icon--faved"></div>
+                                    <p>蒐藏</p>
+                                </button>
+                                <button type="button" class="funevent-btn-round">
+                                    <div class="funevent-btn-round__icon share-icon"></div>
+                                    <p>轉發</p>
+                                </button>
+                            </div>
+                        </section>
+                        <!-- 活動方案懸浮板 -->
+                        <section class="event-plan-board">
+                            <form action="" id="event-plan-form">
+                                <label for="plan" class="label-big">選擇方案</label>
+                                <select name="plan" id="plan">
+                                    <option value="">請選擇方案</option>
+                                    <option value="加購午餐">加購午餐</option>
+                                    <option value="不加購午餐">不加購午餐</option>
+                                </select>
+
+                                <label for="date" class="label-big">選擇日期</label>
+                                <select name="date" id="date">
+                                    <option value="">請選擇日期</option>
+                                    <option value="2024-11-09">2024-11-09</option>
+                                </select>
+
+                                <!-- <p class="label-big">選擇時段</p>
+                                <div class="radio-box">
+                                    <input type="radio" name="time" id="time-1" value="上午場">
+                                    <label for="time-1" class="time-1-label">上午場</label>
+                                    <input type="radio" name="time" id="time-2" value="下午場">
+                                    <label for="time-2" class="time-2-label">下午場</label>
+                                </div> -->
+
+                                <div class="ticket-amount-box">
+                                    <p class="label-big">數量</p>
+                                    <ul class="ticket-type-list">
+                                        <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">票卷</p>
+                                                <p class="subtitle">(8 - 99歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">成人</p>
+                                                <p class="subtitle">(12 - 99歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li>
+                                        <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">兒童</p>
+                                                <p class="subtitle">(4 - 11歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="split-line-row"></div>
+                                <div class="price-box">
+                                    <p class="title">總金額</p>
+                                    <div class="price-inner-box">
+                                        <p class="currency">NT$</p>
+                                        <p class="total-price">600</p>
+                                    </div>
+                                </div>
+                                <div class="fun-point-box">
+                                    <p class="title">Fun點數</p>
+                                    <div class="fun-point-inner-box">
+                                        <p class="fun-point">6</p>
+                                        <div class="fun-point-icon"></div>
+                                    </div>
+                                </div>
+                                <button class="funevent-btn" id="sign-up-btn" type="submit">立即報名</button>
+                            </form>
+                        </section>
+                        <!-- 活動介紹跟內部導航的容器 -->
+                        <div class="event-main-introduction-container">
+                            <!-- 活動頁內部導航列 -->
+                            <nav class="event-inner-nav">
+                                <ul class="menu">
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn active" type="button"
+                                            data-scrollto="event-introduction">活動主頁</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-main-introduction">活動介紹</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-plan-intro">選擇方案</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-notice">注意事項</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-founder">主辦單位</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-comment">活動評論</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- 活動介紹區塊 -->
+                            <section id="event-main-introduction">
+                                <h2 class="funevent-main-title">活動介紹</h2>
+                                <p class="text-content">
+                                    孩子們初步探索互動式網頁製作的最佳首選，一日體驗網頁製作的全部流程，對美感、程式設計有興趣的朋友們趕快來吧！
+                                    <br><br>
+                                    孩子將親手打造不同的程式專案，得到程式開發的實務經驗、解決各種複雜問題的能力。
+                                    <br><br>
+                                    將獲得專屬的程式作品集、累積個人專業程式認證。
+                                </p>
+                                <h2 class="funevent-main-title">師資介紹</h2>
+                                <p class="text-content">
+                                    由"網站設計工作室-有趣活動"的資深成員們擔任講師，有趣活動工作室自成立以來便積極投入在親子活動體驗上，這次帶來的課程是成員們最最擅長的網站設計，誓要帶給孩子們最優質最清楚的體驗課程。
+                                </p>
+                                <h2 class="funevent-main-title">活動流程</h2>
+                                <p class="text-content">
+                                    09:00~11:00 => ux課程，初步了解使用者體驗的含意，進行使用者體驗分析
+                                    <br><br>
+                                    11:10~12:00 => ui課程，操作目前業界最流行的figma進行ui介面設計
+                                    <br><br>
+                                    12:00~13:00 => 午餐時間
+                                    <br><br>
+                                    13:00~14:00 => ui課程延續，利用figma了解網頁的基本架構
+                                    <br><br>
+                                    14:10~17:00 => 學會使用html製作網頁主體並且使用css對網頁進行裝飾，最後使用JavaScript撰寫網頁的互動效果
+                                </p>
+                                <button type="button" class="funevent-btn">觀看更多內容</button>
+                            </section>
+                        </div>
+                        <!-- 選擇方案區塊 -->
+                        <section id="event-page-plan-intro">
+                            <h2 class="funevent-main-title">選擇方案</h2>
+                            <ul class="plan-list">
+                                <li class="plan-item">
+                                    <div class="start-box">
+                                        <div class="title">加購午餐</div>
+                                        <div class="subtitle">加購午餐與紅糖早餐店、大力盒子合作，將會於當天上午休息時間進行畫單點餐</div>
+                                    </div>
+                                    <div class="end-box">
+                                        <div class="price-box">
+                                            <p class="currency">NT$</p>
+                                            <p class="price">450</p>
+                                        </div>
+                                        <button type="button" class="funevent-btn plan-choose-btn">選擇</button>
+                                    </div>
+                                </li>
+                                <li class="plan-item">
+                                    <div class="start-box">
+                                        <div class="title">不加購午餐</div>
+                                        <div class="subtitle">自行用餐</div>
+                                    </div>
+                                    <div class="end-box">
+                                        <div class="price-box">
+                                            <p class="currency">NT$</p>
+                                            <p class="price">350</p>
+                                        </div>
+                                        <button type="button" class="funevent-btn plan-choose-btn">選擇</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- 注意事項區塊 -->
+                        <section id="event-page-notice">
+                            <h2 class="funevent-main-title">注意事項</h2>
+                            <p class="text-content">
+                                注意事項：<br>
+                                1. 本次課程使用的軟體都是免費軟體，同學們於課程結束後也可以自由練習與使用各軟體<br>
+                                2. 本課程在電腦教室上課，不須自行準備電腦<br>
+                                3. 為避免損壞電腦教室內的設備，教室內禁止飲食<br>
+                                4. 因教室空間有限，上課中家長無法待在教室內，如有需求可至休息室休息<br>
+                            </p>
+                        </section>
+                        <!-- 主辦單位區塊 -->
+                        <section id="event-page-founder">
+                            <h2 class="funevent-main-title">主辦單位</h2>
+                            <div class="founder-intro-box">
+                                <div class="start-box">
+                                    <div class="founder-icon"></div>
+                                    <div class="founder-intro">
+                                        <p class="title">有趣活動工作室 </p>
+                                        <p class="intro">
+                                            有趣活動自成立以來便致力於統籌各種親子活動體驗<br>
+                                            以安全、可靠、有價值的方向來規劃各類親子活動，<br>
+                                            創造家長輕鬆放心、孩子快樂學習的環境<br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="btn-box">
+                                    <button type="button" class="funevent-btn-round" id="founder-fav-btn">
+                                        <div class="funevent-btn-round__icon add-fav-icon"></div>
+                                        <p>蒐藏</p>
+                                    </button>
+                                    <button type="button" class="funevent-btn-round">
+                                        <div class="funevent-btn-round__icon contact-founder-icon"></div>
+                                        <p>聯絡主辦</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- 活動評論區塊 -->
+                        <section id="event-page-comment">
+                            <h2 class="funevent-main-title">活動評論</h2>
+                            <div class="rating-box">
+                                <div class="rating-point-box">
+                                    <p class="rating-point">4.2</p>
+                                    <p class="total-rating-point">/5</p>
+                                </div>
+                                <div class="rating-icon-box">
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon"></div>
+                                </div>
+                                <div class="total-comment-box">
+                                    <p class="text-content">共</p>
+                                    <p class="text-content total-comment">185</p>
+                                    <p class="text-content">人評價</p>
+                                </div>
+                            </div>
+                            <div class="split-line-row"></div>
+                            <select name="filter" id="event-page-comment-filter" class="filter">
+                                <option value="new-to-old">從新到舊</option>
+                                <option value="hottest">最熱門</option>
+                            </select>
+                            <ul class="comment-list">
+                                <li class="comment-item">
+                                    <figure class="user-avatar"><img
+                                            src="../assets/images/event01/comment01-user-avatar.png" alt=""></figure>
+                                    <div class="comment-content">
+                                        <div class="start-box">
+                                            <p class="user-name">陳小瓜</p>
+                                            <p class="date">2024.08.16</p>
+                                        </div>
+                                        <div class="rating-icon-box">
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                        </div>
+                                        <div class="text-content-box">
+                                            <p class="text-content">
+                                                有趣活動的各位講師真是太有趣啦！老師們都非常細心，面對不懂的孩子都會仔細講解讓每個孩子都能跟上課程，
+                                                簡直跟天使一樣。課程內容也難易適中，不會過於初學導致甚麼成品都沒有，也不會過難導致孩子們都無法理解，
+                                                謝謝你，有趣活動工作室，在今天之前我都不知道我的孩子也能設計出網站。
+                                                P.S.最讓我開心的是，孩子們在車上不斷討論著下次想去體驗更多不同的活動。
+                                            </p>
+                                            <button class="more-btn">展開</button>
+                                        </div>
+                                    </div>
+                                    <div class="comment-pic"
+                                        style="background-image: url(../assets/images/event01/comment01-pic01.png);">
+                                        <button type="button" class="more-pic-btn">+2</button>
+                                    </div>
+                                </li>
+                                <li class="comment-item">
+                                    <figure class="user-avatar"><img
+                                            src="../assets/images/event01/comment02-user-avatar.png" alt=""></figure>
+                                    <div class="comment-content">
+                                        <div class="start-box">
+                                            <p class="user-name">王大吉</p>
+                                            <p class="date">2024.04.10</p>
+                                        </div>
+                                        <div class="rating-icon-box">
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon"></div>
+                                        </div>
+                                        <div class="text-content-box">
+                                            <p class="text-content">
+                                                老師們是非常專業且熱心沒錯，但程式設計還是太難了，我的孩子跟我說雖然老師已經仔細講解了，
+                                                他還是理解不了老師的意思，這真的很可惜，希望老師們下次考慮把課程範例改得簡單一點。
+                                                另外要說就是加購的午餐有點難吃，大力盒子竟然只提供紫米，也太大力了吧...
+                                            </p>
+                                            <button class="more-btn">展開</button>
+                                        </div>
+                                    </div>
+                                    <div class="comment-pic"
+                                        style="background-image: url(../assets/images/event01/comment02-pic01.png);">
+                                        <button type="button" class="more-pic-btn">+2</button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button type="button" class="funevent-btn">觀看更多評論</button>
+                        </section>
+                    </div>
+                    <!-- 你可能也會喜歡區塊 -->
+                    <section id="event-page-recommend">
+                        <h2 class="funevent-main-title">你可能也喜歡</h2>
+                        <ul class="funevent-event-list">
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-01.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.08.11(六) 10:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外運動</p>
+                                        <h2 class="event-title">【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">新北 · 板橋區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#競賽</li>
+                                            <li class="tag">#團體合作</li>
+                                        </ul>
+                                        <p class="rating-score">4.5(151)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-02.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.9.11(六) 07:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外體驗</p>
+                                        <h2 class="event-title">【田野大調查】走進鄉間大發現，我們吃的米從何而來?</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">宜蘭 · 員山</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#自然</li>
+                                            <li class="tag">#親近土地</li>
+                                        </ul>
+                                        <p class="rating-score">4.1(231)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-03.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.10.11(二)</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">手作體驗</p>
+                                        <h2 class="event-title">甜蜜創作之旅：親子糖畫藝術體驗與手作工作坊</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">新北 · 三峽區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#點心</li>
+                                            <li class="tag">#體驗</li>
+                                        </ul>
+                                        <p class="rating-score">4.3(51)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-04.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--new">最新</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.08.20(日) 19:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外體驗</p>
+                                        <h2 class="event-title">夏日祭典：體驗日本最道地的煙火大會，古早童玩大集合~~</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">臺北 · 信義區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#童玩</li>
+                                            <li class="tag">#日本</li>
+                                        </ul>
+                                        <p class="rating-score">4.9(351)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script>
+        // 暫時的
+        document.getElementById("sign-up-btn").onclick = function (ev) {
+            ev.preventDefault();
+        }
+    </script>
+    <script src="../assets/js/event.js"></script>
+</body>
+
+</html>

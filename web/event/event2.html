@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動名稱 - 活動趣 FunEvent</title>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/styleByDustin.css">
+</head>
+
+<body>
+    <!-- 為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效 -->
+    <div class="funevent-wrap">
+        <!-- 導航列 -->
+        <header id="topbar">
+            <div class="topbar__start-box">
+                <h1 class="logo">
+                    <a href="../index.html">
+                        <figure class="logo-en"><img src="../assets/images/logo-en.svg" alt=""></figure>
+                        <figure class="logo-tc"><img src="../assets/images/logo-tc.svg" alt=""></figure>
+                    </a>
+                </h1>
+                <div class="topbar__location">
+                    <figure class="topbar__map-pin-icon"><img src="../assets/images/map-pin-icon.svg" alt="地圖圖釘icon">
+                    </figure>
+                    <p>雙北</p>
+                </div>
+            </div>
+            <div class="topbar__end-box">
+                <nav class="navigation">
+                    <ul class="topbar-menu">
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="topbar-search-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/search-icon.svg" alt="" />
+                                </div>
+                                <p>找活動</p>
+                            </button>
+                        </li>
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="login-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/login-icon.svg" alt="" />
+                                </div>
+                                <p>註冊/登入</p>
+                            </button>
+                        </li>
+                        <li class="topbar-menu__item">
+                            <button type="button" class="topbar-menu__btn" id="create-new-event-btn">
+                                <div class="topbar-menu__icon"><img src="../assets/images/ticket-icon.svg" alt="" />
+                                </div>
+                                <p>辦活動</p>
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- 色塊背景 -->
+        <div class="event-bg-color-block">
+            <div class="event-bg-color-block__block1"></div>
+            <div class="event-bg-color-block__block2"></div>
+        </div>
+
+        <main>
+            <div id="event-introduction">
+                <div class="event-introduction-wrapper">
+                    <!-- 麵包屑 -->
+                    <div class="breadcrumb">
+                        <a href="../index.html">首頁</a>
+                        <span class="divider"> / </span>
+                        <a href="#">新北</a>
+                        <span class="divider"> / </span>
+                        <a href="#">戶外活動</a>
+                    </div>
+                    <!-- 所有活動內容容器(grid) -->
+                    <div class="event-introduction-container">
+                        <!-- 活動圖片輪播 -->
+                        <div class="event-intro-carousel">
+                            <div class="slide-box">
+                                <figure class="slide active"><img src="../assets/images/event03/aomidoriIMGL1710_TP_V.jpg"
+                                        alt=""></figure>
+                                <figure class="slide"><img src="../assets/images/event03/football.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event03/ht-chong-chzdBq0vlRg-unsplash.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event03/PED_retuninarabukodomotachi_TP_V.jpg" alt="">
+                                </figure>
+                                <figure class="slide"><img src="../assets/images/event03/tokunoshima0I9A4026_TP_V.jpg" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                        <!-- 活動介紹卡 -->
+                        <section class="event-intro-card">
+                            <header>
+                                <h1 class="event-intro-card__title">讓孩子接觸大地-戶外活動夏令營</h1>
+                            </header>
+                            <div class="event-intro-card__rating-box">
+                                <div class="rating-icon rating-icon--filled"></div>
+                                <p class="rating-text">4.4(235)</p>
+                            </div>
+                            <div class="event-intro-card__content">
+                                <div class="item-title-box item-date">
+                                    <div class="icon"></div>
+                                    <div class="title"><span>日</span><span>期：</span></div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">2025.08.06(三)</p>
+                                    <a href="#" class="add-calendar">加入行事曆</a>
+                                </div>
+                                <div class="item-title-box item-address">
+                                    <div class="icon"></div>
+                                    <div class="title">活動地址：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">新北市烏來區森林路一段21號</p>
+                                    <p class="sub-text">野豬露營場</p>
+                                    <div class="open-map-box">
+                                        <a href="#" class="open-link-icon"></a>
+                                        <a href="#" class="open-map">地圖</a>
+                                    </div>
+                                </div>
+                                <div class="item-title-box item-founder">
+                                    <div class="icon"></div>
+                                    <div class="title">主辦單位：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <p class="text">陽光型男工作室</p>
+                                </div>
+                                <div class="item-title-box item-link">
+                                    <div class="icon"></div>
+                                    <div class="title">相關連結：</div>
+                                </div>
+                                <div class="item-content-box">
+                                    <a href="#" class="text">陽光型男工作室IG</a>
+                                    <a href="#" class="open-link-icon"></a>
+                                </div>
+                            </div>
+                            <div class="split-line-row"></div>
+                            <div class="tag-box">
+                                <div class="tag-icon"></div>
+                                <ul class="tag-list">
+                                    <li>
+                                        <a href="#" class="tag">#國小</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#國中</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#戶外</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#冒險</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="tag">#團隊合作</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </section>
+                        <!-- 輪播控制組與蒐藏轉發按鈕 -->
+                        <section class="event-intro-carousel-subtitle">
+                            <div class="event-intro-carousel__ctrl-box">
+                                <button type="button" class="arrow arrow--prev" id="caro-prev-btn"></button>
+                                <div class="ctrl-btn-box">
+                                    <button type="button" class="ctrl-btn active"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                    <button type="button" class="ctrl-btn"></button>
+                                </div>
+                                <button type="button" class="arrow arrow--next" id="caro-next-btn"></button>
+                            </div>
+                            <div class="btn-box">
+                                <button type="button" class="funevent-btn-round" id="event-fav-btn">
+                                    <div class="funevent-btn-round__icon add-fav-icon add-fav-icon--faved"></div>
+                                    <p>蒐藏</p>
+                                </button>
+                                <button type="button" class="funevent-btn-round">
+                                    <div class="funevent-btn-round__icon share-icon"></div>
+                                    <p>轉發</p>
+                                </button>
+                            </div>
+                        </section>
+                        <!-- 活動方案懸浮板 -->
+                        <section class="event-plan-board">
+                            <form action="" id="event-plan-form">
+                                <label for="plan" class="label-big">選擇方案</label>
+                                <select name="plan" id="plan">
+                                    <option value="">請選擇方案</option>
+                                    <option value="雙人同行">雙人同行</option>
+                                    <option value="個人報名">個人報名</option>
+                                </select>
+
+                                <label for="date" class="label-big">選擇日期</label>
+                                <select name="date" id="date">
+                                    <option value="">請選擇日期</option>
+                                    <option value="2025-08-06">2025-08-06</option>
+                                </select>
+
+                                <p class="label-big">選擇時段</p>
+                                <div class="radio-box">
+                                    <input type="radio" name="time" id="time-1" value="上午場">
+                                    <label for="time-1" class="time-1-label">上午場</label>
+                                    <input type="radio" name="time" id="time-2" value="下午場">
+                                    <label for="time-2" class="time-2-label">下午場</label>
+                                </div>
+
+                                <div class="ticket-amount-box">
+                                    <p class="label-big">數量</p>
+                                    <ul class="ticket-type-list">
+                                        <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">票卷</p>
+                                                <p class="subtitle">(5 - 16歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li>
+                                        <!-- <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">成人</p>
+                                                <p class="subtitle">(12 - 99歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li>
+                                        <li class="ticket-type">
+                                            <div class="title-box">
+                                                <p class="title">兒童</p>
+                                                <p class="subtitle">(4 - 11歲)</p>
+                                            </div>
+                                            <div class="amount-box">
+                                                <button class="minus-btn" type="button"></button>
+                                                <p class="amount">1</p>
+                                                <button class="plus-btn" type="button"></button>
+                                            </div>
+                                        </li> -->
+                                    </ul>
+                                </div>
+
+                                <div class="split-line-row"></div>
+                                <div class="price-box">
+                                    <p class="title">總金額</p>
+                                    <div class="price-inner-box">
+                                        <p class="currency">NT$</p>
+                                        <p class="total-price">600</p>
+                                    </div>
+                                </div>
+                                <div class="fun-point-box">
+                                    <p class="title">Fun點數</p>
+                                    <div class="fun-point-inner-box">
+                                        <p class="fun-point">6</p>
+                                        <div class="fun-point-icon"></div>
+                                    </div>
+                                </div>
+                                <button class="funevent-btn" id="sign-up-btn" type="submit">立即報名</button>
+                            </form>
+                        </section>
+                        <!-- 活動介紹跟內部導航的容器 -->
+                        <div class="event-main-introduction-container">
+                            <!-- 活動頁內部導航列 -->
+                            <nav class="event-inner-nav">
+                                <ul class="menu">
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn active" type="button"
+                                            data-scrollto="event-introduction">活動主頁</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-main-introduction">活動介紹</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-plan-intro">選擇方案</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-notice">注意事項</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-founder">主辦單位</button>
+                                    </li>
+                                    <li class="item">
+                                        <button class="event-inner-nav__btn" type="button"
+                                            data-scrollto="event-page-comment">活動評論</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- 活動介紹區塊 -->
+                            <section id="event-main-introduction">
+                                <h2 class="funevent-main-title">活動介紹</h2>
+                                <p class="text-content">
+                                    讓孩子能輕鬆享受自然體驗，來享受森林的芬多精吧!
+                                    <br><br>
+                                    不用擔心孩子過度使用3C產品，這個暑假讓陽光型男帶你一起遊山玩水。
+                                    <br><br>
+                                    不論是童軍繩結或是野外求生技巧，都將帶你深入認識。讓孩子從此愛上大自然。
+                                </p>
+                                <h2 class="funevent-main-title">師資介紹</h2>
+                                <p class="text-content">
+                                    陽光型男工作室的老師都是擁有導遊領隊資格的教師，大多老師也同時是登山嚮導或是旅遊領隊。陽光型男工作室一定會給您帶來最佳的活動體驗。
+                                </p>
+                                <h2 class="funevent-main-title">活動流程</h2>
+                                <p class="text-content">
+                                    認識破冰 => 大地遊戲 => 大自然創作 => 營火晚會
+                                </p>
+                                <button type="button" class="funevent-btn">觀看更多內容</button>
+                            </section>
+                        </div>
+                        <!-- 選擇方案區塊 -->
+                        <section id="event-page-plan-intro">
+                            <h2 class="funevent-main-title">選擇方案</h2>
+                            <ul class="plan-list">
+                                <li class="plan-item">
+                                    <div class="start-box">
+                                        <div class="title">雙人同行</div>
+                                        <div class="subtitle">與好友同行</div>
+                                    </div>
+                                    <div class="end-box">
+                                        <div class="price-box">
+                                            <p class="currency">NT$</p>
+                                            <p class="price">900</p>
+                                        </div>
+                                        <button type="button" class="funevent-btn plan-choose-btn">選擇</button>
+                                    </div>
+                                </li>
+                                <li class="plan-item">
+                                    <div class="start-box">
+                                        <div class="title">個人報名</div>
+                                        <div class="subtitle">單獨報名</div>
+                                    </div>
+                                    <div class="end-box">
+                                        <div class="price-box">
+                                            <p class="currency">NT$</p>
+                                            <p class="price">500</p>
+                                        </div>
+                                        <button type="button" class="funevent-btn plan-choose-btn">選擇</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- 注意事項區塊 -->
+                        <section id="event-page-notice">
+                            <h2 class="funevent-main-title">注意事項</h2>
+                            <p class="text-content">
+                                注意事項：<br>
+                                1. 活動當天會提供遊覽車至定點接駁<br>
+                                2. 若氣候因素，將視情況延期<br>
+                                3. 為了維持教學品質，不提供家長同行<br>
+                            </p>
+                        </section>
+                        <!-- 主辦單位區塊 -->
+                        <section id="event-page-founder">
+                            <h2 class="funevent-main-title">主辦單位</h2>
+                            <div class="founder-intro-box">
+                                <div class="start-box">
+                                    <div class="founder-icon"></div>
+                                    <div class="founder-intro">
+                                        <p class="title">陽光型男工作室 </p>
+                                        <p class="intro">
+                                            陽光型男工作室的老師都是擁有導遊領隊資格的教師，<br>
+                                            老師也同時是登山嚮導或是旅遊領隊。<br>
+                                            陽光型男工作室長年以來一直致力於戶外活動、冒險探索等業務<br>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="btn-box">
+                                    <button type="button" class="funevent-btn-round" id="founder-fav-btn">
+                                        <div class="funevent-btn-round__icon add-fav-icon"></div>
+                                        <p>蒐藏</p>
+                                    </button>
+                                    <button type="button" class="funevent-btn-round">
+                                        <div class="funevent-btn-round__icon contact-founder-icon"></div>
+                                        <p>聯絡主辦</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- 活動評論區塊 -->
+                        <section id="event-page-comment">
+                            <h2 class="funevent-main-title">活動評論</h2>
+                            <div class="rating-box">
+                                <div class="rating-point-box">
+                                    <p class="rating-point">4.4</p>
+                                    <p class="total-rating-point">/5</p>
+                                </div>
+                                <div class="rating-icon-box">
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon rating-icon--filled"></div>
+                                    <div class="rating-icon"></div>
+                                </div>
+                                <div class="total-comment-box">
+                                    <p class="text-content">共</p>
+                                    <p class="text-content total-comment">235</p>
+                                    <p class="text-content">人評價</p>
+                                </div>
+                            </div>
+                            <div class="split-line-row"></div>
+                            <select name="filter" id="event-page-comment-filter" class="filter">
+                                <option value="new-to-old">從新到舊</option>
+                                <option value="hottest">最熱門</option>
+                            </select>
+                            <ul class="comment-list">
+                                <li class="comment-item">
+                                    <figure class="user-avatar"><img
+                                            src="../assets/images/event01/comment01-user-avatar.png" alt=""></figure>
+                                    <div class="comment-content">
+                                        <div class="start-box">
+                                            <p class="user-name">簡大肥</p>
+                                            <p class="date">2024.05.13</p>
+                                        </div>
+                                        <div class="rating-icon-box">
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                        </div>
+                                        <div class="text-content-box">
+                                            <p class="text-content">
+                                                這個暑假報名參加此活動是最棒的決定，在活動的過程中，我結交了許多好朋友，
+                                                謝謝陽光型男為我創造了許多美好的回憶。
+                                            </p>
+                                            <button class="more-btn">展開</button>
+                                        </div>
+                                    </div>
+                                    <div class="comment-pic"
+                                        style="background-image: url(../assets/images/event01/comment01-pic01.png);">
+                                        <button type="button" class="more-pic-btn">+2</button>
+                                    </div>
+                                </li>
+                                <li class="comment-item">
+                                    <figure class="user-avatar"><img
+                                            src="../assets/images/event01/comment02-user-avatar.png" alt=""></figure>
+                                    <div class="comment-content">
+                                        <div class="start-box">
+                                            <p class="user-name">高小胖</p>
+                                            <p class="date">2024.03.03</p>
+                                        </div>
+                                        <div class="rating-icon-box">
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon rating-icon--filled"></div>
+                                            <div class="rating-icon"></div>
+                                        </div>
+                                        <div class="text-content-box">
+                                            <p class="text-content">
+                                                老師非常有耐心，一步步地帶領我們認識野外求生，讓我逐漸克服了討厭戶外的心結。
+                                                我最喜歡的是營火晚會，大家聚在一起，凝聚彼此，認識許多一輩子的朋友。
+                                            </p>
+                                            <button class="more-btn">展開</button>
+                                        </div>
+                                    </div>
+                                    <div class="comment-pic"
+                                        style="background-image: url(../assets/images/event01/comment02-pic01.png);">
+                                        <button type="button" class="more-pic-btn">+2</button>
+                                    </div>
+                                </li>
+                            </ul>
+                            <button type="button" class="funevent-btn">觀看更多評論</button>
+                        </section>
+                    </div>
+                    <!-- 你可能也會喜歡區塊 -->
+                    <section id="event-page-recommend">
+                        <h2 class="funevent-main-title">你可能也喜歡</h2>
+                        <ul class="funevent-event-list">
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-01.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.08.11(六) 10:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外運動</p>
+                                        <h2 class="event-title">【夏日營隊】戶外平衡競走大挑戰，四大主題等你來挑戰！</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">新北 · 板橋區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#競賽</li>
+                                            <li class="tag">#團體合作</li>
+                                        </ul>
+                                        <p class="rating-score">4.5(151)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-02.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.9.11(六) 07:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外體驗</p>
+                                        <h2 class="event-title">【田野大調查】走進鄉間大發現，我們吃的米從何而來?</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">宜蘭 · 員山</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#自然</li>
+                                            <li class="tag">#親近土地</li>
+                                        </ul>
+                                        <p class="rating-score">4.1(231)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-03.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--hot">熱門</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.10.11(二)</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">手作體驗</p>
+                                        <h2 class="event-title">甜蜜創作之旅：親子糖畫藝術體驗與手作工作坊</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">新北 · 三峽區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#點心</li>
+                                            <li class="tag">#體驗</li>
+                                        </ul>
+                                        <p class="rating-score">4.3(51)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="funevent-event-card">
+                                    <a href="#" class="event-pic"
+                                        style="background-image: url(../assets/images/demo-event-pic/demo-event-pic-04.jpg);">
+                                        <div class="inner-card">
+                                            <div class="start-box">
+                                                <div class="tag tag--new">最新</div>
+                                                <button type="button" class="fav-btn"></button>
+                                            </div>
+                                            <div class="date">
+                                                <p>2024.08.20(日) 19:00</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="main-content">
+                                        <p class="category">戶外體驗</p>
+                                        <h2 class="event-title">夏日祭典：體驗日本最道地的煙火大會，古早童玩大集合~~</h2>
+                                        <div class="location">
+                                            <div class="map-pin-icon"></div>
+                                            <p class="location-text">臺北 · 信義區</p>
+                                        </div>
+                                    </div>
+                                    <div class="tag-rating-box">
+                                        <ul class="tag-list">
+                                            <li class="tag">#童玩</li>
+                                            <li class="tag">#日本</li>
+                                        </ul>
+                                        <p class="rating-score">4.9(351)</p>
+                                    </div>
+                                    <button class="funevent-btn sign-up-btn" type="button">我要報名</button>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+            </div>
+        </main>
+    </div>
+    <script>
+        // 暫時的
+        document.getElementById("sign-up-btn").onclick = function (ev) {
+            ev.preventDefault();
+        }
+    </script>
+    <script src="../assets/js/event.js"></script>
+</body>
+
+</html>
