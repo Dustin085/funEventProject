@@ -219,7 +219,7 @@
                 clearTimeout(caroAutoPlayTimeoutId.current);
             }
 
-
+            const [isSearchDrawerActive, setIsSearchDrawerActive] = useState(false);
             // 搜尋處理程式，放置到要搜尋的地方就可以直接用了，會使用userSearchText做搜尋
             const onSearchHandler = () => {
                 // 挑轉到搜尋頁

@@ -1,4 +1,6 @@
 function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHandler, boardId = "eventCategory", searchBtnTitle = "搜尋" }) {
+    const { useState, useRef } = React;
+    const filterInputBox = useRef(null);
     if (!searchHandler) {
         // 以const fnName = ()=>{}的函式不會被hoisting
         const searchHandlerDefault = () => {
@@ -6,16 +8,18 @@ function SearchFilterBoard({ title = "面板標題", filterNames = [], searchHan
         }
         searchHandler = searchHandlerDefault;
     }
-    const foldBtnClickHandler = () => {
-        console.log("folded");
-    }
+    // 收合按鈕
+    const foldBtnClickHandler = (ev) => {
+        $(filterInputBox.current).fadeToggle();
+        $(ev.target).toggleClass("active");
+    };
     return <>
         <div className="search-filter-board funevent-shadow">
             <div className="title-box">
                 <h3 className="title">{title}</h3>
                 <button type="button" className="fold-btn" onClick={foldBtnClickHandler}></button>
             </div>
-            <div className="filter-input-box">
+            <div className="filter-input-box" ref={filterInputBox}>
                 {
                     filterNames.map((filterName, index) => {
                         return (
