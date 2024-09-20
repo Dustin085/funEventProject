@@ -122,10 +122,16 @@ function LoginBtn({ loginBtnClickHandler }) {
 }
 
 function LoginOverlay({ isActive = false, closeOverlayHandler }) {
-    // 登入按鈕處理程式
+    // 登入按鈕處理程式，暫時先直接進入會員中心
     const loginBtnHandler = () => {
-        closeOverlayHandler();
+        location.href = "./member-center-account-manage.html";
+        // closeOverlayHandler();
     };
+    const inputRef = useRef(null);
+
+    useEffect(() => {
+        $(inputRef.current).focus();
+    }, []);
 
     if (!isActive) {
         return <></>;
@@ -147,7 +153,7 @@ function LoginOverlay({ isActive = false, closeOverlayHandler }) {
             <div className="split-line-row-hr"></div>
             <form className="login">
                 <div className="email-icon-input">
-                    <input className="email-input" type="text" placeholder="請輸入電子信箱" />
+                    <input className="email-input" type="text" placeholder="請輸入電子信箱" ref={inputRef} onKeyUp={(ev) => { ev.key === "Enter" ? loginBtnHandler() : null }} />
                     <div className="e-mail"></div>
                 </div>
                 <button type="button" className="login-btn" onClick={loginBtnHandler}>傳送驗證碼</button>
