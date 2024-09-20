@@ -165,7 +165,7 @@
                 });
 
                 hoverArea.addEventListener("click", () => {
-                    toEventPageHandler();
+                    toEventPageHandler("2");
                 });
             }, [isCaroLoaded]);
 
@@ -347,18 +347,8 @@
                                         <FuneventMainTitle title="熱門推薦" />
                                         <ul className="event-card-list">
                                             {
-                                                eventInfoHot.map((event) => {
-                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li key={id}> <FuneventEventCard
-                                                        key={id}
-                                                        eventImgUrl={eventImgUrl}
-                                                        eventState={eventState}
-                                                        date={date}
-                                                        category={category}
-                                                        title={title}
-                                                        location={location}
-                                                        tags={tags}
-                                                        ratingScore={ratingScore} /> </li>
+                                                eventInfoHot.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
                                                 })
                                             }
                                         </ul>
@@ -368,39 +358,19 @@
                                         <FuneventMainTitle title="本週精選" />
                                         <ul className="event-card-list">
                                             {
-                                                eventInfoThisWeek.map((event) => {
-                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li key={id}> <FuneventEventCard
-                                                        key={id}
-                                                        eventImgUrl={eventImgUrl}
-                                                        eventState={eventState}
-                                                        date={date}
-                                                        category={category}
-                                                        title={title}
-                                                        location={location}
-                                                        tags={tags}
-                                                        ratingScore={ratingScore} /> </li>
+                                                eventInfoThisWeek.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
                                                 })
                                             }
                                         </ul>
                                     </div>
                                     {/*最新上架*/}
                                     <div className="event-box event-box-new">
-                                        <FuneventMainTitle title="本週精選" />
+                                        <FuneventMainTitle title="最新上架" />
                                         <ul className="event-card-list">
                                             {
-                                                eventInfoNew.map((event) => {
-                                                    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                    return <li key={id}> <FuneventEventCard
-                                                        key={id}
-                                                        eventImgUrl={eventImgUrl}
-                                                        eventState={eventState}
-                                                        date={date}
-                                                        category={category}
-                                                        title={title}
-                                                        location={location}
-                                                        tags={tags}
-                                                        ratingScore={ratingScore} /> </li>
+                                                eventInfoNew.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
                                                 })
                                             }
                                         </ul>

@@ -1,17 +1,12 @@
-// import { FuneventTag } from './FuneventTag.jsx';
 // funevent活動卡片元件
-// TODO => 使用props來控制活動資訊
 function FuneventEventCard(props) {
-    {/*所需的props有：eventImgUrl, eventState, date, category, title, location, ratingScore*/ }
-    let eventImgUrl = props.eventImgUrl;
-    // 包裝tags，以執行迴圈
-    let tags = [];
-    tags = props.tags;
+    const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = props.data;
+    const eventUrl = `./event.html?event_id=${id}`;
 
     // 報名handler，暫時先只是跳轉到活動頁，之後寫判斷就可以真正進入套好的活動頁
     const onSignUpHandler = (ev) => {
         ev.preventDefault();
-        location.href = "./event.html";
+        location.href = eventUrl;
     };
 
     // 按下tag把data-tagName取出來放到localStorage的userSearchText，之後進入搜尋頁
@@ -25,7 +20,7 @@ function FuneventEventCard(props) {
     // };
     return <>
         <div className="funevent-event-card">
-            <a href="./event.html" className="event-pic"
+            <a href={eventUrl} className="event-pic"
                 style={{ backgroundImage: `url(${eventImgUrl})` }}>
                 <div className="inner-card">
                     <div className="start-box">
@@ -33,16 +28,16 @@ function FuneventEventCard(props) {
                         <button type="button" className="fav-btn"></button>
                     </div>
                     <div className="date">
-                        <p>{props.date}</p>
+                        <p>{date}</p>
                     </div>
                 </div>
             </a>
             <div className="main-content">
-                <p className="category">{props.category}</p>
-                <h2 className="event-title"><a href="./event/event.html">{props.title}</a></h2>
+                <p className="category">{category}</p>
+                <h2 className="event-title"><a href={eventUrl}>{title}</a></h2>
                 <div className="location">
                     <div className="map-pin-icon"></div>
-                    <p className="location-text">{props.location}</p>
+                    <p className="location-text">{location}</p>
                 </div>
             </div>
             <div className="tag-rating-box">
@@ -61,7 +56,7 @@ function FuneventEventCard(props) {
                         })
                     }
                 </ul>
-                <p className="rating-score">{props.ratingScore}</p>
+                <p className="rating-score">{ratingScore}</p>
             </div>
             <button className="funevent-btn sign-up-btn" type="button" onClick={onSignUpHandler}>我要報名</button>
         </div >
@@ -69,11 +64,11 @@ function FuneventEventCard(props) {
 
     // 活動狀態tag，有最新和熱門兩種
     function StateTag() {
-        // props.eventState可以是new 或是 hot
+        // eventState可以是new 或是 hot
         let stateTag = <></>;
-        if (props.eventState == "new") {
+        if (eventState == "new") {
             stateTag = <><div className="tag tag--new">最新</div></>;
-        } else if (props.eventState == "hot") {
+        } else if (eventState == "hot") {
             stateTag = <><div className="tag tag--hot">熱門</div></>;
         } else {
             stateTag = <><div className="tag tag--new">未知</div></>;

@@ -25,6 +25,8 @@
     <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
     <script type="text/babel" src="./assets/js/Breadcrumb.jsx"></script>
+    <!-- funEvent函式庫 -->
+    <script src="./assets/js/funEventUtil.js"></script>
 </head>
 
 <body>
@@ -40,6 +42,21 @@
             // 活動各項資料
             const [eventData, setEventData] = useState({
                 id: 1,
+                title: "",
+                introduction: [
+                    {
+                        title: "活動介紹",
+                        content: ""
+                    },
+                    {
+                        title: "師資介紹",
+                        content: ""
+                    },
+                    {
+                        title: "活動流程",
+                        content: ""
+                    }
+                ],
                 breadcrumbData: [
                     {
                         title: "首頁",
@@ -55,38 +72,89 @@
                     }
                 ],
                 slideUrls: [
-                    "./assets/images/event01/event1-pic01.jpg",
-                    "./assets/images/event01/event1-pic02.jpg",
-                    "./assets/images/event01/event1-pic03.jpg",
-                    "./assets/images/event01/event1-pic04.jpg",
-                    "./assets/images/event01/event1-pic05.jpg"
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
                 ],
-                title: "流行音樂與民謠吉他-第一堂吉他課的首選",
                 rating: {
                     score: 4.5,
                     amount: 115
                 },
-                date: "2024.10.06(三)",
+                date: "",
                 address: {
-                    main: "臺北市中山區搖滾路一段搖滾弄321號",
-                    sub: "承曦樓六樓607教室"
+                    main: "",
+                    sub: ""
                 },
                 founder: {
-                    name: "蘭響音樂教室",
-                    intro: "蘭響音樂教室是甜美號樂團的吉他手小黑於1994年成立的一個音樂教室，<br />長年以來一直致力於樂手培養、音樂製作等業務<br />蘭響今年即將邁入第三十個年頭，<br />希望在這而立之年使用更多元的方向做搖滾音樂的推廣與教學。<br />請大家多多指教！<br />",
+                    name: "",
+                    intro: "",
                     links: [
                         {
-                            title: "蘭響音樂IG",
+                            title: "",
                             link: "#"
                         }
                     ]
                 },
                 tags: [
-                    "#國小",
-                    "#國中",
-                    "#高中",
-                    "#吉他",
-                    "#流行音樂",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                ],
+                plans: [
+                    {
+                        title: "",
+                        content: "",
+                        price: 500
+                    },
+                    {
+                        title: "",
+                        content: "",
+                        price: 300
+                    }
+                ],
+                timeSlots: [
+                    "",
+                    ""
+                ],
+                ticketTypes: [
+                    {
+                        title: "",
+                        sub: ""
+                    },
+                ],
+                warningContent: {
+                    title: "",
+                    content: ""
+                },
+                commentItems: [
+                    {
+                        userName: "",
+                        userAvatarUrl: "",
+                        date: "",
+                        ratingScore: 5,
+                        content: "",
+                        picArr: [
+                            "",
+                            "",
+                            ""
+                        ]
+                    },
+                    {
+                        userName: "",
+                        userAvatarUrl: "",
+                        date: "",
+                        ratingScore: 4,
+                        content: "",
+                        picArr: [
+                            "",
+                            "",
+                            ""
+                        ]
+                    }
                 ]
             });
 
@@ -94,8 +162,15 @@
             // 抓json
             useEffect(() => {
 
+                let eventId = getSearchParams("event_id", "1");
                 // 活動資料
-
+                axios.get(`./assets/json/demoEvent${eventId}.json`)
+                    .then((response) => setEventData(response.data))
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("查無此活動，確定後將跳轉回FunEvent首頁，造成不便，敬請見諒");
+                        location.href = "./index.html";
+                    });
 
                 // 你可能會喜歡(暫時使用熱門推薦)
                 axios.get("./assets/json/eventInfoHot.json")
@@ -126,6 +201,7 @@
                 let goNextBtnEle = document.querySelector("#caro-next-btn");
                 let caroActiveIndex = 0;
 
+                // cyclingNum和switchActive寫在funEventUtil.js裡面
                 goNextBtnEle.addEventListener("click", function () {
                     const goNum = 1;
                     const topNum = slideEleArr.length - 1;
@@ -153,38 +229,6 @@
                     switchActive(ctrlBtnEleArr, caroActiveIndex);
                 }
 
-                // 切換active元素，arrToSwitch => 要被切換的陣列、targetIndex => 切換目標index
-                function switchActive(arrToSwitch, targetIndex) {
-                    arrToSwitch.forEach((arrEle) => {
-                        arrEle.classList.remove('active');
-                    });
-                    arrToSwitch[targetIndex].classList.add('active');
-                }
-
-                // 循環botNum-topNum
-                // 1. 要移動的步數diff % 區間長度 = 真正要移動的步數
-                // 2. 從fromNum開始移動，移動到超出區間範圍就要回到另一端
-                // 3. 做序數修正
-                // 參數名稱 => fromNum: 開始數字，diff: 要移動的步數，topNum, botNum: 循環區間最大(小)值
-                function cyclingNum(fromNum, diff, topNum, botNum = 0) {
-                    // 循環數字的區間長度，大減小後+1才會是正確的長度
-                    let numLength = topNum - botNum + 1;
-                    let result = 0;
-                    // 當result超過範圍的時候應該要立刻回到另一端並算做一次計數，然而在我們的計算過程中這個計數被忽略了，所以要校正
-                    // 例如，假設現在區間範圍是-1~4，當從4再往上加1的時候應該要直接變成-1，但我們的計算會將他算成4+1=5，所以要-1做校正
-                    const ordinalCorrect = 1;
-                    // 往前或後移動的步數
-                    let move = diff % numLength;
-                    result = fromNum + move;
-                    // 超出移動範圍就循環
-                    if (result > topNum) {
-                        result = botNum + (result - topNum) - ordinalCorrect;
-                    } else if (result < botNum) {
-                        result = topNum - (botNum - result) + ordinalCorrect;
-                    }
-                    return result;
-                }
-
                 /* 蒐藏按鈕 */
                 document.getElementById("event-fav-btn").onclick = function () {
                     $("#event-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
@@ -194,8 +238,9 @@
                 };
 
                 /* 內部導覽列 */
+                // 內部導覽列的原始位置
                 let innerNavOriginTop = $(".event-inner-nav").position().top;
-                // console.log(innerNavOriginTop);
+
                 // 滾動時
                 $(window).scroll(function (ev) {
                     let eventInnerNav = $(".event-inner-nav");
@@ -220,14 +265,14 @@
                 let navBtns = document.querySelectorAll(".event-inner-nav__btn");
                 // 區間分界線
                 let zoneLines = [];
-                // 把區間分界線push進陣列中
+                // 把區間分界線push進陣列中，利用事先寫在html標籤內的data-scroollto來取得該頁籤對應的目標區間
                 for (let i = 0; i < navBtns.length; i++) {
                     // 最後要減去內部導航列的高度，多減1px可以防止小數點帶來的錯誤
                     zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top - $(".event-inner-nav").outerHeight() - 1);
                 }
-
                 // 把body的結尾當成最後一條線
                 zoneLines.push($("body").offset().top + $("body").outerHeight());
+                // 設定捲動到區間分界線之間時，對應該區間的頁籤會變色
                 for (let i = 0; i < navBtns.length; i++) {
                     $(window).scroll(function () {
                         // let startLine = $(`#${navBtns[i].dataset.scrollto}`).offset().top;
@@ -253,7 +298,7 @@
                 /* 活動方案懸浮面板 */
                 // 面板一開始的位置
                 let planBoardOriginTop = $(".event-plan-board").offset().top;
-                // row-gap
+                // row-gap，css內網格對齊時使用的row-gap，此網格容器最後會有一點多餘的row-gap
                 let rowGap = 25;
                 // 面板終點的底部位置
                 let planBoardEndBot = $(".event-introduction-container").offset().top + $(".event-introduction-container").height() - rowGap;
@@ -262,6 +307,7 @@
                 // 面板與最上的間隙
                 let planBoardGap = 15;
                 $(window).scroll(function (ev) {
+
                     // 移動超過方案面板一開始的位置後
                     if ($(this).scrollTop() + planBoardGap > planBoardOriginTop && $(this).scrollTop() < planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardGap) {
                         // 移動
@@ -445,8 +491,8 @@
                                                 <div className="title">相關連結：</div>
                                             </div>
                                             <div className="item-content-box">
-                                                <a href={eventData.founder.links[0].link} className="text">{eventData.founder.links[0].title}</a>
-                                                <a href={eventData.founder.links[0].link} className="open-link-icon"></a>
+                                                <a href={eventData.founder.links[0].link} target="_blank" className="text">{eventData.founder.links[0].title}</a>
+                                                <a href={eventData.founder.links[0].link} target="_blank" className="open-link-icon"></a>
                                             </div>
                                         </div>
                                         <div className="split-line-row"></div>
@@ -510,28 +556,44 @@
                                             <label htmlFor="plan" className="label-big">選擇方案</label>
                                             <select name="plan" id="plan">
                                                 <option value="">請選擇方案</option>
-                                                <option value="親子一同彈">親子一同彈</option>
-                                                <option value="孩子獨奏">孩子獨奏</option>
+                                                {
+                                                    eventData.plans.map((plan, index) => {
+                                                        return <option key={index} value={plan.title}>{plan.title}</option>
+                                                    })
+                                                }
+                                                {/*<option value="親子一同彈">親子一同彈</option>
+                                                <option value="孩子獨奏">孩子獨奏</option>*/}
                                             </select>
 
                                             <label htmlFor="date" className="label-big">選擇日期</label>
                                             <select name="date" id="date">
                                                 <option value="">請選擇日期</option>
-                                                <option value="2024-10-06">2024-10-06</option>
+                                                <option value={eventData.date}>{eventData.date}</option>
                                             </select>
 
                                             <p className="label-big">選擇時段</p>
                                             <div className="radio-box">
-                                                <input type="radio" name="time" id="time-1" value="上午場" />
+                                                {
+                                                    eventData.timeSlots.map((item, index) => {
+                                                        return <RadioBtnGroup key={index} groupName="time" value={item} index={index + 1} />
+
+                                                    })
+                                                }
+                                                {/*<input type="radio" name="time" id="time-1" value="上午場" />
                                                 <label htmlFor="time-1" className="time-1-label">上午場</label>
                                                 <input type="radio" name="time" id="time-2" value="下午場" />
-                                                <label htmlFor="time-2" className="time-2-label">下午場</label>
+                                                <label htmlFor="time-2" className="time-2-label">下午場</label>*/}
                                             </div>
 
                                             <div className="ticket-amount-box">
                                                 <p className="label-big">數量</p>
                                                 <ul className="ticket-type-list">
-                                                    <li className="ticket-type">
+                                                    {
+                                                        eventData.ticketTypes.map((item, index) => {
+                                                            return <TicketType key={index} title={item.title} subtitle={item.sub} />
+                                                        })
+                                                    }
+                                                    {/*<li className="ticket-type">
                                                         <div className="title-box">
                                                             <p className="title">票卷</p>
                                                             <p className="subtitle">(8 - 99歲)</p>
@@ -541,7 +603,7 @@
                                                             <p className="amount">1</p>
                                                             <button className="plus-btn" type="button"></button>
                                                         </div>
-                                                    </li>
+                                                    </li>*/}
 
                                                 </ul>
                                             </div>
@@ -598,7 +660,13 @@
                                         </nav>
                                         {/* 活動介紹區塊 */}
                                         <section id="event-main-introduction">
-                                            <h2 className="funevent-main-title">活動介紹</h2>
+                                            {
+                                                eventData.introduction.map((item, index) => {
+                                                    const { title, content } = item;
+                                                    return <ArticleWithMainTitle key={index} title={title} content={content} />
+                                                })
+                                            }
+                                            {/*<h2 className="funevent-main-title">活動介紹</h2>
                                             <p className="text-content">
                                                 民謠吉他，是近幾十年來最流行的樂器之一，具有便宜好學且方便攜帶的特性，是孩子們探索音樂、創造音樂最好的一條途徑。想讓孩子們接觸音樂，但又怕孩子們三分鐘熱度無法堅持太久，趕緊趁現在來參加我們的吉他體驗課吧！
                                                 <br /><br />
@@ -615,7 +683,7 @@
                                             <h2 className="funevent-main-title">活動流程</h2>
                                             <p className="text-content">
                                                 {"民謠吉他的特色 => 經典四和弦 => 簡單樂理 => 彈唱練習"}
-                                            </p>
+                                            </p>*/}
                                             <button type="button" className="funevent-btn">觀看更多內容</button>
                                         </section>
                                     </div>
@@ -624,7 +692,13 @@
                                     <section id="event-page-plan-intro">
                                         <h2 className="funevent-main-title">選擇方案</h2>
                                         <ul className="plan-list">
-                                            <li className="plan-item">
+                                            {
+                                                eventData.plans.map((item, index) => {
+                                                    const { title, content, price } = item;
+                                                    return <PlanItem key={index} title={title} content={content} price={price} />
+                                                })
+                                            }
+                                            {/*<li className="plan-item">
                                                 <div className="start-box">
                                                     <div className="title">親子一同彈</div>
                                                     <div className="subtitle">為親子提供兩把吉他，可以一同學習。</div>
@@ -649,20 +723,21 @@
                                                     </div>
                                                     <button type="button" className="funevent-btn plan-choose-btn">選擇</button>
                                                 </div>
-                                            </li>
+                                            </li>*/}
                                         </ul>
                                     </section>
 
                                     {/* 注意事項區塊 */}
                                     <section id="event-page-notice">
-                                        <h2 className="funevent-main-title">注意事項</h2>
+                                        <ArticleWithMainTitle title={eventData.warningContent.title} content={eventData.warningContent.content} />
+                                        {/*<h2 className="funevent-main-title">注意事項</h2>
                                         <p className="text-content">
                                             注意事項：<br />
                                             1. 活動當天會提供木吉他進行練習，請同學們愛惜使用<br />
                                             2. 若您自己有木吉他，歡迎直接帶來體驗課程<br />
                                             3. 為維護講師權益，請勿在上課中錄影<br />
                                             4. 親子一同彈方案會提供兩把木吉他<br />
-                                        </p>
+                                        </p>*/}
                                     </section>
 
                                     {/* 主辦單位區塊 */}
@@ -672,13 +747,18 @@
                                             <div className="start-box">
                                                 <div className="founder-icon"></div>
                                                 <div className="founder-intro">
-                                                    <p className="title">蘭響音樂教室 </p>
+                                                    <p className="title">{eventData.founder.name} </p>
                                                     <p className="intro">
-                                                        蘭響音樂教室是甜美號樂團的吉他手小黑於1994年成立的一個音樂教室，<br />
+                                                        {
+                                                            eventData.founder.intro.split("<br />").map((item, index, arr) => {
+                                                                return index === (arr.length - 1) ? <ArticlePara key={index} content={item} noBreakLine /> : <ArticlePara key={index} content={item} />
+                                                            })
+                                                        }
+                                                        {/*蘭響音樂教室是甜美號樂團的吉他手小黑於1994年成立的一個音樂教室，<br />
                                                         長年以來一直致力於樂手培養、音樂製作等業務<br />
                                                         蘭響今年即將邁入第三十個年頭，<br />
                                                         希望在這而立之年使用更多元的方向做搖滾音樂的推廣與教學。<br />
-                                                        請大家多多指教！<br />
+                                                        請大家多多指教！<br />*/}
                                                     </p>
                                                 </div>
                                             </div>
@@ -701,7 +781,7 @@
                                         <h2 className="funevent-main-title">活動評論</h2>
                                         <div className="rating-box">
                                             <div className="rating-point-box">
-                                                <p className="rating-point">4.5</p>
+                                                <p className="rating-point">{eventData.rating.score}</p>
                                                 <p className="total-rating-point">/5</p>
                                             </div>
                                             <div className="rating-icon-box">
@@ -713,7 +793,7 @@
                                             </div>
                                             <div className="total-comment-box">
                                                 <p className="text-content">共</p>
-                                                <p className="text-content total-comment">115</p>
+                                                <p className="text-content total-comment">{eventData.rating.amount}</p>
                                                 <p className="text-content">人評價</p>
                                             </div>
                                         </div>
@@ -723,7 +803,19 @@
                                             <option value="hottest">最熱門</option>
                                         </select>
                                         <ul className="comment-list">
-                                            <li className="comment-item">
+                                            {
+                                                eventData.commentItems.map((item, index) => {
+                                                    return <CommentItem
+                                                        key={index}
+                                                        userName={item.userName}
+                                                        userAvatarUrl={item.userAvatarUrl}
+                                                        date={item.date}
+                                                        ratingScore={item.ratingScore}
+                                                        content={item.content}
+                                                        picArr={item.picArr} />
+                                                })
+                                            }
+                                            {/*<li className="comment-item">
                                                 <figure className="user-avatar"><img
                                                     src="./assets/images/event01/comment01-user-avatar.png" alt="" /></figure>
                                                 <div className="comment-content">
@@ -780,7 +872,7 @@
                                                     style={{ backgroundImage: "url(./assets/images/event01/comment02-pic01.png)" }}>
                                                     <button type="button" className="more-pic-btn">+2</button>
                                                 </div>
-                                            </li>
+                                            </li>*/}
                                         </ul>
                                         <button type="button" className="funevent-btn">觀看更多評論</button>
                                     </section>
@@ -791,18 +883,8 @@
                                     <h2 className="funevent-main-title">你可能也喜歡</h2>
                                     <ul className="funevent-event-list">
                                         {
-                                            eventInfoYouMayLike.map((event) => {
-                                                const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                return <li key={id}> <FuneventEventCard
-                                                    key={id}
-                                                    eventImgUrl={eventImgUrl}
-                                                    eventState={eventState}
-                                                    date={date}
-                                                    category={category}
-                                                    title={title}
-                                                    location={location}
-                                                    tags={tags}
-                                                    ratingScore={ratingScore} /> </li>
+                                            eventInfoYouMayLike.map((event, index) => {
+                                                return <li key={index}> <FuneventEventCard data={event} /> </li>
                                             })
                                         }
                                     </ul>
@@ -815,9 +897,130 @@
             </>
         }
 
+        // slide組件
         function Slide({ isActive = false, imgUrl = "./assets/images/event01/event1-pic01.jpg" }, altText = "") {
             let className = isActive ? "slide active" : "slide";
             return <figure className={className}><img src={imgUrl} alt={altText} /></figure>
+        }
+
+        // 用在漂浮面板的radioBtn組合(input會被隱藏，留下label)
+        function RadioBtnGroup({ groupName = "time", value = "'上午場", index = 0 }) {
+            return <>
+                <input type="radio" name={groupName} id={`${groupName}-${index}`} value={value} />
+                <label htmlFor={`${groupName}-${index}`} className={`${groupName}-${index}-label`} >{value}</label>
+            </>
+        }
+
+        // 票種組件
+        function TicketType({ title, subtitle, amount = 1 }) {
+            return <>
+                <li className="ticket-type">
+                    <div className="title-box">
+                        <p className="title">{title}</p>
+                        <p className="subtitle">{subtitle}</p>
+                    </div>
+                    <div className="amount-box">
+                        <button className="minus-btn" type="button"></button>
+                        <p className="amount">{amount}</p>
+                        <button className="plus-btn" type="button"></button>
+                    </div>
+                </li>
+            </>
+        }
+
+        // 付有大標題的文章組件
+        function ArticleWithMainTitle({ title, content }) {
+            return <>
+                <h2 className="funevent-main-title">{title}</h2>
+                <p className="text-content">
+                    {
+                        content.split("<br />").map((item, index, arr) => {
+                            // 最後一個段落不加斷行
+                            return index === (arr.length - 1) ? <ArticlePara key={index} content={item} noBreakLine /> : <ArticlePara key={index} content={item} />
+                        })
+                    }
+                </p>
+            </>
+        }
+
+        // 文章段落，使用noBreakLine來控制是否加上斷行
+        function ArticlePara({ content, noBreakLine }) {
+            return noBreakLine ? <span>{content}</span> : <><span>{content}</span><br /></>
+        }
+
+        // 方案選擇區塊用的item
+        function PlanItem({ title, content, price }) {
+            return <>
+                <li className="plan-item">
+                    <div className="start-box">
+                        <div className="title">{title}</div>
+                        <div className="subtitle">{content}</div>
+                    </div>
+                    <div className="end-box">
+                        <div className="price-box">
+                            <p className="currency">NT$</p>
+                            <p className="price">{price}</p>
+                        </div>
+                        <button type="button" className="funevent-btn plan-choose-btn">選擇</button>
+                    </div>
+                </li>
+            </>
+        }
+
+        // 活動評論物件
+        function CommentItem({ userName, userAvatarUrl, date, ratingScore, content, picArr }) {
+            // 滿分五分
+            const totalScore = 5;
+            // 陣列裡放五個布林值，如果是true代表填滿的星星
+            let ratingScoreArr = [];
+            for (let i = 0; i < totalScore; i++) {
+                ratingScoreArr.push(false);
+            }
+            for (let i = 0; i < ratingScore; i++) {
+                ratingScoreArr[i] = true;
+            }
+            return <>
+                <li className="comment-item">
+                    <figure className="user-avatar"><img
+                        src={userAvatarUrl} alt="" /></figure>
+                    <div className="comment-content">
+                        <div className="start-box">
+                            <p className="user-name">{userName}</p>
+                            <p className="date">{date}</p>
+                        </div>
+                        <div className="rating-icon-box">
+                            {
+                                ratingScoreArr.map((item, index) => {
+                                    return item ? <div key={index} className="rating-icon rating-icon--filled"></div> : <div key={index} className="rating-icon"></div>
+                                })
+                            }
+                        </div>
+                        {/*<div className="rating-icon-box">
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon"></div>
+                        </div>*/}
+                        <div className="text-content-box">
+                            <p className="text-content">
+                                {content}
+                            </p>
+                            <button className="more-btn">展開</button>
+                        </div>
+                    </div>
+                    <PictureLightBox className="comment-pic" picArr={picArr} />
+                </li>
+            </>
+        }
+
+        // 目前先直接寫樣式，之後再加入燈箱效果已展示完整的三張圖片
+        function PictureLightBox({ className = "comment-pic", picArr }) {
+            return <>
+                <div className={className} style={{ backgroundImage: `url(${picArr[0]})` }}>
+                    <button type="button" className="more-pic-btn">{picArr.length - 1}</button>
+                </div>
+            </>
         }
 
 

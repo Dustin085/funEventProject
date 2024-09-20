@@ -1,8 +1,15 @@
 // funEvent需要用到的通用函式會放在這裡
 
 // 跳轉到活動頁的處理程式，參數為活動id，在event.html透過活動id來代入不同的活動
-function toEventPageHandler(eventId = "1") {
-    location.href = "./event.html?" + "event_id=" + eventId;
+function toEventPageHandler(event_id = "1") {
+    location.href = "./event.html?" + "event_id=" + event_id;
+}
+
+// 抓網址參數，searchParamsKey => 要抓的參數，defaultReturn => 沒抓到時預設的回傳值
+function getSearchParams(searchParamsKey, defaultReturn = "") {
+    let webPageUrl = new URL(location.href);
+    let searchParamsValue = webPageUrl.searchParams.get(searchParamsKey);
+    return searchParamsValue ? searchParamsValue : defaultReturn;
 }
 
 // 切換active元素

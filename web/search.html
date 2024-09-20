@@ -25,6 +25,8 @@
     <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
     <script type="text/babel" src="./assets/js/SearchFilterBoard.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
+    <!-- funEvent函式庫 -->
+    <script src="./assets/js/funEventUtil.js"></script>
     <!-- TODO -->
     <!-- 金額篩選器 -->
 </head>
@@ -60,16 +62,9 @@
             }, [searchKeyWord])
             // 第一次渲染完後要做的事情
             useEffect(() => {
-                // 假設使用者搜尋了民謠吉他
-                // 抓網址參數，抓搜尋文字(search_query)
-                let webPageUrl = new URL(location.href);
-                let searchQuery = webPageUrl.searchParams.get("search_query");
-                if (searchQuery) {
-                    setSearchKeyWord(searchQuery);
-                } else {
-                    setSearchKeyWord("未輸入關鍵字");
-                    console.log("Warning: 沒有接收到搜尋關鍵字");
-                }
+                // 抓網址參數，抓搜尋文字(search_query)，此函式放在funEventUtil.js
+                let searchQuery = getSearchParams("search_query", "");
+                setSearchKeyWord(searchQuery);
 
                 // 抓搜尋結果json
                 const getSearchData = async () => {
@@ -139,18 +134,8 @@
                                     </div>
                                     <div className="search-result-event-card-box">
                                         {
-                                            searchResultJson.map((event) => {
-                                                const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                return <FuneventEventCard
-                                                    key={id}
-                                                    eventImgUrl={eventImgUrl}
-                                                    eventState={eventState}
-                                                    date={date}
-                                                    category={category}
-                                                    title={title}
-                                                    location={location}
-                                                    tags={tags}
-                                                    ratingScore={ratingScore} />
+                                            searchResultJson.map((event, index) => {
+                                                return <FuneventEventCard key={index} data={event} />
                                             })
                                         }
                                     </div>
