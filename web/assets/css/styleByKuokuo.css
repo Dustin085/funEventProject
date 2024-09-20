@@ -903,31 +903,31 @@ hr {
 .step1 {
     width: 66px;
     height: 66px;
-    background-image: url(../../../icon-new/Purchase-process/1-choose-plan\(o\).svg);
+    background-image: url(../images/icon-new/Purchase-process/1-choose-plan\(o\).svg);
 }
 
 .step2 {
     width: 66px;
     height: 66px;
-    background-image: url(../../../icon-new/Purchase-process/2-write-information\(o\).svg);
+    background-image: url(../images/icon-new/Purchase-process/2-write-information\(o\).svg);
 
 }
 
 .step3 {
     width: 66px;
     height: 66px;
-    background-image: url(../../../icon-new/Purchase-process//3-complete-payment\(w\).svg);
+    background-image: url(../images/icon-new/Purchase-process/3-complete-payment\(w\).svg);
 }
 
 .step3-1 {
     width: 66px;
     height: 66px;
-    background-image: url(../../../icon-new/Purchase-process/3-complete-payment\(o\).svg);
+    background-image: url(../images/icon-new/Purchase-process/3-complete-payment\(o\).svg);
 }
 .step4 {
     width: 66px;
     height: 66px;
-    background-image: url(../../../icon-new/Purchase-process/4-get-tickets\(w\).svg);
+    background-image: url(../images/icon-new/Purchase-process/4-get-tickets\(w\).svg);
 }
 
 .step-hr {
@@ -1126,11 +1126,12 @@ input {
 }
 
 .things-to-note {
-    font-size: 12px;
+    font-size: 16px;
     border-radius: 10px;
     background-color: #EFEFEF;
     color: #3E3A39;
     padding: 10px;
+    text-align:justify;
 }
 
 .tickets-info {
