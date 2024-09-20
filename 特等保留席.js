@@ -115,3 +115,19 @@ const data = {
         }
     ]
 }
+
+{
+    eventInfoHot.map((event) => {
+        const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
+        return <li key={id}> <FuneventEventCard
+            key={id}
+            eventImgUrl={eventImgUrl}
+            eventState={eventState}
+            date={date}
+            category={category}
+            title={title}
+            location={location}
+            tags={tags}
+            ratingScore={ratingScore} /> </li>
+    })
+}

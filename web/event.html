@@ -169,7 +169,7 @@
                     .catch(function (error) {
                         console.log(error);
                         alert("查無此活動，確定後將跳轉回FunEvent首頁，造成不便，敬請見諒");
-                        location.href="./index.html";
+                        location.href = "./index.html";
                     });
 
                 // 你可能會喜歡(暫時使用熱門推薦)
@@ -883,18 +883,8 @@
                                     <h2 className="funevent-main-title">你可能也喜歡</h2>
                                     <ul className="funevent-event-list">
                                         {
-                                            eventInfoYouMayLike.map((event) => {
-                                                const { id, eventImgUrl, eventState, date, category, title, location, tags, ratingScore } = event
-                                                return <li key={id}> <FuneventEventCard
-                                                    key={id}
-                                                    eventImgUrl={eventImgUrl}
-                                                    eventState={eventState}
-                                                    date={date}
-                                                    category={category}
-                                                    title={title}
-                                                    location={location}
-                                                    tags={tags}
-                                                    ratingScore={ratingScore} /> </li>
+                                            eventInfoYouMayLike.map((event, index) => {
+                                                return <li key={index}> <FuneventEventCard data={event} /> </li>
                                             })
                                         }
                                     </ul>
