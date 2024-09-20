@@ -142,8 +142,7 @@
                     correctCaroCtrlBoxPos();
                     correctCaroHoverArea();
                 }, 100);
-                // correctCaroCtrlBoxPos();
-                // correctCaroHoverArea();
+
                 changeSlide();
 
                 // 製造hover效果，這是一個複雜的關係，我們hover到一個hover區域，然後改變slide裡面的overlay
@@ -181,8 +180,9 @@
 
             const caroAutoPlayTimeoutId = useRef(null);
 
-            // 當activeSlide改變時，切換slide的active
+            // 當activeSlide改變時
             useEffect(() => {
+                // 切換slide的active
                 changeSlide();
                 // 自動輪播
                 startCaroAutoPlay(activeSlide);
@@ -212,7 +212,7 @@
                     setActiveSlide(cyclingNum(activeSlide, 1, 4));
                 }, autoPlayDuration);
             }
-            
+
             // 停止自動播放
             function stopCaroAutoPlay() {
                 clearTimeout(caroAutoPlayTimeoutId.current);
