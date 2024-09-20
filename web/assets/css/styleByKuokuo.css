@@ -1235,6 +1235,65 @@ input {
     margin-left: 10px;
     margin-right: 4px;
 }
+/*------購買成功--------*/
+
+.SignUp-successful {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-2);
+    padding: 6px 19px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--light);
+    border-radius: 10px;
+    white-space: nowrap;
+    width: 250px;
+    line-height: 2;
+    cursor: pointer;
+    margin-top: 28px;
+}
+.SignUp-successful:hover {
+    background-color: #009084;
+}
+.successful-link{
+    color:#19B9AA;
+
+}
+.successful-correcct{
+background-image:url(../images/SignUp-successful.svg) ;
+width: 60px;
+height: 60px;
+margin-bottom: 16px;
+}
+.successful-all {
+    margin-bottom: 20px;
+    display: flex;
+    /* 水平置中 */
+    justify-content: center;    
+    /* 垂直置中 */
+    align-items: center;    
+    flex-direction:column;
+    line-height: 28px;
+}
+.successful-text{
+    /* display: flex; */
+}
+
+.successful-one{
+    display: flex;
+}
+.successful-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    padding: 28px;
+    width: 350px;
+    border-radius: 10px;
+    height: 400px;
+}
 
 /*--------------Login-----------*/
 .google {
