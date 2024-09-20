@@ -1,0 +1,117 @@
+{
+    "id": 3,
+    "title": "體驗新尖兵-互動式網頁製作單日體驗班",
+    "introduction": [
+        {
+            "title": "活動介紹",
+            "content": "孩子們初步探索互動式網頁製作的最佳首選，一日體驗網頁製作的全部流程，對美感、程式設計有興趣的朋友們趕快來吧！<br /><br />孩子將親手打造不同的程式專案，得到程式開發的實務經驗、解決各種複雜問題的能力。<br /><br />將獲得專屬的程式作品集、累積個人專業程式認證。"
+        },
+        {
+            "title": "師資介紹",
+            "content": "由'網站設計工作室-有趣活動'的資深成員們擔任講師，有趣活動工作室自成立以來便積極投入在親子活動體驗上，這次帶來的課程是成員們最最擅長的網站設計，誓要帶給孩子們最優質最清楚的體驗課程。"
+        },
+        {
+            "title": "活動流程",
+            "content": "09:00~11:00 => ux課程，初步了解使用者體驗的含意，進行使用者體驗分析<br /><br />11:10~12:00 => ui課程，操作目前業界最流行的figma進行ui介面設計<br /><br />12:00~13:00 => 午餐時間<br /><br />13:00~14:00 => ui課程延續，利用figma了解網頁的基本架構<br /><br />14:10~17:00 => 學會使用html製作網頁主體並且使用css對網頁進行裝飾，最後使用JavaScript撰寫網頁的互動效果"
+        }
+    ],
+    "breadcrumbData": [
+        {
+            "title": "首頁",
+            "link": "./index.html"
+        },
+        {
+            "title": "雙北",
+            "link": "./search.html?search_query=雙北"
+        },
+        {
+            "title": "數位科技",
+            "link": "./search.html?search_query=數位科技"
+        }
+    ],
+    "slideUrls": [
+        "./assets/images/event02/IMARIP0I9A7464_TP_V.webp",
+        "./assets/images/event02/computer.jpg",
+        "./assets/images/event02/gori_9V9A8291_TP_V.webp",
+        "./assets/images/event02/INTELNUC_TP_V.webp",
+        "./assets/images/event02/sorasanPAR55380_TP_V.webp"
+    ],
+    "rating": {
+        "score": 4.9,
+        "amount": 185
+    },
+    "date": "2024.11.09(六)",
+    "address": {
+        "main": "新北市新莊區成龍路一段321號",
+        "sub": "好學樓五樓503教室"
+    },
+    "founder": {
+        "name": "有趣活動工作室",
+        "intro": "有趣活動自成立以來便致力於統籌各種親子活動體驗<br />以安全、可靠、有價值的方向來規劃各類親子活動，<br />創造家長輕鬆放心、孩子快樂學習的環境<br />",
+        "links": [
+            {
+                "title": "有趣活動IG",
+                "link": "https://www.instagram.com/kabornborn/"
+            }
+        ]
+    },
+    "tags": [
+        "#國小",
+        "#國中",
+        "#高中",
+        "##ui/ux",
+        "#程式設計"
+    ],
+    "plans": [
+        {
+            "title": "加購午餐",
+            "content": "加購午餐與紅糖早餐店、大力盒子合作，將會於當天上午休息時間進行畫單點餐",
+            "price": 450
+        },
+        {
+            "title": "不加購午餐",
+            "content": "自行用餐",
+            "price": 350
+        }
+    ],
+    "timeSlots": [
+        "上午場",
+        "下午場"
+    ],
+    "ticketTypes": [
+        {
+            "title": "票卷",
+            "sub": "(8 - 29歲)"
+        }
+    ],
+    "warningContent": {
+        "title": "注意事項",
+        "content": "注意事項：<br />1. 本次課程使用的軟體都是免費軟體，同學們於課程結束後也可以自由練習與使用各軟體<br />2. 本課程在電腦教室上課，不須自行準備電腦<br />3. 為避免損壞電腦教室內的設備，教室內禁止飲食<br />4. 因教室空間有限，上課中家長無法待在教室內，如有需求可至休息室休息<br />"
+    },
+    "commentItems": [
+        {
+            "userName": "陳小瓜",
+            "userAvatarUrl": "./assets/images/event02/Ellipse 6.svg",
+            "date": "2024.08.16",
+            "ratingScore": 5,
+            "content": "有趣活動的各位講師真是太有趣啦！老師們都非常細心，簡直跟天使一樣。課程內容也難易適中，不會過於初學導致甚麼成品都沒有。下次還想要再參加!",
+            "picArr": [
+                "./assets/images/event02/comment-pic1.svg",
+                "./assets/images/event02/comment-pic1.svg",
+                "./assets/images/event02/comment-pic1.svg"
+            ]
+        },
+        {
+            "userName": "王大吉",
+            "userAvatarUrl": "./assets/images/event02/Ellipse 7.svg",
+            "date": "2024.04.10",
+            "ratingScore": 5,
+            "content": "老師們是非常專業且熱心沒錯，但程式設計還是太難了，我的孩子跟我說雖然老師已經仔細講解了，他還是理解不了老師的意思，這真的很可惜，希望老師們下次考慮把課程範例改得簡單一點。另外要說就是加購的午餐有點難吃，大力盒子竟然只提供紫米，也太大力了吧...",
+            "picArr": [
+                "./assets/images/event02/comment-pic2.svg",
+                "./assets/images/event02/comment-pic2.svg",
+                "./assets/images/event02/comment-pic2.svg"
+            ]
+        }
+    ]
+}

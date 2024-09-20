@@ -1,0 +1,117 @@
+{
+    "id": 2,
+    "title": "讓孩子接觸大地-戶外活動夏令營",
+    "introduction": [
+        {
+            "title": "活動介紹",
+            "content": "讓孩子能輕鬆享受自然體驗，來享受森林的芬多精吧!<br /><br />不用擔心孩子過度使用3C產品，這個暑假讓陽光型男帶你一起遊山玩水。<br /><br />不論是童軍繩結或是野外求生技巧，都將帶你深入認識。讓孩子從此愛上大自然。"
+        },
+        {
+            "title": "師資介紹",
+            "content": "陽光型男工作室的老師都是擁有導遊領隊資格的教師，大多老師也同時是登山嚮導或是旅遊領隊。陽光型男工作室一定會給您帶來最佳的活動體驗。"
+        },
+        {
+            "title": "活動流程",
+            "content": "認識破冰 => 大地遊戲 => 大自然創作 => 營火晚會"
+        }
+    ],
+    "breadcrumbData": [
+        {
+            "title": "首頁",
+            "link": "./index.html"
+        },
+        {
+            "title": "雙北",
+            "link": "./search.html?search_query=雙北"
+        },
+        {
+            "title": "生活體驗",
+            "link": "./search.html?search_query=生活體驗"
+        }
+    ],
+    "slideUrls": [
+        "./assets/images/event03/aomidoriIMGL1710_TP_V.jpg",
+        "./assets/images/event03/football.jpg",
+        "./assets/images/event03/ht-chong-chzdBq0vlRg-unsplash.jpg",
+        "./assets/images/event03/PED_retuninarabukodomotachi_TP_V.jpg",
+        "./assets/images/event03/tokunoshima0I9A4026_TP_V.jpg"
+    ],
+    "rating": {
+        "score": 4.4,
+        "amount": 235
+    },
+    "date": "2025.08.06(三)",
+    "address": {
+        "main": "新北市烏來區森林路一段21號",
+        "sub": "野豬露營場"
+    },
+    "founder": {
+        "name": "陽光型男工作室",
+        "intro": "陽光型男工作室的老師都是擁有導遊領隊資格的教師，<br />老師也同時是登山嚮導或是旅遊領隊。<br />陽光型男工作室長年以來一直致力於戶外活動、冒險探索等業務",
+        "links": [
+            {
+                "title": "陽光型男工作室IG",
+                "link": "https://www.instagram.com/kabornborn/"
+            }
+        ]
+    },
+    "tags": [
+        "#國小",
+        "#國中",
+        "#戶外",
+        "#冒險",
+        "#團隊合作"
+    ],
+    "plans": [
+        {
+            "title": "雙人同行",
+            "content": "為親子提供兩把吉他，可以一同學習。",
+            "price": 900
+        },
+        {
+            "title": "個人報名",
+            "content": "提供專業吉他，手把手指導孩子。",
+            "price": 500
+        }
+    ],
+    "timeSlots": [
+        "上午場",
+        "下午場"
+    ],
+    "ticketTypes": [
+        {
+            "title": "票卷",
+            "sub": "(5 - 16歲)"
+        }
+    ],
+    "warningContent": {
+        "title": "注意事項",
+        "content": "注意事項：<br />1. 活動當天會提供遊覽車至定點接駁<br />2. 若氣候因素，將視情況延期<br />3. 為了維持教學品質，不提供家長同行"
+    },
+    "commentItems": [
+        {
+            "userName": "簡大肥",
+            "userAvatarUrl": "./assets/images/event03/Ellipse 4.svg",
+            "date": "2024.05.13",
+            "ratingScore": 4,
+            "content": "這個暑假報名參加此活動是最棒的決定，在活動的過程中，我結交了許多好朋友，謝謝陽光型男為我創造了許多美好的回憶。",
+            "picArr": [
+                "./assets/images/event03/comment-pic1.svg",
+                "./assets/images/event03/comment-pic1.svg",
+                "./assets/images/event03/comment-pic1.svg"
+            ]
+        },
+        {
+            "userName": "高小胖",
+            "userAvatarUrl": "./assets/images/event03/Ellipse 5.svg",
+            "date": "2024.03.03",
+            "ratingScore": 3,
+            "content": "老師非常有耐心，一步步地帶領我們認識野外求生，讓我逐漸克服了討厭戶外的心結。我最喜歡的是營火晚會，大家聚在一起，凝聚彼此，認識許多一輩子的朋友。",
+            "picArr": [
+                "./assets/images/event03/comment-pic2.svg",
+                "./assets/images/event03/comment-pic2.svg",
+                "./assets/images/event03/comment-pic2.svg"
+            ]
+        }
+    ]
+}
