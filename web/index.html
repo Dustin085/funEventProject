@@ -319,8 +319,8 @@
                                             {
                                                 Array.from(eventTopicCardInfo).map((item, index) => {
                                                     if (index < 4) {
-                                                        const { id, title, imgUrl } = item;
-                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} />
+                                                        const { id, title, imgUrl, link } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} link={link} />
                                                     }
                                                 })
                                             }
@@ -333,8 +333,8 @@
                                             {
                                                 Array.from(eventTopicCardInfo).map((item, index) => {
                                                     if (index >= 4) {
-                                                        const { id, title, imgUrl } = item;
-                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} />
+                                                        const { id, title, imgUrl, link } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} link={link} />
                                                     }
                                                 })
                                             }
