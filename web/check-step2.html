@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>結帳流程-完成付款</title>
-    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
     <link rel="stylesheet" href="./assets/css/styleByKuokuo.css">
+    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
     <!-- React CDN -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -24,6 +24,7 @@
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
     <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
     <script type="text/babel" src="./assets/js/MemberCenterSidebar.jsx"></script>
+    <script type="text/babel" src="./assets/js/SignUpSuccessOverlay.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
 </head>
@@ -36,16 +37,18 @@
 
         function App() {
             const { useState, useEffect, useRef } = React;
+            const [isSignUpOverlayActive, setIsSignUpOverlayActive] = useState(false);
             useEffect(() => {
                 let creditCardNumInputArr = Array.from(document.querySelectorAll(".credit-card-num-input"));
                 // 此函式被放在函式庫裡
                 toAutoSwitchNumInputGroup(creditCardNumInputArr);
 
-                let creditCardVerifyInputArr =  Array.from(document.querySelectorAll(".credit-card-verify-input"));
+                let creditCardVerifyInputArr = Array.from(document.querySelectorAll(".credit-card-verify-input"));
                 toAutoSwitchNumInputGroup(creditCardVerifyInputArr);
-                
+
                 document.querySelector(".pay-btn").addEventListener("click", () => {
-                    location.href = "./member-center-my-ticket.html";
+                    setIsSignUpOverlayActive(true);
+                    // location.href = "./member-center-my-ticket.html";
                 });
             }, []);
 
@@ -62,6 +65,7 @@
                         <div className="member-center-bg-color-block__block4"></div>
                     </div>
                     <FloatBtnBox />
+                    <SignUpSuccessOverlay isActive={isSignUpOverlayActive} />
                     <main>
                         <section>
                             <div className="order-details-up">
