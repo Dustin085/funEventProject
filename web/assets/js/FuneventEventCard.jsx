@@ -1,3 +1,4 @@
+// import { FuneventTag } from './FuneventTag.jsx';
 // funevent活動卡片元件
 // TODO => 使用props來控制活動資訊
 function FuneventEventCard(props) {
@@ -14,14 +15,14 @@ function FuneventEventCard(props) {
     };
 
     // 按下tag把data-tagName取出來放到localStorage的userSearchText，之後進入搜尋頁
-    const tagOnClickHandler = (ev) => {
-        ev.preventDefault();
-        let tagName = ev.target.dataset.tagName;
-        tagName = tagName.replace("#", "");
-        console.log(tagName);
-        // 挑轉到搜尋頁
-        location.href = "./search.html?" + "search_query=" + tagName;
-    };
+    // const tagOnClickHandler = (ev) => {
+    //     ev.preventDefault();
+    //     let tagName = ev.target.dataset.tagName;
+    //     tagName = tagName.replace("#", "");
+    //     console.log(tagName);
+    //     // 挑轉到搜尋頁
+    //     location.href = "./search.html?" + "search_query=" + tagName;
+    // };
     return <>
         <div className="funevent-event-card">
             <a href="./event.html" className="event-pic"
@@ -50,11 +51,12 @@ function FuneventEventCard(props) {
                     {
                         tags.map((tagText, index) => {
                             return <li key={index}>
-                                <a href="#"
+                                <FuneventTag tagText={tagText} />
+                                {/* <a href="#"
                                     className="tag link"
                                     data-tag-name={tagText}
                                     onClick={tagOnClickHandler}
-                                >{tagText}</a>
+                                >{tagText}</a> */}
                             </li>;
                         })
                     }

@@ -23,6 +23,7 @@
     <script type="text/babel" src="./assets/js/Footer.jsx"></script>
     <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
     <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
     <script type="text/babel" src="./assets/js/Breadcrumb.jsx"></script>
 </head>
 
@@ -63,6 +64,21 @@
                 rating: {
                     score: 4.5,
                     amount: 115
+                },
+                date: "2024.10.06(三)",
+                address: {
+                    main: "臺北市中山區搖滾路一段搖滾弄321號",
+                    sub: "承曦樓六樓607教室"
+                },
+                founder: {
+                    name: "蘭響音樂教室",
+                    intro: "蘭響音樂教室是甜美號樂團的吉他手小黑於1994年成立的一個音樂教室，<br />長年以來一直致力於樂手培養、音樂製作等業務<br />蘭響今年即將邁入第三十個年頭，<br />希望在這而立之年使用更多元的方向做搖滾音樂的推廣與教學。<br />請大家多多指教！<br />",
+                    links: [
+                        {
+                            title: "蘭響音樂IG",
+                            link: "#"
+                        }
+                    ]
                 }
             });
 
@@ -88,7 +104,7 @@
 
             // 
 
-            // 舊js
+            // 從無框架版本移植過來的js
             useEffect(() => {
                 // TODO
                 // 價錢計算 => OK
@@ -334,13 +350,14 @@
                 }
 
                 // 報名按鈕
-                $("#sign-up-btn").click(() => {
+                $("#sign-up-btn").click((ev) => {
                     // 目前先直接跳轉
-                    location.href = "../Check/check.html";
+                    ev.preventDefault();
+                    location.href = "./check-step1.html";
                 });
 
 
-            }, [])
+            }, [eventData]);
 
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
@@ -393,7 +410,7 @@
                                                 <div className="title"><span>日</span><span>期：</span></div>
                                             </div>
                                             <div className="item-content-box">
-                                                <p className="text">2024.10.06(三)</p>
+                                                <p className="text">{eventData.date}</p>
                                                 <a href="#" className="add-calendar">加入行事曆</a>
                                             </div>
                                             <div className="item-title-box item-address">
@@ -401,8 +418,8 @@
                                                 <div className="title">活動地址：</div>
                                             </div>
                                             <div className="item-content-box">
-                                                <p className="text">臺北市中山區搖滾路一段搖滾弄321號</p>
-                                                <p className="sub-text">承曦樓六樓607教室</p>
+                                                <p className="text">{eventData.address.main}</p>
+                                                <p className="sub-text">{eventData.address.sub}</p>
                                                 <div className="open-map-box">
                                                     <a href="#" className="open-link-icon"></a>
                                                     <a href="#" className="open-map">地圖</a>
@@ -413,14 +430,14 @@
                                                 <div className="title">主辦單位：</div>
                                             </div>
                                             <div className="item-content-box">
-                                                <p className="text">蘭響音樂教室</p>
+                                                <p className="text">{eventData.founder.name}</p>
                                             </div>
                                             <div className="item-title-box item-link">
                                                 <div className="icon"></div>
                                                 <div className="title">相關連結：</div>
                                             </div>
                                             <div className="item-content-box">
-                                                <a href="#" className="text">蘭響音樂IG</a>
+                                                <a href={eventData.founder.links.link} className="text">{eventData.founder.links.title}</a>
                                                 <a href="#" className="open-link-icon"></a>
                                             </div>
                                         </div>
