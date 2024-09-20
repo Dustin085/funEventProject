@@ -70,7 +70,7 @@ function Chatroom({ isActive = false }) {
     useEffect(() => {
         let initMsgList = [
             {
-                avatarImgUrl: "./assets/images/member-default-avatar.png",
+                avatarImgUrl: "./assets/images/customer-service-logo.svg",
                 name: "FunEvent 小幫手",
                 text: "您好，我是FunEvent小幫手。<br />您今天好嗎？<br />很明顯我是用來湊字數的。<br />對於湊字數我還是略有涉略的。",
                 isFromUser: false
