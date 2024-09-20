@@ -39,6 +39,7 @@
             const [eventInfoYouMayLike, setEventInfoYouMayLike] = useState([]);
             // 活動各項資料
             const [eventData, setEventData] = useState({
+                id: 1,
                 breadcrumbData: [
                     {
                         title: "首頁",
@@ -79,7 +80,14 @@
                             link: "#"
                         }
                     ]
-                }
+                },
+                tags: [
+                    "#國小",
+                    "#國中",
+                    "#高中",
+                    "#吉他",
+                    "#流行音樂",
+                ]
             });
 
 
@@ -437,15 +445,22 @@
                                                 <div className="title">相關連結：</div>
                                             </div>
                                             <div className="item-content-box">
-                                                <a href={eventData.founder.links.link} className="text">{eventData.founder.links.title}</a>
-                                                <a href="#" className="open-link-icon"></a>
+                                                <a href={eventData.founder.links[0].link} className="text">{eventData.founder.links[0].title}</a>
+                                                <a href={eventData.founder.links[0].link} className="open-link-icon"></a>
                                             </div>
                                         </div>
                                         <div className="split-line-row"></div>
                                         <div className="tag-box">
                                             <div className="tag-icon"></div>
                                             <ul className="tag-list">
-                                                <li>
+                                                {
+                                                    eventData.tags.map((tagText, index) => {
+                                                        return <li key={index}>
+                                                            <FuneventTag tagText={tagText} />
+                                                        </li>;
+                                                    })
+                                                }
+                                                {/*<li>
                                                     <a href="#" className="tag">#國小</a>
                                                 </li>
                                                 <li>
@@ -459,7 +474,7 @@
                                                 </li>
                                                 <li>
                                                     <a href="#" className="tag">#流行音樂</a>
-                                                </li>
+                                                </li>*/}
                                             </ul>
                                         </div>
                                     </section>
