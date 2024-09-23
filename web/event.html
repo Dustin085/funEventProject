@@ -173,7 +173,7 @@
 
                 let eventId = getSearchParams("event_id", "1");
                 // 活動資料
-                axios.get(`https://dustin085.github.io/funEventProject/web/assets/json/demoEvent${eventId}.json`)
+                axios.get(`./assets/json/demoEvent${eventId}.json`)
                     .then((response) => setEventData(response.data))
                     .catch(function (error) {
                         console.log(error);
@@ -182,7 +182,7 @@
                     });
 
                 // 你可能會喜歡(暫時使用熱門推薦)
-                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoHot.json")
+                axios.get("./assets/json/eventInfoHot.json")
                     .then((response) => setEventInfoYouMayLike(response.data))
                     .catch((error) => console.log(error));
 
