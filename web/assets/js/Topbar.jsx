@@ -37,19 +37,25 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
     // 搜尋按鈕事件處理
     const searchBtnClickHandler = () => {
         setIsSearchDrawerActive(!isSearchDrawerActive);
+        hideFloatBtnBox();
         checkLogoColor();
         // location.href = "./search.html";
     };
 
-    const hideFloatBtnBox=()=>{
-
+    const hideFloatBtnBox = () => {
+        $(".float-btn-box").hide();
     };
 
     // 關閉搜尋抽屜
     const closeSearchDrawerHandler = () => {
         setIsSearchDrawerActive(!isSearchDrawerActive);
+        showFloatBtnBox();
         checkLogoColor();
-    }
+    };
+
+    const showFloatBtnBox = () => {
+        $(".float-btn-box").show();
+    };
 
     // 關閉overlay處理
     const closeOverlayHandler = (ev) => {
