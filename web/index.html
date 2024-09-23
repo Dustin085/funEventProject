@@ -21,11 +21,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTopicCard.jsx"></script>
+    <script type="text/babel"
+        src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel"
+        src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTopicCard.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/CarouselCardItem.jsx"></script>
+    <script type="text/babel"
+        src="https://dustin085.github.io/funEventProject/web/assets/js/CarouselCardItem.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
@@ -225,7 +228,7 @@
             // 打開抽屜
             const openSearchDrawer = () => {
                 setIsSearchDrawerActive(true);
-                console.log("focus");
+                console.log(isSearchDrawerActive);
             };
 
             // 搜尋處理程式，放置到要搜尋的地方就可以直接用了，會使用userSearchText做搜尋
@@ -260,7 +263,7 @@
                                     value={userSearchText}
                                     onChange={(ev) => { setUserSearchText(ev.target.value) }}
                                     onKeyUp={(ev) => { ev.key === "Enter" ? onSearchHandler() : null }}
-                                    onFocus={() => { openSearchDrawer() }}
+                                    onFocus={openSearchDrawer}
                                 />
                             </div>
                             <div className="carousel-area">

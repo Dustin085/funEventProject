@@ -23,7 +23,8 @@
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel"
+        src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Breadcrumb.jsx"></script>
     <!-- funEvent函式庫 -->
@@ -289,15 +290,24 @@
                     });
                 }
                 // 按下按鈕自動滾動
-                $(".event-inner-nav__btn").each((index, btn) => {
-                    let data = btn.dataset;
-                    let targetPos = $(`#${data.scrollto}`).offset();
-                    btn.addEventListener("click", function () {
-                        $("html, body").stop().animate({
-                            scrollTop: targetPos.top - $(".event-inner-nav").height()
-                        }, 350, "linear");
+                innerNavBtnAEL();
+
+                $(window).resize(()=>{
+                    innerNavBtnAEL();
+                })
+
+                function innerNavBtnAEL() {
+                    $(".event-inner-nav__btn").each((index, btn) => {
+                        let data = btn.dataset;
+                        let targetPos = $(`#${data.scrollto}`).offset();
+                        btn.addEventListener("click", function () {
+                            $("html, body").stop().animate({
+                                scrollTop: targetPos.top - $(".event-inner-nav").height()
+                            }, 350, "linear");
+                        });
                     });
-                });
+                }
+
 
                 /* 活動方案懸浮面板 */
                 // 面板一開始的位置

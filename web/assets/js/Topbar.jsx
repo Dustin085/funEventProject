@@ -45,11 +45,13 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
         setIsSearchDrawerActive(!isSearchDrawerActive);
         checkLogoColor();
     }
+
     // 關閉overlay處理
     const closeOverlayHandler = (ev) => {
         // console.log(ev);
         setIsLoginBoardActive(false);
     }
+
 
     function LocationSelector() {
         let result = (
