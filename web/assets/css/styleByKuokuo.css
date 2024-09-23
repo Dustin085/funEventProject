@@ -762,7 +762,7 @@ hr {
 .event {
     display: flex;
     /* justify-content:space-between; */
-    mask: url(../images/icon-new/票卷卡片.svg);
+    mask: url(https://dustin085.github.io/funEventProject/web/assets/images/icon-new/票卷卡片.svg);
     /* box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1); */
     filter: drop-shadow(0px 0px 5px 5px rgba(0, 0, 0, 0.1));
     position: relative;
@@ -841,7 +841,7 @@ hr {
     width: 240px;
     height: 150px;
     border-radius: 10px;
-    mask: url(../images/icon-new/折扣卷框.svg);
+    mask: url(https://dustin085.github.io/funEventProject/web/assets/images/icon-new/折扣卷框.svg);
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.8));
 
     /* display: flex;
