@@ -20,13 +20,13 @@
         integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
-    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventTopicCard.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
-    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
-    <script type="text/babel" src="./assets/js/CarouselCardItem.jsx"></script>
-    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTopicCard.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/CarouselCardItem.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
 </head>
@@ -79,31 +79,31 @@
             // 抓json資料
             useEffect(() => {
                 // 特色主題json
-                axios.get("./assets/json/eventTopicCardInfo.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventTopicCardInfo.json")
                     .then((response) => setEventTopicCardInfo(response.data))
                     .catch((error) => console.log(error));
 
                 // 分類卡片資料
-                axios.get("./assets/json/eventCategoryCardInfo.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventCategoryCardInfo.json")
                     .then((response) => setEventCategoryCardInfo(response.data))
                     .catch((error) => console.log(error));
 
                 // 活動資料
                 // 熱門推薦
-                axios.get("./assets/json/eventInfoHot.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoHot.json")
                     .then((response) => setEventInfoHot(response.data))
                     .catch((error) => console.log(error));
                 // 本週精選
-                axios.get("./assets/json/eventInfoThisWeek.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoThisWeek.json")
                     .then((response) => setEventInfoThisWeek(response.data))
                     .catch((error) => console.log(error));
                 // 最新上架
-                axios.get("./assets/json/eventInfoNew.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoNew.json")
                     .then((response) => setEventInfoNew(response.data))
                     .catch((error) => console.log(error));
 
                 // 最底輪播json
-                axios.get("./assets/json/eventInfoForBotCaro.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoForBotCaro.json")
                     .then((response) => setEventInfoForBotCaro(response.data))
                     .catch((error) => console.log(error));
             }, []);
@@ -220,7 +220,14 @@
                 clearTimeout(caroAutoPlayTimeoutId.current);
             }
 
+            // 控制搜尋抽屜開關
             const [isSearchDrawerActive, setIsSearchDrawerActive] = useState(false);
+            // 打開抽屜
+            const openSearchDrawer = () => {
+                setIsSearchDrawerActive(true);
+                console.log("focus");
+            };
+
             // 搜尋處理程式，放置到要搜尋的地方就可以直接用了，會使用userSearchText做搜尋
             const onSearchHandler = () => {
                 // 挑轉到搜尋頁
@@ -231,7 +238,7 @@
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
                 <div className="funevent-wrap">
                     {/*導航列*/}
-                    <Topbar noLocationSelector />
+                    <Topbar noLocationSelector isSearchDrawerActiveProp={isSearchDrawerActive} />
                     {/*色塊背景*/}
                     <div className="home-page-bg-color-block__block1"></div>
                     <div className="home-page-bg-color-block__block2"></div>
@@ -253,6 +260,7 @@
                                     value={userSearchText}
                                     onChange={(ev) => { setUserSearchText(ev.target.value) }}
                                     onKeyUp={(ev) => { ev.key === "Enter" ? onSearchHandler() : null }}
+                                    onFocus={() => { openSearchDrawer() }}
                                 />
                             </div>
                             <div className="carousel-area">

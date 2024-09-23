@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>結帳流程-填寫資料</title>
+    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
+    <link rel="stylesheet" href="./assets/css/styleByKuokuo.css">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- funevent的react元件 -->
+    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="./assets/js/MemberCenterSidebar.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        function App() {
+            const { useState, useEffect, useRef } = React;
+            useEffect(() => {
+                // 先直接跳轉到第二頁
+                document.querySelector(".pay-btn").addEventListener("click", () => {
+                    location.href = "./check-step2.html";
+                });
+            }, []);
+
+
+
+
+
+            return <>
+                {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
+                <div className="funevent-wrap">
+                    <Topbar noLocationSelector />
+                    <div className="member-center-bg-color-block">
+                        <div className="member-center-bg-color-block__block1"></div>
+                        <div className="member-center-bg-color-block__block2"></div>
+                        <div className="member-center-bg-color-block__block3"></div>
+                        <div className="member-center-bg-color-block__block4"></div>
+                    </div>
+                    <FloatBtnBox />
+                    <main>
+                        <section>
+                            <div class="order-details-up">
+                                <div class="step">
+                                    <div class="step1"></div>
+                                    <p>1.選擇方案</p>
+                                </div>
+                                <div class="step-hr"></div>
+                                <div class="step">
+                                    <div class="step2"></div>
+                                    <p>2.填寫資料</p>
+                                </div>
+                                <div class="step-hr"></div>
+                                <div class="step">
+                                    <div class="step3"></div>
+                                    <p>3.完成付款</p>
+                                </div>
+                                <div class="step-hr"></div>
+                                <div class="step">
+                                    <div class="step4"></div>
+                                    <p>4.領取票卷</p>
+                                </div>
+                            </div>
+                        </section>
+                        <section id="order-details-down">
+                            <div class="all-order-details">
+                                {/* 左邊訂購人資料 */}
+                                <div class="left-order-details">
+                                    <div class="orderdetails1">
+
+                                        <h3 class="title">訂購人資料</h3>
+                                        <div class="split-line-row"></div>
+                                        <div class="personal-info">
+                                            <div class="input-name">
+                                                <h4>姓氏*</h4>
+                                                <input class="input4" type="text" placeholder="請輸入姓氏" required />
+                                            </div>
+                                            <div class="input-name">
+                                                <h4>名字*</h4>
+                                                <input class="input4" type="text" placeholder="請輸入名字" required />
+                                            </div>
+                                        </div>
+                                        <div class="personal-info">
+                                            <div class="input-name">
+                                                <h4>手機號碼* </h4>
+                                                <input class="input4" type="text" placeholder="請輸入號碼" required />
+                                            </div>
+                                            <div class="input-name">
+                                                <h4>電子信箱*</h4>
+                                                <input class="input4" type="text" placeholder="請輸入信箱" required />
+                                            </div>
+                                        </div>
+                                        <div class="personal-btn"><input type="checkbox" />&nbsp;同會員資料(此網站的表單僅供練習展示，不具備收集或儲存資料的功能)
+                                        </div>
+
+                                    </div>
+                                    <div class="orderdetails">
+                                        <h3 class="title">使用或輸入折扣碼</h3>
+                                        <div class="split-line-row"></div>
+                                        <button class="use-coupon" type="submit">使用或輸入折扣碼</button>
+                                    </div>
+                                    <div class="orderdetails">
+                                        <h3 class="title">Fun點數折抵</h3>
+                                        <div class="split-line-row"></div>
+                                        <div><input type="checkbox" />&nbsp;點數折抵
+                                            <div>
+                                                <div class="pay-point"></div>
+                                                <p>10</p>
+                                            </div>
+                                        </div>
+                                        <div class="things-to-note"><small>注意事項：<br />
+                                            <li>Fun點數可用於購買FunEvent平台上的部分商品或票券，但每筆交易的點數折抵上限可能有所不同，詳情請參考商品或票券頁面。</li>
+                                            <li>Fun點數自獲得之日起有一定的有效期限，請在有效期限內使用，逾期未使用的點數將自動失效，無法延長或恢復。</li>
+                                            <li>點數僅能折抵購物金額，無法兌換現金或其他實物，也無法轉讓給他人或在其他帳號間共享使用。</li>
+                                            <li>若因訂單取消或商品退貨而需要退款，已使用的Fun點數將依平台規定退還，部分情況下可能無法退還。</li>
+                                        </small>
+                                        </div>
+                                    </div>
+                                    <div class="orderdetails">
+                                        <h3 class="title">取票方式</h3>
+                                        <div class="split-line-row"></div>
+                                        <div><input type="checkbox" class="" />&nbsp;電子票</div>
+                                        <div class="things-to-note"><small>您可以通過FunEvent網站或App來查看電子票，建議使用支援Android 10.0或iOS
+                                            12.4.6以上版本的智慧型手機下載App。訂購完成後，電子票將自動存入票匣。網站用戶可點擊右上角的票券圖標，App用戶則可點擊下方的票匣選項。如果重整頁面後票券未顯示，請聯繫客服中心。入場時，請登入FunEvent網站或App並出示電子票，並確保裝置有足夠的電量，以免影響入場；翻拍或擷取的電子票無法通過驗票。請查詢提供電子票服務的演出場館及主辦單位，部分節目僅提供電子票，詳細資訊請參考節目頁面的購票方式說明。</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                {/* 右邊訂單明細 */}
+                                <div class="right-order-details">
+                                    <div class="right-orderdetails">
+                                        <div class="pay-orderdetails">
+                                            <h3 class="title">訂單明細</h3>
+                                            <div class="split-line-row"></div>
+                                            <div class="right-pic">
+                                                <img src="./assets/images/event01/event1-pic01.jpg" alt="" />
+                                                <div class="right-tickets-info">
+                                                    <h4>流行音樂與民謠吉他-第一堂吉他課的首選</h4>
+                                                    <p>親子一同彈</p>
+                                                    <div class="tickets-info">
+                                                        <p>票卷x2</p>
+                                                        <p>NT$ 1000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="split-line-row"></div>
+                                            <div>
+                                                <div class="price-box">
+                                                    <small>點數折抵</small>
+                                                    <div class="point-box">
+                                                        <p>10</p>
+                                                        <div class="pay-point-y"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="price-box">
+                                                    <p>總金額</p>
+                                                    <div class="price">
+                                                        <p>NT$</p>
+                                                        <p>1000</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="pay-btn" type="submit">下一步</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </main>
+                    <Footer />
+                </div>
+            </>
+        }
+
+
+
+
+        ReactDOM
+            .createRoot(document.getElementById("root"))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

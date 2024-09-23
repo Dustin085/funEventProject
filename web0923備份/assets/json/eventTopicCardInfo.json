@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "title": "健康運動",
+        "imgUrl": "./assets/images/event-pic/cycling.jpg",
+        "link": "./search.html?search_query=健康運動"
+    },
+    {
+        "id": 2,
+        "title": "特色音樂",
+        "imgUrl": "./assets/images/topic-pic02.jpg",
+        "link": "./search.html?search_query=特色音樂"
+    },
+    {
+        "id": 3,
+        "title": "親子同樂",
+        "imgUrl": "./assets/images/event-pic/ball.jpg",
+        "link": "./search.html?search_query=親子同樂"
+    },
+    {
+        "id": 4,
+        "title": "藝術彩繪",
+        "imgUrl": "./assets/images/topic-pic04.jpg",
+        "link": "./search.html?search_query=藝術彩繪"
+    },
+    {
+        "id": 5,
+        "title": "團康遊戲",
+        "imgUrl": "./assets/images/event-pic/tablegame.jpg",
+        "link": "./search.html?search_query=團康遊戲"
+    },
+    {
+        "id": 6,
+        "title": "游泳戲水",
+        "imgUrl": "./assets/images/topic-pic06.jpg",
+        "link": "./search.html?search_query=游泳戲水"
+    },
+    {
+        "id": 7,
+        "title": "益智動腦",
+        "imgUrl": "./assets/images/topic-pic07.jpg",
+        "link": "./search.html?search_query=益智動腦"
+    },
+    {
+        "id": 8,
+        "title": "冒險探索",
+        "imgUrl": "./assets/images/event-pic/discover.jpg",
+        "link": "./search.html?search_query=冒險探索"
+    }
+]

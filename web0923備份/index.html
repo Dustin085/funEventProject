@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動趣 FunEvent</title>
+    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- funevent的react元件 -->
+    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTopicCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/CarouselCardItem.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+    <!-- funEvent函式庫 -->
+    <script src="./assets/js/funEventUtil.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        // 分類卡片元件
+        function CategoryCard(props) {
+            return <>
+                <li>
+                    <a href={props.link} className="category-card">
+                        <div className="category-card-icon" style={{ backgroundImage: `url(${props.bgImgUrl})` }}></div>
+                        <h4 className="title">{props.title}</h4>
+                    </a>
+                </li>
+            </>
+        }
+
+        // 主要大標題
+        function FuneventMainTitle({ title = "熱門推薦", moreBtnActive = false }) {
+            const MoreBtn = () => {
+                return moreBtnActive ? <button className="more-btn" type="button" onClick={moreBtnClickHandler}>觀看更多</button> : <></>;
+            }
+            const moreBtnClickHandler = () => {
+                location.href = "./search.html";
+            };
+            return <>
+                <h2 className="funevent-main-title">{title}<MoreBtn /></h2>
+            </>
+        }
+
+
+        function App() {
+            const { useState, useEffect, useRef } = React;
+
+            // 使用者搜尋文字
+            const [userSearchText, setUserSearchText] = useState("");
+
+            /* 抓json */
+            const [eventTopicCardInfo, setEventTopicCardInfo] = useState([]);
+            const [eventInfoForBotCaro, setEventInfoForBotCaro] = useState([]);
+            const [eventCategoryCardInfo, setEventCategoryCardInfo] = useState([]);
+            const [eventInfoHot, setEventInfoHot] = useState([]);
+            const [eventInfoThisWeek, setEventInfoThisWeek] = useState([]);
+            const [eventInfoNew, setEventInfoNew] = useState([]);
+            // 抓json資料
+            useEffect(() => {
+                // 特色主題json
+                axios.get("./assets/json/eventTopicCardInfo.json")
+                    .then((response) => setEventTopicCardInfo(response.data))
+                    .catch((error) => console.log(error));
+
+                // 分類卡片資料
+                axios.get("./assets/json/eventCategoryCardInfo.json")
+                    .then((response) => setEventCategoryCardInfo(response.data))
+                    .catch((error) => console.log(error));
+
+                // 活動資料
+                // 熱門推薦
+                axios.get("./assets/json/eventInfoHot.json")
+                    .then((response) => setEventInfoHot(response.data))
+                    .catch((error) => console.log(error));
+                // 本週精選
+                axios.get("./assets/json/eventInfoThisWeek.json")
+                    .then((response) => setEventInfoThisWeek(response.data))
+                    .catch((error) => console.log(error));
+                // 最新上架
+                axios.get("./assets/json/eventInfoNew.json")
+                    .then((response) => setEventInfoNew(response.data))
+                    .catch((error) => console.log(error));
+
+                // 最底輪播json
+                axios.get("./assets/json/eventInfoForBotCaro.json")
+                    .then((response) => setEventInfoForBotCaro(response.data))
+                    .catch((error) => console.log(error));
+            }, []);
+
+            /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
+            const carouselEle = useRef(null);
+            const caroCtrlBoxEle = useRef(null);
+            const [isCaroLoaded, setIsCaroLoaded] = useState(false);
+            // 校對控制器的位置
+            const correctCaroCtrlBoxPos = function () {
+                let carouselRect = carouselEle.current.getBoundingClientRect();
+                let bodyRect = document.body.getBoundingClientRect();
+                caroCtrlBoxEle.current.style.left = (carouselRect.x + (carouselRect.width / 2)) + "px";
+                // style的top是從整個網頁的最上方開始計算的，故需要加回已經捲動的量，
+                // bodyRect.top可視為視窗頂到body最上面的距離，在已經捲動的情況下，它會是一個負數
+                caroCtrlBoxEle.current.style.top = (carouselRect.top + carouselRect.height - bodyRect.top) + "px";
+                caroCtrlBoxEle.current.style.transform = "translateX(-50%)";
+            };
+            /* 校對hoverArea的位置和寬高 */
+            const carouselHoverAreaEle = useRef(null);
+            const correctCaroHoverArea = function () {
+                let carouselRect = carouselEle.current.getBoundingClientRect();
+                let bodyRect = document.body.getBoundingClientRect();
+                carouselHoverAreaEle.current.style.left = carouselRect.x + "px";
+                carouselHoverAreaEle.current.style.top = (carouselRect.top - bodyRect.top) + "px";
+                carouselHoverAreaEle.current.style.width = carouselRect.width + "px";
+                carouselHoverAreaEle.current.style.height = carouselRect.height + "px";
+            };
+            // 每次視窗大小改變時校對
+            window.onresize = () => {
+                correctCaroCtrlBoxPos();
+                correctCaroHoverArea();
+            };
+            // 等到輪播圖片渲染完成後第一次校對
+            useEffect(() => {
+                // 若沒有setTimeout的話會差大約10px，未知原因
+                setTimeout(() => {
+                    correctCaroCtrlBoxPos();
+                    correctCaroHoverArea();
+                }, 100);
+
+                changeSlide();
+
+                // 製造hover效果，這是一個複雜的關係，我們hover到一個hover區域，然後改變slide裡面的overlay
+                let hoverArea = document.querySelector(".carousel-hover-area");
+                hoverArea.addEventListener("mouseover", () => {
+                    document.querySelector(".slide-overlay").style.opacity = 0.3;
+                    stopCaroAutoPlay();
+                });
+                hoverArea.addEventListener("mouseout", () => {
+                    document.querySelector(".slide-overlay").style.opacity = 0;
+                    let slideArr = Array.from(carouselEle.current.querySelector(".slide-box").querySelectorAll(".slide"));
+                    let localActiveSlide = 0;
+                    slideArr.forEach((slide, index) => {
+                        if ([...slide.classList].includes("active")) {
+                            localActiveSlide = index;
+                        }
+                    });
+                    startCaroAutoPlay(localActiveSlide);
+                });
+
+                hoverArea.addEventListener("click", () => {
+                    toEventPageHandler("2");
+                });
+            }, [isCaroLoaded]);
+
+            /* Slide切換功能 */
+            // Slide組件
+            // function Slide({ imgUrl }) {
+            //     return <figure className="slide"><img src={imgUrl} alt="" /></figure>;
+            // }
+            const [activeSlide, setActiveSlide] = useState(0);
+            // 抓slideBox
+            const slideBox = useRef(null);
+            const ctrlBtnBox = useRef(null);
+
+            const caroAutoPlayTimeoutId = useRef(null);
+
+            // 當activeSlide改變時
+            useEffect(() => {
+                // 切換slide的active
+                changeSlide();
+                // 自動輪播
+                startCaroAutoPlay(activeSlide);
+            }, [activeSlide]);
+
+            let slideUrls = [
+                "./assets/images/home-page-caro-slide1.jpg",
+                "./assets/images/home-page-caro-slide2.jpg",
+                "./assets/images/home-page-caro-slide3.jpg",
+                "./assets/images/home-page-caro-slide4.jpg",
+                "./assets/images/home-page-caro-slide5.jpg",
+            ];
+
+            // 透過增減active來改變顯示的slide
+            function changeSlide() {
+                let slideArr = Array.from(slideBox.current.getElementsByClassName("slide"));
+                let ctrlBtnArr = Array.from(ctrlBtnBox.current.getElementsByClassName("ctrl-btn"));
+                switchActive(slideArr, activeSlide);
+                switchActive(ctrlBtnArr, activeSlide);
+            }
+
+            // 開始自動播放
+            function startCaroAutoPlay(activeSlide) {
+                clearTimeout(caroAutoPlayTimeoutId.current);
+                let autoPlayDuration = 3000;
+                caroAutoPlayTimeoutId.current = setTimeout(() => {
+                    setActiveSlide(cyclingNum(activeSlide, 1, 4));
+                }, autoPlayDuration);
+            }
+
+            // 停止自動播放
+            function stopCaroAutoPlay() {
+                clearTimeout(caroAutoPlayTimeoutId.current);
+            }
+
+            // 控制搜尋抽屜開關
+            const [isSearchDrawerActive, setIsSearchDrawerActive] = useState(false);
+            // 打開抽屜
+            const openSearchDrawer = () => {
+                setIsSearchDrawerActive(true);
+                console.log("focus");
+            };
+
+            // 搜尋處理程式，放置到要搜尋的地方就可以直接用了，會使用userSearchText做搜尋
+            const onSearchHandler = () => {
+                // 挑轉到搜尋頁
+                location.href = "./search.html?" + "search_query=" + userSearchText;
+            };
+
+            return <>
+                {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
+                <div className="funevent-wrap">
+                    {/*導航列*/}
+                    <Topbar noLocationSelector isSearchDrawerActiveProp={isSearchDrawerActive} />
+                    {/*色塊背景*/}
+                    <div className="home-page-bg-color-block__block1"></div>
+                    <div className="home-page-bg-color-block__block2"></div>
+                    <div className="home-page-bg-color-block-small__block1"></div>
+                    <div className="home-page-bg-color-block-small__block2"></div>
+                    <div className="home-page-bg-color-block-small__block3"></div>
+                    <div className="home-page-bg-color-block-small__block4"></div>
+                    <div className="home-page-bg-color-block-small__block5"></div>
+                    <div className="home-page-bg-color-block-small__block6"></div>
+                    {/*漂浮按鈕*/}
+                    <FloatBtnBox />
+                    <main>
+                        {/*第一頁面*/}
+                        <section id="home-page-first-view">
+                            <div className="logo-area">
+                                <div className="logo-tc"><figure><img src="./assets/images/logo-tc.svg" alt="活動趣中文logo" /></figure></div>
+                                <h2 className="slogan">探索，一切可能</h2>
+                                <input type="text" className="home-page-search-bar" placeholder="推薦活動名字"
+                                    value={userSearchText}
+                                    onChange={(ev) => { setUserSearchText(ev.target.value) }}
+                                    onKeyUp={(ev) => { ev.key === "Enter" ? onSearchHandler() : null }}
+                                    onFocus={() => { openSearchDrawer() }}
+                                />
+                            </div>
+                            <div className="carousel-area">
+                                <div className="carousel" ref={carouselEle} onLoad={() => { setIsCaroLoaded(true) }}>
+
+                                    <div className="slide-box" ref={slideBox}>
+                                        {/*
+                                            slideUrls.map((slideUrl, index) => {
+                                                return <Slide key={index} imgUrl={slideUrl} />;
+                                            })
+                                        */}
+                                        <figure className="slide"><img src={slideUrls[0]} alt="" /></figure>
+                                        <figure className="slide"><img src={slideUrls[1]} alt="" /></figure>
+                                        <figure className="slide"><img src={slideUrls[2]} alt="" /></figure>
+                                        <figure className="slide"><img src={slideUrls[3]} alt="" /></figure>
+                                        <figure className="slide"><img src={slideUrls[4]} alt="" /></figure>
+                                        {/*<figure className="slide"><img src="./assets/images/home-page-caro-slide1.jpg" alt="" /></figure>*/}
+                                    </div>
+
+                                    <div className="slide-overlay"></div>
+
+                                </div>
+                            </div>
+                            <div className="ctrl-box" ref={caroCtrlBoxEle}>
+                                <button type="button" className="arrow arrow--prev" id="caro-prev-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, -1, 4)) }} ></button>
+                                <div className="ctrl-btn-box" ref={ctrlBtnBox}>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(0) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(1) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(2) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(3) }}></button>
+                                    <button type="button" className="ctrl-btn" onClick={() => { setActiveSlide(4) }}></button>
+                                </div>
+                                <button type="button" className="arrow arrow--next" id="caro-next-btn" onClick={() => { setActiveSlide(cyclingNum(activeSlide, 1, 4)) }}></button>
+                            </div>
+                            <svg width="936" height="607" viewBox="0 0 936 607" fill="none" xmlns="http://www.w3.org/2000/svg" className="carousel-hover-area-box" ref={carouselHoverAreaEle} >
+                                {/* 把hover觸發做在這一層，才不會整個長方形都是hover區域 */}
+                                <g className="carousel-hover-area">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M361.302 59.8489C474.408 38.7982 586.599 -28.6303 691.032 13.6759C819.197 65.5956 931.402 172.209 935.008 292.258C938.651 413.561 833.555 526.122 708.203 585.348C602.989 635.058 478.751 586.265 361.302 563.318C280.149 547.463 206.987 521.983 144.706 475.255C77.2137 424.619 -1.23394 368.511 0.0147165 292.258C1.25617 216.445 79.2162 160.186 150.617 114.255C211.356 75.1827 286.748 73.7244 361.302 59.8489Z" fill="black" />
+                                </g>
+                            </svg>
+                            {/*<object data="./assets/images/mask-for-home-page-carousel.svg" type="image/svg+xml" className="carousel-hover-area" ref={carouselHoverAreaEle}></object>*/}
+                        </section>
+                        {/*分類小卡列表*/}
+                        <section id="home-page-event-category">
+                            <ul className="event-category-list">
+                                {/*迴圈產生分類卡片*/}
+                                {
+                                    eventCategoryCardInfo.map((item) => {
+                                        const { id, title, bgImgUrl, link } = item;
+                                        return <CategoryCard key={id} title={title} bgImgUrl={bgImgUrl} link={link} />;
+                                    })
+                                }
+                            </ul>
+                        </section>
+                        {/*活動推薦總成*/}
+                        <div className="home-page-event-list-box">
+                            <div className="home-page-event-list-box-wrap">
+                                {/*特色主題*/}
+                                <section id="home-page-topic-list">
+                                    <FuneventMainTitle title="特色主題" />
+                                    {/*特色主題小卡列表*/}
+                                    <div className="topic-list-box">
+                                        <div className="topic-list">
+                                            {
+                                                Array.from(eventTopicCardInfo).map((item, index) => {
+                                                    if (index < 4) {
+                                                        const { id, title, imgUrl, link } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} link={link} />
+                                                    }
+                                                })
+                                            }
+                                            {/*<FuneventTopicCard />
+                                            <FuneventTopicCard />
+                                            <FuneventTopicCard />
+                                            <FuneventTopicCard />*/}
+                                        </div>
+                                        <div className="topic-list">
+                                            {
+                                                Array.from(eventTopicCardInfo).map((item, index) => {
+                                                    if (index >= 4) {
+                                                        const { id, title, imgUrl, link } = item;
+                                                        return <FuneventTopicCard key={id} title={title} bgUrl={imgUrl} link={link} />
+                                                    }
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                </section>
+                                {/*活動列表推薦*/}
+                                <section id="home-page-event-card-list-box">
+                                    {/*熱門推薦*/}
+                                    <div className="event-box event-box-hot">
+                                        <FuneventMainTitle title="熱門推薦" />
+                                        <ul className="event-card-list">
+                                            {
+                                                eventInfoHot.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                    {/*本週精選*/}
+                                    <div className="event-box event-box-hits-this-week">
+                                        <FuneventMainTitle title="本週精選" />
+                                        <ul className="event-card-list">
+                                            {
+                                                eventInfoThisWeek.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                    {/*最新上架*/}
+                                    <div className="event-box event-box-new">
+                                        <FuneventMainTitle title="最新上架" />
+                                        <ul className="event-card-list">
+                                            {
+                                                eventInfoNew.map((event, index) => {
+                                                    return <li key={index}> <FuneventEventCard data={event} /> </li>
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+
+                        </div>
+
+                        <section id="home-page-event-news">
+                            <div className="home-page-event-news-wrap">
+                                <FuneventMainTitle title="活動快訊" />
+                                <div className="carousel">
+                                    <button type="button" className="arrow arrow--prev" id="news-caro-prev-btn"></button>
+                                    <ul className="carousel-card-list">
+                                        {
+                                            Array.from(eventInfoForBotCaro).map((item, index) => {
+                                                const { title, imgUrl } = item;
+                                                return <li key={index}><CarouselCardItem
+                                                    key={index}
+                                                    title={title}
+                                                    imgUrl={imgUrl}
+                                                /></li>
+                                            })
+                                        }
+                                        {/*
+                                        <li><CarouselCardItem key={1} /></li>
+                                        <li><CarouselCardItem key={2} /></li>
+                                        <li><CarouselCardItem key={3} /></li>
+                                        */}
+                                    </ul>
+                                    <button type="button" className="arrow arrow--next" id="news-caro-next-btn"></button>
+                                </div>
+                            </div>
+                        </section>
+                        <Footer />
+                    </main>
+                </div>
+            </>
+        }
+
+
+
+
+        ReactDOM
+            .createRoot(document.getElementById("root"))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

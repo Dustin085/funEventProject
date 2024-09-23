@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動名稱-活動趣 FunEvent</title>
+    <link rel="stylesheet" href="./assets/css/styleByDustin.css">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.5/axios.min.js"
+        integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- funevent的react元件 -->
+    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="./assets/js/Breadcrumb.jsx"></script>
+    <!-- funEvent函式庫 -->
+    <script src="./assets/js/funEventUtil.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+
+        function App() {
+            const { useState, useEffect, useRef } = React;
+
+            const [eventInfoYouMayLike, setEventInfoYouMayLike] = useState([]);
+            // 活動各項資料
+            const [eventData, setEventData] = useState({
+                id: 1,
+                title: "",
+                introduction: [
+                    {
+                        title: "活動介紹",
+                        content: ""
+                    },
+                    {
+                        title: "師資介紹",
+                        content: ""
+                    },
+                    {
+                        title: "活動流程",
+                        content: ""
+                    }
+                ],
+                breadcrumbData: [
+                    {
+                        title: "首頁",
+                        link: "./index.html"
+                    },
+                    {
+                        title: "雙北",
+                        link: "./search.html?search_query=雙北"
+                    },
+                    {
+                        title: "音樂律動",
+                        link: "./search.html?search_query=音樂律動"
+                    }
+                ],
+                slideUrls: [
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                ],
+                rating: {
+                    score: 4.5,
+                    amount: 115
+                },
+                date: "",
+                address: {
+                    main: "",
+                    sub: ""
+                },
+                founder: {
+                    name: "",
+                    intro: "",
+                    links: [
+                        {
+                            title: "",
+                            link: "#"
+                        }
+                    ]
+                },
+                tags: [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                ],
+                plans: [
+                    {
+                        title: "",
+                        content: "",
+                        price: 500
+                    },
+                    {
+                        title: "",
+                        content: "",
+                        price: 300
+                    }
+                ],
+                timeSlots: [
+                    "",
+                    ""
+                ],
+                ticketTypes: [
+                    {
+                        title: "",
+                        sub: ""
+                    },
+                ],
+                warningContent: {
+                    title: "",
+                    content: ""
+                },
+                commentItems: [
+                    {
+                        userName: "",
+                        userAvatarUrl: "",
+                        date: "",
+                        ratingScore: 5,
+                        content: "",
+                        picArr: [
+                            "",
+                            "",
+                            ""
+                        ]
+                    },
+                    {
+                        userName: "",
+                        userAvatarUrl: "",
+                        date: "",
+                        ratingScore: 4,
+                        content: "",
+                        picArr: [
+                            "",
+                            "",
+                            ""
+                        ]
+                    }
+                ]
+            });
+
+
+            // 抓json
+            useEffect(() => {
+
+                let eventId = getSearchParams("event_id", "1");
+                // 活動資料
+                axios.get(`./assets/json/demoEvent${eventId}.json`)
+                    .then((response) => setEventData(response.data))
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("查無此活動，確定後將跳轉回FunEvent首頁，造成不便，敬請見諒");
+                        location.href = "./index.html";
+                    });
+
+                // 你可能會喜歡(暫時使用熱門推薦)
+                axios.get("./assets/json/eventInfoHot.json")
+                    .then((response) => setEventInfoYouMayLike(response.data))
+                    .catch((error) => console.log(error));
+
+            }, [])
+
+            // 依照活動名稱改變分頁的名稱，先直接寫死-待辦
+            useEffect(() => {
+                let eventName = eventData.title;
+                document.title = eventName + "-活動趣 FunEvent";
+            }, [eventData]);
+
+            // 
+
+            // 從無框架版本移植過來的js
+            useEffect(() => {
+                // TODO
+                // 價錢計算 => OK
+                // 內部導航按鈕變色
+                // fix: 元素會跟不上捲動
+
+                /* 活動照輪播 */
+                let slideEleArr = Array.from(document.querySelector(".event-intro-carousel").querySelectorAll(".slide"));
+                let ctrlBtnEleArr = Array.from(document.querySelector(".event-intro-carousel__ctrl-box").querySelectorAll(".ctrl-btn"));
+                let goPrevBtnEle = document.querySelector("#caro-prev-btn");
+                let goNextBtnEle = document.querySelector("#caro-next-btn");
+                let caroActiveIndex = 0;
+
+                // cyclingNum和switchActive寫在funEventUtil.js裡面
+                goNextBtnEle.addEventListener("click", function () {
+                    const goNum = 1;
+                    const topNum = slideEleArr.length - 1;
+                    caroActiveIndex = cyclingNum(caroActiveIndex, goNum, topNum);
+                    updateCaro();
+                });
+
+                goPrevBtnEle.addEventListener("click", function () {
+                    const goNum = -1;
+                    const topNum = slideEleArr.length - 1;
+                    caroActiveIndex = cyclingNum(caroActiveIndex, goNum, topNum);
+                    updateCaro();
+                });
+
+                ctrlBtnEleArr.forEach((ctrlBtn, index) => {
+                    ctrlBtn.addEventListener("click", function () {
+                        caroActiveIndex = index;
+                        updateCaro();
+                    });
+                });
+
+                // 依照現在的caroActiveIndex更新輪播
+                function updateCaro() {
+                    switchActive(slideEleArr, caroActiveIndex);
+                    switchActive(ctrlBtnEleArr, caroActiveIndex);
+                }
+
+                /* 蒐藏按鈕 */
+                document.getElementById("event-fav-btn").onclick = function () {
+                    $("#event-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+                };
+                document.getElementById("founder-fav-btn").onclick = function () {
+                    $("#founder-fav-btn .add-fav-icon").toggleClass("add-fav-icon--faved");
+                };
+
+                /* 內部導覽列 */
+                // 內部導覽列的原始位置
+                let innerNavOriginTop = $(".event-inner-nav").position().top;
+
+                // 滾動時
+                $(window).scroll(function (ev) {
+                    let eventInnerNav = $(".event-inner-nav");
+                    let navBtns = $(".event-inner-nav .event-inner-nav__btn")
+                    // 移動超過內部導覽列一開始的位置後
+                    if ($(this).scrollTop() > innerNavOriginTop) {
+                        // 移動
+                        // $(".event-inner-nav").css('position', "sticky");
+                        $(".event-inner-nav").css('top', $(this).scrollTop() - innerNavOriginTop);
+                        // 改變圓角
+                        $.each(navBtns, (index, btn) => {
+                            btn.style.borderRadius = "0px";
+                        });
+                    } else {
+                        $(".event-inner-nav").css('top', 0);
+                        $.each(navBtns, (index, btn) => {
+                            btn.style.borderRadius = "20px 20px 0 0";
+                        });
+                    }
+                });
+                // 介於特定位置時按鈕變色
+                let navBtns = document.querySelectorAll(".event-inner-nav__btn");
+                // 區間分界線
+                let zoneLines = [];
+                // 把區間分界線push進陣列中，利用事先寫在html標籤內的data-scroollto來取得該頁籤對應的目標區間
+                for (let i = 0; i < navBtns.length; i++) {
+                    // 最後要減去內部導航列的高度，多減1px可以防止小數點帶來的錯誤
+                    zoneLines.push($(`#${navBtns[i].dataset.scrollto}`).offset().top - $(".event-inner-nav").outerHeight() - 1);
+                }
+                // 把body的結尾當成最後一條線
+                zoneLines.push($("body").offset().top + $("body").outerHeight());
+                // 設定捲動到區間分界線之間時，對應該區間的頁籤會變色
+                for (let i = 0; i < navBtns.length; i++) {
+                    $(window).scroll(function () {
+                        // let startLine = $(`#${navBtns[i].dataset.scrollto}`).offset().top;
+                        // let endLine = $(`#${navBtns[i + 1].dataset.scrollto}`).offset().top;
+                        if ($(this).scrollTop() >= zoneLines[i] && $(this).scrollTop() < zoneLines[i + 1]) {
+                            navBtns[i].classList.add("active");
+                        } else {
+                            navBtns[i].classList.remove("active");
+                        }
+                    });
+                }
+                // 按下按鈕自動滾動
+                $(".event-inner-nav__btn").each((index, btn) => {
+                    let data = btn.dataset;
+                    let targetPos = $(`#${data.scrollto}`).offset();
+                    btn.addEventListener("click", function () {
+                        $("html, body").animate({
+                            scrollTop: targetPos.top - $(".event-inner-nav").height()
+                        }, 350, "linear");
+                    });
+                });
+
+                /* 活動方案懸浮面板 */
+                // 面板一開始的位置
+                let planBoardOriginTop = $(".event-plan-board").offset().top;
+                // row-gap，css內網格對齊時使用的row-gap，此網格容器最後會有一點多餘的row-gap
+                let rowGap = 25;
+                // 面板終點的底部位置
+                let planBoardEndBot = $(".event-introduction-container").offset().top + $(".event-introduction-container").height() - rowGap;
+                // console.log(planBoardEndBot);
+
+                // 面板與最上的間隙
+                let planBoardGap = 15;
+                $(window).scroll(function (ev) {
+
+                    // 移動超過方案面板一開始的位置後
+                    if ($(this).scrollTop() + planBoardGap > planBoardOriginTop && $(this).scrollTop() < planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardGap) {
+                        // 移動
+                        // $(".event-plan-board").css("position", "sticky");
+                        $(".event-plan-board").css('top', $(this).scrollTop() - planBoardOriginTop + planBoardGap);
+                    } else if ($(this).scrollTop() + planBoardGap < planBoardOriginTop) {
+                        $(".event-plan-board").css('top', 0);
+                    } else if ($(this).scrollTop() > planBoardEndBot - $(".event-plan-board").outerHeight() + planBoardGap) {
+                        // console.log($(".event-plan-board").height());
+                        $(".event-plan-board").css('top', planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardOriginTop);
+                    }
+                })
+
+                /* 活動金額計算 */
+                // 一開始先跑一次金額和切換金額欄位顯示以防萬一
+                calcTotalPrice();
+                switchPriceDisplay();
+                // 改變表單時計算金額和切換顯示
+                $("#plan").change(function () {
+                    switchPriceDisplay();
+                    calcTotalPrice();
+                });
+                // 減號按鈕
+                $(".minus-btn").click(function () {
+                    // 如果票數-1之後仍大於0則-1
+                    if (Number($(".ticket-amount-box .amount").text()) - 1 > 0) {
+                        $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) - 1);
+                    }
+                    calcTotalPrice();
+                });
+                // 加號按鈕
+                $(".plus-btn").click(function () {
+                    // 票數加1
+                    $(".ticket-amount-box .amount").text(Number($(".ticket-amount-box .amount").text()) + 1);
+                    calcTotalPrice();
+                });
+                // 方案介紹區塊的按鈕
+                let planChooseBtnArr = document.querySelectorAll("#event-page-plan-intro .plan-choose-btn");
+                planChooseBtnArr.forEach((btn, index) => {
+                    btn.addEventListener("click", function () {
+                        // 方案下拉選單
+                        let planSelect = document.getElementById("plan");
+                        // 方案下拉選單的選項陣列
+                        let planOpts = planSelect.getElementsByTagName("option");
+                        // 按鈕的index + 1剛好是該被選擇的選項
+                        planOpts[index + 1].selected = true;
+                        // 不會觸發選單的change所以要刷新金額跟切換顯示
+                        calcTotalPrice();
+                        switchPriceDisplay();
+                    });
+                })
+
+                // 依照選單選項計算金額並直接修改.total-price的數字
+                function calcTotalPrice() {
+                    let totalPrice = 0;
+                    // 取得各票種的票價(照上下順序取得)
+                    let priceArr = $.map($("#event-page-plan-intro .plan-list .price"), function (ele, index) {
+                        return ele.textContent;
+                    });
+                    // 取得票種選擇器
+                    let planSelect = $("#plan");
+                    let planSelectIndex = planSelect.find("option:selected").index();
+                    // 取得票數
+                    let amount = $(".ticket-amount-box .amount").text();
+                    if (planSelectIndex != 0) {
+                        totalPrice = priceArr[planSelectIndex - 1] * amount;
+                    }
+                    // 修改票價
+                    $(".event-plan-board .total-price").text(totalPrice);
+                    calcFunPoint();
+                    function calcFunPoint() {
+                        $(".event-plan-board .fun-point").text($(".event-plan-board .total-price").text() / 100);
+                    }
+                    // 判斷減號按鈕要不要disabled
+                    if (Number($(".ticket-amount-box .amount").text() <= 1)) {
+                        $(".minus-btn").addClass("disabled");
+                    } else {
+                        $(".minus-btn").removeClass("disabled");
+                    }
+                }
+
+                // 切換顯示總金額
+                function switchPriceDisplay() {
+                    let switchedEleArr = [$(".ticket-amount-box"), $(".event-plan-board .price-box"), $(".fun-point-box")];
+                    if (($("#plan").find("option:selected").index() != 0)) {
+                        switchedEleArr.forEach(function (ele) {
+                            ele.css("display", "flex");
+                        });
+                    } else {
+                        switchedEleArr.forEach(function (ele) {
+                            ele.css("display", "none");
+                        });
+                    }
+                }
+
+                // 報名按鈕
+                $("#sign-up-btn").click((ev) => {
+                    // 目前先直接跳轉
+                    ev.preventDefault();
+                    location.href = "./check-step1.html";
+                });
+
+
+            }, [eventData]);
+
+            return <>
+                {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
+                <div className="funevent-wrap">
+                    <Topbar noLocationSelector />
+                    {/* 色塊背景 */}
+                    <div className="event-bg-color-block">
+                        <div className="event-bg-color-block__block1"></div>
+                        <div className="event-bg-color-block__block2"></div>
+                    </div>
+                    <FloatBtnBox />
+                    <main>
+                        <div id="event-introduction">
+                            <div className="event-introduction-wrapper">
+                                {/* 麵包屑 */}
+                                <Breadcrumb data={eventData.breadcrumbData} />
+                                {/* 所有活動內容容器(grid) */}
+                                <div className="event-introduction-container">
+                                    {/* 活動圖片輪播 */}
+                                    <div className="event-intro-carousel">
+                                        <div className="slide-box">
+                                            {
+                                                eventData.slideUrls.map((url, index) => {
+                                                    return <Slide key={index} imgUrl={url} isActive={index === 0} />
+                                                })
+                                            }
+                                            {/* <figure className="slide active"><img src="./assets / images / event01 / event1 - pic01.jpg" alt="" /></figure>
+                                        <figure className="slide"><img src="./assets/images/event01/event1-pic02.jpg" alt="" />
+                                        </figure>
+                                        <figure className="slide"><img src="./assets/images/event01/event1-pic03.jpg" alt="" />
+                                        </figure>
+                                        <figure className="slide"><img src="./assets/images/event01/event1-pic04.jpg" alt="" />
+                                        </figure>
+                                        <figure className="slide"><img src="./assets/images/event01/event1-pic05.jpg" alt="" />
+                                        </figure>*/}
+                                        </div>
+                                    </div>
+                                    {/* 活動介紹卡 */}
+                                    <section className="event-intro-card">
+                                        <header>
+                                            <h1 className="event-intro-card__title">{eventData.title}</h1>
+                                        </header>
+                                        <div className="event-intro-card__rating-box">
+                                            <div className="rating-icon rating-icon--filled"></div>
+                                            <p className="rating-text">{eventData.rating.score}({eventData.rating.amount})</p>
+                                        </div>
+                                        <div className="event-intro-card__content">
+                                            <div className="item-title-box item-date">
+                                                <div className="icon"></div>
+                                                <div className="title"><span>日</span><span>期：</span></div>
+                                            </div>
+                                            <div className="item-content-box">
+                                                <p className="text">{eventData.date}</p>
+                                                <a href="#" className="add-calendar">加入行事曆</a>
+                                            </div>
+                                            <div className="item-title-box item-address">
+                                                <div className="icon"></div>
+                                                <div className="title">活動地址：</div>
+                                            </div>
+                                            <div className="item-content-box">
+                                                <p className="text">{eventData.address.main}</p>
+                                                <p className="sub-text">{eventData.address.sub}</p>
+                                                <div className="open-map-box">
+                                                    <a href="#" className="open-link-icon"></a>
+                                                    <a href="#" className="open-map">地圖</a>
+                                                </div>
+                                            </div>
+                                            <div className="item-title-box item-founder">
+                                                <div className="icon"></div>
+                                                <div className="title">主辦單位：</div>
+                                            </div>
+                                            <div className="item-content-box">
+                                                <p className="text">{eventData.founder.name}</p>
+                                            </div>
+                                            <div className="item-title-box item-link">
+                                                <div className="icon"></div>
+                                                <div className="title">相關連結：</div>
+                                            </div>
+                                            <div className="item-content-box">
+                                                <a href={eventData.founder.links[0].link} target="_blank" className="text">{eventData.founder.links[0].title}</a>
+                                                <a href={eventData.founder.links[0].link} target="_blank" className="open-link-icon"></a>
+                                            </div>
+                                        </div>
+                                        <div className="split-line-row"></div>
+                                        <div className="tag-box">
+                                            <div className="tag-icon"></div>
+                                            <ul className="tag-list">
+                                                {
+                                                    eventData.tags.map((tagText, index) => {
+                                                        return <li key={index}>
+                                                            <FuneventTag tagText={tagText} />
+                                                        </li>;
+                                                    })
+                                                }
+                                                {/*<li>
+                                                    <a href="#" className="tag">#國小</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="tag">#國中</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="tag">#高中</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="tag">#吉他</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" className="tag">#流行音樂</a>
+                                                </li>*/}
+                                            </ul>
+                                        </div>
+                                    </section>
+
+                                    {/* 輪播控制組與蒐藏轉發按鈕 */}
+                                    <section className="event-intro-carousel-subtitle">
+                                        <div className="event-intro-carousel__ctrl-box">
+                                            <button type="button" className="arrow arrow--prev" id="caro-prev-btn"></button>
+                                            <div className="ctrl-btn-box">
+                                                <button type="button" className="ctrl-btn active"></button>
+                                                <button type="button" className="ctrl-btn"></button>
+                                                <button type="button" className="ctrl-btn"></button>
+                                                <button type="button" className="ctrl-btn"></button>
+                                                <button type="button" className="ctrl-btn"></button>
+                                            </div>
+                                            <button type="button" className="arrow arrow--next" id="caro-next-btn"></button>
+                                        </div>
+                                        <div className="btn-box">
+                                            <button type="button" className="funevent-btn-round" id="event-fav-btn">
+                                                <div className="funevent-btn-round__icon add-fav-icon add-fav-icon--faved"></div>
+                                                <p>蒐藏</p>
+                                            </button>
+                                            <button type="button" className="funevent-btn-round">
+                                                <div className="funevent-btn-round__icon share-icon"></div>
+                                                <p>轉發</p>
+                                            </button>
+                                        </div>
+                                    </section>
+
+                                    {/* 活動方案懸浮板 */}
+                                    <section className="event-plan-board">
+                                        <form action="" id="event-plan-form">
+                                            <label htmlFor="plan" className="label-big">選擇方案</label>
+                                            <select name="plan" id="plan">
+                                                <option value="">請選擇方案</option>
+                                                {
+                                                    eventData.plans.map((plan, index) => {
+                                                        return <option key={index} value={plan.title}>{plan.title}</option>
+                                                    })
+                                                }
+                                                {/*<option value="親子一同彈">親子一同彈</option>
+                                                <option value="孩子獨奏">孩子獨奏</option>*/}
+                                            </select>
+
+                                            <label htmlFor="date" className="label-big">選擇日期</label>
+                                            <select name="date" id="date">
+                                                <option value="">請選擇日期</option>
+                                                <option value={eventData.date}>{eventData.date}</option>
+                                            </select>
+
+                                            <p className="label-big">選擇時段</p>
+                                            <div className="radio-box">
+                                                {
+                                                    eventData.timeSlots.map((item, index) => {
+                                                        return <RadioBtnGroup key={index} groupName="time" value={item} index={index + 1} />
+
+                                                    })
+                                                }
+                                                {/*<input type="radio" name="time" id="time-1" value="上午場" />
+                                                <label htmlFor="time-1" className="time-1-label">上午場</label>
+                                                <input type="radio" name="time" id="time-2" value="下午場" />
+                                                <label htmlFor="time-2" className="time-2-label">下午場</label>*/}
+                                            </div>
+
+                                            <div className="ticket-amount-box">
+                                                <p className="label-big">數量</p>
+                                                <ul className="ticket-type-list">
+                                                    {
+                                                        eventData.ticketTypes.map((item, index) => {
+                                                            return <TicketType key={index} title={item.title} subtitle={item.sub} />
+                                                        })
+                                                    }
+                                                    {/*<li className="ticket-type">
+                                                        <div className="title-box">
+                                                            <p className="title">票卷</p>
+                                                            <p className="subtitle">(8 - 99歲)</p>
+                                                        </div>
+                                                        <div className="amount-box">
+                                                            <button className="minus-btn" type="button"></button>
+                                                            <p className="amount">1</p>
+                                                            <button className="plus-btn" type="button"></button>
+                                                        </div>
+                                                    </li>*/}
+
+                                                </ul>
+                                            </div>
+
+                                            <div className="split-line-row"></div>
+                                            <div className="price-box">
+                                                <p className="title">總金額</p>
+                                                <div className="price-inner-box">
+                                                    <p className="currency">NT$</p>
+                                                    <p className="total-price">600</p>
+                                                </div>
+                                            </div>
+                                            <div className="fun-point-box">
+                                                <p className="title">Fun點數</p>
+                                                <div className="fun-point-inner-box">
+                                                    <p className="fun-point">6</p>
+                                                    <div className="fun-point-icon"></div>
+                                                </div>
+                                            </div>
+                                            <button className="funevent-btn" id="sign-up-btn" type="submit">立即報名</button>
+                                        </form>
+                                    </section>
+
+                                    {/* 活動介紹跟內部導航的容器 */}
+                                    <div className="event-main-introduction-container">
+                                        {/* 活動頁內部導航列 */}
+                                        <nav className="event-inner-nav">
+                                            <ul className="menu">
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn active" type="button"
+                                                        data-scrollto="event-introduction">活動主頁</button>
+                                                </li>
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn" type="button"
+                                                        data-scrollto="event-main-introduction">活動介紹</button>
+                                                </li>
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn" type="button"
+                                                        data-scrollto="event-page-plan-intro">選擇方案</button>
+                                                </li>
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn" type="button"
+                                                        data-scrollto="event-page-notice">注意事項</button>
+                                                </li>
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn" type="button"
+                                                        data-scrollto="event-page-founder">主辦單位</button>
+                                                </li>
+                                                <li className="item">
+                                                    <button className="event-inner-nav__btn" type="button"
+                                                        data-scrollto="event-page-comment">活動評論</button>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                        {/* 活動介紹區塊 */}
+                                        <section id="event-main-introduction">
+                                            {
+                                                eventData.introduction.map((item, index) => {
+                                                    const { title, content } = item;
+                                                    return <ArticleWithMainTitle key={index} title={title} content={content} />
+                                                })
+                                            }
+                                            {/*<h2 className="funevent-main-title">活動介紹</h2>
+                                            <p className="text-content">
+                                                民謠吉他，是近幾十年來最流行的樂器之一，具有便宜好學且方便攜帶的特性，是孩子們探索音樂、創造音樂最好的一條途徑。想讓孩子們接觸音樂，但又怕孩子們三分鐘熱度無法堅持太久，趕緊趁現在來參加我們的吉他體驗課吧！
+                                                <br /><br />
+                                                不用小提琴或國樂器的昂貴價格，也不用鋼琴的超大佔位，一把吉他，揹著就可以到處彈到處唱，
+                                                同時，您在課程中也可以和孩子們一同學習，創造屬於親子間的特別回憶。
+                                                <br /><br />
+                                                專屬FunEvent會員優惠！蘭響當天會帶著數款適合初學者的木吉他讓同學們可以當場選購。
+                                                憑電子票卷證明亦可到蘭響音樂教室用折扣價購買精選木吉他。
+                                            </p>
+                                            <h2 className="funevent-main-title">師資介紹</h2>
+                                            <p className="text-content">
+                                                蘭響音樂教室的師資都是已從業多年的音樂教師，大多老師也同時是樂團樂手或是音樂製作人。蘭響音樂教室一定會給您帶來最佳的活動體驗。
+                                            </p>
+                                            <h2 className="funevent-main-title">活動流程</h2>
+                                            <p className="text-content">
+                                                {"民謠吉他的特色 => 經典四和弦 => 簡單樂理 => 彈唱練習"}
+                                            </p>*/}
+                                            <button type="button" className="funevent-btn">觀看更多內容</button>
+                                        </section>
+                                    </div>
+
+                                    {/* 選擇方案區塊 */}
+                                    <section id="event-page-plan-intro">
+                                        <h2 className="funevent-main-title">選擇方案</h2>
+                                        <ul className="plan-list">
+                                            {
+                                                eventData.plans.map((item, index) => {
+                                                    const { title, content, price } = item;
+                                                    return <PlanItem key={index} title={title} content={content} price={price} />
+                                                })
+                                            }
+                                            {/*<li className="plan-item">
+                                                <div className="start-box">
+                                                    <div className="title">親子一同彈</div>
+                                                    <div className="subtitle">為親子提供兩把吉他，可以一同學習。</div>
+                                                </div>
+                                                <div className="end-box">
+                                                    <div className="price-box">
+                                                        <p className="currency">NT$</p>
+                                                        <p className="price">500</p>
+                                                    </div>
+                                                    <button type="button" className="funevent-btn plan-choose-btn">選擇</button>
+                                                </div>
+                                            </li>
+                                            <li className="plan-item">
+                                                <div className="start-box">
+                                                    <div className="title">孩子獨奏</div>
+                                                    <div className="subtitle">提供專業吉他，手把手指導孩子。</div>
+                                                </div>
+                                                <div className="end-box">
+                                                    <div className="price-box">
+                                                        <p className="currency">NT$</p>
+                                                        <p className="price">300</p>
+                                                    </div>
+                                                    <button type="button" className="funevent-btn plan-choose-btn">選擇</button>
+                                                </div>
+                                            </li>*/}
+                                        </ul>
+                                    </section>
+
+                                    {/* 注意事項區塊 */}
+                                    <section id="event-page-notice">
+                                        <ArticleWithMainTitle title={eventData.warningContent.title} content={eventData.warningContent.content} />
+                                        {/*<h2 className="funevent-main-title">注意事項</h2>
+                                        <p className="text-content">
+                                            注意事項：<br />
+                                            1. 活動當天會提供木吉他進行練習，請同學們愛惜使用<br />
+                                            2. 若您自己有木吉他，歡迎直接帶來體驗課程<br />
+                                            3. 為維護講師權益，請勿在上課中錄影<br />
+                                            4. 親子一同彈方案會提供兩把木吉他<br />
+                                        </p>*/}
+                                    </section>
+
+                                    {/* 主辦單位區塊 */}
+                                    <section id="event-page-founder">
+                                        <h2 className="funevent-main-title">主辦單位</h2>
+                                        <div className="founder-intro-box">
+                                            <div className="start-box">
+                                                <div className="founder-icon"></div>
+                                                <div className="founder-intro">
+                                                    <p className="title">{eventData.founder.name} </p>
+                                                    <p className="intro">
+                                                        {
+                                                            eventData.founder.intro.split("<br />").map((item, index, arr) => {
+                                                                return index === (arr.length - 1) ? <ArticlePara key={index} content={item} noBreakLine /> : <ArticlePara key={index} content={item} />
+                                                            })
+                                                        }
+                                                        {/*蘭響音樂教室是甜美號樂團的吉他手小黑於1994年成立的一個音樂教室，<br />
+                                                        長年以來一直致力於樂手培養、音樂製作等業務<br />
+                                                        蘭響今年即將邁入第三十個年頭，<br />
+                                                        希望在這而立之年使用更多元的方向做搖滾音樂的推廣與教學。<br />
+                                                        請大家多多指教！<br />*/}
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div className="btn-box">
+                                                <button type="button" className="funevent-btn-round" id="founder-fav-btn">
+                                                    <div className="funevent-btn-round__icon add-fav-icon"></div>
+                                                    <p>蒐藏</p>
+                                                </button>
+                                                <button type="button" className="funevent-btn-round">
+                                                    <div className="funevent-btn-round__icon contact-founder-icon"></div>
+                                                    <p>聯絡主辦</p>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    {/* 活動評論區塊 */}
+                                    <section id="event-page-comment">
+                                        <h2 className="funevent-main-title">活動評論</h2>
+                                        <div className="rating-box">
+                                            <div className="rating-point-box">
+                                                <p className="rating-point">{eventData.rating.score}</p>
+                                                <p className="total-rating-point">/5</p>
+                                            </div>
+                                            <div className="rating-icon-box">
+                                                <div className="rating-icon rating-icon--filled"></div>
+                                                <div className="rating-icon rating-icon--filled"></div>
+                                                <div className="rating-icon rating-icon--filled"></div>
+                                                <div className="rating-icon rating-icon--filled"></div>
+                                                <div className="rating-icon"></div>
+                                            </div>
+                                            <div className="total-comment-box">
+                                                <p className="text-content">共</p>
+                                                <p className="text-content total-comment">{eventData.rating.amount}</p>
+                                                <p className="text-content">人評價</p>
+                                            </div>
+                                        </div>
+                                        <div className="split-line-row"></div>
+                                        <select name="filter" id="event-page-comment-filter" className="filter">
+                                            <option value="new-to-old">從新到舊</option>
+                                            <option value="hottest">最熱門</option>
+                                        </select>
+                                        <ul className="comment-list">
+                                            {
+                                                eventData.commentItems.map((item, index) => {
+                                                    return <CommentItem
+                                                        key={index}
+                                                        userName={item.userName}
+                                                        userAvatarUrl={item.userAvatarUrl}
+                                                        date={item.date}
+                                                        ratingScore={item.ratingScore}
+                                                        content={item.content}
+                                                        picArr={item.picArr} />
+                                                })
+                                            }
+                                            {/*<li className="comment-item">
+                                                <figure className="user-avatar"><img
+                                                    src="./assets/images/event01/comment01-user-avatar.png" alt="" /></figure>
+                                                <div className="comment-content">
+                                                    <div className="start-box">
+                                                        <p className="user-name">Lily Thompson</p>
+                                                        <p className="date">2024.04.16</p>
+                                                    </div>
+                                                    <div className="rating-icon-box">
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                    </div>
+                                                    <div className="text-content-box">
+                                                        <p className="text-content">
+                                                            講師是我高中時期最愛樂團甜美號的吉他手小黑，不來實在說不過去了呀！
+                                                            我選擇的方案是親子一同彈，在彈唱的過程中，我和孩子互相分享了自己喜歡的音樂，
+                                                            謝謝蘭響為我創造了獨一無二的親子回憶
+                                                        </p>
+                                                        <button className="more-btn">展開</button>
+                                                    </div>
+                                                </div>
+                                                <div className="comment-pic"
+                                                    style={{ backgroundImage: "url(./assets/images/event01/comment01-pic01.png)" }}>
+                                                    <button type="button" className="more-pic-btn">+2</button>
+                                                </div>
+                                            </li>
+                                            <li className="comment-item">
+                                                <figure className="user-avatar"><img
+                                                    src="./assets/images/event01/comment02-user-avatar.png" alt="" /></figure>
+                                                <div className="comment-content">
+                                                    <div className="start-box">
+                                                        <p className="user-name">Ethan Parker</p>
+                                                        <p className="date">2024.01.10</p>
+                                                    </div>
+                                                    <div className="rating-icon-box">
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon rating-icon--filled"></div>
+                                                        <div className="rating-icon"></div>
+                                                    </div>
+                                                    <div className="text-content-box">
+                                                        <p className="text-content">
+                                                            參加這次的吉他課程真是太棒了！從一開始連基本的和弦都彈不出來，
+                                                            到現在能彈奏一些簡單的曲子，這段學習過程真的很有趣。
+                                                            老師非常耐心，一步步地教我如何正確地按弦、彈奏，讓我逐漸克服了最初的困難。
+                                                        </p>
+                                                        <button className="more-btn">展開</button>
+                                                    </div>
+                                                </div>
+                                                <div className="comment-pic"
+                                                    style={{ backgroundImage: "url(./assets/images/event01/comment02-pic01.png)" }}>
+                                                    <button type="button" className="more-pic-btn">+2</button>
+                                                </div>
+                                            </li>*/}
+                                        </ul>
+                                        <button type="button" className="funevent-btn">觀看更多評論</button>
+                                    </section>
+                                </div>
+
+                                {/* 你可能也會喜歡區塊 */}
+                                <section id="event-page-recommend">
+                                    <h2 className="funevent-main-title">你可能也喜歡</h2>
+                                    <ul className="funevent-event-list">
+                                        {
+                                            eventInfoYouMayLike.map((event, index) => {
+                                                return <li key={index}> <FuneventEventCard data={event} /> </li>
+                                            })
+                                        }
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </main >
+                    <Footer />
+                </div >
+            </>
+        }
+
+        // slide組件
+        function Slide({ isActive = false, imgUrl = "./assets/images/event01/event1-pic01.jpg" }, altText = "") {
+            let className = isActive ? "slide active" : "slide";
+            return <figure className={className}><img src={imgUrl} alt={altText} /></figure>
+        }
+
+        // 用在漂浮面板的radioBtn組合(input會被隱藏，留下label)
+        function RadioBtnGroup({ groupName = "time", value = "'上午場", index = 0 }) {
+            return <>
+                <input type="radio" name={groupName} id={`${groupName}-${index}`} value={value} />
+                <label htmlFor={`${groupName}-${index}`} className={`${groupName}-${index}-label`} >{value}</label>
+            </>
+        }
+
+        // 票種組件
+        function TicketType({ title, subtitle, amount = 1 }) {
+            return <>
+                <li className="ticket-type">
+                    <div className="title-box">
+                        <p className="title">{title}</p>
+                        <p className="subtitle">{subtitle}</p>
+                    </div>
+                    <div className="amount-box">
+                        <button className="minus-btn" type="button"></button>
+                        <p className="amount">{amount}</p>
+                        <button className="plus-btn" type="button"></button>
+                    </div>
+                </li>
+            </>
+        }
+
+        // 付有大標題的文章組件
+        function ArticleWithMainTitle({ title, content }) {
+            return <>
+                <h2 className="funevent-main-title">{title}</h2>
+                <p className="text-content">
+                    {
+                        content.split("<br />").map((item, index, arr) => {
+                            // 最後一個段落不加斷行
+                            return index === (arr.length - 1) ? <ArticlePara key={index} content={item} noBreakLine /> : <ArticlePara key={index} content={item} />
+                        })
+                    }
+                </p>
+            </>
+        }
+
+        // 文章段落，使用noBreakLine來控制是否加上斷行
+        function ArticlePara({ content, noBreakLine }) {
+            return noBreakLine ? <span>{content}</span> : <><span>{content}</span><br /></>
+        }
+
+        // 方案選擇區塊用的item
+        function PlanItem({ title, content, price }) {
+            return <>
+                <li className="plan-item">
+                    <div className="start-box">
+                        <div className="title">{title}</div>
+                        <div className="subtitle">{content}</div>
+                    </div>
+                    <div className="end-box">
+                        <div className="price-box">
+                            <p className="currency">NT$</p>
+                            <p className="price">{price}</p>
+                        </div>
+                        <button type="button" className="funevent-btn plan-choose-btn">選擇</button>
+                    </div>
+                </li>
+            </>
+        }
+
+        // 活動評論物件
+        function CommentItem({ userName, userAvatarUrl, date, ratingScore, content, picArr }) {
+            // 滿分五分
+            const totalScore = 5;
+            // 陣列裡放五個布林值，如果是true代表填滿的星星
+            let ratingScoreArr = [];
+            for (let i = 0; i < totalScore; i++) {
+                ratingScoreArr.push(false);
+            }
+            for (let i = 0; i < ratingScore; i++) {
+                ratingScoreArr[i] = true;
+            }
+            return <>
+                <li className="comment-item">
+                    <figure className="user-avatar"><img
+                        src={userAvatarUrl} alt="" /></figure>
+                    <div className="comment-content">
+                        <div className="start-box">
+                            <p className="user-name">{userName}</p>
+                            <p className="date">{date}</p>
+                        </div>
+                        <div className="rating-icon-box">
+                            {
+                                ratingScoreArr.map((item, index) => {
+                                    return item ? <div key={index} className="rating-icon rating-icon--filled"></div> : <div key={index} className="rating-icon"></div>
+                                })
+                            }
+                        </div>
+                        {/*<div className="rating-icon-box">
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon rating-icon--filled"></div>
+                            <div className="rating-icon"></div>
+                        </div>*/}
+                        <div className="text-content-box">
+                            <p className="text-content">
+                                {content}
+                            </p>
+                            <button className="more-btn">展開</button>
+                        </div>
+                    </div>
+                    <PictureLightBox className="comment-pic" picArr={picArr} />
+                </li>
+            </>
+        }
+
+        // 目前先直接寫樣式，之後再加入燈箱效果已展示完整的三張圖片
+        function PictureLightBox({ className = "comment-pic", picArr }) {
+            return <>
+                <div className={className} style={{ backgroundImage: `url(${picArr[0]})` }}>
+                    <button type="button" className="more-pic-btn">{picArr.length - 1}</button>
+                </div>
+            </>
+        }
+
+
+        ReactDOM
+            .createRoot(document.getElementById("root"))
+            .render(<App />);
+    </script>
+</body>
+
+</html>

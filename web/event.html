@@ -20,12 +20,12 @@
         integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
-    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
-    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
-    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
-    <script type="text/babel" src="./assets/js/Breadcrumb.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Breadcrumb.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
 </head>
@@ -165,7 +165,7 @@
 
                 let eventId = getSearchParams("event_id", "1");
                 // 活動資料
-                axios.get(`./assets/json/demoEvent${eventId}.json`)
+                axios.get(`https://dustin085.github.io/funEventProject/web/assets/json/demoEvent${eventId}.json`)
                     .then((response) => setEventData(response.data))
                     .catch(function (error) {
                         console.log(error);
@@ -174,7 +174,7 @@
                     });
 
                 // 你可能會喜歡(暫時使用熱門推薦)
-                axios.get("./assets/json/eventInfoHot.json")
+                axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoHot.json")
                     .then((response) => setEventInfoYouMayLike(response.data))
                     .catch((error) => console.log(error));
 
@@ -241,6 +241,9 @@
                 /* 內部導覽列 */
                 // 內部導覽列的原始位置
                 let innerNavOriginTop = $(".event-inner-nav").position().top;
+                // $(window).resize(() => {
+                //     innerNavOriginTop = $(".event-inner-nav").position().top;
+                // });
 
                 // 滾動時
                 $(window).scroll(function (ev) {
@@ -301,14 +304,14 @@
                 let planBoardOriginTop = $(".event-plan-board").offset().top;
                 // row-gap，css內網格對齊時使用的row-gap，此網格容器最後會有一點多餘的row-gap
                 let rowGap = 25;
-                // 面板終點的底部位置
-                let planBoardEndBot = $(".event-introduction-container").offset().top + $(".event-introduction-container").height() - rowGap;
+
                 // console.log(planBoardEndBot);
 
                 // 面板與最上的間隙
                 let planBoardGap = 15;
                 $(window).scroll(function (ev) {
-
+                    // 面板終點的底部位置
+                    let planBoardEndBot = $(".event-introduction-container").offset().top + $(".event-introduction-container").height() - rowGap;
                     // 移動超過方案面板一開始的位置後
                     if ($(this).scrollTop() + planBoardGap > planBoardOriginTop && $(this).scrollTop() < planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardGap) {
                         // 移動
@@ -320,7 +323,7 @@
                         // console.log($(".event-plan-board").height());
                         $(".event-plan-board").css('top', planBoardEndBot - $(".event-plan-board").outerHeight() - planBoardOriginTop);
                     }
-                })
+                });
 
                 /* 活動金額計算 */
                 // 一開始先跑一次金額和切換金額欄位顯示以防萬一
