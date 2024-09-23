@@ -20,12 +20,12 @@
         integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
-    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
-    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
-    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
-    <script type="text/babel" src="./assets/js/SearchFilterBoard.jsx"></script>
-    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/SearchFilterBoard.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
     <!-- TODO -->
@@ -69,14 +69,14 @@
 
                 // 抓搜尋結果json
                 const getSearchData = async () => {
-                    const result = await axios.get("./assets/json/eventInfoForSearchPage.json");
+                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoForSearchPage.json");
                     setSearchResultJson(result.data);
                     // console.log(result.data);
                 }
 
                 // 抓側面板活動分類json
                 const getCategoryData = async () => {
-                    const result = await axios.get("./assets/json/eventCategoryCardInfo.json");
+                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventCategoryCardInfo.json");
                     let categoryArr = [];
                     Array.from(result.data).map((item) => {
                         categoryArr.push(item.title);
@@ -86,7 +86,7 @@
                 }
                 // 抓側面板地區json
                 const getLocationData = async () => {
-                    const result = await axios.get("./assets/json/twLocationList.json");
+                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/twLocationList.json");
                     setTwLocationList(result.data);
                     // console.log(result.data);
                 }
