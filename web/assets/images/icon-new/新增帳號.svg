@@ -1,1 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><defs><style>.cls-1{fill:none;}.cls-2{fill:#231815;}</style></defs><title>新增帳號</title><g id="圖層_2" data-name="圖層 2"><g id="ICON"><circle class="cls-1" cx="24" cy="24" r="24"/><circle class="cls-2" cx="28.26" cy="19.39" r="5.93"/><path class="cls-2" d="M37.61,34.54H18.9a.85.85,0,0,1-.85-1C18.7,29.88,23,27,28.26,27s9.55,2.86,10.2,6.55A.84.84,0,0,1,37.61,34.54Z"/><path class="cls-2" d="M19.75,23.71H16.92V20.89a.86.86,0,1,0-1.71,0v2.82H12.38a.86.86,0,0,0,0,1.72h2.83v2.82a.86.86,0,1,0,1.71,0V25.43h2.83a.86.86,0,0,0,0-1.72Z"/></g></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 48 48" style="enable-background:new 0 0 48 48;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#898989;}
+</style>
+<title>新增帳號</title>
+<g>
+	<g id="ICON">
+		<circle class="st0" cx="24" cy="24" r="24"/>
+		<circle class="st1" cx="29.9" cy="17.1" r="8.9"/>
+		<path class="st1" d="M43.9,39.8h-28c-0.7,0-1.3-0.5-1.3-1.3c0-0.1,0-0.2,0-0.2c1-5.5,7.4-9.8,15.3-9.8s14.3,4.3,15.3,9.8
+			c0.1,0.7-0.3,1.3-1,1.5C44,39.8,44,39.8,43.9,39.8z"/>
+		<path class="st1" d="M17.1,23.6h-4.2v-4.2c0.1-0.7-0.4-1.3-1.1-1.4c-0.7-0.1-1.3,0.4-1.4,1.1c0,0.1,0,0.2,0,0.3v4.2H6.1
+			c-0.7,0-1.3,0.6-1.3,1.3c0,0.7,0.6,1.3,1.3,1.3h4.2v4.2c-0.1,0.7,0.4,1.3,1.1,1.4c0.7,0.1,1.3-0.4,1.4-1.1c0-0.1,0-0.2,0-0.3v-4.2
+			h4.2c0.7,0,1.3-0.6,1.3-1.3C18.4,24.1,17.9,23.6,17.1,23.6z"/>
+	</g>
+</g>
+</svg>
