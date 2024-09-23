@@ -76,7 +76,7 @@ function MemberCenterSidebar({ subPage = "account-manage" }) {
                     <button type="button" className="edit-member-avatar-btn"><object
                         data="../assets/images/edit-avatar-icon.svg" type="image/svg+xml"></object></button>
                 </div>
-                <h3 className="member-center-sidebar__name">會員名字</h3>
+                <h3 className="member-center-sidebar__name">王曉明</h3>
                 <a href="./member-center-account-manage.html" className="member-center-sidebar__edit-link">管理個人資料</a>
             </div>
             <div className="member-center-sidebar__menu">
