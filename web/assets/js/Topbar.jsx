@@ -1,4 +1,4 @@
-function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = false }) {
+function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = false, setIsSearchDrawerActiveProp = null }) {
     const { useState, useEffect } = React;
     const [logoEnUrl, setLogoEnUrl] = useState("./assets/images/logo-en.svg");
     const [logoTcUrl, setLogoTcUrl] = useState("./assets/images/logo-tc.svg");
@@ -16,11 +16,29 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
         setIsLogin(localStorage.getItem("isLogin"));
     }, []);
 
+    // 將props和內部的state同步
+    useEffect(() => {
+        setIsSearchDrawerActive(isSearchDrawerActiveProp);
+    }, [isSearchDrawerActiveProp]);
+
+    // 同步父元件的state
+    useEffect(() => {
+        if (setIsSearchDrawerActiveProp) {
+            setIsSearchDrawerActiveProp(isSearchDrawerActive);
+        }
+    }, [isSearchDrawerActive]);
+
     // 登入按鈕事件處理
     const loginBtnClickHandler = () => {
         // location.href = "./member-center-my-ticket.html";
         setIsLoginBoardActive(true);
     };
+
+    // 會員按鈕處理
+    const memberCenterBtnClickHandler = () => {
+        location.href = "./member-center-account-manage.html";
+    };
+
     // 抽屜開啟時必定是白色logo，否則就依照isAltColor做判斷
     const checkLogoColor = () => {
         if (!isSearchDrawerActive) {
@@ -41,15 +59,28 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
         // location.href = "./search.html";
     };
 
-    const hideFloatBtnBox=()=>{
-
-    };
-
     // 關閉搜尋抽屜
     const closeSearchDrawerHandler = () => {
-        setIsSearchDrawerActive(!isSearchDrawerActive);
+        setIsSearchDrawerActive(false);
         checkLogoColor();
-    }
+    };
+
+    // 處理漂浮按鈕盒子的顯示與否
+    useEffect(() => {
+        if (isSearchDrawerActive) {
+            hideFloatBtnBox();
+        } else {
+            showFloatBtnBox();
+        }
+    }, [isSearchDrawerActive]);
+
+    const showFloatBtnBox = () => {
+        $(".float-btn-box").stop().fadeIn();
+    };
+
+    const hideFloatBtnBox = () => {
+        $(".float-btn-box").stop().fadeOut();
+    };
 
     // 關閉overlay處理
     const closeOverlayHandler = (ev) => {
@@ -97,7 +128,7 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
                         </li>
                         <li className="topbar-menu__item">
                             {
-                                isLogin ? null : <LoginBtn loginBtnClickHandler={loginBtnClickHandler} />
+                                isLogin ? <MemberCenterBtn memberCenterBtnClickHandler={memberCenterBtnClickHandler} /> : <LoginBtn loginBtnClickHandler={loginBtnClickHandler} />
                             }
                             {/* <button type="button" className="topbar-menu__btn" id="login-btn" onClick={loginBtnClickHandler}>
                                 <div className="topbar-menu__icon"><img src="./assets/images/login-icon.svg" alt="" /></div>
@@ -128,11 +159,24 @@ function LoginBtn({ loginBtnClickHandler }) {
     </>
 }
 
+function MemberCenterBtn({ memberCenterBtnClickHandler }) {
+    return <>
+        <button type="button" className="topbar-menu__btn" id="member-center-btn" onClick={memberCenterBtnClickHandler} >
+            <div className="topbar-menu__icon"><img src="./assets/images/login-icon.svg" alt="" /></div>
+            <p>你好，王曉明</p>
+        </button>
+    </>
+}
+
 function LoginOverlay({ isActive = false, closeOverlayHandler }) {
     // 登入按鈕處理程式，暫時先直接進入會員中心
     const loginBtnHandler = () => {
-        location.href = "./member-center-account-manage.html";
+        // 登入，目前未有判斷
+        localStorage.setItem("isLogin", "true");
+        // 重新整理
+        location.reload();
         // closeOverlayHandler();
+        // location.href = "./member-center-account-manage.html";
     };
     const inputRef = useRef(null);
 
@@ -187,7 +231,7 @@ function LoginOverlay({ isActive = false, closeOverlayHandler }) {
 
 function SearchDrawer({
     isActive,
-    tags = ["吉他", "游泳", "程式設計", "AI新技術", "吉他", "游泳", "程式設計", "AI新技術", "吉他", "游泳", "程式設計", "AI新技術"],
+    tags = ["吉他", "游泳", "程式設計", "AI新技術", "戶外教學", "親子同樂", "夏日營隊", "森林探險", "益智動腦", "周末限定", "小小職人", "語言學習", "水上活動"],
     closeSearchDrawerHandler }) {
     const { useState, useEffect, useRef } = React;
     const [userSearchText, setUserSearchText] = useState("");

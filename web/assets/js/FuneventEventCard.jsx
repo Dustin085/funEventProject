@@ -9,6 +9,14 @@ function FuneventEventCard(props) {
         location.href = eventUrl;
     };
 
+    // 蒐藏按鈕處理
+    const favBtnClickHandler = (ev) => {
+        ev.preventDefault();
+        $(ev.target).toggleClass("fav-btn--faved");
+        // fav-btn--faved
+        console.log("fav");
+    };
+
     // 按下tag把data-tagName取出來放到localStorage的userSearchText，之後進入搜尋頁
     // const tagOnClickHandler = (ev) => {
     //     ev.preventDefault();
@@ -24,8 +32,8 @@ function FuneventEventCard(props) {
                 style={{ backgroundImage: `url(${eventImgUrl})` }}>
                 <div className="inner-card">
                     <div className="start-box">
-                        <StateTag />
-                        <button type="button" className="fav-btn"></button>
+                        <StateTag eventState={eventState} />
+                        <button type="button" className="fav-btn" onClick={favBtnClickHandler} ></button>
                     </div>
                     <div className="date">
                         <p>{date}</p>
@@ -62,19 +70,7 @@ function FuneventEventCard(props) {
         </div >
     </>
 
-    // 活動狀態tag，有最新和熱門兩種
-    function StateTag() {
-        // eventState可以是new 或是 hot
-        let stateTag = <></>;
-        if (eventState == "new") {
-            stateTag = <><div className="tag tag--new">最新</div></>;
-        } else if (eventState == "hot") {
-            stateTag = <><div className="tag tag--hot">熱門</div></>;
-        } else {
-            stateTag = <><div className="tag tag--new">未知</div></>;
-        }
-        return stateTag;
-    }
+
     {/*
     return <>
     <div className="funevent-event-card">
@@ -109,4 +105,18 @@ function FuneventEventCard(props) {
     </div>
     </>
     */}
+}
+
+// 活動狀態tag，有最新和熱門兩種
+function StateTag({ eventState }) {
+    // eventState可以是new 或是 hot
+    let stateTag = <></>;
+    if (eventState == "new") {
+        stateTag = <><div className="tag tag--new">最新</div></>;
+    } else if (eventState == "hot") {
+        stateTag = <><div className="tag tag--hot">熱門</div></>;
+    } else {
+        stateTag = <><div className="tag tag--new">未知</div></>;
+    }
+    return stateTag;
 }

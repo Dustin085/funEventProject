@@ -265,6 +265,15 @@ input::placeholder {
     width: 19px;
     height: 19px;
     background: url(../images/add-fav-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+.funevent-event-card .inner-card .fav-btn:hover {
+    transform: scale(110%);
+}
+
+.funevent-event-card .inner-card .fav-btn.fav-btn--faved {
+    background-image: url(../images/add-fav-icon--faved.svg);
 }
 
 .funevent-event-card .main-content {
@@ -809,25 +818,25 @@ body {
 }
 
 .google {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/Google.svg);
+    background-image: url(../images/icon-new/綁定帳號/Google.svg);
     width: 30px;
     height: 30px;
 }
 
 .line {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/LINE.svg);
+    background-image: url(../images/icon-new/綁定帳號/LINE.svg);
     width: 30px;
     height: 30px;
 }
 
 .apple {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/Apple.svg);
+    background-image: url(../images/icon-new/綁定帳號/Apple.svg);
     width: 30px;
     height: 30px;
 }
 
 .facebook {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/FB.svg);
+    background-image: url(../images/icon-new/綁定帳號/FB.svg);
     width: 30px;
     height: 30px;
 }
