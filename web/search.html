@@ -59,10 +59,9 @@
             const [categoryDataArr, setCategoryDataArr] = useState([]);
             const [twLocationList, setTwLocationList] = useState([]);
 
-            useEffect(() => {
-
-                // console.log(searchQuery);
-            }, []);
+            const [filterText, setFilterText] = useState("");
+            // 使用篩選器篩選後的結果
+            const [filteredSearchResult, setFilteredSearchResult] = useState([]);
 
             // 搜尋關鍵字改變時同步改變分頁標題
             useEffect(() => {
@@ -100,7 +99,66 @@
                 getSearchData();
                 getCategoryData();
                 getLocationData();
+
+
+                // searchFilterRef.current.addEventListener("change", (ev) => {
+                //     let filterValue = ev.target.value;
+                //     if (filterValue = "new-to-old") {
+                //         let filteredJson = searchResultJson.sort((a, b) => {
+                //             return new Date(a.date) - new Date(b.date);
+                //         });
+                //         setFilteredSearchResult(filteredJson);
+                //     } else if (filterValue = "hottest") {
+                //         setFilteredSearchResult(searchResultJson);
+                //     }
+                //     console.log(filterValue);
+                // });
             }, []);
+
+            useEffect(() => {
+                // let filteredJson = [];
+                // if (filterText == "new-to-old") {
+                //     filteredJson = searchResultJson.sort((a, b) => {
+                //         return new Date(a.date) - new Date(b.date);
+                //     });
+                //     setFilteredSearchResult(filteredJson);
+                //     console.log("new-to-old");
+                // } else if (filterText == "hottest") {
+                //     filteredJson = searchResultJson;
+                //     setFilteredSearchResult(filteredJson);
+                //     console.log("hottest");
+                // }
+                // console.log(filteredJson);
+                // console.log(filteredSearchResult);
+            }, [filterText]);
+
+            useEffect(() => {
+                console.log(filteredSearchResult);
+            }, [filteredSearchResult]);
+
+            const filterOnChangeHandler = (ev) => {
+                setFilterText(ev.target.value);
+                if (ev.target.value == "new-to-old") {
+                    let filteredJson = searchResultJson.sort((a, b) => {
+                        return new Date(a.date) - new Date(b.date);
+                    });
+                    setFilteredSearchResult(filteredJson);
+                    console.log("new-to-old");
+                } else if (ev.target.value == "hottest") {
+                    let filteredJson = searchResultJson;
+                    setFilteredSearchResult(filteredJson);
+                    console.log("hottest");
+                }
+            };
+
+            useEffect(() => {
+                let filteredJson = searchResultJson.sort((a, b) => {
+                    return new Date(a.date) - new Date(b.date);
+                });
+                console.log(filteredJson);
+                filteredJson = searchResultJson;
+            }, []);
+
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
                 <div className="funevent-wrap">
@@ -133,7 +191,7 @@
                                 <div className="search-result-box">
                                     <div className="result-info-box funevent-shadow">
                                         <p className="search-result-info">找到36項結果</p>
-                                        <select className="search-filter" name="search-filter" id="search-filter">
+                                        <select className="search-filter" name="search-filter" id="search-filter" value={filterText} onChange={filterOnChangeHandler}>
                                             <option value="new-to-old">從新到舊</option>
                                             <option value="price-low-to-high">價格↓</option>
                                             <option value="price-high-to-low">價格↑</option>
@@ -142,7 +200,7 @@
                                     </div>
                                     <div className="search-result-event-card-box">
                                         {
-                                            searchResultJson.map((event, index) => {
+                                            filteredSearchResult.map((event, index) => {
                                                 return <FuneventEventCard key={index} data={event} />
                                             })
                                         }
