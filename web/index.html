@@ -120,6 +120,14 @@
                     .catch((error) => console.log(error));
             }, []);
 
+            // useEffect(() => {
+            //     setInterval(() => {
+            //         $(".home-page-bg-color-block-small__block2").css("transform", "rotate(35deg)");
+            //     }, 300);
+            //     $(".home-page-bg-color-block-small__block2").css("transform", "rotate(35deg)");
+            //     console.log($(".home-page-bg-color-block-small__block2").css("transform"));
+            // }, []);
+
             /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
             const carouselEle = useRef(null);
             const caroCtrlBoxEle = useRef(null);
