@@ -120,13 +120,15 @@
                     .catch((error) => console.log(error));
             }, []);
 
+            // 小背景色塊的旋轉，react版本，目前使用css版本動畫
+            // const [smallBlockTwoRorateDeg, setSmallBlockTwoRorateDeg] = useState(0);
             // useEffect(() => {
-            //     setInterval(() => {
-            //         $(".home-page-bg-color-block-small__block2").css("transform", "rotate(35deg)");
-            //     }, 300);
-            //     $(".home-page-bg-color-block-small__block2").css("transform", "rotate(35deg)");
-            //     console.log($(".home-page-bg-color-block-small__block2").css("transform"));
-            // }, []);
+            //     $(".home-page-bg-color-block-small__block2").css("transform", `rotate(${smallBlockTwoRorateDeg}deg)`);
+            //     setTimeout(() => {
+            //         let rotateDiff = 0.75;
+            //         setSmallBlockTwoRorateDeg(cyclingNum(smallBlockTwoRorateDeg, rotateDiff, 360, 0));
+            //     }, 25);
+            // }, [smallBlockTwoRorateDeg]);
 
             /* 校對輪播控制器的位置，因為如果把控制器跟輪播圖片放在同一個父元素的話會有z-index的問題 */
             const carouselEle = useRef(null);

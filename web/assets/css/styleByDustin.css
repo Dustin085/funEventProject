@@ -1404,6 +1404,17 @@ footer .end-box small {
     position: absolute;
     left: 40.9vw;
     top: 6.93vw;
+    animation: animeRotateSlow 24s infinite linear;
+}
+
+@keyframes animeRotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .home-page-bg-color-block-small__block3 {

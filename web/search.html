@@ -59,6 +59,7 @@
             const [categoryDataArr, setCategoryDataArr] = useState([]);
             const [twLocationList, setTwLocationList] = useState([]);
 
+            // 下拉式篩選文字
             const [filterText, setFilterText] = useState("");
             // 使用篩選器篩選後的結果
             const [filteredSearchResult, setFilteredSearchResult] = useState([]);
@@ -99,29 +100,36 @@
                 getSearchData();
                 getCategoryData();
                 getLocationData();
+
+                // 使用下拉式篩選器校對filterText文字
+                const checkFilterText = () => {
+                    setFilterText(document.getElementById("search-filter").value);
+                    console.log(document.getElementById("search-filter").value);
+                };
+                checkFilterText();
             }, []);
 
-            useEffect(() => {
-                console.log(filterText);
+            const filterSearchResult = () => {
+                let filteredJson = [...searchResultJson];
                 if (filterText == "new-to-old") {
-                    let filteredJson = searchResultJson;
+                    // 按照日期小到大
                     filteredJson.sort((a, b) => {
                         return new Date(a.date) - new Date(b.date);
                     });
-                    filteredJson.map((item) => {
-                        console.log(new Date(item.date));
-                    });
                 } else if (filterText == "hottest") {
-                    let filteredJson = searchResultJson;
-                    filteredJson.map((item) => {
-                        console.log(new Date(item.date));
-                    });
+                    // 最熱門排序，目前就按照一開始的排序
                 }
-            }, [filterText])
+                setFilteredSearchResult(filteredJson);
+            };
 
             useEffect(() => {
-                console.log(filteredSearchResult);
-            }, [filteredSearchResult]);
+                // console.log(filterText);
+                filterSearchResult();
+            }, [filterText]);
+
+            useEffect(() => {
+                filterSearchResult();
+            }, [searchResultJson]);
 
             const filterOnChangeHandler = (ev) => {
                 setFilterText(ev.target.value);
@@ -163,14 +171,14 @@
                                         <p className="search-result-info">找到36項結果</p>
                                         <select className="search-filter" name="search-filter" id="search-filter" value={filterText} onChange={filterOnChangeHandler}>
                                             <option value="new-to-old">從新到舊</option>
-                                            <option value="price-low-to-high">價格↓</option>
-                                            <option value="price-high-to-low">價格↑</option>
+                                            {/*<option value="price-low-to-high">價格↓</option>
+                                            <option value="price-high-to-low">價格↑</option>*/}
                                             <option value="hottest">最熱門</option>
                                         </select>
                                     </div>
                                     <div className="search-result-event-card-box">
                                         {
-                                            searchResultJson.map((event, index) => {
+                                            filteredSearchResult.map((event, index) => {
                                                 return <FuneventEventCard key={index} data={event} />
                                             })
                                         }
