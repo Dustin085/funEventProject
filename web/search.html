@@ -99,38 +99,25 @@
                 getSearchData();
                 getCategoryData();
                 getLocationData();
-
-
-                // searchFilterRef.current.addEventListener("change", (ev) => {
-                //     let filterValue = ev.target.value;
-                //     if (filterValue = "new-to-old") {
-                //         let filteredJson = searchResultJson.sort((a, b) => {
-                //             return new Date(a.date) - new Date(b.date);
-                //         });
-                //         setFilteredSearchResult(filteredJson);
-                //     } else if (filterValue = "hottest") {
-                //         setFilteredSearchResult(searchResultJson);
-                //     }
-                //     console.log(filterValue);
-                // });
             }, []);
 
             useEffect(() => {
-                // let filteredJson = [];
-                // if (filterText == "new-to-old") {
-                //     filteredJson = searchResultJson.sort((a, b) => {
-                //         return new Date(a.date) - new Date(b.date);
-                //     });
-                //     setFilteredSearchResult(filteredJson);
-                //     console.log("new-to-old");
-                // } else if (filterText == "hottest") {
-                //     filteredJson = searchResultJson;
-                //     setFilteredSearchResult(filteredJson);
-                //     console.log("hottest");
-                // }
-                // console.log(filteredJson);
-                // console.log(filteredSearchResult);
-            }, [filterText]);
+                console.log(filterText);
+                if (filterText == "new-to-old") {
+                    let filteredJson = searchResultJson;
+                    filteredJson.sort((a, b) => {
+                        return new Date(a.date) - new Date(b.date);
+                    });
+                    filteredJson.map((item) => {
+                        console.log(new Date(item.date));
+                    });
+                } else if (filterText == "hottest") {
+                    let filteredJson = searchResultJson;
+                    filteredJson.map((item) => {
+                        console.log(new Date(item.date));
+                    });
+                }
+            }, [filterText])
 
             useEffect(() => {
                 console.log(filteredSearchResult);
@@ -138,26 +125,9 @@
 
             const filterOnChangeHandler = (ev) => {
                 setFilterText(ev.target.value);
-                if (ev.target.value == "new-to-old") {
-                    let filteredJson = searchResultJson.sort((a, b) => {
-                        return new Date(a.date) - new Date(b.date);
-                    });
-                    setFilteredSearchResult(filteredJson);
-                    console.log("new-to-old");
-                } else if (ev.target.value == "hottest") {
-                    let filteredJson = searchResultJson;
-                    setFilteredSearchResult(filteredJson);
-                    console.log("hottest");
-                }
             };
 
-            useEffect(() => {
-                let filteredJson = searchResultJson.sort((a, b) => {
-                    return new Date(a.date) - new Date(b.date);
-                });
-                console.log(filteredJson);
-                filteredJson = searchResultJson;
-            }, []);
+
 
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
@@ -200,7 +170,7 @@
                                     </div>
                                     <div className="search-result-event-card-box">
                                         {
-                                            filteredSearchResult.map((event, index) => {
+                                            searchResultJson.map((event, index) => {
                                                 return <FuneventEventCard key={index} data={event} />
                                             })
                                         }
