@@ -265,6 +265,15 @@ input::placeholder {
     width: 19px;
     height: 19px;
     background: url(../images/add-fav-icon.svg) center/cover no-repeat;
+    transition: var(--hover-transition);
+}
+
+.funevent-event-card .inner-card .fav-btn:hover {
+    transform: scale(110%);
+}
+
+.funevent-event-card .inner-card .fav-btn.fav-btn--faved {
+    background-image: url(../images/add-fav-icon--faved.svg);
 }
 
 .funevent-event-card .main-content {

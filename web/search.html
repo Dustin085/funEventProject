@@ -20,12 +20,19 @@
         integrity="sha512-01Pe9P3mJM/4c80VuoYEGHlspKGbd9uWQe9HtdLsdTqV0CS1kz8ca44sinVEXEvlZNciMmsAjeEbm5ZxHC7yYg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- funevent的react元件 -->
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
+    <!-- <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventEventCard.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/SearchFilterBoard.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
+    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script> -->
+
+    <script type="text/babel" src="./assets/js/Topbar.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventEventCard.jsx"></script>
+    <script type="text/babel" src="./assets/js/Footer.jsx"></script>
+    <script type="text/babel" src="./assets/js/FloatBtnBox.jsx"></script>
+    <script type="text/babel" src="./assets/js/SearchFilterBoard.jsx"></script>
+    <script type="text/babel" src="./assets/js/FuneventTag.jsx"></script>
     <!-- funEvent函式庫 -->
     <script src="./assets/js/funEventUtil.js"></script>
     <!-- TODO -->
@@ -141,11 +148,12 @@
                                         }
                                     </div>
                                     <div className="page-indicator-box">
-                                        <button className="page-btn prev-page-btn" type="button"></button>
+                                        <PageIndicator />
+                                        {/*<button className="page-btn prev-page-btn" type="button"></button>
                                         <button type="button" className="page-indicator active">1</button>
                                         <button type="button" className="page-indicator">2</button>
                                         <button type="button" className="page-indicator">3</button>
-                                        <button className="page-btn next-page-btn" type="button"></button>
+                                        <button className="page-btn next-page-btn" type="button"></button>*/}
                                     </div>
                                 </div>
                             </div>
@@ -153,6 +161,44 @@
                     </main>
                     <Footer />
                 </div>
+            </>
+        }
+
+        function PageIndicator() {
+            const [activeIndex, setActiveIndex] = useState(0);
+
+            useEffect(() => {
+                let pageIndicators = Array.from(document.getElementsByClassName("page-indicator"));
+                switchActive(pageIndicators, activeIndex);
+            }, [activeIndex]);
+
+            useEffect(() => {
+                let pageIndicators = Array.from(document.getElementsByClassName("page-indicator"));
+                pageIndicators.forEach((item, index) => {
+                    item.addEventListener("click", () => {
+                        setActiveIndex(index);
+                    });
+                });
+            }, []);
+
+            const prevPageHandler = () => {
+                if (activeIndex != 0) {
+                    setActiveIndex(activeIndex - 1);
+                }
+            };
+
+            const nextPageHandler = () => {
+                if (activeIndex != 2) {
+                    setActiveIndex(activeIndex + 1);
+                }
+            };
+
+            return <>
+                <button className="page-btn prev-page-btn" type="button" onClick={prevPageHandler}></button>
+                <button type="button" className="page-indicator active">1</button>
+                <button type="button" className="page-indicator">2</button>
+                <button type="button" className="page-indicator">3</button>
+                <button className="page-btn next-page-btn" type="button" onClick={nextPageHandler}></button>
             </>
         }
 
