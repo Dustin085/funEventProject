@@ -32,12 +32,17 @@ function Topbar({ isAltColor, noLocationSelector, isSearchDrawerActiveProp = fal
                 setLogoTcUrl("./assets/images/logo-tc-alt-color.svg");
             }
         }
-    }
+    };
+
     // 搜尋按鈕事件處理
     const searchBtnClickHandler = () => {
         setIsSearchDrawerActive(!isSearchDrawerActive);
         checkLogoColor();
         // location.href = "./search.html";
+    };
+
+    const hideFloatBtnBox=()=>{
+
     };
 
     // 關閉搜尋抽屜
