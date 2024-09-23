@@ -91,14 +91,14 @@
     "commentItems": [
         {
             "userName": "簡大肥",
-            "userAvatarUrl": "./assets/images/event03/Ellipse 4.svg",
+            "userAvatarUrl": "./assets/images/event03/Ellipse 4.png",
             "date": "2024.05.13",
             "ratingScore": 4,
             "content": "這個暑假報名參加此活動是最棒的決定，在活動的過程中，我結交了許多好朋友，謝謝陽光型男為我創造了許多美好的回憶。",
             "picArr": [
-                "./assets/images/event03/comment-pic1.svg",
-                "./assets/images/event03/comment-pic1.svg",
-                "./assets/images/event03/comment-pic1.svg"
+                "./assets/images/event03/comment-pic1.png",
+                "./assets/images/event03/comment-pic1.png",
+                "./assets/images/event03/comment-pic1.png"
             ]
         },
         {
@@ -108,9 +108,9 @@
             "ratingScore": 3,
             "content": "老師非常有耐心，一步步地帶領我們認識野外求生，讓我逐漸克服了討厭戶外的心結。我最喜歡的是營火晚會，大家聚在一起，凝聚彼此，認識許多一輩子的朋友。",
             "picArr": [
-                "./assets/images/event03/comment-pic2.svg",
-                "./assets/images/event03/comment-pic2.svg",
-                "./assets/images/event03/comment-pic2.svg"
+                "./assets/images/event03/comment-pic2.png",
+                "./assets/images/event03/comment-pic2.png",
+                "./assets/images/event03/comment-pic2.png"
             ]
         }
     ]

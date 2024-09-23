@@ -91,26 +91,26 @@
     "commentItems": [
         {
             "userName": "陳小瓜",
-            "userAvatarUrl": "./assets/images/event02/Ellipse 6.svg",
+            "userAvatarUrl": "./assets/images/event02/Ellipse 6.png",
             "date": "2024.08.16",
             "ratingScore": 5,
             "content": "有趣活動的各位講師真是太有趣啦！老師們都非常細心，簡直跟天使一樣。課程內容也難易適中，不會過於初學導致甚麼成品都沒有。下次還想要再參加!",
             "picArr": [
-                "./assets/images/event02/comment-pic1.svg",
-                "./assets/images/event02/comment-pic1.svg",
-                "./assets/images/event02/comment-pic1.svg"
+                "./assets/images/event02/comment-pic1.png",
+                "./assets/images/event02/comment-pic1.png",
+                "./assets/images/event02/comment-pic1.png"
             ]
         },
         {
             "userName": "王大吉",
-            "userAvatarUrl": "./assets/images/event02/Ellipse 7.svg",
+            "userAvatarUrl": "./assets/images/event02/Ellipse 7.png",
             "date": "2024.04.10",
             "ratingScore": 5,
             "content": "老師們是非常專業且熱心沒錯，但程式設計還是太難了，我的孩子跟我說雖然老師已經仔細講解了，他還是理解不了老師的意思，這真的很可惜，希望老師們下次考慮把課程範例改得簡單一點。另外要說就是加購的午餐有點難吃，大力盒子竟然只提供紫米，也太大力了吧...",
             "picArr": [
-                "./assets/images/event02/comment-pic2.svg",
-                "./assets/images/event02/comment-pic2.svg",
-                "./assets/images/event02/comment-pic2.svg"
+                "./assets/images/event02/comment-pic2.png",
+                "./assets/images/event02/comment-pic2.png",
+                "./assets/images/event02/comment-pic2.png"
             ]
         }
     ]
