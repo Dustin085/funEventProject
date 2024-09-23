@@ -1044,28 +1044,28 @@ hr {
     height:40px;
     background-repeat: no-repeat;
     align-items:center;
-    background-image: url(../../../icon-new/社群媒體/credit-card/Visa.svg);
+    background-image: url(../images/icon-new/credit-card/Visa.svg);
 }
 .credit-card2{
     width: 44px;
     height:40px;
     background-repeat: no-repeat;
     align-items:center;
-    background-image: url(../../../icon-new/社群媒體/credit-card/Mastercard.svg);
+    background-image: url(../images/icon-new/credit-card/Mastercard.svg);
 }
 .credit-card3{
     width: 44px;
     height:40px;
     background-repeat: no-repeat;
     align-items:center;
-    background-image: url(../../../icon-new/社群媒體/credit-card/JCB.svg);
+    background-image: url(../images/icon-new/credit-card/JCB.svg);
 }
 .credit-card4{
     width: 44px;
     height:40px;
     background-repeat: no-repeat;
     align-items:center;
-    background-image: url(../../../icon-new/社群媒體/credit-card/China-UnionPay-Card.svg);
+    background-image: url(../images/icon-new/credit-card/China-UnionPay-Card.svg);
 }
 .input-name{
     display: flex;
@@ -1297,25 +1297,25 @@ margin-bottom: 16px;
 
 /*--------------Login-----------*/
 .google {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/Google.svg);
+    background-image: url(../images/icon-new/綁定帳號/Google.svg);
     width: 30px;
     height: 30px;
 }
 
 .line {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/LINE.svg);
+    background-image: url(../images/icon-new/綁定帳號/LINE.svg);
     width: 30px;
     height: 30px;
 }
 
 .apple {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/Apple.svg);
+    background-image: url(../images/icon-new/綁定帳號/Apple.svg);
     width: 30px;
     height: 30px;
 }
 
 .facebook {
-    background-image: url(../../../icon-new/社群媒體/綁定帳號/FB.svg);
+    background-image: url(../images/icon-new/綁定帳號/FB.svg);
     width: 30px;
     height: 30px;
 }
