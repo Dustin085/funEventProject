@@ -293,7 +293,7 @@
                     let data = btn.dataset;
                     let targetPos = $(`#${data.scrollto}`).offset();
                     btn.addEventListener("click", function () {
-                        $("html, body").animate({
+                        $("html, body").stop().animate({
                             scrollTop: targetPos.top - $(".event-inner-nav").height()
                         }, 350, "linear");
                     });
