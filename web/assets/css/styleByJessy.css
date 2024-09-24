@@ -786,7 +786,8 @@ footer .end-box small {
 }
 .member-center-message-manage .status{
     display: flex;
-    margin-left: 679px;
+    align-items: center;
+    margin-left: 720px;
     margin-bottom: 16px;
 }
 .member-center-message-manage .chatbox{

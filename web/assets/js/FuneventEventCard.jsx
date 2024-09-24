@@ -14,7 +14,7 @@ function FuneventEventCard(props) {
         ev.preventDefault();
         $(ev.target).toggleClass("fav-btn--faved");
         // fav-btn--faved
-        console.log("fav");
+        // console.log("fav");
     };
 
     // 按下tag把data-tagName取出來放到localStorage的userSearchText，之後進入搜尋頁
@@ -41,7 +41,7 @@ function FuneventEventCard(props) {
                 </div>
             </a>
             <div className="main-content">
-                <p className="category">{category}</p>
+                <a href={"./search.html?" + "search_query=" + category} className="category">{category}</a>
                 <h2 className="event-title"><a href={eventUrl}>{title}</a></h2>
                 <div className="location">
                     <div className="map-pin-icon"></div>
