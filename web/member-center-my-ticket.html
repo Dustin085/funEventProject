@@ -195,20 +195,26 @@
             const [leftTime, setLeftTime] = useState(Number(totalTime));
             const timerTimeoutId = useRef(null);
             useEffect(() => {
-                if (isActive) {
-                    setLeftTime(totalTime);
-                } else {
+                if (!isActive) {
                     // 離開的時候記得關掉計時器
                     clearTimeout(timerTimeoutId.current);
+                    console.log("close timer");
+                } else if (isActive) {
+                    setLeftTime(totalTime);
+                    timerTimeoutId.current = setTimeout(() => {
+                        setLeftTime(leftTime - 1);
+                    }, 1000);
                 }
             }, [isActive]);
             useEffect(() => {
                 if (leftTime === 0) {
                     timeUpFuntion();
                 }
-                timerTimeoutId.current = setTimeout(() => {
-                    setLeftTime(leftTime - 1);
-                }, 1000);
+                if (isActive) {
+                    timerTimeoutId.current = setTimeout(() => {
+                        setLeftTime(leftTime - 1);
+                    }, 1000);
+                }
             }, [leftTime]);
             return (
                 <span>{Math.floor(leftTime / 60)}:{(leftTime % 60).toString().padStart(2, 0)}</span>
