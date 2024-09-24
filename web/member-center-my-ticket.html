@@ -24,7 +24,8 @@
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Topbar.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/Footer.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FloatBtnBox.jsx"></script>
-    <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/MemberCenterSidebar.jsx"></script>
+    <script type="text/babel"
+        src="https://dustin085.github.io/funEventProject/web/assets/js/MemberCenterSidebar.jsx"></script>
     <script type="text/babel" src="https://dustin085.github.io/funEventProject/web/assets/js/FuneventTag.jsx"></script>
 </head>
 
@@ -55,6 +56,12 @@
                 });
             }, [subPageIdToTcTitle]);
 
+            // 管理電子票疊層
+            const [isDigitalTicketOverlayActive, setIsDigitalTicketOverlayActive] = useState(false);
+            const openDigitalTicketOvarlay = () => {
+                setIsDigitalTicketOverlayActive(true);
+            };
+
             return <>
                 {/*為背景設計的wrap，直接讓body{overflow:hidden}在手機板會失效*/}
                 <div className="funevent-wrap">
@@ -66,6 +73,8 @@
                         <div className="member-center-bg-color-block__block4"></div>
                     </div>
                     <FloatBtnBox />
+                    {/* 電子票QRcode展示疊層 */}
+                    <DigitalTicketOverlay isActiveProps={isDigitalTicketOverlayActive} setIsActiveProps={setIsDigitalTicketOverlayActive} />
                     <main>
                         <section id="member-center">
                             {/* 會員中心-側邊列 */}
@@ -78,11 +87,11 @@
                                     <div className="selection-and-filter">
                                         <ul className="selection-bar-all">
                                             <li><a href="#" className="selection-bar">即將到來</a></li>
-                                            <li><a a href="#" className="selection-bar">歷史紀錄</a></li>
-                                            <li><a a href="#" className="selection-bar">取消中/已取消</a></li>
+                                            <li><a href="#" className="selection-bar">歷史紀錄</a></li>
+                                            <li><a href="#" className="selection-bar">取消中/已取消</a></li>
                                         </ul>
                                         <div className="choose">
-                                            <li a href="#">從新到舊</li>
+                                            <li href="#">從新到舊</li>
                                             <button className="filter"></button>
                                         </div>
                                     </div>
@@ -110,7 +119,7 @@
                                                     </div>
                                                     <div className="two-button">
                                                         <button className="button-order">訂單詳情</button>
-                                                        <button className="button-order">
+                                                        <button className="button-order" onClick={openDigitalTicketOvarlay}>
                                                             <img src="./assets/images/icon-new/電子票.svg" alt="電子票" />
                                                             電子票
                                                         </button>
@@ -126,6 +135,84 @@
                     <Footer />
                 </div>
             </>
+        }
+
+        function DigitalTicketOverlay({ isActiveProps = false, setIsActiveProps = null }) {
+            const overlayBgRef = useRef(null);
+            const digitalTicketOverlayRef = useRef(null);
+            const [isActive, setIsActive] = useState(isActiveProps);
+            useEffect(() => {
+                if (isActive) {
+                    $(overlayBgRef.current).stop().fadeIn();
+                    $(digitalTicketOverlayRef.current).stop().fadeIn();
+                } else {
+                    $(overlayBgRef.current).stop().fadeOut();
+                    $(digitalTicketOverlayRef.current).stop().fadeOut();
+                }
+                // 同步父元件的state
+                setIsActiveProps(isActive);
+            }, [isActive]);
+
+            useEffect(() => {
+                // 把props同步給state
+                setIsActive(isActiveProps);
+            }, [isActiveProps]);
+
+            const closeOverlayHandler = () => {
+                setIsActive(false);
+            };
+            return <>
+                <div className="overlay-bg" onClick={closeOverlayHandler} ref={overlayBgRef}></div>
+                <div className="digital-ticket-overlay" ref={digitalTicketOverlayRef}>
+                    <div className="wrap">
+                        <div className="start-box">
+                            <button type="button" className="close-btn" onClick={closeOverlayHandler}></button>
+                            <div className="ticket-num-indicator">1/2</div>
+                            <div className="QRcode-box">
+                                <button type="button" className="prev-btn"></button>
+                                <figure className="QRcode"><img src="./assets/images/ticket-QRcode.png" alt="" /></figure>
+                                <button type="button" className="next-btn"></button>
+                            </div>
+                            <div className="timer">截圖無效 <Timer totalTime={120} timeUpFuntion={closeOverlayHandler} isActive={isActive} /></div>
+                        </div>
+                        <div className="end-box">
+                            <div className="split-line-row"></div>
+                            <div className="date">2024.10.06(日)</div>
+                            <div className="title-box">
+                                <h3 className="title">流行音樂與民謠吉他-第一堂吉他課的首選</h3>
+                                <p className="subtitle">親子一同彈:上午場</p>
+                            </div>
+                            <p className="ticket-code-num">票卷編號:61561561606150</p>
+                        </div>
+                    </div>
+                </div>
+            </>
+        }
+
+        function Timer({ totalTime = 60, timeUpFuntion = null, isActive }) {
+            // timeUpFunction => 時間到的時候會觸發的函式。利用isActive來判斷開關
+            // totalTime單位是秒
+            const [leftTime, setLeftTime] = useState(Number(totalTime));
+            const timerTimeoutId = useRef(null);
+            useEffect(() => {
+                if (isActive) {
+                    setLeftTime(totalTime);
+                } else {
+                    // 離開的時候記得關掉計時器
+                    clearTimeout(timerTimeoutId.current);
+                }
+            }, [isActive]);
+            useEffect(() => {
+                if (leftTime === 0) {
+                    timeUpFuntion();
+                }
+                timerTimeoutId.current = setTimeout(() => {
+                    setLeftTime(leftTime - 1);
+                }, 1000);
+            }, [leftTime]);
+            return (
+                <span>{Math.floor(leftTime / 60)}:{(leftTime % 60).toString().padStart(2, 0)}</span>
+            )
         }
 
 

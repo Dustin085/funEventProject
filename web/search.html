@@ -76,14 +76,14 @@
 
                 // 抓搜尋結果json
                 const getSearchData = async () => {
-                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventInfoForSearchPage.json");
+                    const result = await axios.get("./assets/json/eventInfoForSearchPage.json");
                     setSearchResultJson(result.data);
                     // console.log(result.data);
                 }
 
                 // 抓側面板活動分類json
                 const getCategoryData = async () => {
-                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/eventCategoryCardInfo.json");
+                    const result = await axios.get("./assets/json/eventCategoryCardInfo.json");
                     let categoryArr = [];
                     Array.from(result.data).map((item) => {
                         categoryArr.push(item.title);
@@ -93,7 +93,7 @@
                 }
                 // 抓側面板地區json
                 const getLocationData = async () => {
-                    const result = await axios.get("https://dustin085.github.io/funEventProject/web/assets/json/twLocationList.json");
+                    const result = await axios.get("./assets/json/twLocationList.json");
                     setTwLocationList(result.data);
                     // console.log(result.data);
                 }
@@ -104,7 +104,7 @@
                 // 使用下拉式篩選器校對filterText文字
                 const checkFilterText = () => {
                     setFilterText(document.getElementById("search-filter").value);
-                    console.log(document.getElementById("search-filter").value);
+                    // console.log(document.getElementById("search-filter").value);
                 };
                 checkFilterText();
             }, []);
